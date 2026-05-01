@@ -3,326 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal School of Motoring | 2026 Immersive Experience</title>
+    <title>Royal School of Motoring | Lewisham's Leading Driving Tuition</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --royal-blue: #0038A8; /* Brand Primary */
-            --crimson: #E01A22;    /* Brand Accent */
-            --midnight: #0a0e1a;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f4f7fa;
-            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --primary: #1a4789; /* Royal Blue from branding */
+            --accent: #e63946;  /* Imperial Red from branding */
+            --accent-dark: #c1272d;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: var(--midnight); 
-            color: var(--text-main); 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: var(--light); color: var(--primary); overflow-x: hidden; line-height: 1.6; }
 
-        /* 2026 BENTO GRID SYSTEM */
-        .bento-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(180px, auto);
-            gap: 20px;
-            padding: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .bento-item {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
-            padding: 40px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bento-item:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: var(--royal-blue);
-            transform: translateY(-5px);
-        }
-
-        /* TYPOGRAPHY - KINETIC STYLE */
-        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; }
-        .hero-text { font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; letter-spacing: -2px; }
-
-        /* LOGO REPLICATION */
-        .logo-svg { width: 50px; height: 50px; filter: drop-shadow(0 0 10px var(--royal-blue)); }
-
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            background: rgba(10, 14, 26, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 100px;
-            padding: 10px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10000;
-        }
-
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
-        .nav-links a:hover { opacity: 1; color: var(--crimson); }
-
-        /* HERO SECTION */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at top right, #0038A833, transparent),
-                        radial-gradient(circle at bottom left, #E01A2222, transparent);
-        }
-
-        .status-pill {
-            background: rgba(224, 26, 34, 0.15);
-            color: var(--crimson);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            border: 1px solid var(--crimson);
-            text-transform: uppercase;
-        }
+        /* TYPOGRAPHY */
+        h1, h2, h3, .brand { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        p { color: #444; }
 
         /* BUTTONS */
-        .cta-button {
-            background: var(--royal-blue);
-            color: white;
-            padding: 20px 45px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            margin-top: 30px;
-            transition: var(--transition);
-            border: none;
-            box-shadow: 0 0 30px rgba(0, 56, 168, 0.4);
+        .btn { display: inline-block; padding: 15px 35px; border-radius: 8px; font-weight: 700; text-decoration: none; transition: var(--transition); cursor: pointer; border: none; text-align: center; }
+        .btn-accent { background: var(--accent); color: var(--white); }
+        .btn-accent:hover { background: var(--primary); color: var(--white); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .btn-outline { border: 2px solid var(--white); color: var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--primary); }
+
+        /* STICKY NAV */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: var(--white); z-index: 1000; transition: var(--transition); border-bottom: 3px solid var(--primary); }
+        nav.scrolled { padding: 10px 8%; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: 700; }
+        .nav-links a:hover { color: var(--accent); }
+        
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .brand-text { color: var(--primary); line-height: 1; }
+        .brand-text span { display: block; font-size: 1.2rem; color: var(--accent); }
+
+        /* HAMBURGER */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; }
+        .hamburger span { width: 28px; height: 3px; background: var(--primary); transition: 0.3s; }
+
+        /* TOP TICKER */
+        .top-ticker { background: var(--primary); height: 45px; overflow: hidden; display: flex; align-items: center; margin-top: 85px; }
+        .ticker-wrap { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
+        .ticker-item { padding: 0 40px; color: var(--white); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* HERO SECTION */
+        .hero { height: 85vh; background: linear-gradient(rgba(26, 71, 137, 0.8), rgba(26, 71, 137, 0.6)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 5%; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .hero .tagline { font-size: 1.8rem; color: var(--white); font-weight: 300; margin-bottom: 30px; font-style: italic; }
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+
+        /* STATS */
+        .stats { background: var(--white); padding: 60px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; border-bottom: 5px solid var(--accent); }
+        .stat-card { color: var(--primary); }
+        .stat-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
+        .stat-card .num { font-size: 3rem; font-weight: 800; display: block; }
+
+        /* CAR FEATURE */
+        .car-feature-section { padding: 80px 10%; background: var(--light); display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .car-image-container { position: relative; border-radius: 20px; overflow: hidden; border: 8px solid var(--white); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .car-image-container img { width: 100%; display: block; }
+        .car-specs { list-style: none; }
+        .car-specs li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 600; color: var(--primary); }
+        .car-specs i { color: var(--accent); font-size: 1.3rem; }
+
+        /* ABOUT SECTION */
+        .about-joe { padding: 100px 10%; background: var(--white); display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
+        .joe-image { border-radius: 20px; border-bottom: 15px solid var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; }
+
+        /* SERVICE GRID */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 50px 10%; }
+        .service-card { background: var(--white); padding: 40px 30px; border-radius: 15px; text-align: center; transition: var(--transition); border: 1px solid #eee; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--primary); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--accent); }
+        .service-card i { font-size: 2.8rem; color: var(--accent); margin-bottom: 20px; }
+
+        /* SUCCESS SLIDER */
+        .success-slider { background: linear-gradient(rgba(26, 71, 137, 0.9), rgba(26, 71, 137, 0.9)), url('https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2000'); background-attachment: fixed; color: var(--white); padding: 100px 10%; text-align: center; }
+        .slide { display: none; max-width: 900px; margin: 0 auto; animation: fadeIn 0.8s; }
+        .slide.active { display: block; }
+
+        /* REFERRAL */
+        .referral-banner { margin: 80px 10%; background: var(--accent); border-radius: 20px; padding: 50px; color: var(--white); display: flex; justify-content: space-between; align-items: center; }
+
+        /* REVIEWS */
+        .reviews-section { padding: 80px 10%; background: #fff; text-align: center; }
+        .review-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+        .review-card { border-left: 5px solid var(--primary); background: var(--light); padding: 30px; border-radius: 0 12px 12px 0; text-align: left; }
+        .stars { color: #f1c40f; margin-bottom: 10px; }
+
+        /* BOOKING */
+        .booking-section { padding: 80px 10%; background: var(--light); }
+        .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .calendar-mock { background: var(--white); border-radius: 20px; padding: 40px; color: var(--primary); border: 2px solid var(--primary); }
+        .calendar-header { display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 2px solid var(--light); padding-bottom: 15px; }
+
+        /* PRICING */
+        .pricing { padding: 100px 10%; background: var(--white); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        .price-card { background: var(--white); padding: 50px 30px; border-radius: 15px; text-align: center; transition: var(--transition); border: 2px solid #eee; }
+        .price-card.vip { border: 3px solid var(--primary); transform: scale(1.05); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .price-card .cost { font-size: 3.5rem; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
+        .price-list { list-style: none; margin: 25px 0; text-align: left; border-top: 1px solid #eee; padding-top: 20px; }
+        .price-list i { color: var(--accent); margin-right: 10px; }
+
+        /* AREAS */
+        .areas { padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: var(--white); }
+        .map-box { background: var(--primary); border-radius: 20px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--white); position: relative; }
+        .tag { background: var(--accent); color: var(--white); padding: 8px 22px; border-radius: 4px; font-weight: 600; font-size: 0.8rem; }
+
+        /* FAQ */
+        .faq { padding: 100px 15%; background: var(--light); }
+        .accordion-header { background: var(--white); border: 1px solid #ddd; margin-top: 10px; border-radius: 8px; font-weight: 700; color: var(--primary); }
+
+        /* GALLERY */
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0 10%; margin-top: 40px; }
+        .gallery-item { height: 280px; background-size: cover; background-position: center; border-radius: 8px; border: 4px solid var(--white); }
+
+        /* DOCK & FOOTER */
+        .bottom-dock { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; justify-content: space-around; padding: 15px; z-index: 999; border-top: 4px solid var(--primary); box-shadow: 0 -5px 15px rgba(0,0,0,0.1); }
+        .dock-item { color: var(--primary); text-decoration: none; display: flex; flex-direction: column; align-items: center; font-weight: 700; font-size: 0.75rem; }
+        .dock-item i { color: var(--accent); font-size: 1.4rem; margin-bottom: 4px; }
+
+        footer { background: var(--primary); padding: 80px 10% 120px; color: var(--white); }
+        .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .booking-grid, .areas, .footer-grid, .car-feature-section, .about-joe, .referral-banner { grid-template-columns: 1fr; text-align: center; }
+            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 80%; background: var(--white); flex-direction: column; justify-content: center; }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; }
+            .referral-banner { flex-direction: column; gap: 30px; }
         }
-
-        .cta-button:hover {
-            background: var(--crimson);
-            box-shadow: 0 0 30px rgba(224, 26, 34, 0.4);
-            transform: scale(1.05);
-        }
-
-        /* SPECIFIC BENTO OVERRIDES */
-        .col-span-2 { grid-column: span 2; }
-        .row-span-2 { grid-row: span 2; }
-
-        .feature-icon { font-size: 2.5rem; color: var(--crimson); margin-bottom: 20px; }
-
-        /* CALL UI */
-        .call-card { background: var(--crimson) !important; color: white; }
-        .call-card h2 { font-size: 2.5rem; }
-
-        /* FOOTER DOCK */
-        .dock {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 15px 40px;
-            border-radius: 100px;
-            display: flex;
-            gap: 40px;
-            border: 1px solid var(--glass-border);
-            z-index: 999;
-        }
-
-        .dock-item { color: white; text-decoration: none; text-align: center; font-size: 0.7rem; opacity: 0.6; transition: 0.3s; }
-        .dock-item i { display: block; font-size: 1.2rem; margin-bottom: 5px; color: var(--crimson); }
-        .dock-item:hover { opacity: 1; transform: translateY(-5px); }
-
-        /* MOBILE RESPONSIVENESS */
-        @media (max-width: 900px) {
-            .bento-container { grid-template-columns: 1fr; }
-            .col-span-2, .row-span-2 { grid-column: span 1; grid-row: span 1; }
-            .hero-text { font-size: 3.5rem; }
-            nav { width: 95%; padding: 10px 15px; }
-            .nav-links { display: none; }
-        }
-
-        /* ACCORDION 2026 */
-        .faq-box { margin-top: 100px; padding: 0 20px; }
-        .faq-item { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; }
-        .faq-trigger { padding: 25px; display: flex; justify-content: space-between; font-weight: 700; }
-        .faq-content { padding: 0 25px; max-height: 0; overflow: hidden; transition: 0.4s; opacity: 0; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <svg class="logo-svg" viewBox="0 0 100 100">
-                <path d="M20 70 L30 30 L50 50 L70 30 L80 70 Z" fill="none" stroke="#0038A8" stroke-width="5"/>
-                <circle cx="50" cy="20" r="8" fill="#E01A22"/>
-                <path d="M10 80 H90" stroke="#0038A8" stroke-width="3"/>
+    <!-- Redesigned SVG Logo and Nav -->
+    <nav id="mainNav">
+        <a href="#" class="logo-container">
+            <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" stroke="#1a4789" stroke-width="4"/>
+                <path d="M50 15L30 40H70L50 15Z" fill="#e63946"/>
+                <path d="M25 45H75V55H25V45Z" fill="#1a4789"/>
+                <path d="M35 60L20 85H80L65 60H35Z" fill="#e63946"/>
             </svg>
-            <div style="line-height: 1;">
-                <span style="font-weight: 800; font-size: 1.2rem; color: var(--royal-blue);">ROYAL</span><br>
-                <span style="font-size: 0.6rem; letter-spacing: 2px; opacity: 0.8;">SCHOOL OF MOTORING</span>
+            <div class="brand-text">
+                <strong style="font-size: 1.4rem;">ROYAL SCHOOL</strong>
+                <span>OF MOTORING</span>
             </div>
+        </a>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#about">Philosophy</a></li>
-            <li><a href="#training">ORDIT Training</a></li>
-            <li><a href="#prices">Investment</a></li>
-            <li><a href="#office">The Hub</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">The School</a></li>
+            <li><a href="#services">Instructor Training</a></li>
+            <li><a href="#pricing">Lesson Prices</a></li>
+            <li><a href="#areas">Lewisham & SE</a></li>
+            <li><a href="#booking" class="btn btn-accent" style="color:white; padding: 10px 20px;">Book Now</a></li>
         </ul>
-        <a href="tel:02086923131" class="cta-button" style="padding: 12px 25px; margin: 0; font-size: 0.8rem;">BOOK NOW</a>
     </nav>
 
-    <section class="hero-section">
-        <div class="status-pill" data-aos="fade-down">Now Accepting Pupils - Lewisham SE13</div>
-        <h1 class="hero-text" data-aos="zoom-in">ROYAL ROAD<br><span style="color: var(--royal-blue);">TO FREEDOM</span></h1>
-        <p style="max-width: 600px; margin-top: 20px; opacity: 0.6; font-size: 1.1rem;">Precision driving tuition and ORDIT-registered instructor training in the heart of South East London.</p>
+    <div class="top-ticker">
+        <div class="ticker-wrap">
+            <div class="ticker-item">👑 ORDIT Registered Training Centre</div>
+            <div class="ticker-item">👑 Office Based in Lewisham</div>
+            <div class="ticker-item">👑 Free Theory Training For All Pupils</div>
+            <div class="ticker-item">👑 5 Minute Walk from Lewisham Station</div>
+            <div class="ticker-item">👑 Intensive Fast-Track Specialists</div>
+            <div class="ticker-item">👑 High Pass Rate Professionals</div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div data-aos="fade-up">
+            <h1>YOUR ROAD TO FREEDOM</h1>
+            <p class="tagline">"Come & Get Your Freedom"</p>
+            <div class="hero-btns">
+                <a href="tel:02086923131" class="btn btn-accent"><i class="fas fa-phone"></i> CALL 020 8692 3131</a>
+                <a href="#pricing" class="btn btn-outline">VIEW PRICE LIST</a>
+            </div>
+        </div>
     </section>
 
-    <div class="bento-container">
-        <!-- Main About Block -->
-        <div class="bento-item col-span-2 row-span-2" data-aos="fade-up">
-            <span class="status-pill">The School</span>
-            <h2 style="font-size: 3rem; margin-top: 20px;">Quality Tuition Since 2005</h2>
-            <p style="margin-top: 20px; opacity: 0.7;">Based in Lewisham, we provide more than just driving lessons. We are a dedicated training hub, a 5-minute walk from Lewisham Station & DLR. Our instructors are long-serving professionals with a 98% recommendation rate.</p>
-            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=600" style="width: 100%; border-radius: 20px; margin-top: 30px; filter: grayscale(0.5);" alt="Tuition Vehicle">
+    <div class="stats">
+        <div class="stat-card" data-aos="fade-up">
+            <i class="fas fa-graduation-cap"></i>
+            <span class="num">20+</span>
+            <p>Years in South East London</p>
         </div>
-
-        <!-- Call Card -->
-        <div class="bento-item col-span-2 call-card" data-aos="fade-left">
-            <p>Direct Hotline</p>
-            <h2>020 8692 3131</h2>
-            <p>Call today to secure your assessment slot.</p>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-certificate"></i>
+            <span class="num">ORDIT</span>
+            <p>Certified Instructors</p>
         </div>
-
-        <!-- ORDIT Block -->
-        <div class="bento-item col-span-1" data-aos="fade-up">
-            <i class="fas fa-graduation-cap feature-icon"></i>
-            <h3>ORDIT Registered</h3>
-            <p style="font-size: 0.8rem; opacity: 0.6;">Official Register of Driving Instructor Training.</p>
-        </div>
-
-        <!-- Theory Block -->
-        <div class="bento-item col-span-1" data-aos="fade-up" data-aos-delay="100">
-            <i class="fas fa-laptop-code feature-icon"></i>
-            <h3>Free Theory</h3>
-            <p style="font-size: 0.8rem; opacity: 0.6;">All Royal pupils receive full online training access.</p>
-        </div>
-
-        <!-- Car Block -->
-        <div class="bento-item col-span-2" data-aos="fade-right">
-            <div style="display: flex; gap: 20px; align-items: center;">
-                <div style="flex: 1;">
-                    <h3>The 2026 Fleet</h3>
-                    <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">Modern, dual-controlled, and eco-friendly vehicles maintained to the highest safety standards.</p>
-                </div>
-                <div style="width: 100px; height: 100px; background: var(--royal-blue); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-car-side" style="font-size: 2rem;"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pricing Block -->
-        <div class="bento-item col-span-2" style="background: var(--royal-blue);" data-aos="zoom-in">
-            <h3>Investment Packages</h3>
-            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-                <div>
-                    <h4 style="color: var(--crimson);">Pay As You Go</h4>
-                    <p style="font-size: 1.5rem; font-weight: 800;">£40/hr</p>
-                </div>
-                <div>
-                    <h4 style="color: var(--crimson);">10hr Block</h4>
-                    <p style="font-size: 1.5rem; font-weight: 800;">£380</p>
-                </div>
-            </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-check-circle"></i>
+            <span class="num">98%</span>
+            <p>Pupil Recommendation</p>
         </div>
     </div>
 
-    <div class="faq-box" id="faq">
-        <h2 style="text-align: center; margin-bottom: 50px;">Intelligent FAQ</h2>
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item">
-                <div class="faq-trigger">Where is your office based? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-content"><p style="padding-bottom: 25px;">We are at 8 Loampit Hill, Lewisham, London, SE13 7SW. A 5-minute walk from major rail and DLR links.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-trigger">Do you offer instructor training? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-content"><p style="padding-bottom: 25px;">Yes, we are a professional ORDIT Registered Driving Instructor Training Centre.</p></div>
+    <section class="about-joe" id="about">
+        <div class="car-image-container" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800" alt="Royal School Office">
+        </div>
+        <div data-aos="fade-left">
+            <h4 style="color: var(--accent); margin-bottom: 10px;">ESTABLISHED PROFESSIONALS</h4>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">OFFICE BASED IN LEWISHAM</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; font-weight: 600;">Located just a 5-minute walk from Lewisham Mainline Station & the DLR.</p>
+            <p>Unlike many "mobile-only" schools, we are a recession-proof establishment with a physical presence in the heart of South East London. Whether you are a total beginner or a driver looking for a new career, Royal School of Motoring provides a structured, professional environment to help you succeed.</p>
+            <div style="margin-top: 30px;">
+                <a href="#booking" class="btn btn-accent">FIND US ON THE MAP</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer style="padding: 100px 20px 150px; text-align: center; opacity: 0.4; font-size: 0.8rem;">
-        <p>&copy; 2026 Royal School of Motoring. Office-based excellence in SE London.</p>
+    <section id="services" style="padding: 100px 0; background: var(--white);">
+        <h2 style="text-align: center; margin-bottom: 10px;">What We Offer</h2>
+        <p style="text-align: center; margin-bottom: 40px;">Professional Tuition for Pupils and Future Instructors</p>
+        <div class="service-grid">
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-user-tie"></i>
+                <h3>Instructor Training</h3>
+                <p>ORDIT registered training for a recession-proof career. Guaranteed jobs available!</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-car"></i>
+                <h3>Quality Lessons</h3>
+                <p>Tailored 1-to-1 driving lessons in SE London with long-serving experienced instructors.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-book-open"></i>
+                <h3>Free Theory Training</h3>
+                <p>Exclusive access to premium theory training software for all Royal Pupils.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-clock"></i>
+                <h3>Intensive Courses</h3>
+                <p>Need your license fast? Our crash courses are designed for rapid success.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="success-slider">
+        <div class="slide active">
+            <i class="fas fa-star fa-3x" style="color: var(--accent); margin-bottom: 20px;"></i>
+            <h2>"Passed first time with Royal! Being able to visit their office in Lewisham made me feel much more confident in their service."</h2>
+            <p style="margin-top: 20px; font-weight: 800;">— JAMES, GREENWICH</p>
+        </div>
+        <div class="slide">
+            <i class="fas fa-star fa-3x" style="color: var(--accent); margin-bottom: 20px;"></i>
+            <h2>"The Instructor Training was world-class. I now have a guaranteed job and a brand new career thanks to Royal."</h2>
+            <p style="margin-top: 20px; font-weight: 800;">— MICHELLE, CATFORD</p>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 2.5rem;">Tuition Packages</h2>
+            <p>Pay-as-you-go or choose a discounted block booking.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="price-card" data-aos="fade-up">
+                <h3>Single Lesson</h3>
+                <p>Pay As You Go</p>
+                <div class="cost">£42</div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> Fully Qualified Instructor</li>
+                    <li><i class="fas fa-check"></i> Pick-up from Home/Work</li>
+                    <li><i class="fas fa-check"></i> Modern Dual-Control Car</li>
+                </ul>
+                <a href="tel:02086923131" class="btn btn-accent" style="width: 100%;">CALL TO BOOK</a>
+            </div>
+
+            <div class="price-card vip" data-aos="fade-up" data-aos-delay="100">
+                <h3>Royal Block</h3>
+                <p>Most Popular Bundle</p>
+                <div class="cost">£395</div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> 10 Hours of Tuition</li>
+                    <li><i class="fas fa-check"></i> <strong>Free</strong> Theory App Access</li>
+                    <li><i class="fas fa-check"></i> Priority Slot Allocation</li>
+                    <li><i class="fas fa-check"></i> Dedicated Local Instructor</li>
+                </ul>
+                <a href="tel:02086923131" class="btn btn-accent" style="width: 100%;">SAVE TODAY</a>
+            </div>
+
+            <div class="price-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Instructor PDI</h3>
+                <p>New Career Training</p>
+                <div class="cost">£1,500</div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> ORDIT Certified Training</li>
+                    <li><i class="fas fa-check"></i> Guaranteed Job Offer</li>
+                    <li><i class="fas fa-check"></i> Flexible Training Hours</li>
+                </ul>
+                <a href="tel:02086923131" class="btn btn-accent" style="width: 100%;">GET DETAILS</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="areas" id="areas">
+        <div data-aos="fade-right">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Our Coverage</h2>
+            <p>Based in Lewisham (SE13), we cover the majority of South East London. We are particularly easy to reach from London Bridge via the 15-minute rail link.</p>
+            <div class="area-tags" style="margin-top: 25px;">
+                <span class="tag">Lewisham</span><span class="tag">Blackheath</span>
+                <span class="tag">Catford</span><span class="tag">Greenwich</span>
+                <span class="tag">Hither Green</span><span class="tag">Deptford</span>
+                <span class="tag">Brockley</span><span class="tag">Lee</span>
+            </div>
+            <div style="margin-top: 30px; padding: 20px; background: var(--light); border-radius: 10px;">
+                <h4 style="color: var(--primary);"><i class="fas fa-map-marker-alt"></i> Office Address:</h4>
+                <p>8 Loampit Hill, London, SE13 7SW</p>
+            </div>
+        </div>
+        <div class="map-box" data-aos="zoom-in">
+            <i class="fas fa-compass fa-spin fa-3x" style="margin-bottom: 15px;"></i>
+            <h3>5 MINS FROM LEWISHAM STATION</h3>
+            <p>Convenient for all South East Commuters</p>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <h2 style="text-align: center; margin-bottom: 40px;">Common Questions</h2>
+        <div class="accordion-item">
+            <div class="accordion-header" style="padding: 15px;">Do I get the same instructor every time? <i class="fas fa-plus" style="float:right;"></i></div>
+            <div class="accordion-content" style="padding: 15px;"><p>Yes, we believe consistency is key. You will be assigned a long-serving, experienced instructor who will stay with you until you pass.</p></div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header" style="padding: 15px;">How do I start instructor training? <i class="fas fa-plus" style="float:right;"></i></div>
+            <div class="accordion-content" style="padding: 15px;"><p>If you've held your license for over 3 years and want a recession-proof career, call our Lewisham office to book an initial assessment.</p></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
+            <div>
+                <div class="footer-logo">
+                    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" stroke="#ffffff" stroke-width="4"/>
+                        <path d="M50 15L30 40H70L50 15Z" fill="#e63946"/>
+                    </svg>
+                    <b style="font-size: 1.2rem;">ROYAL SCHOOL</b>
+                </div>
+                <p>The premier choice for driving lessons and instructor training in Lewisham since 2005.</p>
+            </div>
+            <div class="footer-links">
+                <h4 style="color:var(--accent); margin-bottom: 15px;">Contact Us</h4>
+                <p><i class="fas fa-phone"></i> 020 8692 3131</p>
+                <p><i class="fas fa-envelope"></i> royaldrivinglessons@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 8 Loampit Hill, SE13 7SW</p>
+            </div>
+            <div class="footer-links">
+                <h4 style="color:var(--accent); margin-bottom: 15px;">Hours</h4>
+                <p>Monday - Friday: 9am - 6pm</p>
+                <p>Saturday: 10am - 4pm</p>
+                <p>Sunday: Closed (Office Only)</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem;">
+            &copy; 2026 Royal School of Motoring. All Rights Reserved.
+        </div>
     </footer>
 
-    <div class="dock">
-        <a href="tel:02086923131" class="dock-item"><i class="fas fa-phone"></i>Call</a>
-        <a href="https://wa.me/02086923131" class="dock-item"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-        <a href="#about" class="dock-item"><i class="fas fa-info-circle"></i>Info</a>
-        <a href="#faq" class="dock-item"><i class="fas fa-question-circle"></i>FAQ</a>
+    <div class="bottom-dock">
+        <a href="tel:02086923131" class="dock-item"><i class="fas fa-phone-alt"></i><span>Call Office</span></a>
+        <a href="https://wa.me/442086923131" class="dock-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+        <a href="#pricing" class="dock-item"><i class="fas fa-tags"></i><span>Prices</span></a>
+        <a href="#areas" class="dock-item"><i class="fas fa-map-marked-alt"></i><span>Location</span></a>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // 2026 Smooth Accordion Logic
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.onclick = () => {
-                const content = item.querySelector('.faq-content');
-                const isOpen = content.style.maxHeight;
-                
-                // Close all others
-                document.querySelectorAll('.faq-content').forEach(c => {
-                    c.style.maxHeight = null;
-                    c.style.opacity = 0;
-                });
-
-                if (!isOpen) {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    content.style.opacity = 1;
-                }
-            };
+        // Sticky Nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if(window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         });
 
-        // Micro-interaction: Parallax movement on Bento items
-        document.addEventListener('mousemove', (e) => {
-            const amount = 15;
-            const x = (e.clientX / window.innerWidth - 0.5) * amount;
-            const y = (e.clientY / window.innerHeight - 0.5) * amount;
-            
-            document.querySelectorAll('.bento-item').forEach(item => {
-                item.style.boxShadow = `${-x}px ${-y}px 40px rgba(0, 56, 168, 0.1)`;
-            });
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.onclick = () => navLinks.classList.toggle('active');
+
+        // Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.onclick = () => {
+                const content = header.nextElementSibling;
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            }
         });
     </script>
 </body>
