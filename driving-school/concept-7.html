@@ -12,66 +12,58 @@
         :root {
             --abs-blue: #0076ff;
             --abs-cyan: #00f2fe;
-            --abs-dark: #0f1115;
-            --abs-card: #1a1d23;
+            --abs-dark: #090a0f;
+            --abs-card: #14171f;
             --text-main: #f8fafc;
             --accent-gradient: linear-gradient(135deg, #0076ff 0%, #00f2fe 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--abs-dark); color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--abs-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
         /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(15, 17, 21, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid #2d3138; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(9, 10, 15, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid #2d3138; }
         .nav-content { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
         .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
-        .logo i { color: var(--abs-blue); }
         .logo span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* Hero Section */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 20px; background: radial-gradient(circle at top right, rgba(0, 118, 255, 0.15), transparent); }
-        .hero-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .hero h1 { font-size: 5rem; line-height: 0.9; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; }
-        .hero-graphic svg { width: 100%; height: auto; filter: drop-shadow(0 0 30px rgba(0, 118, 255, 0.3)); }
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 20px; background: radial-gradient(circle at 80% 20%, rgba(0, 118, 255, 0.1), transparent); }
+        .hero-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); line-height: 0.85; font-weight: 900; margin-bottom: 25px; text-transform: uppercase; }
+        
+        /* Realistic SVG Graphics Styling */
+        .svg-graphic { filter: drop-shadow(0 20px 50px rgba(0, 118, 255, 0.2)); width: 100%; height: auto; }
+        .feature-svg { height: 180px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;}
 
-        /* Common Layouts */
-        .section-padding { padding: 100px 20px; }
+        /* Sections */
+        .section-padding { padding: 120px 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 3rem; font-weight: 900; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .section-title { text-align: center; margin-bottom: 80px; }
+        .section-title h2 { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 
-        /* NEW SECTION: Road Map */
-        .roadmap-card { background: var(--abs-card); padding: 30px; border-radius: 20px; border-left: 5px solid var(--abs-blue); position: relative; }
-        .roadmap-num { position: absolute; right: 20px; top: 10px; font-size: 4rem; font-weight: 900; opacity: 0.1; }
+        /* Cards */
+        .abs-card { background: var(--abs-card); padding: 40px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
+        .abs-card:hover { transform: translateY(-10px); border-color: var(--abs-blue); background: #1a1e29; }
 
-        /* NEW SECTION: The Fleet */
-        .car-card { background: var(--abs-card); border-radius: 24px; overflow: hidden; transition: 0.4s; border: 1px solid #2d3138; }
-        .car-card:hover { transform: scale(1.03); border-color: var(--abs-blue); }
-        .car-img { height: 200px; background: #25282e; display: flex; align-items: center; justify-content: center; }
-
-        /* Pricing Card Overhaul */
-        .price-card { background: var(--abs-card); padding: 40px; border-radius: 30px; text-align: center; border: 2px solid transparent; position: relative; }
-        .price-card.featured { border-color: var(--abs-blue); box-shadow: 0 0 40px rgba(0, 118, 255, 0.2); }
-        .price-val { font-size: 4rem; font-weight: 900; margin: 20px 0; }
-
-        /* NEW SECTION: Pass Gallery */
-        .pass-card { border-radius: 15px; overflow: hidden; position: relative; height: 350px; }
-        .pass-overlay { position: absolute; bottom: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
-
+        /* Pricing */
+        .price-tag { font-size: 4rem; font-weight: 900; color: var(--abs-cyan); margin: 20px 0; display: block; }
+        
         /* Buttons */
-        .btn { padding: 18px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; cursor: pointer; }
-        .btn-primary { background: var(--accent-gradient); color: white; box-shadow: 0 10px 20px rgba(0, 118, 255, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 118, 255, 0.4); }
+        .btn { padding: 20px 40px; border-radius: 100px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-glow { background: var(--accent-gradient); color: white; box-shadow: 0 10px 30px rgba(0, 118, 255, 0.4); }
+        .btn-glow:hover { box-shadow: 0 15px 40px rgba(0, 118, 255, 0.6); transform: scale(1.05); }
 
-        /* Footer Dock */
-        .dock { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); padding: 10px 30px; border-radius: 100px; display: flex; gap: 30px; border: 1px solid rgba(255,255,255,0.1); z-index: 2000; }
-        .dock a { color: white; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+        /* Dock */
+        .dock { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(20, 23, 31, 0.8); backdrop-filter: blur(20px); padding: 12px 40px; border-radius: 100px; display: flex; gap: 40px; border: 1px solid rgba(255,255,255,0.1); z-index: 2000; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .dock a { color: white; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; }
 
         @media (max-width: 968px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero h1 { font-size: 3.5rem; }
             .hero-graphic { order: -1; }
+            .section-title h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -79,191 +71,192 @@
 
     <nav>
         <div class="nav-content">
-            <div class="logo"><i data-lucide="shield-check"></i>ABS <span>DRIVING</span></div>
-            <div class="nav-links">
-                <a href="#booking" class="btn btn-primary" style="padding: 10px 25px;">BOOK LESSON</a>
-            </div>
+            <div class="logo"><i data-lucide="zap"></i>ABS <span>DRIVING</span></div>
+            <a href="#prices" class="btn btn-glow" style="padding: 12px 25px; font-size: 0.8rem;">GET STARTED</a>
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <header class="hero">
         <div class="hero-container">
             <div data-aos="fade-right">
-                <div style="background: rgba(0, 118, 255, 0.1); color: var(--abs-cyan); padding: 5px 15px; border-radius: 5px; display: inline-block; margin-bottom: 20px; font-weight: 700; letter-spacing: 1px;">#1 RATED SCHOOL IN SOUTH LONDON</div>
-                <h1>ACCELERATE <br><span>YOUR FREEDOM.</span></h1>
-                <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 40px; max-width: 500px;">Master the road with Grade A instructors. At ABS, we don't just teach you to pass; we teach you to drive for life.</p>
-                <div style="display: flex; gap: 20px;">
-                    <a href="#prices" class="btn btn-primary">VIEW PACKAGES</a>
-                    <a href="#theory" class="btn" style="background: #2d3138; color: white;">THEORY HUB</a>
+                <span style="color: var(--abs-blue); font-weight: 800; letter-spacing: 3px;">ELITE DRIVING TUITION</span>
+                <h1>DRIVE THE <br><span>FUTURE.</span></h1>
+                <p style="font-size: 1.25rem; color: #94a3b8; margin: 30px 0 45px;">Precision instruction meets modern technology. Join South London's highest-rated driving academy and pass with confidence.</p>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="#prices" class="btn btn-glow">View Course Rates</a>
+                    <a href="#fleet" class="btn" style="background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1);">Explore Fleet</a>
                 </div>
             </div>
-            <div class="hero-graphic" data-aos="zoom-in">
-                <!-- SVG Illustration of Modern Driving -->
-                <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="50" y="300" width="400" height="20" rx="10" fill="#2d3138"/>
-                    <path d="M100 300 L150 180 L350 180 L400 300 Z" fill="url(#grad1)" opacity="0.8"/>
-                    <circle cx="150" cy="300" r="40" fill="#1a1d23" stroke="#0076ff" stroke-width="5"/>
-                    <circle cx="350" cy="300" r="40" fill="#1a1d23" stroke="#0076ff" stroke-width="5"/>
+            <div class="hero-graphic" data-aos="fade-left">
+                <!-- REALISTIC CAR SVG -->
+                <svg viewBox="0 0 600 400" class="svg-graphic" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#0076ff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                        <linearGradient id="carGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#003c80;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0076ff;stop-opacity:1" />
                         </linearGradient>
+                        <filter id="shadow"> <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000" flood-opacity="0.5"/> </filter>
                     </defs>
-                    <text x="210" y="250" fill="white" font-weight="900" font-size="40">ABS</text>
+                    <!-- Road Shadow -->
+                    <ellipse cx="300" cy="360" rx="250" ry="20" fill="rgba(0,0,0,0.4)" filter="blur(10px)"/>
+                    <!-- Car Body -->
+                    <path d="M50,330 L550,330 L530,220 C520,180 480,160 420,155 L200,155 C120,160 80,180 70,220 Z" fill="url(#carGrad)"/>
+                    <path d="M120,230 L480,230 L450,170 L150,170 Z" fill="#090a0f" opacity="0.8"/> <!-- Windows -->
+                    <rect x="70" y="270" width="460" height="15" rx="5" fill="rgba(0,0,0,0.3)"/> <!-- Side trim -->
+                    <!-- Wheels -->
+                    <circle cx="150" cy="330" r="45" fill="#111" stroke="#333" stroke-width="8"/>
+                    <circle cx="150" cy="330" r="25" fill="#222" stroke="#00f2fe" stroke-width="2"/>
+                    <circle cx="450" cy="330" r="45" fill="#111" stroke="#333" stroke-width="8"/>
+                    <circle cx="450" cy="330" r="25" fill="#222" stroke="#00f2fe" stroke-width="2"/>
+                    <!-- Headlights -->
+                    <path d="M500,240 Q550,245 540,280 L510,280 Z" fill="#fff" opacity="0.9"/>
+                    <rect x="520" y="250" width="10" height="20" fill="#00f2fe" filter="blur(5px)"/>
                 </svg>
             </div>
         </div>
     </header>
 
-    <!-- SECTION 1: THE ROADMAP -->
-    <section class="section-padding" style="background: #0a0c10;">
+    <!-- SECTION 1: PASS GALLERY (REALISTIC CHARACTERS) -->
+    <section class="section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>HOW IT <span>WORKS</span></h2>
-                <p>Your 4-step journey to a pink license.</p>
+                <h2>THE <span>PASS</span> CIRCLE</h2>
+                <p>Join the hundreds who traded their L-plates for freedom this month.</p>
             </div>
             <div class="grid">
-                <div class="roadmap-card" data-aos="fade-up">
-                    <div class="roadmap-num">01</div>
-                    <h3>Assessment</h3>
-                    <p>Initial drive to gauge your control and confidence levels.</p>
+                <div class="abs-card" data-aos="zoom-in">
+                    <!-- Learner Pass Graphic -->
+                    <svg viewBox="0 0 200 150" class="feature-svg">
+                        <circle cx="100" cy="50" r="40" fill="#1a1e29"/>
+                        <path d="M60,130 Q100,80 140,130" stroke="#0076ff" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        <rect x="80" y="90" width="40" height="50" rx="5" fill="#00f2fe"/>
+                        <text x="88" y="125" fill="#000" font-weight="900" font-size="25">L</text>
+                        <path d="M140,40 L160,60 L190,20" stroke="#6cbd45" stroke-width="10" fill="none"/>
+                    </svg>
+                    <h3 style="text-align: center;">98% Pass Rate</h3>
+                    <p style="text-align: center; color: #94a3b8;">Our scientific approach to driver training ensures you're ready for any road situation.</p>
                 </div>
-                <div class="roadmap-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="roadmap-num">02</div>
-                    <h3>Core Skills</h3>
-                    <p>Mastering junctions, roundabouts, and technical maneuvers.</p>
+                <div class="abs-card" data-aos="zoom-in" data-aos-delay="100">
+                    <svg viewBox="0 0 200 150" class="feature-svg">
+                        <path d="M40,140 L160,140 L160,100 Q160,40 100,40 Q40,40 40,100 Z" fill="#0076ff" opacity="0.3"/>
+                        <circle cx="100" cy="70" r="20" fill="#0076ff"/>
+                        <rect x="130" y="50" width="50" height="30" rx="5" fill="#fff"/>
+                        <text x="138" y="72" fill="#000" font-weight="900" font-size="14">PASS</text>
+                    </svg>
+                    <h3 style="text-align: center;">1st Time Success</h3>
+                    <p style="text-align: center; color: #94a3b8;">Most ABS students pass their practical test on the very first attempt.</p>
                 </div>
-                <div class="roadmap-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="roadmap-num">03</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: THE FLEET (DETAILED VECTORS) -->
+    <section id="fleet" class="section-padding" style="background: #0d0f16;">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR <span>VEHICLES</span></h2>
+            </div>
+            <div class="grid">
+                <!-- Manual Car Card -->
+                <div class="abs-card">
+                    <svg viewBox="0 0 300 150" class="feature-svg">
+                        <path d="M50,120 L250,120 L240,80 Q230,50 150,50 Q70,50 60,80 Z" fill="#222" stroke="#0076ff" stroke-width="2"/>
+                        <circle cx="80" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
+                        <circle cx="220" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
+                        <text x="110" y="90" fill="#0076ff" font-weight="900" font-size="12">MANUAL GOLF</text>
+                    </svg>
+                    <h3>VW Golf R-Line</h3>
+                    <p>Turbo-charged learning. Perfectly balanced for hill starts and maneuvers.</p>
+                </div>
+                <!-- Electric/Auto Car Card -->
+                <div class="abs-card">
+                    <svg viewBox="0 0 300 150" class="feature-svg">
+                        <path d="M50,120 L250,120 L240,80 Q230,50 150,50 Q70,50 60,80 Z" fill="#222" stroke="#00f2fe" stroke-width="2"/>
+                        <path d="M260,100 L280,80 L260,60" stroke="#00f2fe" fill="none" stroke-width="3"/> <!-- Lightning bolt -->
+                        <circle cx="80" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
+                        <circle cx="220" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
+                        <text x="115" y="90" fill="#00f2fe" font-weight="900" font-size="12">ELECTRIC</text>
+                    </svg>
+                    <h3>Tesla Model 3</h3>
+                    <p>Learn in the world's most advanced EV. Automatic, effortless, and eco-friendly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: THE ROADMAP -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>YOUR <span>JOURNEY</span></h2>
+            </div>
+            <div class="grid">
+                <div class="abs-card">
+                    <span style="font-size: 0.8rem; color: var(--abs-blue); font-weight: 900;">STEP 01</span>
+                    <h3>Foundation Drive</h3>
+                    <p>Master the cockpit drill and basic car control in quiet residential zones.</p>
+                </div>
+                <div class="abs-card">
+                    <span style="font-size: 0.8rem; color: var(--abs-blue); font-weight: 900;">STEP 02</span>
+                    <h3>Complex Junctions</h3>
+                    <p>Tackle roundabouts, dual carriageways, and high-speed merging.</p>
+                </div>
+                <div class="abs-card">
+                    <span style="font-size: 0.8rem; color: var(--abs-blue); font-weight: 900;">STEP 03</span>
                     <h3>Mock Exams</h3>
-                    <p>Realistic test scenarios to eliminate those exam-day nerves.</p>
-                </div>
-                <div class="roadmap-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="roadmap-num">04</div>
-                    <h3>The Big Day</h3>
-                    <p>The practical test with full instructor support and car hire.</p>
+                    <p>We replicate the DVSA exam environment to build your mental resilience.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 2: THE FLEET -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>OUR <span>FLEET</span></h2>
+    <!-- SECTION 4: THEORY HUB -->
+    <section id="theory" class="section-padding" style="background: var(--accent-gradient); color: black;">
+        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div data-aos="fade-right">
+                <h2 style="font-size: 3.5rem; line-height: 1; margin-bottom: 20px;">MASTER THE <br>THEORY.</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">Get exclusive access to our "Theory Pro" mobile suite. Videos, hazard clips, and 1,000+ mock questions included with every booking.</p>
+                <button class="btn" style="background: black; color: white;">Activate Theory Access</button>
             </div>
-            <div class="grid">
-                <div class="car-card">
-                    <div class="car-img"><i data-lucide="car" size="64" color="#0076ff"></i></div>
-                    <div style="padding: 20px;">
-                        <h3>VW Golf (Manual)</h3>
-                        <p>The gold standard for learners. Smooth, reliable, and easy to park.</p>
-                    </div>
-                </div>
-                <div class="car-card">
-                    <div class="car-img"><i data-lucide="zap" size="64" color="#00f2fe"></i></div>
-                    <div style="padding: 20px;">
-                        <h3>Tesla Model 3 (Auto)</h3>
-                        <p>Go electric. The future of driving with zero gear-shifting stress.</p>
-                    </div>
-                </div>
+            <div data-aos="fade-left">
+                <svg viewBox="0 0 400 300" class="svg-graphic">
+                    <rect x="100" y="20" width="200" height="260" rx="20" fill="#000"/>
+                    <rect x="110" y="40" width="180" height="220" rx="10" fill="#1a1e29"/>
+                    <circle cx="200" cy="245" r="10" fill="#333"/>
+                    <rect x="125" y="70" width="150" height="20" rx="5" fill="#0076ff"/>
+                    <rect x="125" y="100" width="150" height="20" rx="5" fill="#00f2fe"/>
+                    <path d="M150,150 L250,150 M150,180 L250,180 M150,210 L200,210" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                </svg>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: THEORY PRO HUB -->
-    <section id="theory" class="section-padding" style="background: var(--accent-gradient); color: #000;">
-        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
-            <div>
-                <h2 style="font-size: 3rem; font-weight: 900;">FREE THEORY <br>TRAINING</h2>
-                <p style="font-size: 1.2rem; margin: 20px 0;">All ABS students get free access to our Pro Theory App. Pass your theory first time, guaranteed.</p>
-                <ul style="list-style: none; font-weight: 700; margin-bottom: 30px;">
-                    <li><i data-lucide="check-circle"></i> 500+ Official DVSA Questions</li>
-                    <li><i data-lucide="check-circle"></i> Hazard Perception Simulators</li>
-                    <li><i data-lucide="check-circle"></i> 1-on-1 Theory Coaching</li>
-                </ul>
-                <a href="#" class="btn" style="background: #000; color: #fff;">ACTIVATE ACCESS</a>
-            </div>
-            <div style="background: rgba(255,255,255,0.2); padding: 40px; border-radius: 30px;">
-                <i data-lucide="book-open" size="80"></i>
-                <h3>Pass Rate: 99%</h3>
-                <p>Our students pass their theory test 3x faster than the UK average.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: PASS GALLERY -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>WALL OF <span>FAME</span></h2>
-            </div>
-            <div class="grid">
-                <div class="pass-card" style="background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=400') center/cover;">
-                    <div class="pass-overlay">
-                        <h4>Sarah J. - Bromley</h4>
-                        <p>Passed 1st Time • 2 Minors</p>
-                    </div>
-                </div>
-                <div class="pass-card" style="background: url('https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=400') center/cover;">
-                    <div class="pass-overlay">
-                        <h4>Marcus T. - Croydon</h4>
-                        <p>Passed 1st Time • Clean Sheet</p>
-                    </div>
-                </div>
-                <div class="pass-card" style="background: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=400') center/cover;">
-                    <div class="pass-overlay">
-                        <h4>Elena R. - Lewisham</h4>
-                        <p>Passed • Intensive Course</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5: INSTRUCTOR SPOTLIGHT -->
-    <section class="section-padding" style="background: #111419;">
-        <div class="container">
-            <div class="section-title">
-                <h2>THE <span>ELITE</span> TEAM</h2>
-            </div>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
-                <div style="background: var(--abs-card); padding: 40px; border-radius: 30px; display: flex; gap: 20px; align-items: center;">
-                    <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--accent-gradient);"></div>
-                    <div>
-                        <h3>Adam Wright</h3>
-                        <p style="color: var(--abs-blue); font-weight: 700;">Grade A ADI • 15+ Yrs</p>
-                        <p>Expert in nervous pupils and intensive training.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING SECTION -->
+    <!-- SECTION 5: PRICING -->
     <section id="prices" class="section-padding">
         <div class="container">
+            <div class="section-title">
+                <h2>COURSE <span>RATES</span></h2>
+            </div>
             <div class="grid">
-                <div class="price-card">
-                    <h3>INTRO SESSION</h3>
-                    <div class="price-val">£35</div>
-                    <p>90 Minute Assessment</p>
-                    <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">BOOK NOW</button>
+                <div class="abs-card">
+                    <h3>Starter Kick</h3>
+                    <span class="price-tag">£45</span>
+                    <p>90-minute evaluation session to build your personalized plan.</p>
+                    <a href="#" class="btn btn-glow" style="width: 100%; margin-top: 30px; text-align: center;">Book Now</a>
                 </div>
-                <div class="price-card featured">
-                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--abs-blue); padding: 5px 20px; border-radius: 20px; font-size: 0.8rem; font-weight: 900;">MOST POPULAR</div>
-                    <h3>10 HOUR BLOCK</h3>
-                    <div class="price-val">£340</div>
-                    <p>Save £40 on standard rates</p>
-                    <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">BOOK NOW</button>
+                <div class="abs-card" style="border: 2px solid var(--abs-blue); box-shadow: 0 0 30px rgba(0, 118, 255, 0.2);">
+                    <div style="background: var(--abs-blue); color: white; position: absolute; top: 0; right: 0; padding: 5px 20px; font-size: 0.7rem; font-weight: 900; border-radius: 0 0 0 15px;">TOP VALUE</div>
+                    <h3>10 Hour Block</h3>
+                    <span class="price-tag">£340</span>
+                    <p>Comprehensive training block with priority booking and theory app.</p>
+                    <a href="#" class="btn btn-glow" style="width: 100%; margin-top: 30px; text-align: center;">Book Now</a>
                 </div>
-                <div class="price-card">
-                    <h3>FAST TRACK</h3>
-                    <div class="price-val">£950</div>
-                    <p>30 Hour Intensive Course</p>
-                    <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">BOOK NOW</button>
+                <div class="abs-card">
+                    <h3>Fast Pass</h3>
+                    <span class="price-tag">£1.2k</span>
+                    <p>30-hour intensive course including practical test fee and car hire.</p>
+                    <a href="#" class="btn btn-glow" style="width: 100%; margin-top: 30px; text-align: center;">Book Now</a>
                 </div>
             </div>
         </div>
@@ -271,8 +264,8 @@
 
     <div class="dock">
         <a href="tel:0800123456"><i data-lucide="phone"></i> CALL</a>
-        <a href="https://wa.me/123"><i data-lucide="message-square"></i> WHATSAPP</a>
-        <a href="#booking"><i data-lucide="calendar"></i> BOOK</a>
+        <a href="https://wa.me/123"><i data-lucide="message-circle"></i> WHATSAPP</a>
+        <a href="#prices"><i data-lucide="calendar"></i> BOOK</a>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
