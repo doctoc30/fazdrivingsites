@@ -1,1 +1,873 @@
-vghh
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premier Solo Driving Instructor</title>
+  <meta name="description" content="Book driving lessons, purchase lesson packages, and train with a calm, DVSA-approved instructor across South London." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0b1730;
+      --panel:#0f1c36;
+      --panel2:#122347;
+      --text:#f5f7ff;
+      --muted:rgba(245,247,255,.76);
+      --line:rgba(255,255,255,.12);
+      --brand:#f15a24;
+      --brand2:#ff8a4c;
+      --accent:#47d7ac;
+      --warning:#ffd166;
+      --shadow:0 20px 60px rgba(0,0,0,.38);
+      --radius:24px;
+      --radius2:32px;
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(241,90,36,.24), transparent 28%),
+        radial-gradient(circle at top right, rgba(71,215,172,.14), transparent 22%),
+        linear-gradient(180deg, var(--bg), #060b14 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 20px;border-radius:999px;border:1px solid transparent;
+      font-weight:700;cursor:pointer;transition:.25s ease;background:var(--brand);
+      color:white;box-shadow:0 14px 36px rgba(241,90,36,.28);
+    }
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+    .btn.secondary{background:transparent;border-color:var(--line);box-shadow:none}
+    .btn.dark{background:#fff;color:#0a1220}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.08);border:1px solid var(--line);color:#fff;font-size:13px;
+      backdrop-filter:blur(12px);
+    }
+    .section{padding:84px 0}
+    .grid{display:grid;gap:22px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+    }
+    .card.pad{padding:24px}
+    .kicker{color:var(--brand2);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+    h1,h2,h3,h4,p{margin:0}
+    h1{font-size:clamp(38px,5vw,70px); line-height:.95; letter-spacing:-.05em}
+    h2{font-size:clamp(28px,3vw,46px); line-height:1.02; letter-spacing:-.04em}
+    h3{font-size:22px; line-height:1.15}
+    p{color:var(--muted);line-height:1.7}
+    .topbar{
+      position:sticky;top:0;z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(7,17,31,.75);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0;
+    }
+    .logo{display:flex;align-items:center;gap:12px;font-weight:800}
+    .logo-mark{
+      width:42px;height:42px;border-radius:14px;
+      background:conic-gradient(from 180deg, var(--brand), var(--brand2), var(--accent), var(--brand));
+      box-shadow:0 14px 30px rgba(241,90,36,.3);
+    }
+    .navlinks{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .navlinks a{font-size:14px;color:var(--muted)}
+    .navlinks a:hover{color:#fff}
+    .hero{
+      position:relative;padding:28px 0 42px;
+      overflow:hidden;
+    }
+    .hero-inner{
+      display:grid;grid-template-columns:1.08fr .92fr;gap:26px;align-items:center;
+      min-height:calc(100vh - 84px);
+    }
+    .offer-strip{
+      margin-bottom:18px; overflow:hidden; white-space:nowrap;
+      border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.05);
+      padding:10px 0;
+    }
+    .ticker{
+      display:inline-block;padding-left:100%;
+      animation:marquee 18s linear infinite;
+      font-weight:700;color:#fff;
+    }
+    .ticker span{margin:0 18px;color:rgba(255,255,255,.88)}
+    @keyframes marquee{to{transform:translateX(-100%)}}
+    .hero-copy{padding:10px 0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .hero-highlights{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .hero-media{
+      position:relative; min-height:640px; border-radius:var(--radius2); overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.02));
+      border:1px solid var(--line); box-shadow:var(--shadow);
+    }
+    .slider{
+      position:absolute; inset:0;
+    }
+    .slide{
+      position:absolute; inset:0; opacity:0; transform:scale(1.04);
+      transition:opacity 1s ease, transform 1s ease;
+      background-size:cover;background-position:center;
+    }
+    .slide.active{opacity:1;transform:scale(1)}
+    .hero-overlay{
+      position:absolute; inset:auto 20px 20px 20px;
+      display:grid; gap:14px;
+    }
+    .floating-panel{
+      background:rgba(5,9,18,.58);border:1px solid var(--line);backdrop-filter:blur(18px);
+      border-radius:24px;padding:18px;
+    }
+    .stats{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px
+    }
+    .stat{
+      padding:22px;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid var(--line);
+      text-align:center
+    }
+    .stat b{display:block;font-size:32px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px}
+    .section-head p{max-width:640px}
+    .booking{
+      display:grid;grid-template-columns:1fr 1fr; gap:20px; align-items:start;
+    }
+    .booking-box{padding:26px}
+    .booking-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .packages{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+    }
+    .price{
+      font-size:44px;font-weight:800;letter-spacing:-.05em
+    }
+    .price small{font-size:14px;color:var(--muted);font-weight:500}
+    ul.clean{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+    ul.clean li:before{content:"✓";color:var(--accent);margin-right:10px;font-weight:800}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{
+      padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);
+      cursor:pointer;font-size:14px;color:#fff
+    }
+    .chip.active{background:var(--brand);border-color:transparent}
+    .services-grid,.areas-grid,.trust-grid,.faq-grid,.offers-grid,.extras-grid{display:grid;gap:18px}
+    .services-grid{grid-template-columns:repeat(4,1fr)}
+    .areas-grid{grid-template-columns:repeat(5,1fr)}
+    .trust-grid{grid-template-columns:repeat(5,1fr)}
+    .faq-grid{grid-template-columns:1fr 1fr}
+    .offers-grid{grid-template-columns:repeat(3,1fr)}
+    .extras-grid{grid-template-columns:repeat(4,1fr)}
+    .mini{
+      padding:22px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid var(--line)
+    }
+    .icon{
+      width:54px;height:54px;border-radius:18px;display:grid;place-items:center;
+      background:linear-gradient(180deg, rgba(241,90,36,.25), rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.1);margin-bottom:14px
+    }
+    .reveal{opacity:0;transform:translateY(30px);transition:all .8s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .gallery{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:14px
+    }
+    .photo{
+      aspect-ratio:1/1; border-radius:20px; overflow:hidden; position:relative; cursor:pointer;
+      border:1px solid var(--line)
+    }
+    .photo img{width:100%;height:100%;object-fit:cover}
+    .photo:after{
+      content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent, rgba(0,0,0,.42));
+    }
+    .photo span{
+      position:absolute;left:14px;bottom:14px;z-index:2;font-weight:700;font-size:14px
+    }
+    .video{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center
+    }
+    .video-frame{
+      position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line);min-height:360px;background:#081120;
+    }
+    .video-frame iframe{width:100%;height:100%;min-height:360px;border:0}
+    .play{
+      position:absolute;inset:0;display:grid;place-items:center;pointer-events:none
+    }
+    .play div{
+      width:92px;height:92px;border-radius:50%;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.28);
+      display:grid;place-items:center;font-size:30px
+    }
+    .testimonials{
+      position:relative;overflow:hidden
+    }
+    .testimonial-track{
+      display:flex;transition:transform .6s ease
+    }
+    .testimonial{
+      min-width:100%; padding:28px
+    }
+    .map{
+      min-height:420px;border-radius:28px;overflow:hidden;border:1px solid var(--line)
+    }
+    .map iframe{width:100%;height:100%;border:0;min-height:420px}
+    .schedule{
+      display:grid;grid-template-columns:repeat(7,1fr);gap:10px
+    }
+    .day{padding:16px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid var(--line);text-align:center}
+    .day b{display:block;margin-bottom:8px}
+    .faq-item{
+      border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.05);overflow:hidden
+    }
+    .faq-q{
+      padding:18px 18px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:700
+    }
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 18px;color:var(--muted)}
+    .faq-item.open .faq-a{max-height:180px;padding-bottom:18px}
+    .footer{
+      padding:40px 0 100px;border-top:1px solid var(--line);background:rgba(255,255,255,.02)
+    }
+    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:20px}
+    .floating-bar{
+      position:fixed;left:16px;right:16px;bottom:14px;z-index:999;
+      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+      background:rgba(8,15,28,.82);backdrop-filter:blur(16px);
+      border:1px solid var(--line);border-radius:20px;padding:10px;
+      box-shadow:var(--shadow)
+    }
+    .floating-bar a{
+      text-align:center;padding:12px 8px;border-radius:16px;background:rgba(255,255,255,.05);font-size:13px;font-weight:700
+    }
+    .callback{
+      position:fixed;right:-52px;top:55%;transform:rotate(-90deg);z-index:998
+    }
+    .callback a{
+      display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:16px 16px 0 0;
+      background:var(--brand);font-weight:800;color:#fff;box-shadow:var(--shadow)
+    }
+    .popup,.lightbox{
+      position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:2000;display:none;place-items:center;padding:20px
+    }
+    .popup.show,.lightbox.show{display:grid}
+    .popup-card,.lightbox-card{
+      width:min(560px,100%);background:linear-gradient(180deg,#101c35,#081120);
+      border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow)
+    }
+    .close{
+      float:right;border:0;background:transparent;color:#fff;font-size:26px;cursor:pointer
+    }
+    .lightbox-card{width:min(1000px,100%);padding:14px}
+    .lightbox-card img{width:100%;height:auto;border-radius:18px}
+    .service-card{display:none}
+    .service-card.show{display:block}
+    .split{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .small{font-size:14px;color:var(--muted)}
+    .sticky-cta{
+      position:sticky;top:86px
+    }
+    @media (max-width: 1100px){
+      .hero-inner,.booking,.packages,.services-grid,.areas-grid,.trust-grid,.faq-grid,.offers-grid,.extras-grid,.video,.footer-grid,.split{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .schedule{grid-template-columns:repeat(2,1fr)}
+      .hero-media{min-height:480px}
+    }
+    @media (max-width: 720px){
+      .nav{flex-direction:column}
+      .navlinks{gap:10px}
+      .stats{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+      .floating-bar{grid-template-columns:repeat(2,1fr)}
+      .callback{right:-66px}
+      .hero-media{min-height:420px}
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-mark"></div>
+      <div>
+        <div>Premier Solo Driving</div>
+        <div class="small">DVSA-approved instructor</div>
+      </div>
+    </div>
+    <nav class="navlinks">
+      <a href="#book">Book</a>
+      <a href="#packages">Packages</a>
+      <a href="#services">Services</a>
+      <a href="#areas">Areas</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn" href="#book">Book Now</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="offer-strip">
+      <div class="ticker">
+        <span>15+ years experience</span><span>Established 2005</span><span>Free theory support</span><span>Nervous driver specialist</span><span>Weekend lessons available</span>
+      </div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <span class="badge">Premium 1-to-1 driving lessons across South London</span>
+        <h1 style="margin-top:18px;">Learn with confidence. Pass with a calm, expert instructor.</h1>
+        <p style="margin-top:18px;max-width:640px;">
+          Book automatic or manual lessons, buy packages instantly, and train with a branded local instructor website built to convert learners into students.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="#book">Start Learning Today</a>
+          <a class="btn secondary" href="#packages">View Lesson Packages</a>
+          <a class="btn secondary" href="#contact">Request a Callback</a>
+        </div>
+
+        <div class="hero-highlights">
+          <span class="badge">DVSA approved</span>
+          <span class="badge">Full insurance</span>
+          <span class="badge">High first-time pass rate</span>
+          <span class="badge">Home pickup available</span>
+        </div>
+
+        <div class="stats section" style="padding-bottom:0;">
+          <div class="stat reveal"><b class="count" data-target="500">0</b><span>Students passed</span></div>
+          <div class="stat reveal"><b class="count" data-target="10">0</b><span>Years experience</span></div>
+          <div class="stat reveal"><b class="count" data-target="95">0</b><span>First-time pass rate</span></div>
+        </div>
+      </div>
+
+      <div class="hero-media reveal">
+        <div class="slider" id="slider">
+          <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80');"></div>
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=80');"></div>
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1400&q=80');"></div>
+        </div>
+        <div class="hero-overlay">
+          <div class="floating-panel">
+            <div class="kicker">Limited-time offer</div>
+            <h3>First lesson only £25</h3>
+            <p>Editable promotional banner for seasonal discounts, intensive offers, and new learner deals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="section">
+  <div class="container booking">
+    <div class="card booking-box reveal">
+      <div class="kicker">Instant booking</div>
+      <h2 style="margin-top:10px;">Book your first lesson in minutes</h2>
+      <p style="margin-top:12px;">Embed Calendly inline, use a custom booking form, or connect a scheduler with payment support.</p>
+      <div class="booking-cta">
+        <a class="btn" href="#">Book First Lesson</a>
+        <a class="btn secondary" href="#">Reserve Your Slot</a>
+        <a class="btn secondary" href="#">Start Learning Today</a>
+      </div>
+      <div style="margin-top:18px" class="mini">
+        <strong>Calendly embed area</strong>
+        <p class="small">Replace this box with your Calendly inline embed code or booking widget.</p>
+      </div>
+    </div>
+
+    <div class="card booking-box reveal">
+      <div class="kicker">Payment ready</div>
+      <h2 style="margin-top:10px;">Pay online for lessons and packages</h2>
+      <p style="margin-top:12px;">Allow learners to pay for lessons, mock tests, refresher sessions, intensive courses, and gift vouchers.</p>
+      <div class="split" style="margin-top:18px">
+        <div class="mini"><strong>PayPal / Stripe</strong><p class="small">Secure checkout integration.</p></div>
+        <div class="mini"><strong>Gift vouchers</strong><p class="small">Birthday, Christmas, and special occasions.</p></div>
+        <div class="mini"><strong>Referral rewards</strong><p class="small">Reward learners for sending friends.</p></div>
+        <div class="mini"><strong>Discount codes</strong><p class="small">Editable first-lesson or seasonal offers.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packages" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Lesson packages</div>
+        <h2 style="margin-top:10px;">Buy lesson bundles and VIP training packages</h2>
+      </div>
+      <p>Transparent pricing helps learners compare options and reduces friction, especially for local driving school searches [web:18].</p>
+    </div>
+
+    <div class="packages">
+      <div class="card pad reveal">
+        <h3>Starter Package</h3>
+        <div class="price">1 <small>lesson</small></div>
+        <p>Perfect for first-time learners or a trial lesson.</p>
+        <ul class="clean"><li>1 x driving lesson</li><li>Home pickup</li><li>Assessment feedback</li></ul>
+        <a class="btn" style="margin-top:18px" href="#">Buy Now</a>
+      </div>
+      <div class="card pad reveal">
+        <h3>Beginner Bundle</h3>
+        <div class="price">5 <small>lessons</small></div>
+        <p>Great for new learners who want steady progress.</p>
+        <ul class="clean"><li>5 x lessons</li><li>Progress plan</li><li>Confidence building</li></ul>
+        <a class="btn" style="margin-top:18px" href="#">Buy Now</a>
+      </div>
+      <div class="card pad reveal">
+        <h3>Intensive Package</h3>
+        <div class="price">10 <small>lessons</small></div>
+        <p>Fast-track driving lessons for accelerated learning.</p>
+        <ul class="clean"><li>10 x lessons</li><li>Test preparation</li><li>Priority scheduling</li></ul>
+        <a class="btn" style="margin-top:18px" href="#">Buy Now</a>
+      </div>
+      <div class="card pad reveal">
+        <h3>Fast Pass Package</h3>
+        <div class="price">20 <small>lessons</small></div>
+        <p>Designed for learners aiming for faster test readiness.</p>
+        <ul class="clean"><li>20 x lessons</li><li>Mock tests</li><li>Route practice</li></ul>
+        <a class="btn" style="margin-top:18px" href="#">Buy Now</a>
+      </div>
+      <div class="card pad reveal">
+        <h3>Test Preparation</h3>
+        <div class="price">VIP <small>support</small></div>
+        <p>Focused pre-test training and confidence polishing.</p>
+        <ul class="clean"><li>Mock test</li><li>Last-minute fixes</li><li>Test day advice</li></ul>
+        <a class="btn" style="margin-top:18px" href="#">Buy Now</a>
+      </div>
+      <div class="card pad reveal">
+        <h3>VIP Intensive</h3>
+        <div class="price">Premium <small>course</small></div>
+        <p>High-converting package for serious learners and quick turnarounds.</p>
+        <ul class="clean"><li>Daily lessons</li><li>Priority times</li><li>Discounted bundle</li></ul>
+        <a class="btn" style="margin-top:18px" href="#">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Services</div>
+        <h2 style="margin-top:10px;">Filter lessons by learner need</h2>
+      </div>
+      <div class="chips">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="automatic">Automatic</button>
+        <button class="chip" data-filter="manual">Manual</button>
+        <button class="chip" data-filter="beginner">Beginner</button>
+        <button class="chip" data-filter="intensive">Intensive</button>
+        <button class="chip" data-filter="budget">Budget</button>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="mini service-card show reveal" data-tags="automatic beginner budget">
+        <div class="icon">A</div><h3>Automatic Lessons</h3><p>Simple, stress-free learning with automatic car training.</p>
+      </div>
+      <div class="mini service-card show reveal" data-tags="manual beginner">
+        <div class="icon">M</div><h3>Manual Lessons</h3><p>Control, clutch, gears, and full manual confidence training.</p>
+      </div>
+      <div class="mini service-card show reveal" data-tags="intensive">
+        <div class="icon">⏱</div><h3>Intensive Crash Courses</h3><p>1-week and 2-week fast-track options for quicker progress.</p>
+      </div>
+      <div class="mini service-card show reveal" data-tags="beginner budget">
+        <div class="icon">🧠</div><h3>Theory Test Help</h3><p>Support for theory practice, hazard awareness, and confidence.</p>
+      </div>
+      <div class="mini service-card show reveal" data-tags="beginner">
+        <div class="icon">😌</div><h3>Nervous Driver Specialist</h3><p>Calm, patient, confidence-building lessons for anxious learners.</p>
+      </div>
+      <div class="mini service-card show reveal" data-tags="refresher budget">
+        <div class="icon">↻</div><h3>Refresher Lessons</h3><p>Ideal for returning drivers and licence holders needing support.</p>
+      </div>
+      <div class="mini service-card show reveal" data-tags="intensive">
+        <div class="icon">🅿</div><h3>Mock Driving Test</h3><p>Practice under test conditions with helpful feedback.</p>
+      </div>
+      <div class="mini service-card show reveal" data-tags="manual automatic beginner">
+        <div class="icon">🚘</div><h3>Home Pickup</h3><p>Convenient door-to-door lesson pickup across coverage areas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Trust</div>
+        <h2 style="margin-top:10px;">What builds learner confidence</h2>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="mini reveal"><h3>DVSA approved</h3><p>Professional instructor credentials displayed clearly.</p></div>
+      <div class="mini reveal"><h3>Full insurance</h3><p>Vehicle and lesson cover shown upfront.</p></div>
+      <div class="mini reveal"><h3>Calm teaching style</h3><p>Confidence-focused instruction for all learner types.</p></div>
+      <div class="mini reveal"><h3>Nervous driver specialist</h3><p>Ideal for anxious beginners and returning drivers.</p></div>
+      <div class="mini reveal"><h3>High pass rates</h3><p>Prominent first-time pass rate messaging.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="areas" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Coverage areas</div>
+        <h2 style="margin-top:10px;">Local lesson areas and test centres</h2>
+      </div>
+      <p>Local area pages and nearby keywords strengthen trust and search visibility for driving schools [web:22][web:25][web:28].</p>
+    </div>
+    <div class="areas-grid">
+      <div class="mini reveal">Croydon</div>
+      <div class="mini reveal">Bromley</div>
+      <div class="mini reveal">Lewisham</div>
+      <div class="mini reveal">Greenwich</div>
+      <div class="mini reveal">South London</div>
+      <div class="mini reveal">Mitcham</div>
+      <div class="mini reveal">Sutton</div>
+      <div class="mini reveal">Orpington</div>
+      <div class="mini reveal">Wimbledon</div>
+      <div class="mini reveal">Nearby test centres</div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Social proof</div>
+        <h2 style="margin-top:10px;">Advanced testimonials slider</h2>
+      </div>
+    </div>
+    <div class="card testimonials reveal">
+      <div class="testimonial-track" id="track">
+        <div class="testimonial">
+          <h3>“I passed first time thanks to John!”</h3>
+          <p style="margin-top:12px;">The lessons were calm, clear, and confidence-building from the first drive.</p>
+          <p class="small" style="margin-top:14px;">Student review</p>
+        </div>
+        <div class="testimonial">
+          <h3>“Great for nervous drivers.”</h3>
+          <p style="margin-top:12px;">I was anxious at first, but the instructor was patient and explained everything properly.</p>
+          <p class="small" style="margin-top:14px;">Student review</p>
+        </div>
+        <div class="testimonial">
+          <h3>“The intensive course was worth it.”</h3>
+          <p style="margin-top:12px;">Booked a package, got a plan, and felt ready for the test much faster than expected.</p>
+          <p class="small" style="margin-top:14px;">Student review</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Pass gallery</div>
+        <h2 style="margin-top:10px;">Student success gallery</h2>
+      </div>
+      <p>Use the gallery for pass photos, instructor-car shots, and success moments. Clicking opens lightbox view.</p>
+    </div>
+    <div class="gallery">
+      <div class="photo reveal" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Student and instructor car">
+        <span>Pass day</span>
+      </div>
+      <div class="photo reveal" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=80" alt="Driving lesson">
+        <span>Lesson success</span>
+      </div>
+      <div class="photo reveal" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80" alt="Learner driver">
+        <span>Confidence</span>
+      </div>
+      <div class="photo reveal" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80" alt="Student car">
+        <span>Happy learners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container video">
+    <div class="video-frame reveal">
+      <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" title="Driving Instructor Video" allowfullscreen></iframe>
+      <div class="play"><div>▶</div></div>
+    </div>
+    <div class="card pad reveal">
+      <div class="kicker">Video section</div>
+      <h2 style="margin-top:10px;">Add one featured video</h2>
+      <p style="margin-top:12px;">Use this for an intro video, lesson walkthrough, pass-story, or instructor welcome message.</p>
+      <ul class="clean">
+        <li>Instructor introduction</li>
+        <li>Lesson walkthrough</li>
+        <li>Student success story</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">FAQ</div>
+        <h2 style="margin-top:10px;">Common learner questions</h2>
+      </div>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <div class="faq-q">How much do lessons cost?<span>+</span></div>
+        <div class="faq-a"><p>Show clear prices for single lessons and bundles on the site and connect them to checkout.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">How long is each lesson?<span>+</span></div>
+        <div class="faq-a"><p>Most lesson blocks can be 60, 90, or 120 minutes depending on your pricing structure.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Do you offer weekend lessons?<span>+</span></div>
+        <div class="faq-a"><p>Yes, the schedule section can show weekday, evening, and weekend availability.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Can I pay online?<span>+</span></div>
+        <div class="faq-a"><p>Yes, connect Stripe, PayPal, or another secure checkout system for package purchases.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container booking">
+    <div class="card pad reveal">
+      <div class="kicker">Availability</div>
+      <h2 style="margin-top:10px;">Weekly lesson schedule</h2>
+      <div class="schedule" style="margin-top:18px">
+        <div class="day"><b>Mon</b>AM / PM</div>
+        <div class="day"><b>Tue</b>AM / PM</div>
+        <div class="day"><b>Wed</b>AM / PM</div>
+        <div class="day"><b>Thu</b>PM</div>
+        <div class="day"><b>Fri</b>AM / PM</div>
+        <div class="day"><b>Sat</b>Weekend</div>
+        <div class="day"><b>Sun</b>Limited</div>
+      </div>
+    </div>
+
+    <div class="card pad reveal">
+      <div class="kicker">Newsletter</div>
+      <h2 style="margin-top:10px;">Subscribe for driving tips</h2>
+      <p style="margin-top:12px;">Theory test support, lesson updates, promotions, and learner advice.</p>
+      <form style="display:grid;gap:12px;margin-top:18px">
+        <input type="email" placeholder="Email address" style="padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff">
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Location</div>
+        <h2 style="margin-top:10px;">Interactive map</h2>
+      </div>
+    </div>
+    <div class="map reveal">
+      <iframe src="https://www.google.com/maps?q=Croydon%20London&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Extras</div>
+        <h2 style="margin-top:10px;">High-converting add-on services</h2>
+      </div>
+    </div>
+    <div class="extras-grid">
+      <div class="mini reveal">Motorway lessons</div>
+      <div class="mini reveal">Pass Plus</div>
+      <div class="mini reveal">Parking lessons</div>
+      <div class="mini reveal">Parallel parking</div>
+      <div class="mini reveal">Bay parking</div>
+      <div class="mini reveal">Test day car hire</div>
+      <div class="mini reveal">Route practice</div>
+      <div class="mini reveal">Emergency stop practice</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card pad reveal" style="text-align:center">
+      <div class="kicker">Final CTA</div>
+      <h2 style="margin-top:10px;">Ready to start driving?</h2>
+      <p style="margin-top:12px;max-width:720px;margin-inline:auto;">Book your first lesson today, buy a package instantly, or request a callback for a personalised plan.</p>
+      <div class="hero-actions" style="justify-content:center;margin-top:20px">
+        <a class="btn" href="#book">Book First Lesson</a>
+        <a class="btn secondary" href="#packages">Buy a Package</a>
+        <a class="btn secondary" href="#contact">Request Callback</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" class="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div>
+          <div>Premier Solo Driving</div>
+          <div class="small">South London driving instructor</div>
+        </div>
+      </div>
+      <p style="margin-top:16px;max-width:420px;">Phone, WhatsApp, email, social links, service areas, and quick booking shortcuts all in one branded footer.</p>
+    </div>
+    <div>
+      <h3>Quick links</h3>
+      <ul class="clean">
+        <li><a href="#packages">Prices</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <ul class="clean">
+        <li>Phone: 07xx xxxxxx</li>
+        <li>WhatsApp: 07xx xxxxxx</li>
+        <li>Email: hello@yourdomain.co.uk</li>
+        <li>Areas: Croydon, Bromley, Lewisham, Greenwich</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<div class="callback">
+  <a href="#contact">Request a callback</a>
+</div>
+
+<div class="floating-bar">
+  <a href="tel:07123456789">Call</a>
+  <a href="https://wa.me/447123456789" target="_blank">WhatsApp</a>
+  <a href="sms:07123456789">Text</a>
+  <a href="#book">Book Now</a>
+</div>
+
+<div class="popup show" id="offerPopup">
+  <div class="popup-card">
+    <button class="close" onclick="closePopup()">×</button>
+    <div class="kicker">Limited-time offer</div>
+    <h2 style="margin-top:10px;">First lesson only £25</h2>
+    <p style="margin-top:12px;">Editable offer popup for seasonal promotions, beginner discounts, and intensive course specials.</p>
+    <a class="btn" href="#book" style="margin-top:18px">Reserve Now</a>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-card">
+    <button class="close" onclick="closeLightbox(event)">×</button>
+    <img id="lightboxImg" src="" alt="Gallery image">
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  setInterval(() => {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 4500);
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  const counters = document.querySelectorAll('.count');
+  const cio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !e.target.dataset.done){
+        e.target.dataset.done = "1";
+        const target = +e.target.dataset.target;
+        let n = 0;
+        const step = Math.max(1, Math.ceil(target / 80));
+        const run = setInterval(() => {
+          n += step;
+          if(n >= target){ n = target; clearInterval(run); }
+          e.target.textContent = n + (target === 95 ? "%" : "+");
+        }, 18);
+      }
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(c => cio.observe(c));
+
+  const track = document.getElementById('track');
+  let t = 0;
+  setInterval(() => {
+    t = (t + 1) % 3;
+    track.style.transform = `translateX(-${t * 100}%)`;
+  }, 5000);
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      document.querySelectorAll('.service-card').forEach(card => {
+        const tags = card.dataset.tags || '';
+        card.classList.toggle('show', filter === 'all' || tags.includes(filter));
+      });
+    });
+  });
+
+  function closePopup(){ document.getElementById('offerPopup').classList.remove('show'); }
+  setTimeout(() => document.getElementById('offerPopup').classList.add('show'), 1800);
+
+  function openLightbox(src){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('show');
+  }
+  function closeLightbox(e){
+    if(e.target.id === 'lightbox' || e.target.classList.contains('close')){
+      document.getElementById('lightbox').classList.remove('show');
+    }
+  }
+
+  let mouseLeft = false;
+  document.addEventListener('mouseleave', () => {
+    if(!mouseLeft){
+      mouseLeft = true;
+      document.getElementById('offerPopup').classList.add('show');
+    }
+  });
+</script>
+</body>
+</html>
