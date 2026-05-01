@@ -87,6 +87,28 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 3000;
         }
+
+        /* --- 1. NEW STYLES: Fleet Showcase --- */
+        .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 60px 5%; }
+        .fleet-card { border: 4px solid black; padding: 0; position: relative; transition: 0.3s; }
+        .fleet-card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 4px solid black; }
+        .fleet-tag { position: absolute; top: 10px; left: 10px; background: var(--primary-yellow); padding: 5px 10px; font-weight: 900; border: 2px solid black; }
+
+        /* --- 2. NEW STYLES: Area Validator --- */
+        .area-check { background: var(--black); color: white; padding: 40px 5%; text-align: center; }
+        .postcode-input { padding: 15px; border: none; width: 200px; font-weight: 900; text-transform: uppercase; }
+
+        /* --- 3. NEW STYLES: Google Reviews --- */
+        .review-widget { background: white; border: 4px solid black; padding: 20px; margin-top: 20px; box-shadow: 10px 10px 0 black; }
+
+        /* --- 4. NEW STYLES: Accordion FAQ --- */
+        .faq-item { border-bottom: 2px solid black; padding: 15px 0; cursor: pointer; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s ease-out; }
+
+        /* --- 5. NEW STYLES: Progress Portal UI --- */
+        .portal-preview { border: 4px solid black; padding: 20px; background: #fff; position: relative; }
+        .progress-bar { height: 15px; background: #eee; width: 100%; margin-top: 10px; }
+        .progress-fill { height: 100%; background: var(--primary-yellow); width: 65%; }
     </style>
 </head>
 <body>
@@ -134,6 +156,14 @@
         </div>
     </section>
 
+    <!-- 6. NEW SECTION: AREA COVERAGE VALIDATOR -->
+    <section class="area-check">
+        <h2>DO WE COVER YOUR LONDON POSTCODE?</h2><br>
+        <input type="text" placeholder="e.g. SE10" class="postcode-input" id="pcInput">
+        <button class="btn-main" style="background: var(--primary-yellow); color: black;" onclick="checkArea()">VALIDATE AREA</button>
+        <p id="areaNote" style="margin-top: 10px; font-weight: bold;"></p>
+    </section>
+
     <!-- INTERACTIVE QUIZ SECTION -->
     <section class="tool-section" id="quiz">
         <div style="text-align: center; margin-bottom: 40px;">
@@ -146,6 +176,23 @@
             <p style="margin: 20px 0;">Current Experience: <span id="expVal">0</span> Hours</p>
             <div id="quizResult" style="padding: 20px; background: var(--bg-light-yellow); border: 2px dashed black; font-weight: bold;">
                 Recommended: Beginner Bundle (20 Hours)
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. NEW SECTION: THE FLEET SHOWCASE -->
+    <section id="services" class="section-padding">
+        <h2 style="text-align: center; font-size: 3rem; margin: 50px 0;">MEET THE 2026 FLEET</h2>
+        <div class="fleet-grid">
+            <div class="fleet-card" data-aos="fade-up">
+                <div class="fleet-tag">ELECTRIC</div>
+                <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=600" alt="Tesla">
+                <div style="padding: 20px;"><h3>Tesla Model 3</h3><p>Automatic. Easy, smooth, and tech-forward.</p></div>
+            </div>
+            <div class="fleet-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="fleet-tag">MANUAL</div>
+                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=600" alt="VW Golf">
+                <div style="padding: 20px;"><h3>VW Golf GTI</h3><p>The standard for manual learners. High safety rating.</p></div>
             </div>
         </div>
     </section>
@@ -177,6 +224,23 @@
         </div>
     </section>
 
+    <!-- 8. NEW SECTION: STUDENT PROGRESS PORTAL PREVIEW -->
+    <section style="padding: 80px 5%; background: var(--bg-light-yellow);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center;">
+            <div class="portal-preview" data-aos="fade-right">
+                <h3>STUDENT PORTAL LOGIN</h3><br>
+                <p><b>Next Lesson:</b> Mon 14th April</p>
+                <p><b>Skills Mastered:</b> Roundabouts, Parallel Park</p>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                <p style="font-size: 0.8rem; margin-top: 5px;">65% Test Ready</p>
+            </div>
+            <div>
+                <h2>SMART PROGRESS TRACKING</h2>
+                <p>Don't just drive. Measure your success. All students get access to our exclusive app to track skills, view instructor feedback, and manage bookings 24/7.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- PRICE CALCULATOR -->
     <section style="padding: 80px 5%; background: black; color: white;">
         <div style="max-width: 600px; margin: 0 auto; text-align: center;">
@@ -194,7 +258,7 @@
     </section>
 
     <!-- REVIEWS & TRUST -->
-    <section style="padding: 80px 5%;">
+    <section style="padding: 80px 5%;" id="reviews">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
             <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=600" style="border: 10px solid black; width: 100%;">
             <div>
@@ -203,6 +267,26 @@
                 <div style="color: var(--primary-yellow); font-size: 1.5rem;">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
+                <!-- 9. NEW FEATURE: GOOGLE REVIEW BADGE -->
+                <div class="review-widget">
+                    <i class="fab fa-google"></i> <strong>4.9/5 Rating</strong>
+                    <p style="font-size: 0.8rem; color: #666;">Based on 145+ local London reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. NEW SECTION: FAQ ACCORDION -->
+    <section style="padding: 80px 5%; border-top: 4px solid black;">
+        <h2 style="text-align: center; margin-bottom: 30px;">FREQUENTLY ASKED QUESTIONS</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <strong>Do you offer weekend lessons? <i class="fas fa-chevron-down" style="float:right"></i></strong>
+                <div class="faq-answer"><p style="padding: 10px 0;">Yes, we offer lessons 7 days a week from 8 AM to 8 PM at no extra cost.</p></div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <strong>Can I pay in installments? <i class="fas fa-chevron-down" style="float:right"></i></strong>
+                <div class="faq-answer"><p style="padding: 10px 0;">Yes! For block bookings over 20 hours, you can split the payment into two parts.</p></div>
             </div>
         </div>
     </section>
@@ -257,6 +341,28 @@
             if (e.clientY < 0) document.getElementById('exit-popup').style.display = 'flex';
         });
         function closePopup() { document.getElementById('exit-popup').style.display = 'none'; }
+
+        /* --- NEW SCRIPT LOGIC --- */
+
+        // Area Checker Logic
+        function checkArea() {
+            const pc = document.getElementById('pcInput').value.toUpperCase();
+            const note = document.getElementById('areaNote');
+            if(pc.length > 1) {
+                note.style.color = "#FFD700";
+                note.innerText = "✓ WE COVER " + pc + "! Instructor Joe is available here.";
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFaq(el) {
+            const answer = el.querySelector('.faq-answer');
+            if (answer.style.maxHeight === '0px' || answer.style.maxHeight === '') {
+                answer.style.maxHeight = '200px';
+            } else {
+                answer.style.maxHeight = '0px';
+            }
+        }
     </script>
 </body>
 </html>
