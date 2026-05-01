@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harwood Driving School | Master the Road in Bolton & Bury</title>
+    <!-- CSS Frameworks -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --harwood-red: #D12D2D;
+            --harwood-dark: #1A1A1A;
+            --harwood-light: #F8F8F8;
+        }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .bg-harwood-red { background-color: var(--harwood-red); }
+        .text-harwood-red { color: var(--harwood-red); }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Custom Animations */
+        .hero-slider-text { animation: slideText 15s infinite linear; }
+        @keyframes slideText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Floating UI */
+        .sticky-nav { position: sticky; top: 0; z-index: 1000; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .floating-cta { position: fixed; bottom: 0; width: 100%; z-index: 999; display: flex; }
+        .callback-btn { 
+            position: fixed; right: -40px; top: 50%; transform: rotate(-90deg); 
+            z-index: 1001; background: var(--harwood-red); color: white;
+            padding: 10px 20px; border-radius: 5px 5px 0 0; font-weight: bold;
+        }
+
+        /* Package Cards */
+        .package-card:hover { transform: translateY(-10px); transition: 0.3s; }
+        
+        /* Modal Style */
+        #exit-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- 1. Top Section Hero Slider (Offer Bar) -->
+    <div class="bg-harwood-dark text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-harwood-red">
+        <div class="hero-slider-text inline-block">
+            <span class="mx-10 uppercase font-bold text-sm">★ 15 Years Experience</span>
+            <span class="mx-10 uppercase font-bold text-sm">★ Established 2005</span>
+            <span class="mx-10 uppercase font-bold text-sm">★ Free Theory Test Training</span>
+            <span class="mx-10 uppercase font-bold text-sm">★ DVSA Approved Instructors</span>
+            <span class="mx-10 uppercase font-bold text-sm">★ High First-Time Pass Rate</span>
+        </div>
+    </div>
+
+    <!-- 22. Sticky Navigation -->
+    <nav class="sticky-nav px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <h1 class="text-2xl font-extrabold tracking-tighter">
+                HARWOOD <span class="text-harwood-red">DRIVING SCHOOL</span>
+            </h1>
+        </div>
+        <div class="hidden md:flex space-x-8 font-bold text-sm uppercase">
+            <a href="#packages" class="hover:text-harwood-red">Prices</a>
+            <a href="#areas" class="hover:text-harwood-red">Areas</a>
+            <a href="#reviews" class="hover:text-harwood-red">Reviews</a>
+            <a href="#faq" class="hover:text-harwood-red">FAQ</a>
+            <a href="#booking" class="bg-harwood-red text-white px-4 py-2 rounded">Book Now</a>
+        </div>
+        <button class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- 1 & 37. Hero Section -->
+    <section class="relative h-[80vh] flex items-center bg-gray-200 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Placeholder for animated image slider -->
+            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover brightness-50" alt="Instructor Car">
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-white" data-aos="fade-up">
+            <h2 class="text-5xl md:text-7xl font-black mb-4">MASTER <span class="text-harwood-red">THE ROAD</span></h2>
+            <p class="text-xl mb-8 max-w-2xl">Expert driving lessons in Bolton, Bury, and North West England. DVSA Approved training for a lifetime of safe driving.</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#booking" class="bg-harwood-red hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg">Book First Lesson</a>
+                <a href="tel:07544720505" class="bg-white text-harwood-dark px-8 py-4 rounded-full font-bold text-lg">Call 07544 720505</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Postcode Search & Booking -->
+    <section id="booking" class="py-16 bg-white shadow-xl -mt-20 relative z-20 container mx-auto rounded-xl px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-3xl font-bold mb-4">Find Availability Near You</h3>
+                <div class="flex p-2 border-2 border-gray-100 rounded-lg mb-6">
+                    <input type="text" placeholder="Enter Postcode (e.g. BL1)" class="w-full p-4 outline-none">
+                    <button class="bg-harwood-dark text-white px-8 py-4 rounded-lg font-bold">Search</button>
+                </div>
+                <p class="text-gray-500"><i class="fas fa-check-circle text-green-500 mr-2"></i> Covering Bolton, Bury, Rochdale, and more.</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-xl border-t-4 border-harwood-red">
+                <h4 class="text-xl font-bold mb-4">Instant Calendar Booking</h4>
+                <!-- Placeholder for Calendly Integration -->
+                <div class="bg-white border p-10 text-center rounded-lg border-dashed border-gray-400">
+                    <i class="fas fa-calendar-alt text-4xl mb-4 text-gray-300"></i>
+                    <p class="font-bold">Calendly Integration Here</p>
+                    <button class="mt-4 bg-harwood-red text-white px-6 py-2 rounded">Select Slot</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Animated Stats Counter -->
+    <section class="py-12 bg-harwood-dark text-white">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div data-aos="zoom-in">
+                <div class="text-4xl font-black text-harwood-red mb-2">500+</div>
+                <p class="uppercase text-xs tracking-widest font-bold">Students Passed</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="100">
+                <div class="text-4xl font-black text-harwood-red mb-2">15+</div>
+                <p class="uppercase text-xs tracking-widest font-bold">Years Experience</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="200">
+                <div class="text-4xl font-black text-harwood-red mb-2">95%</div>
+                <p class="uppercase text-xs tracking-widest font-bold">First Time Pass</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="300">
+                <div class="text-4xl font-black text-harwood-red mb-2">100%</div>
+                <p class="uppercase text-xs tracking-widest font-bold">DVSA Approved</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 & 12 & 35. Buy Now Lesson Packages -->
+    <section id="packages" class="py-20 container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black mb-4">TRANSPARENT <span class="text-harwood-red">PRICING</span></h2>
+            <p class="text-gray-600">No hidden fees. Book online and save on bundles.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <!-- Package 1 -->
+            <div class="package-card bg-white p-6 rounded-2xl shadow-lg border hover:border-harwood-red flex flex-col h-full" data-aos="fade-up">
+                <span class="bg-gray-100 text-[10px] font-bold px-2 py-1 rounded uppercase mb-4 w-fit">Starter</span>
+                <h4 class="text-xl font-bold mb-2">Single Lesson</h4>
+                <p class="text-4xl font-black mb-6">£35</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> 60 Min Lesson</li>
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> Pick up / Drop off</li>
+                </ul>
+                <button class="w-full py-3 bg-harwood-dark text-white rounded-lg font-bold">Buy Now</button>
+            </div>
+
+            <!-- Package 2 (Highlighted) -->
+            <div class="package-card bg-harwood-dark text-white p-6 rounded-2xl shadow-2xl border-2 border-harwood-red transform scale-105 relative z-10 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                <span class="bg-harwood-red text-[10px] font-bold px-2 py-1 rounded uppercase mb-4 w-fit">Most Popular</span>
+                <h4 class="text-xl font-bold mb-2">Beginner Bundle</h4>
+                <p class="text-4xl font-black mb-6">£170</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> 5 Professional Lessons</li>
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> Free Theory Support</li>
+                </ul>
+                <button class="w-full py-3 bg-harwood-red text-white rounded-lg font-bold">Buy Now</button>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="package-card bg-white p-6 rounded-2xl shadow-lg border flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+                <span class="bg-gray-100 text-[10px] font-bold px-2 py-1 rounded uppercase mb-4 w-fit">Intensive</span>
+                <h4 class="text-xl font-bold mb-2">10 Lesson Pack</h4>
+                <p class="text-4xl font-black mb-6">£330</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> Fast-Track Progress</li>
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> Mock Test Included</li>
+                </ul>
+                <button class="w-full py-3 bg-harwood-dark text-white rounded-lg font-bold">Buy Now</button>
+            </div>
+
+            <!-- Package 4 -->
+            <div class="package-card bg-white p-6 rounded-2xl shadow-lg border flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
+                <span class="bg-gray-100 text-[10px] font-bold px-2 py-1 rounded uppercase mb-4 w-fit">Fast Pass</span>
+                <h4 class="text-xl font-bold mb-2">20 Lesson Pack</h4>
+                <p class="text-4xl font-black mb-6">£640</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> Full Course Coverage</li>
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> Priority Booking</li>
+                </ul>
+                <button class="w-full py-3 bg-harwood-dark text-white rounded-lg font-bold">Buy Now</button>
+            </div>
+
+            <!-- Package 5 -->
+            <div class="package-card bg-white p-6 rounded-2xl shadow-lg border flex flex-col h-full" data-aos="fade-up" data-aos-delay="400">
+                <span class="bg-gray-100 text-[10px] font-bold px-2 py-1 rounded uppercase mb-4 w-fit">VIP</span>
+                <h4 class="text-xl font-bold mb-2">Test Ready</h4>
+                <p class="text-4xl font-black mb-6">£150</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> 3h Pre-Test Session</li>
+                    <li><i class="fas fa-check text-harwood-red mr-2"></i> Car Hire for Test</li>
+                </ul>
+                <button class="w-full py-3 bg-harwood-dark text-white rounded-lg font-bold">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 & 44. Fleet & Transmission -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-4xl font-black mb-6">OUR <span class="text-harwood-red">FLEET</span></h2>
+                <div class="flex gap-4 mb-8">
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-harwood-red flex-1">
+                        <i class="fas fa-cogs text-2xl text-harwood-red mb-2"></i>
+                        <h4 class="font-bold">Manual Lessons</h4>
+                        <p class="text-sm text-gray-500">Master the gears with modern dual-control cars.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-gray-300 flex-1 opacity-50">
+                        <i class="fas fa-bolt text-2xl mb-2"></i>
+                        <h4 class="font-bold">Automatic</h4>
+                        <p class="text-sm text-gray-500">Currently specializing in Manual only.</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed mb-6">We use the latest high-specification vehicles, fully insured and equipped with dual controls for your safety. Our cars are regularly serviced and replaced to ensure you learn in the best possible environment.</p>
+                <ul class="grid grid-cols-2 gap-4 font-bold text-sm">
+                    <li><i class="fas fa-check-circle text-harwood-red mr-2"></i> Dual Controls</li>
+                    <li><i class="fas fa-check-circle text-harwood-red mr-2"></i> Air Conditioning</li>
+                    <li><i class="fas fa-check-circle text-harwood-red mr-2"></i> Clean & Modern</li>
+                    <li><i class="fas fa-check-circle text-harwood-red mr-2"></i> Easy to Drive</li>
+                </ul>
+            </div>
+            <div class="relative" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c15d?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl" alt="Driving Instructor Car">
+                <div class="absolute -bottom-6 -left-6 bg-harwood-red text-white p-6 rounded-2xl shadow-xl">
+                    <p class="text-2xl font-black">2024 Model</p>
+                    <p class="text-xs uppercase tracking-widest">Training Vehicle</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 28 & 33. Instructor Profile -->
+    <section class="py-20 container mx-auto px-6">
+        <div class="bg-harwood-dark rounded-[3rem] p-10 md:p-20 text-white flex flex-col md:flex-row gap-12 items-center">
+            <div class="md:w-1/3 text-center" data-aos="fade-up">
+                <div class="w-64 h-64 rounded-full border-4 border-harwood-red overflow-hidden mx-auto mb-6">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="Instructor Darren" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-3xl font-black">Drive with <span class="text-harwood-red">Darren</span></h3>
+                <p class="text-gray-400 font-bold uppercase tracking-widest text-sm">DVSA Grade A Instructor</p>
+            </div>
+            <div class="md:w-2/3" data-aos="fade-left">
+                <h4 class="text-2xl font-bold mb-4">Nervous Driver Specialist</h4>
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">With over 15 years of experience, Darren is known for his calm, patient, and professional teaching style. Whether you are a total beginner or a nervous learner, his structured coaching techniques are designed to build your confidence quickly.</p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-harwood-red rounded-full flex items-center justify-center"><i class="fas fa-shield-alt"></i></div>
+                        <p class="text-sm font-bold">Fully Insured & CRB Checked</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-harwood-red rounded-full flex items-center justify-center"><i class="fas fa-graduation-cap"></i></div>
+                        <p class="text-sm font-bold">High Pass Rates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13 & 21. Pass Gallery -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-black">RECENT <span class="text-harwood-red">PASSES</span></h2>
+                    <p class="text-gray-500">Join our growing gallery of successful drivers.</p>
+                </div>
+                <a href="#" class="text-harwood-red font-bold hover:underline">View All Gallery <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in"><img src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&q=80&w=400" class="hover:scale-110 transition duration-500" alt="Happy Student"></div>
+                <div class="overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1549194382-246bd07fb35f?auto=format&fit=crop&q=80&w=400" class="hover:scale-110 transition duration-500" alt="Happy Student"></div>
+                <div class="overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=400" class="hover:scale-110 transition duration-500" alt="Happy Student"></div>
+                <div class="overflow-hidden rounded-xl cursor-pointer" data-aos="zoom-in" data-aos-delay="300"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400" class="hover:scale-110 transition duration-500" alt="Happy Student"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 42. Bonus Services -->
+    <section class="py-20 bg-harwood-dark text-white">
+        <div class="container mx-auto px-6 text-center mb-16">
+            <h2 class="text-3xl font-bold">ADDITIONAL <span class="text-harwood-red">SERVICES</span></h2>
+        </div>
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
+            <div class="p-6 bg-white/5 rounded-2xl hover:bg-harwood-red transition group" data-aos="flip-up">
+                <i class="fas fa-road text-harwood-red text-2xl mb-4 group-hover:text-white"></i>
+                <h4 class="font-bold mb-2">Motorway Lessons</h4>
+                <p class="text-sm text-gray-400 group-hover:text-white">Gain confidence on high-speed roads.</p>
+            </div>
+            <div class="p-6 bg-white/5 rounded-2xl hover:bg-harwood-red transition group" data-aos="flip-up" data-aos-delay="100">
+                <i class="fas fa-parking text-harwood-red text-2xl mb-4 group-hover:text-white"></i>
+                <h4 class="font-bold mb-2">Parking Specialist</h4>
+                <p class="text-sm text-gray-400 group-hover:text-white">Bay parking & parallel parking mastery.</p>
+            </div>
+            <div class="p-6 bg-white/5 rounded-2xl hover:bg-harwood-red transition group" data-aos="flip-up" data-aos-delay="200">
+                <i class="fas fa-plus-circle text-harwood-red text-2xl mb-4 group-hover:text-white"></i>
+                <h4 class="font-bold mb-2">Pass Plus</h4>
+                <p class="text-sm text-gray-400 group-hover:text-white">Advanced training after you pass your test.</p>
+            </div>
+            <div class="p-6 bg-white/5 rounded-2xl hover:bg-harwood-red transition group" data-aos="flip-up" data-aos-delay="300">
+                <i class="fas fa-car-crash text-harwood-red text-2xl mb-4 group-hover:text-white"></i>
+                <h4 class="font-bold mb-2">Mock Tests</h4>
+                <p class="text-sm text-gray-400 group-hover:text-white">Simulate the real test day experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 & 16. Areas Covered & Map -->
+    <section id="areas" class="py-20 container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-4xl font-black mb-6">AREAS WE <span class="text-harwood-red">COVER</span></h2>
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center gap-2 font-bold"><i class="fas fa-map-marker-alt text-harwood-red"></i> Bolton</div>
+                    <div class="flex items-center gap-2 font-bold"><i class="fas fa-map-marker-alt text-harwood-red"></i> Bury</div>
+                    <div class="flex items-center gap-2 font-bold"><i class="fas fa-map-marker-alt text-harwood-red"></i> Rochdale</div>
+                    <div class="flex items-center gap-2 font-bold"><i class="fas fa-map-marker-alt text-harwood-red"></i> Heywood</div>
+                    <div class="flex items-center gap-2 font-bold"><i class="fas fa-map-marker-alt text-harwood-red"></i> Bamford</div>
+                    <div class="flex items-center gap-2 font-bold"><i class="fas fa-map-marker-alt text-harwood-red"></i> Norden</div>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-2xl">
+                    <h4 class="font-bold mb-2">Driving Test Centres Near You:</h4>
+                    <ul class="text-sm text-gray-600">
+                        <li>• Bolton (Weston St)</li>
+                        <li>• Bury (Manchester Rd)</li>
+                        <li>• Rochdale (Chichester St)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="h-[400px] bg-gray-200 rounded-[2rem] overflow-hidden shadow-inner" data-aos="fade-left">
+                <!-- Replace with actual Google Map Embed -->
+                <div class="w-full h-full flex items-center justify-center text-gray-400 flex-col">
+                    <i class="fas fa-map-marked-alt text-5xl mb-4"></i>
+                    <p>Interactive Map Integration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FAQ Accordion -->
+    <section id="faq" class="py-20 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-black text-center mb-12">COMMON <span class="text-harwood-red">QUESTIONS</span></h2>
+            <div class="space-y-4">
+                <details class="bg-white p-6 rounded-xl shadow-sm cursor-pointer group">
+                    <summary class="font-bold flex justify-between items-center list-none">
+                        How many lessons do I need to pass?
+                        <i class="fas fa-plus text-harwood-red group-open:rotate-45 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">The DVSA says the average is 45 hours of professional tuition plus 22 hours of private practice. However, everyone learns at a different pace.</p>
+                </details>
+                <details class="bg-white p-6 rounded-xl shadow-sm cursor-pointer group">
+                    <summary class="font-bold flex justify-between items-center list-none">
+                        Do you offer weekend or evening lessons?
+                        <i class="fas fa-plus text-harwood-red group-open:rotate-45 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Yes! We offer flexible scheduling including evenings and weekends to fit around your work or college schedule.</p>
+                </details>
+                <details class="bg-white p-6 rounded-xl shadow-sm cursor-pointer group">
+                    <summary class="font-bold flex justify-between items-center list-none">
+                        Can you help me with the Theory Test?
+                        <i class="fas fa-plus text-harwood-red group-open:rotate-45 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Absolutely. All our students get free access to theory test training resources and guidance from Darren.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 41. Strong Final CTA -->
+    <section class="py-24 bg-harwood-red text-white text-center">
+        <div class="container mx-auto px-6" data-aos="zoom-in">
+            <h2 class="text-5xl font-black mb-8">READY TO START DRIVING?</h2>
+            <p class="text-xl mb-12 opacity-90">Book your first lesson today and join the hundreds of successful students at Harwood.</p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#booking" class="bg-harwood-dark text-white px-10 py-5 rounded-full font-bold text-xl hover:scale-105 transition shadow-2xl">Book First Lesson</a>
+                <a href="https://wa.me/07544720505" class="bg-green-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:scale-105 transition shadow-2xl"><i class="fab fa-whatsapp mr-2"></i> WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 23. Footer -->
+    <footer class="bg-harwood-dark text-white pt-20 pb-10">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <h2 class="text-2xl font-black mb-6">HARWOOD <span class="text-harwood-red">DRIVING SCHOOL</span></h2>
+                <p class="text-gray-400 mb-6 max-w-sm">Professional driving tuition across the North West. DVSA Approved, fully insured, and highly recommended.</p>
+                <div class="flex gap-4 text-xl">
+                    <a href="#" class="hover:text-harwood-red"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-harwood-red"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-harwood-red"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase text-sm tracking-widest">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><a href="#packages" class="hover:text-white">Pricing & Bundles</a></li>
+                    <li><a href="#booking" class="hover:text-white">Booking Calendar</a></li>
+                    <li><a href="#areas" class="hover:text-white">Service Areas</a></li>
+                    <li><a href="#" class="hover:text-white">Gift Vouchers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase text-sm tracking-widest">Contact Info</h4>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><i class="fas fa-phone mr-2 text-harwood-red"></i> 07544 720505</li>
+                    <li><i class="fas fa-envelope mr-2 text-harwood-red"></i> info@harwooddrivingschool.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2 text-harwood-red"></i> Bolton & Bury, Greater Manchester</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-xs">
+            <p>&copy; 2024 Harwood Driving School. All Rights Reserved. Fully Licensed DVSA Instructors.</p>
+        </div>
+    </footer>
+
+    <!-- 24. Bottom CTA Dock -->
+    <div class="floating-cta md:hidden">
+        <a href="tel:07544720505" class="flex-1 bg-harwood-dark text-white p-4 text-center font-bold border-r border-gray-700">
+            <i class="fas fa-phone"></i> Call
+        </a>
+        <a href="https://wa.me/07544720505" class="flex-1 bg-green-600 text-white p-4 text-center font-bold border-r border-gray-700">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="#booking" class="flex-1 bg-harwood-red text-white p-4 text-center font-bold">
+            <i class="fas fa-calendar-check"></i> Book
+        </a>
+    </div>
+
+    <!-- 43. Vertical Floating Button -->
+    <div class="callback-btn shadow-xl hidden md:block cursor-pointer" onclick="toggleModal('callback-modal')">
+        REQUEST A CALLBACK
+    </div>
+
+    <!-- 26. Exit Intent Popup -->
+    <div id="exit-popup">
+        <div class="bg-white p-10 rounded-3xl max-w-md text-center relative mx-6">
+            <button onclick="closeExitPopup()" class="absolute top-4 right-4 text-gray-400"><i class="fas fa-times"></i></button>
+            <div class="text-6xl mb-4 text-harwood-red"><i class="fas fa-gift"></i></div>
+            <h3 class="text-3xl font-black mb-4">WAIT! DON'T GO!</h3>
+            <p class="mb-6">Get your <strong>First Lesson for only £25</strong> when you book today!</p>
+            <button class="bg-harwood-red text-white px-8 py-4 rounded-full font-bold w-full">Claim Discount Now</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Exit Intent Logic
+        let showedExit = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0 && !showedExit) {
+                document.getElementById('exit-popup').style.display = 'flex';
+                showedExit = true;
+            }
+        });
+
+        function closeExitPopup() {
+            document.getElementById('exit-popup').style.display = 'none';
+        }
+
+        // Newsletter / Promo Timer logic could be added here
+    </script>
+</body>
+</html>
