@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellow School of Motoring | East London's Top Driving School</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #FFD700; /* Signature Yellow */
+            --dark: #111111;    /* Deep Black */
+            --accent-dark: #e6c200;
+            --light: #f9f9f9;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, .brand { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
+        p { color: #333; }
+
+        /* BUTTONS */
+        .btn { display: inline-block; padding: 15px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: var(--transition); cursor: pointer; border: none; text-align: center; text-transform: uppercase; font-size: 0.9rem; }
+        .btn-primary { background: var(--primary); color: var(--dark); box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); }
+        .btn-primary:hover { background: var(--dark); color: var(--primary); transform: translateY(-3px); }
+        .btn-dark { background: var(--dark); color: var(--primary); }
+        .btn-outline { border: 2px solid var(--dark); color: var(--dark); }
+
+        /* STICKY NAV */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: var(--white); z-index: 1000; transition: var(--transition); border-bottom: 3px solid var(--primary); }
+        nav.scrolled { padding: 10px 8%; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--dark); text-decoration: none; font-size: 0.85rem; font-weight: 700; }
+        .nav-links a:hover { color: var(--accent-dark); }
+        
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+        /* HAMBURGER */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; }
+        .hamburger span { width: 28px; height: 3px; background: var(--dark); transition: 0.3s; }
+
+        /* TOP OFFER SLIDER */
+        .top-ticker { background: var(--dark); height: 40px; overflow: hidden; display: flex; align-items: center; margin-top: 85px; }
+        .ticker-wrap { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
+        .ticker-item { padding: 0 30px; color: var(--primary); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* HERO SECTION */
+        .hero { height: 85vh; background: linear-gradient(rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.1)), url('https://images.unsplash.com/photo-1449960232335-d8f914a50d11?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 5%; border-bottom: 10px solid var(--primary); }
+        .hero-content { background: rgba(255, 255, 255, 0.95); padding: 50px; border-radius: 20px; border: 4px solid var(--dark); box-shadow: 20px 20px 0px var(--primary); max-width: 900px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--dark); margin-bottom: 15px; line-height: 1.1; }
+        .hero p { color: #222; font-size: 1.1rem; font-weight: 500; margin-bottom: 30px; }
+        .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        /* STATS */
+        .stats { background: var(--dark); padding: 50px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; border-bottom: 5px solid var(--primary); }
+        .stat-card { color: var(--white); }
+        .stat-card .num { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; }
+        .stat-card p { color: var(--white); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+        /* ABOUT SECTION */
+        .about-section { padding: 100px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-image { position: relative; }
+        .about-image img { width: 100%; border-radius: 15px; border: 3px solid var(--dark); }
+        .about-image::after { content: ''; position: absolute; top: 20px; left: -20px; width: 100%; height: 100%; border: 3px solid var(--primary); border-radius: 15px; z-index: -1; }
+
+        /* SERVICE GRID */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 50px 10%; }
+        .service-card { background: var(--light); padding: 40px; border-radius: 0px; text-align: left; transition: var(--transition); border-left: 8px solid var(--primary); position: relative; }
+        .service-card:hover { transform: translateY(-5px); background: var(--white); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .service-card i { font-size: 2rem; color: var(--dark); margin-bottom: 20px; background: var(--primary); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+        /* REVIEWS */
+        .reviews-section { padding: 80px 10%; background: var(--dark); color: var(--white); text-align: center; }
+        .review-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 50px; }
+        .review-card { background: #222; padding: 30px; border-radius: 10px; border-top: 4px solid var(--primary); text-align: left; }
+        .stars { color: var(--primary); margin-bottom: 10px; }
+
+        /* PRICING */
+        .pricing { padding: 100px 10%; background: var(--light); text-align: center; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .price-card { background: var(--white); padding: 40px; border: 3px solid var(--dark); position: relative; transition: var(--transition); }
+        .price-card.featured { transform: scale(1.05); z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .price-card.featured::before { content: 'BEST VALUE'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--dark); color: var(--primary); padding: 5px 20px; font-weight: 800; font-size: 0.7rem; }
+        .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .price-card .cost { font-size: 3.5rem; font-weight: 800; margin: 20px 0; border-bottom: 2px solid var(--primary); display: inline-block; }
+        .price-list { list-style: none; margin-bottom: 30px; text-align: left; }
+        .price-list li { margin-bottom: 10px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+        .price-list i { color: #27ae60; }
+
+        /* MAP AREA */
+        .areas { padding: 80px 10%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; align-items: center; }
+        .area-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .area-item { background: var(--primary); padding: 10px; font-weight: 700; font-size: 0.8rem; text-align: center; clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%); }
+
+        /* FAQ */
+        .faq { padding: 100px 15%; background: var(--white); }
+        .accordion-item { border: 2px solid var(--dark); margin-bottom: 15px; }
+        .accordion-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 700; background: var(--primary); color: var(--dark); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; padding: 0 20px; }
+
+        /* FOOTER */
+        footer { background: var(--dark); padding: 80px 10% 120px; color: var(--white); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 40px; }
+        .footer-logo { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; }
+        .footer-links h4 { color: var(--primary); margin-bottom: 25px; font-size: 0.9rem; text-transform: uppercase; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #bbb; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary); padding-left: 5px; }
+
+        /* DOCK */
+        .bottom-dock { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; justify-content: space-around; padding: 15px; z-index: 999; border-top: 4px solid var(--primary); box-shadow: 0 -5px 20px rgba(0,0,0,0.1); }
+        .dock-item { color: var(--dark); text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; gap: 5px; }
+        .dock-item i { font-size: 1.4rem; color: var(--dark); }
+        .dock-item.whatsapp i { color: #25D366; }
+
+        /* POPUP */
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: none; justify-content: center; align-items: center; }
+        .popup-box { background: var(--white); padding: 40px; border-radius: 0; text-align: center; max-width: 450px; position: relative; border: 10px solid var(--primary); }
+        .close-popup { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; color: var(--dark); font-weight: 800; }
+
+        @media (max-width: 992px) {
+            .about-section, .areas, .footer-grid, .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-content { padding: 30px; }
+            .hamburger { display: flex; }
+            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 80%; background: var(--white); flex-direction: column; justify-content: center; transition: 0.5s; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+            .nav-links.active { right: 0; }
+            .area-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EXIT POPUP -->
+    <div class="popup-overlay" id="exitPopup">
+        <div class="popup-box">
+            <span class="close-popup" id="closeP">CLOSE</span>
+            <h2 style="margin-bottom: 15px;">WAIT! NEW STUDENT?</h2>
+            <div style="background: var(--primary); color: var(--dark); padding: 15px; font-weight: 800; font-size: 1.2rem; margin-bottom: 20px;">SAVE £10 ON INTENSIVE COURSES</div>
+            <p style="margin-bottom: 25px;">Start your journey in East London with our safety-first approach. Only for students & NHS staff!</p>
+            <a href="https://wa.me/02085398888" class="btn btn-dark" style="width: 100%;">CLAIM ON WHATSAPP</a>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav id="mainNav">
+        <a href="#" class="logo-container">
+            <svg width="150" height="50" viewBox="0 0 150 50">
+                <!-- Road Path -->
+                <rect x="0" y="35" width="60" height="15" fill="#111" />
+                <rect x="5" y="42" width="10" height="2" fill="#fff" />
+                <rect x="25" y="42" width="10" height="2" fill="#fff" />
+                <rect x="45" y="42" width="10" height="2" fill="#fff" />
+                <!-- YSM Text -->
+                <text x="5" y="30" font-family="Montserrat" font-weight="800" font-size="28" fill="#111">YSM</text>
+                <!-- L Plate -->
+                <rect x="65" y="5" width="25" height="25" fill="#fff" stroke="#111" stroke-width="2"/>
+                <path d="M72 10 V25 H83" fill="none" stroke="#e74c3c" stroke-width="4"/>
+                <!-- Label -->
+                <text x="65" y="45" font-family="Montserrat" font-weight="600" font-size="8" fill="#111">YELLOW SCHOOL</text>
+            </svg>
+        </a>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">OUR SCHOOL</a></li>
+            <li><a href="#services">SERVICES</a></li>
+            <li><a href="#pricing">PACKAGES</a></li>
+            <li><a href="#areas">LOCATIONS</a></li>
+            <li><a href="tel:02085398888" class="btn btn-primary" style="padding: 10px 20px;">CALL US</a></li>
+        </ul>
+    </nav>
+
+    <div class="top-ticker">
+        <div class="ticker-wrap">
+            <div class="ticker-item">★ ESTABLISHED 2004 IN LEYTON</div>
+            <div class="ticker-item">★ 20+ YEARS EXPERIENCE</div>
+            <div class="ticker-item">★ DVSA APPROVED INSTRUCTORS</div>
+            <div class="ticker-item">★ MANUAL & AUTOMATIC LESSONS</div>
+            <div class="ticker-item">★ EXPERTS IN EAST LONDON TEST ROUTES</div>
+            <div class="ticker-item">★ NERVOUS DRIVER SPECIALISTS</div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content" data-aos="zoom-in">
+            <h4 style="color: #666; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px;">YELLOW SCHOOL OF MOTORING</h4>
+            <h1>EAST LONDON'S LOCAL DRIVING SCHOOL</h1>
+            <p>Providing expert driver training for over two decades. Whether you're a teenager getting behind the wheel for the first time or an experienced driver looking for a refresher, we're here to help.</p>
+            <div class="hero-btns">
+                <a href="https://wa.me/02085398888" class="btn btn-primary">BOOK VIA WHATSAPP</a>
+                <a href="#pricing" class="btn btn-outline">VIEW PRICE LIST</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-card" data-aos="fade-up">
+            <span class="num">2004</span>
+            <p>ESTABLISHED</p>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <span class="num">20+</span>
+            <p>YEARS EXP</p>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <span class="num">100%</span>
+            <p>DVSA QUALIFIED</p>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+            <span class="num">1000s</span>
+            <p>PASSED STUDENTS</p>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="about-image" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2959d99?q=80&w=800&auto=format&fit=crop" alt="YSM Instruction">
+        </div>
+        <div data-aos="fade-left">
+            <h2 style="font-size: 2.2rem; margin-bottom: 20px;">SAFETY-FIRST APPROACH</h2>
+            <p style="margin-bottom: 20px; font-weight: 600;">Based in Leyton, E10, we have helped hundreds of students across East London pass their practical tests and beyond.</p>
+            <p style="margin-bottom: 25px;">When your child is ready to drive, you need an instructor who isn't just teaching them to pass, but teaching them to be a safe, confident driver for life. We know the local test routes inside out—from Wanstead to Chingford.</p>
+            <ul style="list-style: none; margin-bottom: 30px;">
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Expert Male & Female Instructors</li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Modern Dual-Controlled Vehicles</li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> High Success Rate in East London</li>
+            </ul>
+            <a href="tel:02085398888" class="btn btn-dark">TALK TO AN EXPERT</a>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" style="background: var(--white); padding: 80px 0;">
+        <h2 style="text-align: center; margin-bottom: 50px;">OUR TRAINING PROGRAMS</h2>
+        <div class="service-grid">
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-car"></i>
+                <h3>MANUAL & AUTO</h3>
+                <p>Tailored lessons in your choice of transmission. Perfect for beginners or nervous learners.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-bolt"></i>
+                <h3>INTENSIVE COURSES</h3>
+                <p>Fast-pass courses designed for those who need their license quickly. Save £10 today!</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-users"></i>
+                <h3>TEENAGER START</h3>
+                <p>Building lifelong driving skills with a friendly, patient, and safety-first methodology.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews-section">
+        <h2>TRUSTED BY THE COMMUNITY</h2>
+        <div class="review-cards">
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Best school in Leyton! My instructor was so patient and really knew the Wanstead test routes."</p>
+                <p style="margin-top: 15px; font-weight: 700; color: var(--primary);">— Local Student</p>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Passed first time with only 2 minors. The safety-first approach really made me feel confident."</p>
+                <p style="margin-top: 15px; font-weight: 700; color: var(--primary);">— Hackney Resident</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <h2>POPULAR LEARNER PACKAGES</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Single Lesson</h3>
+                <p>Standard hourly rate</p>
+                <div class="cost">£38</div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> 1-to-1 Tuition</li>
+                    <li><i class="fas fa-check"></i> Door-to-door Pickup</li>
+                    <li><i class="fas fa-check"></i> Manual or Automatic</li>
+                </ul>
+                <a href="https://wa.me/02085398888" class="btn btn-dark" style="width: 100%;">ENQUIRE NOW</a>
+            </div>
+            <div class="price-card featured">
+                <h3>10 Hour Block</h3>
+                <p>Save with Block Bookings</p>
+                <div class="cost">£360</div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> Discounted Rate</li>
+                    <li><i class="fas fa-check"></i> Priority Slot Booking</li>
+                    <li><i class="fas fa-check"></i> Full Progress Tracker</li>
+                </ul>
+                <a href="https://wa.me/02085398888" class="btn btn-primary" style="width: 100%;">BOOK BLOCK</a>
+            </div>
+            <div class="price-card">
+                <h3>Intensive Week</h3>
+                <p>Fast Pass Specialist</p>
+                <div class="cost">£750</div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> 20 Hours of Tuition</li>
+                    <li><i class="fas fa-check"></i> Mock Test Included</li>
+                    <li><i class="fas fa-check"></i> <b>£10 NHS Discount</b></li>
+                </ul>
+                <a href="https://wa.me/02085398888" class="btn btn-dark" style="width: 100%;">GET STARTED</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AREAS -->
+    <section class="areas" id="areas">
+        <div data-aos="fade-right">
+            <h2 style="font-size: 2.2rem; margin-bottom: 20px;">EAST LONDON COVERAGE</h2>
+            <p>We are experts in navigating the complex roads of London. We cover the following boroughs and test centers:</p>
+            <div class="area-list">
+                <div class="area-item">LEYTON (E10)</div>
+                <div class="area-item">WALTHAMSTOW (E17)</div>
+                <div class="area-item">CHINGFORD (E4)</div>
+                <div class="area-item">HACKNEY</div>
+                <div class="area-item">ILFORD</div>
+                <div class="area-item">WANSTEAD</div>
+            </div>
+            <p style="margin-top: 25px; font-weight: 600;"><i class="fas fa-map-marker-alt"></i> Main Test Centers: Wanstead, Chingford, Loughton.</p>
+        </div>
+        <div style="background: var(--light); height: 350px; display: flex; align-items: center; justify-content: center; border: 4px solid var(--dark); border-radius: 20px;">
+            <i class="fas fa-road fa-5x" style="color: var(--primary);"></i>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <h2 style="text-align: center; margin-bottom: 40px;">FREQUENT QUESTIONS</h2>
+        <div class="accordion-item">
+            <div class="accordion-header">Which areas do you cover? <i class="fas fa-plus"></i></div>
+            <div class="accordion-content"><p style="padding: 20px;">We cover Leyton, Hackney, Chingford, Ilford, Walthamstow, and surrounding East London postcodes.</p></div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header">Do you have female instructors? <i class="fas fa-plus"></i></div>
+            <div class="accordion-content"><p style="padding: 20px;">Yes, we have both male and female DVSA-approved instructors available.</p></div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header">Can I book intensive courses? <i class="fas fa-plus"></i></div>
+            <div class="accordion-content"><p style="padding: 20px;">Absolutely! We specialize in intensive "Fast Pass" courses. Contact us for current availability.</p></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><b>YELLOW SCHOOL</b></div>
+                <p>Providing quality driving instruction in East London since 2004. Safety-first training for a lifetime of confident driving.</p>
+            </div>
+            <div class="footer-links">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#areas">Locations</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COURSES</h4>
+                <ul>
+                    <li><a href="#">Manual</a></li>
+                    <li><a href="#">Automatic</a></li>
+                    <li><a href="#">Intensive</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>CONTACT</h4>
+                <p>020 8539 8888</p>
+                <p>ysm_london@outlook.com</p>
+                <p>Leyton, London E10</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DOCK -->
+    <div class="bottom-dock">
+        <a href="tel:02085398888" class="dock-item"><i class="fas fa-phone"></i><span>Call</span></a>
+        <a href="https://wa.me/02085398888" class="dock-item whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+        <a href="#pricing" class="dock-item"><i class="fas fa-pound-sign"></i><span>Prices</span></a>
+        <a href="mailto:ysm_london@outlook.com" class="dock-item"><i class="fas fa-envelope"></i><span>Email</span></a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Sticky Nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if(window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+                if(content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.className = 'fas fa-plus';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.className = 'fas fa-minus';
+                }
+            });
+        });
+
+        // Exit Intent
+        document.addEventListener("mouseleave", (e) => {
+            if (e.clientY < 0) {
+                document.getElementById('exitPopup').style.display = 'flex';
+            }
+        });
+        document.getElementById('closeP').onclick = () => {
+            document.getElementById('exitPopup').style.display = 'none';
+        }
+
+        // Hamburger Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
