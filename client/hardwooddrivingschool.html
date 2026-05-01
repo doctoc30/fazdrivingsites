@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Harwood Driving School App</title>
+    <title>Harwood Driving School | BOLTON & BURY</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -13,270 +13,227 @@
         :root {
             --primary: #000000;
             --accent: #e31e24; 
-            --light: #f9f9f9;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --radius: 20px;
+            --bg: #ffffff;
+            --card-bg: #f4f4f4;
+            --text-large: 1.2rem;
+            --text-xl: 2.5rem;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--primary); line-height: 1.6; overflow-x: hidden; }
-        
-        /* 1. APP NAVIGATION HEADER */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--primary); }
+
+        /* FIXED HEADER */
         header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #eee;
+            position: fixed; top: 0; width: 100%; z-index: 2000;
+            background: var(--primary); color: white;
+            padding: 20px; display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-weight: 900; font-size: 1.3rem; letter-spacing: -1px; text-transform: uppercase; }
+        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; }
         .logo span { color: var(--accent); }
 
-        /* 2. DYNAMIC HERO SECTION */
+        /* MASSIVE HERO */
         .hero {
-            padding: 100px 20px 40px; background: var(--white);
-            text-align: center; border-radius: 0 0 40px 40px; box-shadow: var(--shadow);
+            padding: 140px 25px 60px; background: var(--primary); color: white;
+            text-align: center; border-radius: 0 0 50px 50px;
         }
-        .hero h1 { font-size: 2.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
-        .hero p { color: #666; font-size: 1rem; margin-bottom: 25px; max-width: 320px; margin-inline: auto; }
-        .btn-main {
-            background: var(--accent); color: white; padding: 16px 32px; border-radius: 16px;
-            text-decoration: none; font-weight: 700; display: inline-block; width: 100%;
-            box-shadow: 0 8px 20px rgba(227, 30, 36, 0.3);
+        .hero h1 { font-size: var(--text-xl); line-height: 1; margin-bottom: 20px; text-transform: uppercase; }
+        .hero p { font-size: var(--text-large); margin-bottom: 30px; color: #ccc; }
+
+        /* LARGE ACTION GRID */
+        .main-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px 20px;
+        }
+        .grid-card {
+            background: var(--card-bg); padding: 30px 20px; border-radius: 25px;
+            text-decoration: none; color: var(--primary); text-align: center;
+            border: 2px solid transparent; transition: 0.3s;
+        }
+        .grid-card:active { border-color: var(--accent); transform: scale(0.95); }
+        .grid-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; display: block; }
+        .grid-card span { font-weight: 800; font-size: 1.1rem; display: block; }
+
+        /* CONTENT SECTIONS */
+        section { padding: 80px 25px 20px; }
+        .section-title { font-size: 2rem; font-weight: 900; margin-bottom: 25px; border-left: 8px solid var(--accent); padding-left: 15px; }
+
+        /* LARGE LISTS */
+        .big-list-item {
+            background: white; border: 3px solid #eee; border-radius: 20px;
+            padding: 25px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px;
+        }
+        .big-list-item i { font-size: 2rem; color: var(--accent); }
+        .big-list-item h3 { font-size: 1.3rem; margin-bottom: 5px; }
+
+        /* PRICE CARDS - FULL WIDTH */
+        .price-row {
+            background: var(--primary); color: white; border-radius: 25px;
+            padding: 35px; margin-bottom: 20px; display: flex; 
+            justify-content: space-between; align-items: center;
+        }
+        .price-row h4 { font-size: 1.5rem; }
+        .price-val { font-size: 2rem; font-weight: 900; color: var(--accent); }
+
+        /* CONTACT BAR */
+        .contact-strip {
+            background: var(--accent); color: white; padding: 30px;
+            text-align: center; border-radius: 30px; margin: 20px;
+        }
+        .btn-call {
+            display: block; background: white; color: var(--accent);
+            padding: 20px; border-radius: 15px; text-decoration: none;
+            font-weight: 900; font-size: 1.4rem; margin-top: 15px;
         }
 
-        /* 3. QUICK ACTION TILES */
-        .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 25px 20px; }
-        .tile {
-            background: white; padding: 20px; border-radius: var(--radius);
-            text-decoration: none; color: inherit; box-shadow: var(--shadow);
-            display: flex; flex-direction: column; gap: 10px;
+        /* BOTTOM APP NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; height: 80px;
+            background: white; border-top: 2px solid #eee;
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            z-index: 2000;
         }
-        .tile i { color: var(--accent); font-size: 1.5rem; }
-        .tile span { font-weight: 700; font-size: 0.9rem; }
-
-        /* 4. INSTRUCTOR PROFILE SECTION */
-        .profile-section { padding: 40px 20px; }
-        .profile-card {
-            background: var(--primary); color: white; border-radius: 30px;
-            padding: 30px; display: flex; align-items: center; gap: 20px;
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-decoration: none; color: #666; font-weight: 700; font-size: 0.9rem;
         }
-        .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; }
-        .profile-info h3 { font-size: 1.2rem; }
-        .profile-info p { font-size: 0.8rem; opacity: 0.8; }
+        .nav-item.active { color: var(--accent); }
+        .nav-item i { font-size: 1.5rem; margin-bottom: 4px; }
 
-        /* 5. COURSE CATALOG (HORIZONTAL SCROLL) */
-        .scroll-section { padding: 20px 0 40px 20px; }
-        .scroll-container { display: flex; overflow-x: auto; gap: 15px; padding-right: 20px; scrollbar-width: none; }
-        .course-card {
-            min-width: 260px; background: white; border-radius: var(--radius);
-            padding: 20px; box-shadow: var(--shadow); border: 1px solid #eee;
-        }
-        .course-card h4 { color: var(--accent); margin-bottom: 8px; }
-
-        /* 6. REAL-TIME AREAS MAP */
-        .area-section { padding: 40px 20px; background: #f0f0f0; border-radius: 40px; margin: 0 10px; }
-        .area-chip {
-            display: inline-block; padding: 8px 16px; background: white;
-            border-radius: 50px; margin: 4px; font-size: 0.8rem; font-weight: 600;
-        }
-
-        /* 7. PRICING SUBSCRIPTION TILES */
-        .pricing-section { padding: 40px 20px; }
-        .price-box {
-            background: white; border-radius: var(--radius); padding: 25px;
-            margin-bottom: 20px; border-left: 6px solid var(--accent);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .price-tag { font-size: 1.5rem; font-weight: 900; }
-
-        /* 8. TESTIMONIAL FEED */
-        .review-feed { padding: 20px; }
-        .review-card {
-            background: #fff; padding: 20px; border-radius: var(--radius);
-            margin-bottom: 15px; position: relative;
-        }
-        .stars { color: #ffcc00; font-size: 0.8rem; margin-bottom: 5px; }
-
-        /* 9. FAQ ACCORDION */
-        .faq-box { padding: 20px; }
-        .faq-item { background: white; margin-bottom: 10px; border-radius: 12px; padding: 15px; }
-
-        /* 10. APP DOCK (BOTTOM NAV) */
-        .app-dock {
-            position: fixed; bottom: 0; width: 100%; background: white;
-            display: flex; justify-content: space-around; padding: 12px 0 30px;
-            border-top: 1px solid #eee; z-index: 1000;
-        }
-        .dock-item { text-decoration: none; color: #999; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .dock-item.active { color: var(--accent); }
-        .dock-item i { font-size: 1.2rem; }
-        .dock-item span { font-size: 0.65rem; font-weight: 600; }
-
-        /* DESKTOP RESPONSIVENESS */
+        /* DESKTOP MODE */
         @media (min-width: 768px) {
-            body { display: flex; justify-content: center; background: #1a1a1a; }
-            .app-shell { width: 430px; height: 95vh; background: var(--light); margin-top: 2.5vh; border-radius: 40px; position: relative; overflow-y: scroll; border: 8px solid #333; }
-            header, .app-dock { width: 414px; position: absolute; }
+            body { background: #111; display: flex; justify-content: center; padding-bottom: 0; }
+            .phone-shell { 
+                width: 450px; height: 90vh; background: white; margin: 5vh 0; 
+                border-radius: 50px; position: relative; overflow-y: auto; overflow-x: hidden;
+                border: 10px solid #333;
+            }
+            header, .bottom-nav { width: 430px; position: absolute; }
         }
     </style>
 </head>
 <body>
 
-<div class="app-shell">
+<div class="phone-shell">
     <header>
         <div class="logo">HARWOOD<span>.</span></div>
-        <i class="fa-solid fa-bars-staggered"></i>
+        <a href="tel:07544720505" style="color:white;"><i class="fa-solid fa-phone-volume fa-lg"></i></a>
     </header>
 
-    <!-- SECTION 1: HERO -->
-    <section class="hero" data-aos="fade-down">
-        <h1>Master the Road with Darren</h1>
-        <p>Premier Driving Lessons in Bolton, Bury, and Greater Manchester.</p>
-        <a href="tel:07544720505" class="btn-main">Call Darren Now</a>
+    <section class="hero" id="home">
+        <h1 data-aos="fade-up">Driving Excellence.</h1>
+        <p>Expert tuition from Darren. Bolton, Bury & Radcliffe.</p>
+        <a href="#prices" class="btn-call" style="background: var(--accent); color: white;">VIEW PRICES</a>
     </section>
 
-    <!-- SECTION 2: QUICK ACTIONS -->
-    <div class="grid-menu">
-        <a href="#courses" class="tile">
-            <i class="fa-solid fa-car"></i>
-            <span>Book Lessons</span>
+    <!-- LARGE ICON GRID -->
+    <div class="main-grid">
+        <a href="#courses" class="grid-card">
+            <i class="fa-solid fa-car-side"></i>
+            <span>Lessons</span>
         </a>
-        <a href="#prices" class="tile">
-            <i class="fa-solid fa-receipt"></i>
-            <span>View Rates</span>
+        <a href="#prices" class="grid-card">
+            <i class="fa-solid fa-tags"></i>
+            <span>Rates</span>
         </a>
-        <a href="#areas" class="tile">
-            <i class="fa-solid fa-location-crosshairs"></i>
-            <span>Local Areas</span>
+        <a href="#areas" class="grid-card">
+            <i class="fa-solid fa-map-pin"></i>
+            <span>Areas</span>
         </a>
-        <a href="#reviews" class="tile">
-            <i class="fa-solid fa-star"></i>
-            <span>Reviews</span>
+        <a href="#adi" class="grid-card">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>ADI Prep</span>
         </a>
     </div>
 
-    <!-- SECTION 3: INSTRUCTOR INFO -->
-    <section class="profile-section">
-        <div class="profile-card" data-aos="zoom-in">
-            <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=200" class="profile-img">
-            <div class="profile-info">
-                <h3>Darren</h3>
-                <p>DVSA-Approved Professional</p>
-                <p>Based in Radcliffe, Bury</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: COURSES -->
-    <section class="scroll-section" id="courses">
-        <h3 style="margin-bottom: 15px;">Our Courses</h3>
-        <div class="scroll-container">
-            <div class="course-card">
-                <h4>Beginner Lessons</h4>
-                <p style="font-size: 0.8rem;">Confidence-building lessons for those starting out in Bolton or Bury.</p>
-            </div>
-            <div class="course-card">
-                <h4>Intensive Training</h4>
-                <p style="font-size: 0.8rem;">Fast-track your license with focused coaching sessions.</p>
-            </div>
-            <div class="course-card">
-                <h4>Motorway Skill</h4>
-                <p style="font-size: 0.8rem;">Specialized training for high-speed roads across the North West.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5: COVERAGE -->
-    <section class="area-section" id="areas">
-        <h3 style="margin-bottom: 10px;">We Cover</h3>
-        <div class="area-chip">Bolton</div>
-        <div class="area-chip">Bury</div>
-        <div class="area-chip">Manchester</div>
-        <div class="area-chip">Rochdale</div>
-        <div class="area-chip">Radcliffe</div>
-        <div class="area-chip">Liverpool</div>
-    </section>
-
-    <!-- SECTION 6: PRICING -->
-    <section class="pricing-section" id="prices">
-        <h3 style="margin-bottom: 15px;">Lesson Packages</h3>
-        <div class="price-box">
+    <!-- COURSES SECTION -->
+    <section id="courses">
+        <h2 class="section-title">Courses</h2>
+        <div class="big-list-item" data-aos="fade-right">
+            <i class="fa-solid fa-user-graduate"></i>
             <div>
-                <h4 style="color: var(--accent);">Starter Pack</h4>
-                <p style="font-size: 0.7rem;">Perfect for beginners</p>
+                <h3>Beginner Pro</h3>
+                <p>Starting from scratch? We've got you.</p>
             </div>
-            <div class="price-tag">££</div>
         </div>
-        <div class="price-box" style="border-color: #000;">
+        <div class="big-list-item" data-aos="fade-right" data-aos-delay="100">
+            <i class="fa-solid fa-bolt"></i>
             <div>
-                <h4>Block Booking</h4>
-                <p style="font-size: 0.7rem;">Discounted hourly rate</p>
+                <h3>Intensive</h3>
+                <p>Pass your test in record time.</p>
             </div>
-            <div class="price-tag">Save</div>
         </div>
     </section>
 
-    <!-- SECTION 7: WHY CHOOSE US -->
-    <section style="padding: 20px;">
-        <h3 style="margin-bottom: 15px;">Why Harwood?</h3>
-        <ul style="list-style: none; font-size: 0.85rem; color: #555;">
-            <li style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> DVSA-Approved Professionals</li>
-            <li style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> Modern Coaching Techniques</li>
-            <li style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> DIA-Registered Instructors</li>
-        </ul>
-    </section>
-
-    <!-- SECTION 8: REVIEWS -->
-    <section class="review-feed" id="reviews">
-        <div class="review-card">
-            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <p style="font-size: 0.8rem; font-style: italic;">"Darren was patient and highly professional. Highly recommend!"</p>
-            <p style="font-size: 0.7rem; font-weight: 700; margin-top: 5px;">- 100% Recommended</p>
+    <!-- PRICING SECTION -->
+    <section id="prices">
+        <h2 class="section-title">Pricing</h2>
+        <div class="price-row">
+            <h4>1 Hour</h4>
+            <div class="price-val">££</div>
+        </div>
+        <div class="price-row" style="background: var(--accent);">
+            <h4>10 Hours</h4>
+            <div class="price-val" style="color: white;">SAVE</div>
         </div>
     </section>
 
-    <!-- SECTION 9: ADI TRAINING -->
-    <section style="padding: 20px; background: var(--accent); color: white; margin: 20px; border-radius: 20px; text-align: center;">
-        <h4>Want to be an Instructor?</h4>
-        <p style="font-size: 0.75rem; margin: 10px 0;">Become a certified professional with our ADI training courses.</p>
-        <a href="tel:07544720505" style="color: white; font-weight: 800; font-size: 0.8rem;">Enquire Now</a>
-    </section>
-
-    <!-- SECTION 10: FAQ -->
-    <section class="faq-box">
-        <div class="faq-item">
-            <p style="font-weight: 700; font-size: 0.85rem;">Do you teach in my area?</p>
-            <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">We cover most of the North West, including Bolton and Bury.</p>
+    <!-- AREAS SECTION -->
+    <section id="areas" style="background: #f9f9f9; border-radius: 40px 40px 0 0;">
+        <h2 class="section-title">Coverage</h2>
+        <p style="font-size: 1.2rem; font-weight: 700; margin-bottom: 15px;">Darren covers:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span style="background:black; color:white; padding:10px 20px; border-radius:10px; font-weight:700;">BOLTON</span>
+            <span style="background:black; color:white; padding:10px 20px; border-radius:10px; font-weight:700;">BURY</span>
+            <span style="background:black; color:white; padding:10px 20px; border-radius:10px; font-weight:700;">RADCLIFFE</span>
+            <span style="background:black; color:white; padding:10px 20px; border-radius:10px; font-weight:700;">MANCHESTER</span>
         </div>
     </section>
 
-    <div style="height: 100px;"></div>
+    <!-- ADI SECTION -->
+    <section id="adi">
+        <h2 class="section-title">Instructor Training</h2>
+        <div class="contact-strip">
+            <h3>Become an ADI</h3>
+            <p>Professional training for aspiring instructors.</p>
+            <a href="tel:07544720505" class="btn-call">Enquire Today</a>
+        </div>
+    </section>
 
-    <!-- APP DOCK NAVIGATION -->
-    <nav class="app-dock">
-        <a href="#" class="dock-item active">
+    <div style="height: 120px;"></div>
+
+    <!-- NAVIGATION THAT WORKS -->
+    <nav class="bottom-nav">
+        <a href="#home" class="nav-item active">
             <i class="fa-solid fa-house"></i>
             <span>Home</span>
         </a>
-        <a href="https://wa.me/07544720505" class="dock-item">
-            <i class="fa-brands fa-whatsapp"></i>
-            <span>Chat</span>
+        <a href="#courses" class="nav-item">
+            <i class="fa-solid fa-book"></i>
+            <span>Lessons</span>
         </a>
-        <a href="tel:07544720505" class="dock-item">
+        <a href="https://wa.me/447544720505" class="nav-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="tel:07544720505" class="nav-item">
             <i class="fa-solid fa-phone"></i>
             <span>Call</span>
-        </a>
-        <a href="#areas" class="dock-item">
-            <i class="fa-solid fa-map"></i>
-            <span>Areas</span>
         </a>
     </nav>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true });
+    // Initialize Animations
+    AOS.init({ duration: 600, once: true });
+
+    // Simple script to handle 'active' state on nav items
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
 </script>
 
 </body>
