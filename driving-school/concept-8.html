@@ -3,573 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Driving School | Professional Auto & Manual Instruction</title>
+    <title>ABC Driving School | Premium Instruction</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #000000; /* Deep Black from Branding */
-            --accent: #FF6B35;  /* Vibrant Orange from Image */
-            --accent-dark: #e05a2b;
-            --light: #ffffff;
-            --white: #ffffff;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --brand-orange: #FF6B35;
+            --brand-black: #000000;
+            --brand-gray: #1a1a1a;
+            --text-light: #ffffff;
+            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background: var(--light); color: var(--primary); overflow-x: hidden; line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--brand-black); color: var(--text-light); overflow-x: hidden; }
 
-        /* TYPOGRAPHY */
-        h1, h2, h3, .brand { font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
-        p { color: #333; }
+        /* --- VERTICAL SLIDE INTRO --- */
+        .intro-slider {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-        /* BUTTONS */
-        .btn { display: inline-block; padding: 15px 35px; border-radius: 8px; font-weight: 700; text-decoration: none; transition: var(--transition); cursor: pointer; border: none; text-align: center; }
-        .btn-accent { background: var(--accent); color: var(--white); }
-        .btn-accent:hover { background: var(--primary); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .btn-outline { border: 2px solid var(--white); color: var(--white); }
-        .btn-outline:hover { background: var(--white); color: var(--primary); }
+        .slide-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.1);
+            animation: kenBurns 20s infinite alternate;
+        }
 
-        /* STICKY NAV */
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: var(--primary); z-index: 1000; transition: var(--transition); border: none; }
-        nav.scrolled { padding: 10px 8%; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
-        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--accent); }
-        
-        .logo-svg { height: 40px; vertical-align: middle; }
+        @keyframes kenBurns {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
 
-        /* HAMBURGER MENU */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; }
-        .hamburger span { width: 28px; height: 3px; background: var(--accent); transition: 0.3s; }
+        .intro-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
 
-        /* TOP OFFER SLIDER */
-        .top-ticker { background: var(--accent); height: 45px; overflow: hidden; display: flex; align-items: center; margin-top: 70px; border-bottom: 2px solid var(--primary); }
-        .ticker-wrap { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
-        .ticker-item { padding: 0 40px; color: var(--white); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; }
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .intro-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
 
-        /* HERO SECTION */
-        .hero { height: 85vh; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 5%; border-bottom: 10px solid var(--accent); }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); margin-bottom: 10px; line-height: 1; }
-        .hero .sub-heading { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-bottom: 25px; letter-spacing: 4px; }
-        .hero p { color: #eee; font-size: 1.1rem; max-width: 700px; margin: 0 auto 35px; }
-        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+        .intro-content .highlight { color: var(--brand-orange); }
 
-        /* STATS */
-        .stats { background: var(--primary); padding: 60px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; border-top: 1px solid #333; }
-        .stat-card { color: var(--white); }
-        .stat-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
-        .stat-card .num { font-size: 3rem; font-weight: 800; display: block; }
+        /* --- POSTCODE SEARCH BAR --- */
+        .postcode-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 50px;
+            display: flex;
+            max-width: 500px;
+            margin: 30px auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-        /* LEARNER CAR SECTION */
-        .car-feature-section { padding: 80px 10%; background: var(--light); display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .car-image-container { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 5px solid var(--primary); }
-        .car-image-container img { width: 100%; display: block; }
-        .car-specs { list-style: none; }
-        .car-specs li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 600; }
-        .car-specs i { color: var(--accent); font-size: 1.5rem; }
+        .postcode-box input {
+            background: transparent;
+            border: none;
+            padding: 15px 25px;
+            color: white;
+            flex: 1;
+            font-size: 1rem;
+            outline: none;
+        }
 
-        /* ABOUT SECTION */
-        .about-joe { padding: 100px 10%; background: var(--accent); display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; color: var(--white); }
-        .about-joe p { color: var(--white); opacity: 0.9; }
-        .joe-image { border-radius: 50%; border: 15px solid rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.2); width: 100%; max-width: 450px; justify-self: center; aspect-ratio: 1/1; object-fit: cover; }
+        .postcode-box button {
+            background: var(--brand-orange);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
 
-        /* SERVICE GRID */
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 50px 10%; }
-        .service-card { background: var(--white); padding: 40px 30px; border-radius: 15px; text-align: center; transition: var(--transition); border: 1px solid #eee; cursor: pointer; }
-        .service-card:hover { background: var(--primary); color: var(--white); transform: translateY(-10px); }
-        .service-card:hover p { color: #ccc; }
-        .service-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .postcode-box button:hover { background: white; color: black; }
 
-        /* SUCCESS SLIDER */
-        .success-slider { background: var(--primary); color: var(--white); padding: 100px 10%; text-align: center; position: relative; overflow: hidden; border-top: 5px solid var(--accent); }
-        .slide { display: none; max-width: 800px; margin: 0 auto; animation: fadeIn 0.8s; }
-        .slide.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- VERTICAL LAYOUT SECTIONS --- */
+        .v-section {
+            padding: 120px 10%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-        /* REFERRAL PROGRAM */
-        .referral-banner { margin: 80px 10%; background: var(--primary); border-radius: 20px; padding: 60px; color: var(--white); display: flex; justify-content: space-between; align-items: center; border: 4px solid var(--accent); }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
 
-        /* REVIEWS */
-        .reviews-section { padding: 80px 10%; background: var(--light); text-align: center; }
-        .review-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
-        .review-card { background: var(--white); padding: 30px; border-radius: 12px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 5px solid var(--accent); }
-        .stars { color: var(--accent); margin-bottom: 10px; }
+        .feature-card {
+            background: var(--brand-gray);
+            padding: 50px;
+            border-radius: 0; /* Boxy aesthetic like logo */
+            border-top: 6px solid var(--brand-orange);
+            transition: var(--transition-smooth);
+        }
 
-        /* BOOKING BOX */
-        .booking-section { padding: 80px 10%; background: #f9f9f9; }
-        .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .calendar-mock { background: var(--primary); border-radius: 20px; padding: 40px; color: var(--white); box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-bottom: 8px solid var(--accent); }
-        .calendar-header { display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .feature-card:hover {
+            transform: translateY(-15px);
+            background: #222;
+        }
 
-        /* PRICING */
-        .pricing { padding: 100px 10%; background: var(--white); }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
-        .price-card { background: var(--white); padding: 50px 30px; border-radius: 15px; text-align: center; transition: var(--transition); border: 2px solid #eee; }
-        .price-card:hover { transform: translateY(-15px); border-color: var(--accent); }
-        .price-card.vip { background: var(--primary); color: var(--white); transform: scale(1.05); border: 3px solid var(--accent); }
-        .price-card.vip p { color: #ccc; }
-        .price-card h3 { margin-bottom: 15px; letter-spacing: 1px; }
-        .price-card .cost { font-size: 3rem; font-weight: 800; color: var(--accent); margin-bottom: 20px; }
-        .price-list { list-style: none; margin-bottom: 30px; text-align: left; }
-        .price-list li { margin-bottom: 12px; font-size: 0.9rem; }
-        .price-list i { color: var(--accent); margin-right: 10px; }
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--brand-orange);
+            margin-bottom: 25px;
+        }
 
-        /* AREAS & MAP */
-        .areas { padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: #fff; }
-        .map-box { background: #000; border-radius: 15px; height: 400px; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--white); overflow: hidden; border: 5px solid var(--accent); }
-        .area-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-        .tag { background: var(--primary); color: var(--white); padding: 8px 20px; border-radius: 5px; font-size: 0.8rem; border: 1px solid var(--accent); }
+        /* --- CALL BACK FLOATING BUTTON --- */
+        .callback-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: var(--brand-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            z-index: 9999;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
 
-        /* FAQ */
-        .faq { padding: 100px 15%; background: #f9f9f9; }
-        .accordion-item { border-bottom: 1px solid #ddd; margin-bottom: 10px; }
-        .accordion-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; background: var(--white); border-radius: 8px; border-left: 4px solid var(--accent); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; padding: 0 20px; color: #444; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 107, 53, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+        }
 
-        /* VIDEO & GALLERY */
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0 10%; margin-top: 40px; }
-        .gallery-item { height: 250px; background-size: cover; background-position: center; border-radius: 10px; cursor: pointer; transition: 0.3s; border: 3px solid transparent; }
-        .gallery-item:hover { transform: scale(1.05); border-color: var(--accent); z-index: 2; }
+        /* --- MODAL POPUPS --- */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
 
-        /* STICKY BOTTOM DOCK */
-        .bottom-dock { position: fixed; bottom: 0; width: 100%; background: var(--primary); display: flex; justify-content: space-around; padding: 12px; z-index: 999; border-top: 3px solid var(--accent); }
-        .dock-item { color: var(--white); text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; gap: 5px; }
-        .dock-item i { color: var(--accent); font-size: 1.2rem; }
+        .modal-content {
+            background: var(--brand-gray);
+            padding: 60px;
+            width: 90%;
+            max-width: 600px;
+            border: 2px solid var(--brand-orange);
+            position: relative;
+        }
 
-        /* POPUP */
-        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: none; justify-content: center; align-items: center; }
-        .popup-box { background: var(--white); padding: 50px; border-radius: 0; text-align: center; max-width: 500px; position: relative; border: 10px solid var(--accent); }
-        .close-popup { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--primary); }
+        .close-modal {
+            position: absolute;
+            top: 20px; right: 20px;
+            color: white; font-size: 2rem; cursor: pointer;
+        }
 
-        footer { background: var(--primary); padding: 80px 10% 120px; color: var(--white); border-top: 5px solid var(--accent); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; }
-        .footer-logo { color: var(--accent); margin-bottom: 20px; font-size: 1.8rem; letter-spacing: 3px; }
-        .footer-links h4 { color: var(--accent); margin-bottom: 20px; text-transform: uppercase; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: #bbb; text-decoration: none; transition: 0.3s; }
-        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        /* --- FOOTER & SOCIALS --- */
+        footer {
+            background: #000;
+            padding: 80px 10%;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
 
-        /* RESPONSIVE */
-        @media (max-width: 992px) {
-            .booking-grid, .areas, .footer-grid, .car-feature-section, .about-joe, .referral-banner { grid-template-columns: 1fr; text-align: center; }
-            .hero h1 { font-size: 2.8rem; }
-            .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .hamburger { display: flex; }
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 80%;
-                background: var(--primary);
-                flex-direction: column;
-                justify-content: center;
-                transition: 0.5s;
-                border-left: 5px solid var(--accent);
-            }
-            .nav-links.active { right: 0; }
-            .about-joe .joe-image { margin-bottom: 30px; }
-            .hero-btns { flex-direction: column; align-items: center; }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .social-icons a {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icons a:hover {
+            background: var(--brand-orange);
+            border-color: var(--brand-orange);
+            transform: rotate(360deg);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .v-section { padding: 80px 5%; }
+            .intro-content h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="popup-overlay" id="exitPopup">
-        <div class="popup-box">
-            <span class="close-popup" id="closeP">&times;</span>
-            <h2 style="color: var(--primary)">READY TO DRIVE?</h2>
-            <p style="margin: 20px 0; font-weight: 600;">Lock in your student discount today. Get <b>£20 OFF</b> your first block booking of 10 hours!</p>
-            <a href="#booking" class="btn btn-accent">CLAIM DISCOUNT</a>
-        </div>
-    </div>
-
-    <nav id="mainNav">
-        <div class="brand">
-            <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="45" font-family="Montserrat" font-weight="800" font-size="40" fill="#FF6B35">ABC</text>
-                <rect x="100" y="10" width="4" height="40" fill="#ffffff" opacity="0.3"/>
-                <text x="115" y="45" font-family="Montserrat" font-weight="400" font-size="18" fill="#ffffff">DRIVING</text>
+    <!-- Intro Slide -->
+    <header class="intro-slider">
+        <div class="slide-bg"></div>
+        <div class="intro-content" data-aos="fade-up">
+            <svg width="150" height="60" viewBox="0 0 200 60" style="margin-bottom: 20px;">
+                <text x="0" y="45" font-family="Montserrat" font-weight="900" font-size="45" fill="#FF6B35">ABC</text>
+                <rect x="110" y="10" width="4" height="40" fill="#ffffff" />
             </svg>
-        </div>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about">The Instructor</a></li>
-            <li><a href="#car">Tuition Vehicle</a></li>
-            <li><a href="#pricing">Rates</a></li>
-            <li><a href="#areas">Locations</a></li>
-            <li><a href="#faq">Support</a></li>
-            <li><a href="#booking" class="btn btn-accent" style="padding: 10px 20px;">Get Started</a></li>
-        </ul>
-    </nav>
-
-    <div class="top-ticker">
-        <div class="ticker-wrap">
-            <div class="ticker-item">★ DVSA GRADE A INSTRUCTOR</div>
-            <div class="ticker-item">★ AUTO & MANUAL SPECIALIST</div>
-            <div class="ticker-item">★ 98% STUDENT SATISFACTION</div>
-            <div class="ticker-item">★ NERVOUS PUPIL EXPERT</div>
-            <div class="ticker-item">★ FREE ONLINE THEORY TRAINING</div>
-            <div class="ticker-item">★ FLEXIBLE DOOR-TO-DOOR PICKUP</div>
-        </div>
-    </div>
-
-    <section class="hero">
-        <div data-aos="zoom-out">
-            <h1>ABC DRIVING SCHOOL</h1>
-            <div class="sub-heading">AUTO & MANUAL</div>
-            <p>Master the roads with London's premier driving tuition. We focus on building "Safe Drivers for Life," combining modern techniques with years of local road expertise.</p>
-            <div class="hero-btns">
-                <a href="#booking" class="btn btn-accent">GET ON BOARD</a>
-                <a href="#pricing" class="btn btn-outline">VIEW PRICE LIST</a>
+            <h1>START <span class="highlight">YOUR</span><br>JOURNEY.</h1>
+            <p style="font-size: 1.2rem; letter-spacing: 2px; opacity: 0.8;">PREMIUM AUTO & MANUAL INSTRUCTION</p>
+            
+            <div class="postcode-box">
+                <input type="text" id="postcodeInput" placeholder="Enter your postcode...">
+                <button onclick="checkPostcode()">CHECK AREA</button>
             </div>
+            <p id="postcodeResult" style="margin-top: 10px; font-weight: 600; color: var(--brand-orange);"></p>
         </div>
-    </section>
+    </header>
 
-    <div class="stats">
-        <div class="stat-card" data-aos="fade-up">
-            <i class="fas fa-steering-wheel"></i>
-            <span class="num">1,200+</span>
-            <p>New Drivers Licensed</p>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-            <i class="fas fa-clock"></i>
-            <span class="num">12+</span>
-            <p>Years Excellence</p>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-            <i class="fas fa-check-double"></i>
-            <span class="num">92%</span>
-            <p>First Time Pass Rate</p>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-            <i class="fas fa-star"></i>
-            <span class="num">5.0</span>
-            <p>Google Rating</p>
-        </div>
-    </div>
-
-    <section class="about-joe" id="about">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" alt="Lead Instructor" class="joe-image" data-aos="fade-right">
-        <div data-aos="fade-left">
-            <h4 style="color: var(--primary); font-weight: 800; margin-bottom: 10px;">YOUR LEAD INSTRUCTOR</h4>
-            <h2 style="font-size: 2.8rem; margin-bottom: 20px; line-height: 1.1;">PROFESSIONAL TUITION FROM ABC SCHOOL</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px;">At ABC Driving School, we believe that every learner is unique. Whether you choose **Manual** or **Automatic**, our curriculum is designed around your specific pace and confidence levels.</p>
-            <p>Our lead instructor brings a wealth of knowledge from years of navigating London's busiest junctions. We don't just teach you to tick boxes for a test examiner; we teach you the defensive driving skills required to stay safe on today's unpredictable roads.</p>
-            <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <a href="tel:07700900000" class="btn btn-accent" style="background: var(--primary);">CALL TODAY</a>
-                <a href="https://wa.me/07700900000" class="btn btn-accent">WHATSAPP US</a>
-            </div>
-        </div>
-    </section>
-
-    <section style="padding: 100px 0; background: var(--white);">
-        <h2 style="text-align: center; margin-bottom: 10px;">TAILORED TRAINING COURSES</h2>
-        <p style="text-align: center; margin-bottom: 40px;">Specialist solutions for every stage of your journey.</p>
-        <div class="service-grid">
-            <div class="service-card" data-aos="fade-up">
-                <i class="fas fa-id-card"></i>
-                <h3>Beginner Excellence</h3>
-                <p>Structured lessons starting from quiet roads to master the basics safely.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+    <!-- Vertical Features -->
+    <section class="v-section" id="features">
+        <h2 style="font-family: 'Montserrat'; font-size: 3rem; text-transform: uppercase;">The ABC <span style="color: var(--brand-orange);">Standard</span></h2>
+        <div class="feature-grid">
+            <div class="feature-card" data-aos="fade-up">
                 <i class="fas fa-bolt"></i>
-                <h3>Semi-Intensive</h3>
-                <p>Fast-track your license in weeks, not months, with our accelerated program.</p>
+                <h3>Fast Track Pass</h3>
+                <p>Our syllabus is optimized for speed without compromising safety. We use modern tracking software to map your progress in real-time.</p>
             </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-shield-virus"></i>
-                <h3>Refresher Lessons</h3>
-                <p>Regain your confidence after a break from driving or a recent accident.</p>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Dual-Control Tech</h3>
+                <p>Learn in the latest 2026 model vehicles equipped with regenerative braking, 360-cameras, and advanced dual-control safety systems.</p>
             </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>Pass Plus</h3>
-                <p>Advanced training for new drivers including motorway and night-time driving.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="car-feature-section" id="car">
-        <div class="car-image-container" data-aos="fade-right">
-            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1000&auto=format&fit=crop" alt="Tuition Vehicle">
-        </div>
-        <div data-aos="fade-left">
-            <h2 style="margin-bottom: 20px;">MODERN LEARNING VEHICLE</h2>
-            <p style="margin-bottom: 30px;">Learning is easier when you're comfortable. Our fleet consists of the latest high-spec hatchbacks, selected for their excellent visibility and forgiving controls.</p>
-            <ul class="car-specs">
-                <li><i class="fas fa-check-circle"></i> HE-MAN Dual Controls for your safety</li>
-                <li><i class="fas fa-check-circle"></i> Fully Air Conditioned Interior</li>
-                <li><i class="fas fa-check-circle"></i> Advanced Safety Rating (5-Star Euro NCAP)</li>
-                <li><i class="fas fa-check-circle"></i> Clean, sanitised, and smoke-free environment</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="success-slider">
-        <div class="slide active">
-            <i class="fas fa-quote-left fa-3x" style="color: var(--accent); margin-bottom: 20px;"></i>
-            <h2>"Passed first time with ABC! My instructor was so calm and made the difficult junctions in Croydon feel easy. Highly recommend!"</h2>
-            <p style="margin-top: 20px; font-weight: 800; color: var(--accent);">— JAMES T., CROYDON</p>
-        </div>
-        <div class="slide">
-            <i class="fas fa-quote-left fa-3x" style="color: var(--accent); margin-bottom: 20px;"></i>
-            <h2>"I was a very nervous driver, but ABC changed everything. They took it at my pace and never made me feel pressured."</h2>
-            <p style="margin-top: 20px; font-weight: 800; color: var(--accent);">— REBECCA L., BROMLEY</p>
-        </div>
-    </section>
-
-    <section class="reviews-section">
-        <h2 style="font-size: 2.5rem;">5.0 GOOGLE REVIEWS</h2>
-        <div class="review-cards">
-            <div class="review-card" data-aos="fade-up">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"The best driving school in the area. Honest pricing and very reliable instructors."</p>
-                <p style="font-weight: 700; margin-top: 10px;">Verified Student</p>
-            </div>
-            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"I switched to ABC after failing twice elsewhere. They fixed my bad habits immediately!"</p>
-                <p style="font-weight: 700; margin-top: 10px;">Verified Student</p>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Digital Booking</h3>
+                <p>Manage your entire journey via our student portal. Move lessons, track payments, and access 24/7 theory support instantly.</p>
             </div>
         </div>
     </section>
 
-    <section class="booking-section" id="booking">
-        <div class="booking-grid">
-            <div data-aos="fade-right">
-                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">BOOK YOUR EVALUATION</h2>
-                <p style="margin-bottom: 30px;">Ready to start? Book your initial assessment lesson. We’ll evaluate your current skill level and create a custom road map to your license.</p>
-                
-                <div style="display: flex; flex-direction: column; gap: 15px;">
-                    <div style="background: var(--white); padding: 15px; border-left: 5px solid var(--accent);">
-                        <h4 style="color: var(--accent);">MANUAL LESSONS</h4>
-                        <p style="font-size: 0.85rem;">Master the art of gear control for total vehicle freedom.</p>
-                    </div>
-                    <div style="background: var(--white); padding: 15px; border-left: 5px solid var(--primary);">
-                        <h4 style="color: var(--primary);">AUTOMATIC LESSONS</h4>
-                        <p style="font-size: 0.85rem;">Modern, easy, and efficient learning for busy city roads.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="calendar-mock" data-aos="flip-left">
-                <div class="calendar-header">
-                    <span><b>LIVE AVAILABILITY</b> - 2026</span>
-                    <i class="fas fa-sync-alt"></i>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center; font-size: 0.7rem;">
-                    <div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
-                    <div style="opacity: 0.3;">28</div><div style="opacity: 0.3;">29</div><div style="opacity: 0.3;">30</div>
-                    <div style="background: var(--accent); color: var(--white); border-radius: 5px;">1</div>
-                    <div>2</div><div>3</div><div style="background: var(--accent); color: var(--white); border-radius: 5px;">4</div>
-                    <div>5</div><div>6</div><div>7</div><div style="background: #333;">8</div>
-                </div>
-                <button class="btn btn-accent" style="width: 100%; margin-top: 30px; border-radius: 0;">RESERVE SLOT NOW</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="pricing" id="pricing">
-        <div style="text-align: center; margin-bottom: 60px;">
-            <h2 style="font-size: 2.5rem;">INVEST IN YOUR FREEDOM</h2>
-            <p>Transparent pricing with no hidden admin fees.</p>
-        </div>
-
-        <div class="pricing-grid">
-            <div class="price-card" data-aos="fade-up">
-                <h3>Introduction</h3>
-                <p>Assessment Lesson</p>
-                <div class="cost">£50</div>
-                <ul class="price-list">
-                    <li><i class="fas fa-check"></i> 90 Minute Initial Drive</li>
-                    <li><i class="fas fa-check"></i> Skill Level Evaluation</li>
-                    <li><i class="fas fa-check"></i> Lesson Plan Creation</li>
-                </ul>
-                <a href="#" class="btn btn-accent" style="width: 100%;">BOOK TEST</a>
-            </div>
-
-            <div class="price-card vip" data-aos="fade-up" data-aos-delay="100">
-                <h3>Standard Block</h3>
-                <p>Most Recommended</p>
-                <div class="cost">£380</div>
-                <ul class="price-list">
-                    <li><i class="fas fa-check"></i> 10 Hours of Instruction</li>
-                    <li><i class="fas fa-check"></i> Dedicated Student App</li>
-                    <li><i class="fas fa-check"></i> Priority Slot Booking</li>
-                    <li><i class="fas fa-check"></i> <b>Saves £20</b></li>
-                </ul>
-                <a href="#" class="btn btn-accent" style="width: 100%;">BUY BLOCK</a>
-            </div>
-
-            <div class="price-card" data-aos="fade-up" data-aos-delay="200">
-                <h3>The Full License</h3>
-                <p>Beginner to Pass</p>
-                <div class="cost">£1,100</div>
-                <ul class="price-list">
-                    <li><i class="fas fa-check"></i> 30 Hours of Instruction</li>
-                    <li><i class="fas fa-check"></i> 2 Full Mock Tests</li>
-                    <li><i class="fas fa-check"></i> Theory Pro Premium</li>
-                    <li><i class="fas fa-check"></i> <b>Saves £100</b></li>
-                </ul>
-                <a href="#" class="btn btn-accent" style="width: 100%;">GO ALL IN</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="areas" id="areas">
-        <div data-aos="fade-right">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">WHERE WE OPERATE</h2>
-            <p>ABC Driving School serves the South London area. We are experts in local test routes, ensuring you are familiar with the exact roads you'll use during your exam.</p>
-            <div class="area-tags">
-                <span class="tag">CROYDON</span><span class="tag">BROMLEY</span>
-                <span class="tag">LEWISHAM</span><span class="tag">GREENWICH</span>
-                <span class="tag">SIDCUP</span><span class="tag">WEST WICKHAM</span>
-            </div>
-            <h4 style="margin-top: 30px; text-transform: uppercase;">Primary Test Centres:</h4>
-            <p>West Wickham, Hither Green, Mitcham, and Sidcup.</p>
-        </div>
-        <div class="map-box" data-aos="zoom-in">
-            <div style="text-align: center;">
-                <i class="fas fa-map-location-dot fa-4x" style="color: var(--accent); margin-bottom: 15px;"></i>
-                <p>MAP RADIUS: 10 MILES FROM CROYDON</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="faq" id="faq">
-        <h2 style="text-align: center; margin-bottom: 40px;">LEARNER FAQ</h2>
-        <div class="accordion-item">
-            <div class="accordion-header">How long is the waiting list? <i class="fas fa-plus"></i></div>
-            <div class="accordion-content"><p>We currently have availability within 2 weeks for new students. Early morning and evening slots go fastest!</p></div>
-        </div>
-        <div class="accordion-item">
-            <div class="accordion-header">Do you offer intensive 1-week courses? <i class="fas fa-plus"></i></div>
-            <div class="accordion-content"><p>Yes, but subject to an assessment lesson to ensure you can handle the intensive workload safely.</p></div>
-        </div>
-        <div class="accordion-item">
-            <div class="accordion-header">What happens if I need to cancel? <i class="fas fa-plus"></i></div>
-            <div class="accordion-content"><p>We operate a 48-hour cancellation policy to keep our schedule fair for all students.</p></div>
-        </div>
-    </section>
-
-    <section style="background: var(--primary); padding: 80px 0;">
-        <h2 style="text-align: center; color: var(--white);">OUR SUCCESS GALLERY</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=400&auto=format&fit=crop');"></div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=400&auto=format&fit=crop');"></div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1621905252507-b35482cd84b0?q=80&w=400&auto=format&fit=crop');"></div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=400&auto=format&fit=crop');"></div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <div class="footer-logo"><b>ABC DRIVING</b></div>
-                <p>Professional, reliable, and patient driving instruction for learners of all ages across South London. Your journey to independence starts here.</p>
-                <div class="social-icons" style="margin-top: 25px; display: flex; gap: 15px;">
-                    <a href="#" style="color: var(--accent);"><i class="fab fa-facebook fa-2x"></i></a>
-                    <a href="#" style="color: var(--accent);"><i class="fab fa-instagram fa-2x"></i></a>
-                    <a href="#" style="color: var(--accent);"><i class="fab fa-tiktok fa-2x"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Information</h4>
-                <ul>
-                    <li><a href="#">Instructor Profile</a></li>
-                    <li><a href="#">Pricing & Blocks</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+    <!-- Vertical Pricing -->
+    <section class="v-section" style="background: var(--brand-gray);">
+        <h2 style="font-family: 'Montserrat'; font-size: 3rem; text-transform: uppercase;">Flexible <span style="color: var(--brand-orange);">Plans</span></h2>
+        <div class="feature-grid">
+            <div class="feature-card" style="border-color: white;" data-aos="zoom-in">
+                <h4 style="color: var(--brand-orange); margin-bottom: 10px;">BEGINNER</h4>
+                <div style="font-size: 3rem; font-weight: 900; margin-bottom: 20px;">£45<span style="font-size: 1rem; opacity: 0.5;"> /HR</span></div>
+                <ul style="list-style: none; opacity: 0.8; line-height: 2;">
+                    <li><i class="fas fa-check" style="font-size: 1rem;"></i> Pick up / Drop off</li>
+                    <li><i class="fas fa-check" style="font-size: 1rem;"></i> Progress Logbook</li>
+                    <li><i class="fas fa-check" style="font-size: 1rem;"></i> Theory Pro Access</li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <h4>Tuition</h4>
-                <ul>
-                    <li><a href="#">Manual Cars</a></li>
-                    <li><a href="#">Automatic Cars</a></li>
-                    <li><a href="#">Mock Tests</a></li>
-                    <li><a href="#">Hazard Perception</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Get In Touch</h4>
-                <p><i class="fas fa-phone" style="color: var(--accent);"></i> 07700 900 000</p>
-                <p><i class="fas fa-envelope" style="color: var(--accent);"></i> hello@abcdriving.com</p>
-                <p><i class="fas fa-clock" style="color: var(--accent);"></i> Mon-Sun: 07:00 - 20:00</p>
+            <div class="feature-card" style="background: var(--brand-orange); border: none;" data-aos="zoom-in" data-aos-delay="100">
+                <h4 style="color: black; margin-bottom: 10px;">INTENSIVE</h4>
+                <div style="font-size: 3rem; font-weight: 900; margin-bottom: 20px; color: black;">£420</div>
+                <p style="color: black; font-weight: 600;">10 HOUR BLOCK BOOKING</p>
+                <p style="margin-top: 20px; color: rgba(0,0,0,0.7);">Our most popular choice for rapid results. Saves £30 over individual bookings.</p>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <div class="bottom-dock">
-        <a href="tel:07700900000" class="dock-item"><i class="fas fa-phone"></i><span>Call</span></a>
-        <a href="https://wa.me/07700900000" class="dock-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
-        <a href="#booking" class="dock-item"><i class="fas fa-calendar-alt"></i><span>Book</span></a>
-        <a href="mailto:hello@abcdriving.com" class="dock-item"><i class="fas fa-envelope"></i><span>Email</span></a>
+    <!-- Floating Callback Button -->
+    <div class="callback-btn" onclick="toggleModal('callbackModal')">
+        <i class="fas fa-phone"></i>
     </div>
+
+    <!-- Callback Modal -->
+    <div class="modal" id="callbackModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleModal('callbackModal')">&times;</span>
+            <h2 style="font-family: 'Montserrat'; color: var(--brand-orange); margin-bottom: 20px;">REQUEST A CALLBACK</h2>
+            <form style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" placeholder="Your Name" style="padding: 15px; background: #333; border: none; color: white;">
+                <input type="tel" placeholder="Phone Number" style="padding: 15px; background: #333; border: none; color: white;">
+                <select style="padding: 15px; background: #333; border: none; color: white;">
+                    <option>Manual Tuition</option>
+                    <option>Automatic Tuition</option>
+                    <option>Intensive Course</option>
+                </select>
+                <button type="button" class="postcode-box button" style="padding: 15px; width: 100%;" onclick="alert('Request Sent!')">GET ON BOARD</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h2 style="font-family: 'Montserrat'; color: var(--brand-orange);">ABC DRIVING SCHOOL</h2>
+        <p style="margin-top: 10px; opacity: 0.6;">Est. 2014. DVSA Grade A Instruction.</p>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <p style="font-size: 0.8rem; opacity: 0.4;">&copy; 2026 ABC Driving School. All Rights Reserved.</p>
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            if(window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
-
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                const icon = header.querySelector('i');
-                if(content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    icon.className = 'fas fa-plus';
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    icon.className = 'fas fa-minus';
-                }
-            });
-        });
-
-        document.addEventListener("mouseleave", (e) => {
-            if (e.clientY < 0) {
-                document.getElementById('exitPopup').style.display = 'flex';
+        // Postcode Check Mockup
+        function checkPostcode() {
+            const input = document.getElementById('postcodeInput').value.toUpperCase();
+            const result = document.getElementById('postcodeResult');
+            
+            if(input.length < 2) {
+                result.innerText = "Please enter a valid postcode";
+                return;
             }
-        });
-        document.getElementById('closeP').onclick = () => {
-            document.getElementById('exitPopup').style.display = 'none';
+
+            // Mock check (Accepts typical London/Surrey prefixes)
+            const validPrefixes = ['CR', 'BR', 'SE', 'SW', 'SM', 'DA'];
+            const isMatch = validPrefixes.some(p => input.startsWith(p));
+
+            if(isMatch) {
+                result.style.color = "#4BB543";
+                result.innerText = "✓ Yes! We cover your area.";
+            } else {
+                result.style.color = "var(--brand-orange)";
+                result.innerText = "Sorry, we aren't in your area yet.";
+            }
         }
 
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-            spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -7px)' : 'none';
-        });
-
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
+        // Modal Logic
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
     </script>
 </body>
 </html>
