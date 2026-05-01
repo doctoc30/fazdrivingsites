@@ -3,275 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABS Driving | Accelerated Behind-the-wheel Success</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>DriveElite | Premier Driving School London</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- UI Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <style>
         :root {
-            --abs-blue: #0076ff;
-            --abs-cyan: #00f2fe;
-            --abs-dark: #090a0f;
-            --abs-card: #14171f;
-            --text-main: #f8fafc;
-            --accent-gradient: linear-gradient(135deg, #0076ff 0%, #00f2fe 100%);
+            --primary-yellow: #FFD700; /* Exact branding from image */
+            --bg-light-yellow: #FFF9C4;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f4f4f4;
+            --transition: all 0.3s ease-in-out;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--abs-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--white); overflow-x: hidden; color: var(--black); }
 
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(9, 10, 15, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid #2d3138; }
-        .nav-content { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
-        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
-        .logo span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* Hero */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 20px; background: radial-gradient(circle at 80% 20%, rgba(0, 118, 255, 0.1), transparent); }
-        .hero-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); line-height: 0.85; font-weight: 900; margin-bottom: 25px; text-transform: uppercase; }
-        
-        /* Realistic SVG Graphics Styling */
-        .svg-graphic { filter: drop-shadow(0 20px 50px rgba(0, 118, 255, 0.2)); width: 100%; height: auto; }
-        .feature-svg { height: 180px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;}
-
-        /* Sections */
-        .section-padding { padding: 120px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 80px; }
-        .section-title h2 { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-
-        /* Cards */
-        .abs-card { background: var(--abs-card); padding: 40px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
-        .abs-card:hover { transform: translateY(-10px); border-color: var(--abs-blue); background: #1a1e29; }
-
-        /* Pricing */
-        .price-tag { font-size: 4rem; font-weight: 900; color: var(--abs-cyan); margin: 20px 0; display: block; }
-        
-        /* Buttons */
-        .btn { padding: 20px 40px; border-radius: 100px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-glow { background: var(--accent-gradient); color: white; box-shadow: 0 10px 30px rgba(0, 118, 255, 0.4); }
-        .btn-glow:hover { box-shadow: 0 15px 40px rgba(0, 118, 255, 0.6); transform: scale(1.05); }
-
-        /* Dock */
-        .dock { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(20, 23, 31, 0.8); backdrop-filter: blur(20px); padding: 12px 40px; border-radius: 100px; display: flex; gap: 40px; border: 1px solid rgba(255,255,255,0.1); z-index: 2000; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .dock a { color: white; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; }
-
-        @media (max-width: 968px) {
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-graphic { order: -1; }
-            .section-title h2 { font-size: 2.5rem; }
+        /* --- STICKY NAV --- */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: var(--primary-yellow); padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 3px solid var(--black);
         }
+        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; border: 3px solid black; padding: 2px 8px; }
+        .nav-links a { text-decoration: none; color: black; font-weight: 700; margin-left: 25px; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* --- HERO SECTION --- */
+        .hero { background: var(--primary-yellow); padding: 120px 5% 60px; text-align: center; }
+        .offer-slider { background: var(--black); color: var(--white); padding: 10px 0; margin-bottom: 30px; font-weight: bold; overflow: hidden; }
+        
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-inline: auto; }
+
+        .btn-main { 
+            background: var(--black); color: var(--white); padding: 18px 35px; 
+            text-decoration: none; font-weight: 900; border-radius: 0; 
+            display: inline-block; transition: var(--transition); border: 2px solid var(--black);
+        }
+        .btn-main:hover { background: transparent; color: var(--black); }
+
+        /* --- PACKAGES GRID --- */
+        .section-padding { padding: 80px 5%; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .package-card { border: 4px solid var(--black); padding: 30px; transition: 0.3s; position: relative; overflow: hidden; }
+        .package-card:hover { transform: translateY(-10px); background: var(--primary-yellow); }
+        .price { font-size: 2.5rem; font-weight: 900; margin: 15px 0; }
+
+        /* --- STATS COUNTER --- */
+        .stats-bar { background: var(--black); color: var(--primary-yellow); display: flex; justify-content: space-around; padding: 50px 5%; text-align: center; }
+        .stat-item h2 { font-size: 3rem; }
+
+        /* --- FLOATING ELEMENTS --- */
+        .callback-btn {
+            position: fixed; right: -50px; top: 50%; transform: rotate(-90deg);
+            background: var(--black); color: var(--white); padding: 15px 25px;
+            font-weight: bold; cursor: pointer; z-index: 999; border: 1px solid var(--white);
+        }
+
+        .bottom-dock {
+            position: fixed; bottom: 0; width: 100%; background: var(--black);
+            display: flex; justify-content: space-around; padding: 15px; z-index: 1001;
+        }
+        .bottom-dock a { color: var(--primary-yellow); text-decoration: none; font-weight: bold; font-size: 0.8rem; text-align: center; }
+
+        /* --- EXIT INTENT POPUP --- */
+        #exit-popup {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000;
+        }
+        .popup-content { background: var(--primary-yellow); padding: 40px; text-align: center; border: 5px solid black; max-width: 500px; }
+
+        /* Accordion */
+        .faq-item { border-bottom: 2px solid #000; padding: 15px 0; cursor: pointer; }
+        .faq-answer { display: none; padding-top: 10px; }
+
     </style>
 </head>
 <body>
 
+    <!-- 26. Exit Intent Popup -->
+    <div id="exit-popup">
+        <div class="popup-content">
+            <h2>WAIT! DON'T GO! 🚗</h2>
+            <p>Get your first lesson for just £25 if you book in the next 10 minutes.</p><br>
+            <a href="#booking" class="btn-main" onclick="closePopup()">CLAIM OFFER NOW</a>
+        </div>
+    </div>
+
+    <!-- 24. Bottom Dock -->
+    <div class="bottom-dock">
+        <a href="tel:0123456789"><i class="fas fa-phone"></i><br>Call</a>
+        <a href="https://wa.me/yourlink"><i class="fab fa-whatsapp"></i><br>WhatsApp</a>
+        <a href="#booking"><i class="fas fa-calendar-check"></i><br>Book Now</a>
+    </div>
+
+    <!-- 43. Vertical Callback -->
+    <div class="callback-btn" onclick="document.getElementById('contact').scrollIntoView()">REQUEST CALLBACK</div>
+
+    <!-- 22. Sticky Nav -->
     <nav>
-        <div class="nav-content">
-            <div class="logo"><i data-lucide="zap"></i>ABS <span>DRIVING</span></div>
-            <a href="#prices" class="btn btn-glow" style="padding: 12px 25px; font-size: 0.8rem;">GET STARTED</a>
+        <div class="logo">LOGO</div>
+        <div class="nav-links">
+            <a href="#services">Lessons</a>
+            <a href="#areas">Areas</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#booking" style="background:black; color:white; padding: 8px 15px;">Book Now</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <div class="hero-container">
+    <!-- 1. Hero Section -->
+    <section class="hero">
+        <!-- Offers Slider -->
+        <div class="offer-slider">
+            <marquee scrollamount="10">
+                15 YEARS EXPERIENCE • ESTABLISHED 2005 • FREE THEORY TEST TRAINING • 95% PASS RATE • DUAL CONTROL CARS
+            </marquee>
+        </div>
+        <h1 data-aos="fade-up">LEARN TO DRIVE<br>WITH CONFIDENCE</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Expert DVSA approved tuition in South London. Manual & Automatic lessons tailored to your pace.</p>
+        
+        <!-- 2. Postcode & Booking -->
+        <div class="booking-box" data-aos="zoom-in" data-aos-delay="400">
+            <input type="text" placeholder="Enter Postcode" style="padding: 15px; width: 250px; border: 3px solid black;">
+            <a href="#booking" class="btn-main">CHECK AVAILABILITY</a>
+        </div>
+
+        <!-- Hero Image -->
+        <div style="margin-top: 50px;" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1200" alt="Instructor Car" style="width: 100%; max-width: 900px; border: 5px solid black; box-shadow: 20px 20px 0px black;">
+        </div>
+    </section>
+
+    <!-- 11. Animated Stats -->
+    <section class="stats-bar">
+        <div class="stat-item">
+            <h2 class="counter">500</h2>
+            <p>STUDENTS PASSED</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter">10</h2>
+            <p>YEARS EXP</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter">95</h2>
+            <p>PASS RATE %</p>
+        </div>
+    </section>
+
+    <!-- 3 & 12. Lesson Packages -->
+    <section class="section-padding" id="pricing">
+        <h2 style="text-align: center; font-size: 3rem; margin-bottom: 50px;">LESSON PACKAGES</h2>
+        <div class="grid-3">
+            <div class="package-card" data-aos="fade-up">
+                <h3>Starter Package</h3>
+                <div class="price">£35</div>
+                <p>1 Full Hour Evaluation</p>
+                <hr style="margin: 20px 0;">
+                <a href="#" class="btn-main" style="width: 100%; text-align: center;">BUY NOW</a>
+            </div>
+            <div class="package-card" data-aos="fade-up" data-aos-delay="200" style="background: var(--bg-light-yellow);">
+                <div style="position: absolute; top: 10px; right: -30px; background: black; color: white; padding: 5px 40px; transform: rotate(45deg);">BEST</div>
+                <h3>Beginner Bundle</h3>
+                <div class="price">£165</div>
+                <p>5 Hours of Training</p>
+                <hr style="margin: 20px 0;">
+                <a href="#" class="btn-main" style="width: 100%; text-align: center;">BUY NOW</a>
+            </div>
+            <div class="package-card" data-aos="fade-up" data-aos-delay="400">
+                <h3>Intensive Pass</h3>
+                <div class="price">£650</div>
+                <p>20 Hours + Mock Test</p>
+                <hr style="margin: 20px 0;">
+                <a href="#" class="btn-main" style="width: 100%; text-align: center;">BUY NOW</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 & 33. Automatic vs Manual / Nervous Drivers -->
+    <section class="section-padding" style="background: var(--black); color: var(--white);">
+        <div class="grid-3">
             <div data-aos="fade-right">
-                <span style="color: var(--abs-blue); font-weight: 800; letter-spacing: 3px;">ELITE DRIVING TUITION</span>
-                <h1>DRIVE THE <br><span>FUTURE.</span></h1>
-                <p style="font-size: 1.25rem; color: #94a3b8; margin: 30px 0 45px;">Precision instruction meets modern technology. Join South London's highest-rated driving academy and pass with confidence.</p>
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <a href="#prices" class="btn btn-glow">View Course Rates</a>
-                    <a href="#fleet" class="btn" style="background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1);">Explore Fleet</a>
-                </div>
+                <h2 style="font-size: 2.5rem; color: var(--primary-yellow);">MANUAL & AUTOMATIC</h2>
+                <p>We provide both transmissions to suit your preference. Our cars are modern, easy to drive, and fully insured.</p>
             </div>
-            <div class="hero-graphic" data-aos="fade-left">
-                <!-- REALISTIC CAR SVG -->
-                <svg viewBox="0 0 600 400" class="svg-graphic" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="carGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#003c80;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#0076ff;stop-opacity:1" />
-                        </linearGradient>
-                        <filter id="shadow"> <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000" flood-opacity="0.5"/> </filter>
-                    </defs>
-                    <!-- Road Shadow -->
-                    <ellipse cx="300" cy="360" rx="250" ry="20" fill="rgba(0,0,0,0.4)" filter="blur(10px)"/>
-                    <!-- Car Body -->
-                    <path d="M50,330 L550,330 L530,220 C520,180 480,160 420,155 L200,155 C120,160 80,180 70,220 Z" fill="url(#carGrad)"/>
-                    <path d="M120,230 L480,230 L450,170 L150,170 Z" fill="#090a0f" opacity="0.8"/> <!-- Windows -->
-                    <rect x="70" y="270" width="460" height="15" rx="5" fill="rgba(0,0,0,0.3)"/> <!-- Side trim -->
-                    <!-- Wheels -->
-                    <circle cx="150" cy="330" r="45" fill="#111" stroke="#333" stroke-width="8"/>
-                    <circle cx="150" cy="330" r="25" fill="#222" stroke="#00f2fe" stroke-width="2"/>
-                    <circle cx="450" cy="330" r="45" fill="#111" stroke="#333" stroke-width="8"/>
-                    <circle cx="450" cy="330" r="25" fill="#222" stroke="#00f2fe" stroke-width="2"/>
-                    <!-- Headlights -->
-                    <path d="M500,240 Q550,245 540,280 L510,280 Z" fill="#fff" opacity="0.9"/>
-                    <rect x="520" y="250" width="10" height="20" fill="#00f2fe" filter="blur(5px)"/>
-                </svg>
-            </div>
-        </div>
-    </header>
-
-    <!-- SECTION 1: PASS GALLERY (REALISTIC CHARACTERS) -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>THE <span>PASS</span> CIRCLE</h2>
-                <p>Join the hundreds who traded their L-plates for freedom this month.</p>
-            </div>
-            <div class="grid">
-                <div class="abs-card" data-aos="zoom-in">
-                    <!-- Learner Pass Graphic -->
-                    <svg viewBox="0 0 200 150" class="feature-svg">
-                        <circle cx="100" cy="50" r="40" fill="#1a1e29"/>
-                        <path d="M60,130 Q100,80 140,130" stroke="#0076ff" stroke-width="8" fill="none" stroke-linecap="round"/>
-                        <rect x="80" y="90" width="40" height="50" rx="5" fill="#00f2fe"/>
-                        <text x="88" y="125" fill="#000" font-weight="900" font-size="25">L</text>
-                        <path d="M140,40 L160,60 L190,20" stroke="#6cbd45" stroke-width="10" fill="none"/>
-                    </svg>
-                    <h3 style="text-align: center;">98% Pass Rate</h3>
-                    <p style="text-align: center; color: #94a3b8;">Our scientific approach to driver training ensures you're ready for any road situation.</p>
-                </div>
-                <div class="abs-card" data-aos="zoom-in" data-aos-delay="100">
-                    <svg viewBox="0 0 200 150" class="feature-svg">
-                        <path d="M40,140 L160,140 L160,100 Q160,40 100,40 Q40,40 40,100 Z" fill="#0076ff" opacity="0.3"/>
-                        <circle cx="100" cy="70" r="20" fill="#0076ff"/>
-                        <rect x="130" y="50" width="50" height="30" rx="5" fill="#fff"/>
-                        <text x="138" y="72" fill="#000" font-weight="900" font-size="14">PASS</text>
-                    </svg>
-                    <h3 style="text-align: center;">1st Time Success</h3>
-                    <p style="text-align: center; color: #94a3b8;">Most ABS students pass their practical test on the very first attempt.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 2: THE FLEET (DETAILED VECTORS) -->
-    <section id="fleet" class="section-padding" style="background: #0d0f16;">
-        <div class="container">
-            <div class="section-title">
-                <h2>OUR <span>VEHICLES</span></h2>
-            </div>
-            <div class="grid">
-                <!-- Manual Car Card -->
-                <div class="abs-card">
-                    <svg viewBox="0 0 300 150" class="feature-svg">
-                        <path d="M50,120 L250,120 L240,80 Q230,50 150,50 Q70,50 60,80 Z" fill="#222" stroke="#0076ff" stroke-width="2"/>
-                        <circle cx="80" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
-                        <circle cx="220" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
-                        <text x="110" y="90" fill="#0076ff" font-weight="900" font-size="12">MANUAL GOLF</text>
-                    </svg>
-                    <h3>VW Golf R-Line</h3>
-                    <p>Turbo-charged learning. Perfectly balanced for hill starts and maneuvers.</p>
-                </div>
-                <!-- Electric/Auto Car Card -->
-                <div class="abs-card">
-                    <svg viewBox="0 0 300 150" class="feature-svg">
-                        <path d="M50,120 L250,120 L240,80 Q230,50 150,50 Q70,50 60,80 Z" fill="#222" stroke="#00f2fe" stroke-width="2"/>
-                        <path d="M260,100 L280,80 L260,60" stroke="#00f2fe" fill="none" stroke-width="3"/> <!-- Lightning bolt -->
-                        <circle cx="80" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
-                        <circle cx="220" cy="120" r="20" fill="#000" stroke="#333" stroke-width="4"/>
-                        <text x="115" y="90" fill="#00f2fe" font-weight="900" font-size="12">ELECTRIC</text>
-                    </svg>
-                    <h3>Tesla Model 3</h3>
-                    <p>Learn in the world's most advanced EV. Automatic, effortless, and eco-friendly.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: THE ROADMAP -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>YOUR <span>JOURNEY</span></h2>
-            </div>
-            <div class="grid">
-                <div class="abs-card">
-                    <span style="font-size: 0.8rem; color: var(--abs-blue); font-weight: 900;">STEP 01</span>
-                    <h3>Foundation Drive</h3>
-                    <p>Master the cockpit drill and basic car control in quiet residential zones.</p>
-                </div>
-                <div class="abs-card">
-                    <span style="font-size: 0.8rem; color: var(--abs-blue); font-weight: 900;">STEP 02</span>
-                    <h3>Complex Junctions</h3>
-                    <p>Tackle roundabouts, dual carriageways, and high-speed merging.</p>
-                </div>
-                <div class="abs-card">
-                    <span style="font-size: 0.8rem; color: var(--abs-blue); font-weight: 900;">STEP 03</span>
-                    <h3>Mock Exams</h3>
-                    <p>We replicate the DVSA exam environment to build your mental resilience.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: THEORY HUB -->
-    <section id="theory" class="section-padding" style="background: var(--accent-gradient); color: black;">
-        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-            <div data-aos="fade-right">
-                <h2 style="font-size: 3.5rem; line-height: 1; margin-bottom: 20px;">MASTER THE <br>THEORY.</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 30px;">Get exclusive access to our "Theory Pro" mobile suite. Videos, hazard clips, and 1,000+ mock questions included with every booking.</p>
-                <button class="btn" style="background: black; color: white;">Activate Theory Access</button>
+            <div data-aos="fade-up">
+                <h2 style="font-size: 2.5rem; color: var(--primary-yellow);">NERVOUS SPECIALIST</h2>
+                <p>Patient, calm instruction designed for those who find the road intimidating. We go at your speed.</p>
             </div>
             <div data-aos="fade-left">
-                <svg viewBox="0 0 400 300" class="svg-graphic">
-                    <rect x="100" y="20" width="200" height="260" rx="20" fill="#000"/>
-                    <rect x="110" y="40" width="180" height="220" rx="10" fill="#1a1e29"/>
-                    <circle cx="200" cy="245" r="10" fill="#333"/>
-                    <rect x="125" y="70" width="150" height="20" rx="5" fill="#0076ff"/>
-                    <rect x="125" y="100" width="150" height="20" rx="5" fill="#00f2fe"/>
-                    <path d="M150,150 L250,150 M150,180 L250,180 M150,210 L200,210" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-                </svg>
+                <h2 style="font-size: 2.5rem; color: var(--primary-yellow);">AREAS COVERED</h2>
+                <p>Croydon, Bromley, Lewisham, Greenwich, and South London.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: PRICING -->
-    <section id="prices" class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>COURSE <span>RATES</span></h2>
+    <!-- 7. FAQ Accordion -->
+    <section class="section-padding">
+        <h2 style="text-align: center; margin-bottom: 30px;">FREQUENTLY ASKED</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item">
+                <strong>Do you offer weekend lessons?</strong>
+                <div class="faq-answer">Yes! We offer Saturday and Sunday slots at no extra cost.</div>
             </div>
-            <div class="grid">
-                <div class="abs-card">
-                    <h3>Starter Kick</h3>
-                    <span class="price-tag">£45</span>
-                    <p>90-minute evaluation session to build your personalized plan.</p>
-                    <a href="#" class="btn btn-glow" style="width: 100%; margin-top: 30px; text-align: center;">Book Now</a>
-                </div>
-                <div class="abs-card" style="border: 2px solid var(--abs-blue); box-shadow: 0 0 30px rgba(0, 118, 255, 0.2);">
-                    <div style="background: var(--abs-blue); color: white; position: absolute; top: 0; right: 0; padding: 5px 20px; font-size: 0.7rem; font-weight: 900; border-radius: 0 0 0 15px;">TOP VALUE</div>
-                    <h3>10 Hour Block</h3>
-                    <span class="price-tag">£340</span>
-                    <p>Comprehensive training block with priority booking and theory app.</p>
-                    <a href="#" class="btn btn-glow" style="width: 100%; margin-top: 30px; text-align: center;">Book Now</a>
-                </div>
-                <div class="abs-card">
-                    <h3>Fast Pass</h3>
-                    <span class="price-tag">£1.2k</span>
-                    <p>30-hour intensive course including practical test fee and car hire.</p>
-                    <a href="#" class="btn btn-glow" style="width: 100%; margin-top: 30px; text-align: center;">Book Now</a>
-                </div>
+            <div class="faq-item">
+                <strong>Can I be picked up from home?</strong>
+                <div class="faq-answer">Absolutely. We offer home, work, or college pickups within our coverage area.</div>
             </div>
         </div>
     </section>
 
-    <div class="dock">
-        <a href="tel:0800123456"><i data-lucide="phone"></i> CALL</a>
-        <a href="https://wa.me/123"><i data-lucide="message-circle"></i> WHATSAPP</a>
-        <a href="#prices"><i data-lucide="calendar"></i> BOOK</a>
-    </div>
+    <!-- Footer -->
+    <footer style="background: var(--black); color: var(--white); padding: 50px 5%; border-top: 10px solid var(--primary-yellow);">
+        <div class="grid-3">
+            <div>
+                <h3>DRIVE ELITE</h3>
+                <p>Developing safe drivers for life since 2005.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <p>Privacy Policy</p>
+                <p>Terms & Conditions</p>
+                <p>Instructor Login</p>
+            </div>
+            <div>
+                <h4>Newsletter</h4>
+                <input type="email" placeholder="Email Address" style="padding: 10px; width: 80%;">
+                <button style="padding: 10px; background: var(--primary-yellow); border: none;">SUBMIT</button>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; font-size: 0.8rem;">&copy; 2026 DriveElite Driving School. All Rights Reserved.</p>
+    </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-        lucide.createIcons();
+        AOS.init({ duration: 800, once: true });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Exit Intent Logic
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0) {
+                document.getElementById('exit-popup').style.display = 'flex';
+            }
+        });
+
+        function closePopup() {
+            document.getElementById('exit-popup').style.display = 'none';
+        }
     </script>
 </body>
 </html>
