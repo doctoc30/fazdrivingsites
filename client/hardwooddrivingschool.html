@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Harwood App | Driving Lessons Bolton & Bury</title>
+    <title>Harwood Driving School App</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -13,224 +13,263 @@
         :root {
             --primary: #000000;
             --accent: #e31e24; 
-            --bg-light: #f8f9fa;
-            --glass: rgba(255, 255, 255, 0.9);
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            --light: #f9f9f9;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 20px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--primary); line-height: 1.5; }
-
-        /* APP HEADER */
+        body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--primary); line-height: 1.6; overflow-x: hidden; }
+        
+        /* 1. APP NAVIGATION HEADER */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: var(--glass); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05); padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        .logo { font-weight: 900; font-size: 1.3rem; letter-spacing: -1px; text-transform: uppercase; }
+        .logo span { color: var(--accent); }
+
+        /* 2. DYNAMIC HERO SECTION */
+        .hero {
+            padding: 100px 20px 40px; background: var(--white);
+            text-align: center; border-radius: 0 0 40px 40px; box-shadow: var(--shadow);
+        }
+        .hero h1 { font-size: 2.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
+        .hero p { color: #666; font-size: 1rem; margin-bottom: 25px; max-width: 320px; margin-inline: auto; }
+        .btn-main {
+            background: var(--accent); color: white; padding: 16px 32px; border-radius: 16px;
+            text-decoration: none; font-weight: 700; display: inline-block; width: 100%;
+            box-shadow: 0 8px 20px rgba(227, 30, 36, 0.3);
+        }
+
+        /* 3. QUICK ACTION TILES */
+        .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 25px 20px; }
+        .tile {
+            background: white; padding: 20px; border-radius: var(--radius);
+            text-decoration: none; color: inherit; box-shadow: var(--shadow);
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .tile i { color: var(--accent); font-size: 1.5rem; }
+        .tile span { font-weight: 700; font-size: 0.9rem; }
+
+        /* 4. INSTRUCTOR PROFILE SECTION */
+        .profile-section { padding: 40px 20px; }
+        .profile-card {
+            background: var(--primary); color: white; border-radius: 30px;
+            padding: 30px; display: flex; align-items: center; gap: 20px;
+        }
+        .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; }
+        .profile-info h3 { font-size: 1.2rem; }
+        .profile-info p { font-size: 0.8rem; opacity: 0.8; }
+
+        /* 5. COURSE CATALOG (HORIZONTAL SCROLL) */
+        .scroll-section { padding: 20px 0 40px 20px; }
+        .scroll-container { display: flex; overflow-x: auto; gap: 15px; padding-right: 20px; scrollbar-width: none; }
+        .course-card {
+            min-width: 260px; background: white; border-radius: var(--radius);
+            padding: 20px; box-shadow: var(--shadow); border: 1px solid #eee;
+        }
+        .course-card h4 { color: var(--accent); margin-bottom: 8px; }
+
+        /* 6. REAL-TIME AREAS MAP */
+        .area-section { padding: 40px 20px; background: #f0f0f0; border-radius: 40px; margin: 0 10px; }
+        .area-chip {
+            display: inline-block; padding: 8px 16px; background: white;
+            border-radius: 50px; margin: 4px; font-size: 0.8rem; font-weight: 600;
+        }
+
+        /* 7. PRICING SUBSCRIPTION TILES */
+        .pricing-section { padding: 40px 20px; }
+        .price-box {
+            background: white; border-radius: var(--radius); padding: 25px;
+            margin-bottom: 20px; border-left: 6px solid var(--accent);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .app-logo { font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: -1px; }
-        .app-logo span { color: var(--accent); }
+        .price-tag { font-size: 1.5rem; font-weight: 900; }
 
-        /* HERO CARD */
-        .hero-card {
-            margin: 85px 15px 20px; padding: 40px 20px;
-            background: linear-gradient(135deg, #000 0%, #222 100%);
-            border-radius: 24px; color: white; position: relative; overflow: hidden;
-            box-shadow: var(--shadow);
+        /* 8. TESTIMONIAL FEED */
+        .review-feed { padding: 20px; }
+        .review-card {
+            background: #fff; padding: 20px; border-radius: var(--radius);
+            margin-bottom: 15px; position: relative;
         }
-        .hero-card h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.1; }
-        .hero-card p { opacity: 0.8; font-size: 0.9rem; margin-bottom: 25px; }
+        .stars { color: #ffcc00; font-size: 0.8rem; margin-bottom: 5px; }
 
-        /* ICON GRID */
-        .action-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 15px; padding: 0 15px 30px;
-        }
-        .action-item {
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            text-decoration: none; color: var(--primary); font-size: 0.7rem; font-weight: 600;
-        }
-        .icon-box {
-            width: 55px; height: 55px; background: white; border-radius: 18px;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); font-size: 1.2rem; color: var(--accent);
-        }
+        /* 9. FAQ ACCORDION */
+        .faq-box { padding: 20px; }
+        .faq-item { background: white; margin-bottom: 10px; border-radius: 12px; padding: 15px; }
 
-        /* SECTION CARDS */
-        .section-header { padding: 0 20px 15px; display: flex; justify-content: space-between; align-items: center; }
-        .section-header h2 { font-size: 1.1rem; font-weight: 800; }
-        .section-header a { font-size: 0.8rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        /* 10. APP DOCK (BOTTOM NAV) */
+        .app-dock {
+            position: fixed; bottom: 0; width: 100%; background: white;
+            display: flex; justify-content: space-around; padding: 12px 0 30px;
+            border-top: 1px solid #eee; z-index: 1000;
+        }
+        .dock-item { text-decoration: none; color: #999; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .dock-item.active { color: var(--accent); }
+        .dock-item i { font-size: 1.2rem; }
+        .dock-item span { font-size: 0.65rem; font-weight: 600; }
 
-        .app-list { padding: 0 15px 100px; }
-        .list-card {
-            background: white; border-radius: 20px; padding: 15px; margin-bottom: 12px;
-            display: flex; align-items: center; gap: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-            transition: transform 0.2s;
-        }
-        .list-card:active { transform: scale(0.97); }
-        .list-img { width: 60px; height: 60px; border-radius: 12px; background: #eee; object-fit: cover; }
-        .list-info h3 { font-size: 0.95rem; margin-bottom: 2px; }
-        .list-info p { font-size: 0.75rem; color: #666; }
-
-        /* PRICING "SUBSCRIPTION" LOOK */
-        .pricing-scroll {
-            display: flex; overflow-x: auto; gap: 15px; padding: 0 20px 30px;
-            scrollbar-width: none;
-        }
-        .pricing-scroll::-webkit-scrollbar { display: none; }
-        .price-pill {
-            min-width: 200px; background: white; border-radius: 20px; padding: 20px;
-            border: 1px solid #eee; flex-shrink: 0;
-        }
-        .price-pill.featured { border: 2px solid var(--accent); position: relative; }
-        .badge { 
-            position: absolute; top: -10px; right: 15px; background: var(--accent);
-            color: white; font-size: 0.6rem; padding: 4px 10px; border-radius: 10px;
-        }
-
-        /* BOTTOM NAV */
-        .bottom-nav {
-            position: fixed; bottom: 0; width: 100%; background: var(--glass);
-            backdrop-filter: blur(15px); border-top: 1px solid rgba(0,0,0,0.05);
-            display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0 25px;
-            z-index: 1000;
-        }
-        .nav-tab {
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
-            color: #999; text-decoration: none; font-size: 0.65rem; font-weight: 500;
-        }
-        .nav-tab.active { color: var(--accent); }
-        .nav-tab i { font-size: 1.2rem; }
-
-        /* BUTTONS */
-        .btn-app {
-            background: var(--accent); color: white; border: none; padding: 12px 24px;
-            border-radius: 12px; font-weight: 700; width: 100%; font-size: 0.9rem;
-            cursor: pointer; transition: 0.3s;
-        }
-        
-        /* DESKTOP OPTIMIZATION */
+        /* DESKTOP RESPONSIVENESS */
         @media (min-width: 768px) {
-            body { background: #111; display: flex; justify-content: center; }
-            .app-container {
-                width: 430px; height: 95vh; background: var(--bg-light);
-                margin: 2.5vh 0; border-radius: 40px; position: relative;
-                overflow-y: auto; overflow-x: hidden; border: 8px solid #333;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            }
-            header, .bottom-nav { width: 414px; left: 50%; transform: translateX(-50%); border-radius: 0; }
+            body { display: flex; justify-content: center; background: #1a1a1a; }
+            .app-shell { width: 430px; height: 95vh; background: var(--light); margin-top: 2.5vh; border-radius: 40px; position: relative; overflow-y: scroll; border: 8px solid #333; }
+            header, .app-dock { width: 414px; position: absolute; }
         }
     </style>
 </head>
 <body>
 
-<div class="app-container">
+<div class="app-shell">
     <header>
-        <div class="app-logo">HARWOOD<span>.</span></div>
-        <div style="display:flex; gap: 15px;">
-            <i class="fa-regular fa-bell"></i>
-            <i class="fa-solid fa-circle-user"></i>
-        </div>
+        <div class="logo">HARWOOD<span>.</span></div>
+        <i class="fa-solid fa-bars-staggered"></i>
     </header>
 
-    <div class="hero-card" data-aos="fade-down">
-        <p style="margin-bottom: 5px; font-weight: 600; color: var(--accent);">Welcome to Harwood</p>
-        <h1>Master the Road <br>with Darren</h1>
-        <p>Premium 1-to-1 driving tuition across Bolton, Bury & Manchester.</p>
-        <button class="btn-app" onclick="location.href='#booking'">Book First Lesson</button>
+    <!-- SECTION 1: HERO -->
+    <section class="hero" data-aos="fade-down">
+        <h1>Master the Road with Darren</h1>
+        <p>Premier Driving Lessons in Bolton, Bury, and Greater Manchester.</p>
+        <a href="tel:07544720505" class="btn-main">Call Darren Now</a>
+    </section>
+
+    <!-- SECTION 2: QUICK ACTIONS -->
+    <div class="grid-menu">
+        <a href="#courses" class="tile">
+            <i class="fa-solid fa-car"></i>
+            <span>Book Lessons</span>
+        </a>
+        <a href="#prices" class="tile">
+            <i class="fa-solid fa-receipt"></i>
+            <span>View Rates</span>
+        </a>
+        <a href="#areas" class="tile">
+            <i class="fa-solid fa-location-crosshairs"></i>
+            <span>Local Areas</span>
+        </a>
+        <a href="#reviews" class="tile">
+            <i class="fa-solid fa-star"></i>
+            <span>Reviews</span>
+        </a>
     </div>
 
-    <div class="action-grid">
-        <a href="#about" class="action-item">
-            <div class="icon-box"><i class="fa-solid fa-id-card"></i></div>
-            <span>Instructor</span>
-        </a>
-        <a href="#pricing" class="action-item">
-            <div class="icon-box"><i class="fa-solid fa-tags"></i></div>
-            <span>Prices</span>
-        </a>
-        <a href="#areas" class="action-item">
-            <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
-            <span>Areas</span>
-        </a>
-        <a href="#faq" class="action-item">
-            <div class="icon-box"><i class="fa-solid fa-circle-question"></i></div>
-            <span>Help</span>
-        </a>
-    </div>
-
-    <div class="section-header">
-        <h2>Our Courses</h2>
-        <a href="#">See All</a>
-    </div>
-
-    <div class="app-list">
-        <div class="list-card" data-aos="fade-left">
-            <div class="list-img" style="background-image: url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=100'); background-size: cover;"></div>
-            <div class="list-info">
-                <h3>Beginner Lessons</h3>
-                <p>Perfect for those starting in Bolton.</p>
+    <!-- SECTION 3: INSTRUCTOR INFO -->
+    <section class="profile-section">
+        <div class="profile-card" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=200" class="profile-img">
+            <div class="profile-info">
+                <h3>Darren</h3>
+                <p>DVSA-Approved Professional</p>
+                <p>Based in Radcliffe, Bury</p>
             </div>
-            <i class="fa-solid fa-chevron-right" style="margin-left:auto; color:#ccc;"></i>
         </div>
+    </section>
 
-        <div class="list-card" data-aos="fade-left" data-aos-delay="100">
-            <div class="list-img" style="background-image: url('https://images.unsplash.com/photo-1449960232330-7760a62e546d?auto=format&fit=crop&w=100'); background-size: cover;"></div>
-            <div class="list-info">
-                <h3>Intensive Fast-Track</h3>
-                <p>Pass your test in weeks, not months.</p>
+    <!-- SECTION 4: COURSES -->
+    <section class="scroll-section" id="courses">
+        <h3 style="margin-bottom: 15px;">Our Courses</h3>
+        <div class="scroll-container">
+            <div class="course-card">
+                <h4>Beginner Lessons</h4>
+                <p style="font-size: 0.8rem;">Confidence-building lessons for those starting out in Bolton or Bury.</p>
             </div>
-            <i class="fa-solid fa-chevron-right" style="margin-left:auto; color:#ccc;"></i>
-        </div>
-
-        <div class="list-card" data-aos="fade-left" data-aos-delay="200">
-            <div class="list-img" style="background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=100'); background-size: cover;"></div>
-            <div class="list-info">
-                <h3>ADI Training</h3>
-                <p>Become a certified instructor.</p>
+            <div class="course-card">
+                <h4>Intensive Training</h4>
+                <p style="font-size: 0.8rem;">Fast-track your license with focused coaching sessions.</p>
             </div>
-            <i class="fa-solid fa-chevron-right" style="margin-left:auto; color:#ccc;"></i>
+            <div class="course-card">
+                <h4>Motorway Skill</h4>
+                <p style="font-size: 0.8rem;">Specialized training for high-speed roads across the North West.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section-header">
-        <h2>Popular Bundles</h2>
-    </div>
+    <!-- SECTION 5: COVERAGE -->
+    <section class="area-section" id="areas">
+        <h3 style="margin-bottom: 10px;">We Cover</h3>
+        <div class="area-chip">Bolton</div>
+        <div class="area-chip">Bury</div>
+        <div class="area-chip">Manchester</div>
+        <div class="area-chip">Rochdale</div>
+        <div class="area-chip">Radcliffe</div>
+        <div class="area-chip">Liverpool</div>
+    </section>
 
-    <div class="pricing-scroll">
-        <div class="price-pill">
-            <p style="font-size:0.7rem; font-weight:700; color:#999;">STARTER</p>
-            <h3 style="margin: 5px 0;">2 Hours</h3>
-            <p style="font-size: 1.2rem; font-weight:800; color:var(--accent);">££</p>
-            <p style="font-size: 0.7rem; margin: 10px 0;">Assessment Lesson</p>
-            <button class="btn-app" style="padding: 8px; font-size: 0.7rem;">Select</button>
+    <!-- SECTION 6: PRICING -->
+    <section class="pricing-section" id="prices">
+        <h3 style="margin-bottom: 15px;">Lesson Packages</h3>
+        <div class="price-box">
+            <div>
+                <h4 style="color: var(--accent);">Starter Pack</h4>
+                <p style="font-size: 0.7rem;">Perfect for beginners</p>
+            </div>
+            <div class="price-tag">££</div>
         </div>
-        <div class="price-pill featured">
-            <div class="badge">BEST VALUE</div>
-            <p style="font-size:0.7rem; font-weight:700; color:#999;">MOST POPULAR</p>
-            <h3 style="margin: 5px 0;">10 Hours</h3>
-            <p style="font-size: 1.2rem; font-weight:800; color:var(--accent);">Save £</p>
-            <p style="font-size: 0.7rem; margin: 10px 0;">Block Booking Discount</p>
-            <button class="btn-app" style="padding: 8px; font-size: 0.7rem;">Select</button>
+        <div class="price-box" style="border-color: #000;">
+            <div>
+                <h4>Block Booking</h4>
+                <p style="font-size: 0.7rem;">Discounted hourly rate</p>
+            </div>
+            <div class="price-tag">Save</div>
         </div>
-    </div>
+    </section>
 
-    <nav class="bottom-nav">
-        <a href="#" class="nav-tab active">
+    <!-- SECTION 7: WHY CHOOSE US -->
+    <section style="padding: 20px;">
+        <h3 style="margin-bottom: 15px;">Why Harwood?</h3>
+        <ul style="list-style: none; font-size: 0.85rem; color: #555;">
+            <li style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> DVSA-Approved Professionals</li>
+            <li style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> Modern Coaching Techniques</li>
+            <li style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> DIA-Registered Instructors</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 8: REVIEWS -->
+    <section class="review-feed" id="reviews">
+        <div class="review-card">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p style="font-size: 0.8rem; font-style: italic;">"Darren was patient and highly professional. Highly recommend!"</p>
+            <p style="font-size: 0.7rem; font-weight: 700; margin-top: 5px;">- 100% Recommended</p>
+        </div>
+    </section>
+
+    <!-- SECTION 9: ADI TRAINING -->
+    <section style="padding: 20px; background: var(--accent); color: white; margin: 20px; border-radius: 20px; text-align: center;">
+        <h4>Want to be an Instructor?</h4>
+        <p style="font-size: 0.75rem; margin: 10px 0;">Become a certified professional with our ADI training courses.</p>
+        <a href="tel:07544720505" style="color: white; font-weight: 800; font-size: 0.8rem;">Enquire Now</a>
+    </section>
+
+    <!-- SECTION 10: FAQ -->
+    <section class="faq-box">
+        <div class="faq-item">
+            <p style="font-weight: 700; font-size: 0.85rem;">Do you teach in my area?</p>
+            <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">We cover most of the North West, including Bolton and Bury.</p>
+        </div>
+    </section>
+
+    <div style="height: 100px;"></div>
+
+    <!-- APP DOCK NAVIGATION -->
+    <nav class="app-dock">
+        <a href="#" class="dock-item active">
             <i class="fa-solid fa-house"></i>
             <span>Home</span>
         </a>
-        <a href="tel:07544720505" class="nav-tab">
-            <i class="fa-solid fa-phone"></i>
-            <span>Call</span>
-        </a>
-        <a href="https://wa.me/07544720505" class="nav-tab">
+        <a href="https://wa.me/07544720505" class="dock-item">
             <i class="fa-brands fa-whatsapp"></i>
             <span>Chat</span>
         </a>
-        <a href="#booking" class="nav-tab">
-            <i class="fa-solid fa-calendar-check"></i>
-            <span>Book</span>
+        <a href="tel:07544720505" class="dock-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="#areas" class="dock-item">
+            <i class="fa-solid fa-map"></i>
+            <span>Areas</span>
         </a>
     </nav>
 </div>
