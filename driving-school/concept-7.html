@@ -1,277 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Premier Solo | Driving Excellence</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #0a0a0a;
-      --text-muted: #666666;
-      --brand: #f15a24;
-      --soft-gray: #f5f5f7;
-      --border: #e5e5e7;
-      --radius: 20px;
-      --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Independent Driving School | Book a Lesson</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #a32618;
+            --bg-peach: #fce4e0;
+            --white: #ffffff;
+            --text-dark: #333;
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    .container { width: min(1100px, 90%); margin: 0 auto; }
+        body {
+            background-color: var(--bg-peach);
+            color: var(--primary-red);
+            line-height: 1.6;
+        }
 
-    /* Minimal Header */
-    .topbar {
-      position: sticky; top: 0; z-index: 1000;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 15px 0;
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
-    .logo-mark { width: 32px; height: 32px; background: var(--brand); border-radius: 8px; }
-    
-    .navlinks { display: flex; gap: 30px; }
-    .navlinks a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
-    .navlinks a:hover { color: var(--text); }
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: transparent;
+        }
 
-    /* Hero: Minimal & Airy */
-    .hero { padding: 120px 0 80px; text-align: center; }
-    .badge { 
-      background: var(--soft-gray); padding: 6px 16px; border-radius: 100px; 
-      font-size: 0.8rem; font-weight: 600; color: var(--brand); margin-bottom: 24px; display: inline-block;
-    }
-    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 24px; }
-    .hero p { max-width: 600px; margin: 0 auto 40px; font-size: 1.2rem; color: var(--text-muted); }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
-    .btn {
-      padding: 16px 32px; border-radius: 12px; font-weight: 600; cursor: pointer;
-      transition: var(--transition); border: none; text-decoration: none; display: inline-block;
-    }
-    .btn.primary { background: var(--text); color: white; }
-    .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-    .btn.secondary { background: var(--soft-gray); color: var(--text); margin-left: 12px; }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
 
-    /* Simplified Stats */
-    .stats { display: flex; justify-content: center; gap: 60px; margin-top: 80px; border-top: 1px solid var(--border); padding-top: 40px; }
-    .stat { text-align: center; }
-    .stat b { font-size: 2rem; display: block; }
-    .stat span { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+        nav ul li {
+            margin-left: 20px;
+        }
 
-    /* Bento Grid: Clean Cards */
-    .section { padding: 100px 0; }
-    .kicker { color: var(--brand); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 12px; display: block; }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .card { 
-      background: var(--soft-gray); border-radius: var(--radius); padding: 40px; 
-      transition: var(--transition); border: 1px solid transparent;
-    }
-    .card:hover { background: white; border-color: var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary-red);
+            font-weight: 500;
+        }
 
-    /* Packages */
-    .price { font-size: 3rem; font-weight: 800; margin: 20px 0; letter-spacing: -0.03em; }
-    .price small { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
-    
-    /* Services Filter */
-    .filter-chips { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
-    .chip { 
-      padding: 10px 20px; border-radius: 100px; border: 1px solid var(--border); 
-      background: white; cursor: pointer; font-size: 0.9rem; transition: var(--transition);
-    }
-    .chip.active { background: var(--text); color: white; border-color: var(--text); }
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
 
-    /* Minimal FAQ */
-    .faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; cursor: pointer; }
-    .faq-q { display: flex; justify-content: space-between; font-weight: 600; font-size: 1.1rem; }
-    .faq-a { max-height: 0; overflow: hidden; transition: var(--transition); color: var(--text-muted); padding-top: 0; }
-    .faq-item.open .faq-a { max-height: 150px; padding-top: 16px; }
+        .hero h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
 
-    /* Fixed Contact Bar */
-    .action-bar {
-      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-      background: rgba(10, 10, 10, 0.95); padding: 8px 8px 8px 24px; border-radius: 100px;
-      display: flex; align-items: center; gap: 20px; z-index: 2000; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    }
-    .action-bar span { color: white; font-weight: 600; font-size: 0.9rem; }
-    .action-bar .btn { padding: 10px 24px; font-size: 0.85rem; }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
 
-    /* Footer */
-    footer { padding: 80px 0; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+        .btn-book {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 15px 60px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s;
+        }
 
-    @media (max-width: 768px) {
-      .navlinks, .stats { display: none; }
-      .footer-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 2.5rem; }
-    }
-  </style>
+        .btn-book:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-image {
+            max-width: 600px;
+            width: 100%;
+            margin: 40px auto;
+            display: block;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 5%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .price-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-red);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .price-card li::before {
+            content: "✓ ";
+            color: var(--primary-red);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-select {
+            background: var(--primary-red);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Inquiry Section */
+        .inquiry {
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .icon-circle {
+            background: var(--primary-red);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border: 1px solid var(--primary-red);
+            border-radius: 5px;
+            background: transparent;
+        }
+
+        .contact-form textarea {
+            grid-column: span 2;
+            height: 100px;
+        }
+
+        .btn-submit {
+            grid-column: span 2;
+            background: var(--primary-red);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 5%;
+            border-top: 1px solid rgba(163, 38, 24, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .social-icons a {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-left: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container { flex-direction: column; }
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; } /* Simplified for mobile example */
+        }
+    </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="container nav">
-    <div class="logo"><div class="logo-mark"></div> Premier Solo</div>
-    <nav class="navlinks">
-      <a href="#packages">Pricing</a>
-      <a href="#services">Services</a>
-      <a href="#areas">Areas</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <a href="#book" class="btn primary" style="padding: 10px 20px; font-size: 0.8rem;">Book Lesson</a>
-  </div>
-</header>
+    <header>
+        <div class="logo">INDEPENDENT</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<section class="hero">
-  <div class="container reveal">
-    <span class="badge">DVSA Approved Instruction</span>
-    <h1>Drive with clarity. <br>Pass with ease.</h1>
-    <p>Premium 1-to-1 driving lessons across South London. No stress, no congestion—just professional coaching tailored to you.</p>
-    <div>
-      <a href="#book" class="btn primary">View Availability</a>
-      <a href="#packages" class="btn secondary">See Bundles</a>
-    </div>
+    <section class="hero">
+        <h1>Book a Lesson</h1>
+        <p>Get driving with us today</p>
+        <button class="btn-book">Book Now</button>
+        <!-- Replicating the dual car imagery from the source -->
+        <img src="https://via.placeholder.com/600x300/fce4e0/a32618?text=White+and+Red+Tuition+Cars" alt="Driving school cars" class="hero-image">
+    </section>
 
-    <div class="stats">
-      <div class="stat"><b class="count" data-target="500">0</b><span>Students Passed</span></div>
-      <div class="stat"><b class="count" data-target="15">0</b><span>Years Experience</span></div>
-      <div class="stat"><b class="count" data-target="95">0</b><span>Pass Rate</span></div>
-    </div>
-  </div>
-</section>
+    <section class="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-hand-pointer"></i>
+                <h3>Manual Lessons</h3>
+                <p>Master the gears with our expert instructors.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-car"></i>
+                <h3>Automatic Lessons</h3>
+                <p>Smooth, stress-free driving in modern vehicles.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Intensive Courses</h3>
+                <p>Fast-track your license in just a few weeks.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Pass Plus</h3>
+                <p>Advanced skills for newly qualified drivers.</p>
+            </div>
+        </div>
+    </section>
 
-<section id="packages" class="section container">
-  <span class="kicker">Pricing</span>
-  <h2 style="margin-bottom: 40px;">Simple Bundles</h2>
-  <div class="grid">
-    <div class="card reveal">
-      <h3>Starter Session</h3>
-      <div class="price">£35 <small>/hr</small></div>
-      <p style="margin-bottom: 24px;">Assessment lesson for new learners.</p>
-      <a href="#" class="btn secondary" style="margin: 0; width: 100%; text-align: center;">Choose Starter</a>
-    </div>
-    <div class="card reveal" style="background: var(--text); color: white;">
-      <h3 style="color: var(--brand);">Beginner Bundle</h3>
-      <div class="price">£330 <small style="color: #aaa;">/10hrs</small></div>
-      <p style="margin-bottom: 24px;">Our most popular path to the pink license.</p>
-      <a href="#" class="btn primary" style="margin: 0; width: 100%; text-align: center; background: var(--brand);">Buy Bundle</a>
-    </div>
-    <div class="card reveal">
-      <h3>Intensive Pass</h3>
-      <div class="price">£650 <small>/20hrs</small></div>
-      <p style="margin-bottom: 24px;">For those who need to pass in weeks.</p>
-      <a href="#" class="btn secondary" style="margin: 0; width: 100%; text-align: center;">Choose Intensive</a>
-    </div>
-  </div>
-</section>
+    <section class="pricing">
+        <h2 class="section-title">Pricing Plans</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Starter</h3>
+                <ul>
+                    <li>Introductory Lesson</li>
+                    <li>Online Theory Support</li>
+                    <li>Flexible Scheduling</li>
+                </ul>
+                <div class="price">£199</div>
+                <button class="btn-select">Select</button>
+            </div>
+            <div class="price-card">
+                <h3>Standard</h3>
+                <ul>
+                    <li>10 Hour Block</li>
+                    <li>Mock Test Included</li>
+                    <li>Pick-up & Drop-off</li>
+                </ul>
+                <div class="price">£299</div>
+                <button class="btn-select">Select</button>
+            </div>
+            <div class="price-card">
+                <h3>Pro</h3>
+                <ul>
+                    <li>20 Hour Intensive</li>
+                    <li>Theory & Hazard Training</li>
+                    <li>Pass Plus Included</li>
+                </ul>
+                <div class="price">£499</div>
+                <button class="btn-select">Select</button>
+            </div>
+        </div>
+    </section>
 
-<section id="services" class="section container">
-  <span class="kicker">Expertise</span>
-  <h2 style="margin-bottom: 24px;">How we help</h2>
-  <div class="filter-chips">
-    <div class="chip active" data-filter="all">All</div>
-    <div class="chip" data-filter="auto">Automatic</div>
-    <div class="chip" data-filter="manual">Manual</div>
-    <div class="chip" data-filter="nervous">Nervous Driver</div>
-  </div>
-  <div class="grid">
-    <div class="card reveal" data-tags="auto manual">
-      <h4>Dual Control Training</h4>
-      <p style="font-size: 0.95rem; margin-top: 10px;">Available in both Automatic and Manual transmissions.</p>
-    </div>
-    <div class="card reveal" data-tags="nervous">
-      <h4>Confidence Building</h4>
-      <p style="font-size: 0.95rem; margin-top: 10px;">Patience-first approach for anxious or first-time drivers.</p>
-    </div>
-    <div class="card reveal" data-tags="all">
-      <h4>Theory Support</h4>
-      <p style="font-size: 0.95rem; margin-top: 10px;">Free digital resources and hazard perception training.</p>
-    </div>
-  </div>
-</section>
+    <section class="inquiry">
+        <h2 class="section-title">Inquire Today</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="icon-circle"><i class="fas fa-phone"></i></div>
+                <div class="icon-circle"><i class="fas fa-comment"></i></div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="text" placeholder="Phone Number" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Postcode">
+                <textarea placeholder="Message"></textarea>
+                <button type="submit" class="btn-submit">Submit</button>
+            </form>
+        </div>
+    </section>
 
-<section id="faq" class="section container">
-  <div style="max-width: 700px; margin: 0 auto;">
-    <span class="kicker">FAQ</span>
-    <h2 style="margin-bottom: 30px;">Common Questions</h2>
-    <div class="faq-item reveal">
-      <div class="faq-q">Where do you cover? <span>+</span></div>
-      <div class="faq-a">We provide door-to-door pickup across Croydon, Bromley, Lewisham, and Greenwich.</div>
-    </div>
-    <div class="faq-item reveal">
-      <div class="faq-q">Can I pay online? <span>+</span></div>
-      <div class="faq-a">Yes. We use Stripe for secure credit/debit card payments and Apple Pay.</div>
-    </div>
-    <div class="faq-item reveal">
-      <div class="faq-q">What is your pass rate? <span>+</span></div>
-      <div class="faq-a">Our current first-time pass rate is 95%, well above the national average.</div>
-    </div>
-  </div>
-</section>
-
-<footer class="container">
-  <div class="footer-grid">
-    <div>
-      <div class="logo" style="margin-bottom: 20px;"><div class="logo-mark"></div> Premier Solo</div>
-      <p>Professional driving instruction in South London. Established 2005.</p>
-    </div>
-    <div>
-      <h4 style="color: var(--text); margin-bottom: 15px;">Contact</h4>
-      <p>07xxx xxxxxx</p>
-      <p>hello@premiersolo.com</p>
-    </div>
-    <div>
-      <h4 style="color: var(--text); margin-bottom: 15px;">Legal</h4>
-      <p>DVSA Approved ADI</p>
-      <p>Fully Insured</p>
-    </div>
-  </div>
-</footer>
-
-<div class="action-bar">
-  <span>Ready to start?</span>
-  <a href="#book" class="btn primary" style="background: var(--brand);">Book Now</a>
-</div>
-
-<script>
-  // Simplified Reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // FAQ Toggle
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => item.classList.toggle('open'));
-  });
-
-  // Simple Counter
-  document.querySelectorAll('.count').forEach(counter => {
-    const target = +counter.dataset.target;
-    const updateCount = () => {
-      const current = +counter.innerText;
-      if(current < target) {
-        counter.innerText = Math.ceil(current + (target/50));
-        setTimeout(updateCount, 30);
-      } else {
-        counter.innerText = target + (target > 50 ? '%' : '+');
-      }
-    };
-    observer.observe(counter); // Trigger on scroll
-    updateCount();
-  });
-</script>
+    <footer>
+        <div class="footer-text">
+            <p>Proudly serving your region since 2026. Full license and insurance information available upon request.</p>
+            <p><a href="#" style="color: var(--primary-red);">Terms and Conditions</a> | <a href="#" style="color: var(--primary-red);">Privacy Policy</a></p>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
 
 </body>
 </html>
