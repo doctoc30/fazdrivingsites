@@ -1,1 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aussie School - Learn to Drive | London Driving Lessons</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* --- CORE CSS & BRANDING VARIABLES --- */
+        :root {
+            /* Branding Colors from Image */
+            --color-lime: #BEFB7A; /* Primary Background */
+            --color-green-btn: #44883A; /* Buttons/Highlights */
+            --color-dark-bg: #1D1D1D; /* Dark contrasts */
+            --color-text-light: #FFFFFF;
+            --color-text-dark: #1D1D1D;
+            
+            /* Typography */
+            --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Similar to image */
+            --font-size-base: 16px;
+            
+            /* Spacing */
+            --spacing-large: 80px;
+            --spacing-medium: 40px;
+            --spacing-small: 20px;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: var(--font-size-base);
+            font-family: var(--font-family);
+            scroll-behavior: smooth; /* Native smooth scroll, GSAP will enhance */
+        }
+
+        body {
+            color: var(--color-text-dark);
+            background-color: var(--color-lime);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll from animation */
+        }
+
+        /* --- TYPOGRAPHY STYLES --- */
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: var(--spacing-small);
+        }
+
+        h1 {
+            font-size: 3rem; /* 48px */
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.25rem; /* 36px */
+            margin-bottom: var(--spacing-medium);
+        }
+
+        h3 {
+            font-size: 1.5rem; /* 24px */
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        /* --- GLOBAL COMPONENTS --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-small);
+        }
+
+        /* Premium Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--color-green-btn);
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 8px; /* Matching image form field */
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            font-size: 1.125rem;
+        }
+
+        .btn:hover {
+            background-color: #3b7a33; /* Slightly darker on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Section Layouts */
+        section {
+            padding: var(--spacing-large) 0;
+        }
+
+        /* --- 22. STICKY NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-lime);
+            z-index: 1000;
+            padding: var(--spacing-small) 0;
+            transition: background-color 0.3s;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-green-btn);
+        }
+
+        /* --- 1. HERO SLIDER SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background-color: var(--color-lime);
+            margin-top: 80px; /* Space for fixed header */
+        }
+
+        /* Text Slider (Ofer examples) */
+        .hero-offer-slider {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            overflow: hidden;
+            background: rgba(255,255,255,0.7);
+            padding: 10px 0;
+            z-index: 5;
+        }
+
+        .offer-track {
+            display: flex;
+            width: calc(250px * 10); /* 5 offers * 2 (for seamless loop) */
+            animation: scroll-offers 30s linear infinite;
+        }
+
+        .offer-item {
+            width: 250px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+            text-align: center;
+        }
+
+        @keyframes scroll-offers {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-1250px); } /* Width of 5 items */
+        }
+
+        .hero-content h1 {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-cars-container {
+            position: relative;
+            margin: var(--spacing-medium) auto;
+            max-width: 600px;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .hero-cars-img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- 2 & 5. POSTCODE SEARCH & COVERAGE --- */
+        .search-area {
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            text-align: center;
+            padding: var(--spacing-medium) 0;
+        }
+
+        .postcode-form {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-small) auto;
+            gap: 10px;
+        }
+
+        .postcode-input {
+            flex-grow: 1;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid transparent;
+            border-radius: 8px; /* Matching image form field */
+            background: #FFFFFF;
+        }
+
+        .postcode-input:focus {
+            outline: none;
+            border-color: var(--color-lime);
+        }
+
+        .search-area .btn {
+            white-space: nowrap;
+        }
+
+        .covered-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-weight: 500;
+            margin-top: var(--spacing-small);
+        }
+
+        /* --- 3, 4, 6. BUY NOW, AUTO/MANUAL, INSTRUCTOR TRUST --- */
+        .packages {
+            background-color: #f7f7f7;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-medium);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card {
+            background: #FFFFFF;
+            padding: var(--spacing-medium);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+            opacity: 0; /* JS Will reveal */
+            transform: translateY(20px);
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--color-green-btn);
+            margin-bottom: var(--spacing-small);
+        }
+
+        /* --- 23. BRANDED FOOTER --- */
+        footer {
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            padding: var(--spacing-large) 0 var(--spacing-medium) 0;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-medium);
+            margin-bottom: var(--spacing-medium);
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-small);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.7);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-social {
+            margin-top: var(--spacing-small);
+            font-size: 1.5rem;
+        }
+
+        .footer-social a {
+            margin: 0 10px;
+            color: #FFFFFF;
+        }
+
+        /* --- 24. FLOATING ACTION BAR --- */
+        .cta-dock {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-green-btn);
+            color: var(--color-text-light);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            z-index: 999;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+        }
+
+        .dock-item {
+            text-decoration: none;
+            color: #FFFFFF;
+            text-align: center;
+            flex-grow: 1;
+            font-weight: 600;
+        }
+
+        .dock-item i {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Offset for main content to see the dock */
+        body {
+            padding-bottom: 70px;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .hero { margin-top: 60px; height: auto; padding: var(--spacing-large) 0; }
+            .hero-cars-container { max-width: 400px; margin: var(--spacing-small) auto; }
+            
+            .postcode-form { flex-direction: column; }
+            .covered-list { flex-wrap: wrap; gap: 15px; }
+            
+            .nav-links { display: none; } /* Hide complex nav on mobile for this example */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 22. STICKY NAVIGATION -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">aussieschool.com</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#packages">Pricing</a></li>
+                    <li><a href="#instructor">Instructor</a></li>
+                    <li><a href="#pass">Pass Gallery</a></li>
+                </ul>
+                <a href="#booking" class="btn">Contact</a>
+            </nav>
+        }
+        </div>
+    </header>
+
+    <!-- 1. HERO SLIDER SECTION -->
+    <section class="hero" id="home">
+        <!-- 1. Offers Slider -->
+        <div class="hero-offer-slider">
+            <div class="offer-track">
+                <div class="offer-item">Established 2005</div>
+                <div class="offer-item">15 Years Experience</div>
+                <div class="offer-item">DVSA Approved Grade A</div>
+                <div class="offer-item">Free Theory Test Training</div>
+                <div class="offer-item">First Lesson Offer £25</div>
+                <!-- Clones for seamless loop -->
+                <div class="offer-item">Established 2005</div>
+                <div class="offer-item">15 Years Experience</div>
+                <div class="offer-item">DVSA Approved Grade A</div>
+                <div class="offer-item">Free Theory Test Training</div>
+                <div class="offer-item">First Lesson Offer £25</div>
+            </div>
+        </div>
+
+        <div class="container hero-content">
+            <h1 id="hero-title">Book a Lesson</h1>
+            <p>Get started on the road to driving today. Premium tuition in South London.</p>
+
+            <!-- Placeholder for requirement 44. (Hero Cars) -->
+            <div class="hero-cars-container">
+                <img src="images/hero-cars.png" alt="Black and White L-Plate driving school cars" class="hero-cars-img">
+            </div>
+
+            <a href="#booking" class="btn">Reserve Your Slot</a>
+        </div>
+    </section>
+
+    <!-- 2 & 5. POSTCODE SEARCH & COVERAGE -->
+    <section class="search-area" id="about">
+        <div class="container">
+            <h3>Find Lessons in Your Area</h3>
+            <form class="postcode-form">
+                <input type="text" placeholder="Enter your postcode (e.g. SE15)" class="postcode-input" required>
+                <button type="submit" class="btn">Search</button>
+            </form>
+            <p>Serving South London including:</p>
+            <ul class="covered-list">
+                <li><i class="fa-solid fa-location-dot"></i> Croydon</li>
+                <li><i class="fa-solid fa-location-dot"></i> Bromley</li>
+                <li><i class="fa-solid fa-location-dot"></i> Lewisham</li>
+                <li><i class="fa-solid fa-location-dot"></i> Greenwich</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 3, 4, 6. BUY NOW PACKAGES / AUTO-MANUAL / TRUST (Using GSAP 8.) -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <h2 class="section-title">Start Your Driving Journey Today</h2>
+            
+            <div class="feature-grid" id="packages-grid">
+                
+                <!-- 3. Package 1 -->
+                <div class="feature-card">
+                    <i class="fa-solid fa-key card-icon"></i>
+                    <h3>Starter Package</h3>
+                    <p>Perfect for complete beginners. Try our tuition.</p>
+                    <p class="price">1 Lesson - £35</p>
+                    <a href="#payment" class="btn">Buy Now</a>
+                </div>
+
+                <!-- 4. Transmission Choice -->
+                <div class="feature-card">
+                    <i class="fa-solid fa-gears card-icon"></i>
+                    <h3>Choose Your Transmission</h3>
+                    <p>We offer both Manual and Automatic driving lessons tailored to your preference.</p>
+                </div>
+
+                <!-- 6. Instructor Trust -->
+                <div class="feature-card">
+                    <i class="fa-solid fa-user-check card-icon"></i>
+                    <h3>Learn with Trust</h3>
+                    <p>Grade A DVSA Approved. Calm teaching style. High First-Time Pass Rates.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Content continues... (Implement other sections 7-21, 25-44 following this structure) -->
+
+    <!-- 23. BRANDED FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>aussieschool.com</h4>
+                    <p>Premium driving tuition in South London since 2005.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#booking">Book Now</a></li>
+                        <li><a href="#packages">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p>Croydon, London</p>
+                    <p>P: 020 8123 4567</p>
+                    <p>E: hello@aussieschool.com</p>
+                </div>
+            </div>
+            <p>&copy; 2024 Aussie School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 24. BOTTOM CTA DOCK -->
+    <div class="cta-dock">
+        <a href="tel:02081234567" class="dock-item">
+            <i class="fa-solid fa-phone"></i>
+            Call Now
+        </a>
+        <a href="https://wa.me/447700000000" class="dock-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            WhatsApp
+        </a>
+        <a href="#booking" class="dock-item">
+            <i class="fa-solid fa-calendar-check"></i>
+            Book Slot
+        </a>
+    </div>
+
+    <!-- 8. SCROLL ANIMATIONS (GSAP JS) -->
+    <script>
+        // Ensure GSAP is loaded before running
+        document.addEventListener("DOMContentLoaded", function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- HERO ANIMATIONS ---
+            const tlHero = gsap.timeline();
+            tlHero.to("#hero-title", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" })
+                  .to(".hero-content p", { opacity: 1, duration: 0.5 }, "-=0.3")
+                  .to(".hero-cars-container", { opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" }, "-=0.2");
+
+            // --- 8. SCROLL REVEAL (Packages Grid) ---
+            gsap.to("#packages-grid", {
+                scrollTrigger: {
+                    trigger: "#packages-grid",
+                    start: "top 80%", // When top of element is 80% from top of viewport
+                    end: "bottom 20%",
+                    // markers: true, // Uncomment to debug
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+
+            // Stagged reveal for individual cards
+            gsap.to(".feature-card", {
+                scrollTrigger: {
+                    trigger: "#packages-grid",
+                    start: "top 70%",
+                },
+                opacity: 1,
+                y: 0,
+                stagger: 0.2, // Time offset between each card
+                duration: 0.8,
+                ease: "power3.out"
+            });
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
