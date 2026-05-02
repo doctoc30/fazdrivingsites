@@ -1,1 +1,251 @@
-   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowDrive | Chill Vibes, Expert Drives</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        :root {
+            --mint: #D1FAE5;
+            --peach: #FFEDD5;
+            --electric: #4F46E5;
+            --ink: #0F172A;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .funky-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--mint) 0%, var(--peach) 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 20s infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.1); }
+        }
+        .card-shadow {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-shadow:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+        .btn-funky {
+            background-color: var(--electric);
+            color: white;
+            border-radius: 999px;
+            transition: transform 0.2s;
+        }
+        .btn-funky:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+        .nav-link:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: var(--electric);
+            transition: width .3s;
+        }
+        .nav-link:hover:after { width: 100%; }
+    </style>
+</head>
+<body x-data="{ openBooking: false }">
+
+    <!-- Blobs for "Airy" feel -->
+    <div class="blob top-[-100px] left-[-100px]"></div>
+    <div class="blob bottom-0 right-[-100px]" style="background: var(--peach); opacity: 0.5;"></div>
+
+    <!-- Navigation -->
+    <nav class="px-8 py-6 flex justify-between items-center max-w-7xl mx-auto sticky top-0 bg-white/80 backdrop-blur-md z-50 rounded-full mt-4 border border-slate-100">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl rotate-12 flex items-center justify-center text-white">
+                <i class="fa fa-car-side"></i>
+            </div>
+            <span class="text-2xl font-bold tracking-tighter italic">Glow<span class="text-indigo-600">Drive</span></span>
+        </div>
+        
+        <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
+            <a href="#about" class="nav-link">Our Vibe</a>
+            <a href="#lessons" class="nav-link">Lessons</a>
+            <a href="#instructors" class="nav-link">Team</a>
+        </div>
+
+        <button @click="openBooking = true" class="btn-funky px-8 py-3 font-bold text-sm">
+            Book a Slot ✨
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="container mx-auto px-6 py-24 flex flex-col lg:flex-row items-center justify-between">
+        <div class="lg:w-1/2 space-y-8 mb-12 lg:mb-0">
+            <span class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
+                Based in London • Est. 2001
+            </span>
+            <h1 class="text-7xl md:text-8xl font-bold leading-[0.9] tracking-tighter">
+                Drive like <br><span class="text-indigo-600 italic">yourself.</span>
+            </h1>
+            <p class="text-xl text-slate-500 max-w-md font-light leading-relaxed">
+                Zero stress. Zero boredom. Just high-energy coaching to get you licensed and confident.
+            </p>
+            <div class="flex space-x-4">
+                <button @click="openBooking = true" class="bg-slate-900 text-white px-10 py-5 rounded-3xl font-bold hover:bg-indigo-600 transition-colors">
+                    Start Learning
+                </button>
+                <div class="flex items-center -space-x-3">
+                    <img src="https://i.pravatar.cc/100?u=1" class="w-12 h-12 rounded-full border-4 border-white">
+                    <img src="https://i.pravatar.cc/100?u=2" class="w-12 h-12 rounded-full border-4 border-white">
+                    <div class="w-12 h-12 rounded-full bg-peach flex items-center justify-center border-4 border-white text-xs font-bold">
+                        95%
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:w-1/2 relative">
+            <!-- Funky Image Mask -->
+            <div class="w-full h-[500px] bg-slate-200 rounded-[60px] overflow-hidden rotate-3 relative shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover -rotate-3 scale-110" alt="Fun Driver">
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex items-center space-x-4 animate-bounce">
+                <div class="p-3 bg-mint rounded-2xl text-emerald-600 text-2xl">
+                    <i class="fa fa-award"></i>
+                </div>
+                <div>
+                    <p class="font-bold">Pass First Time</p>
+                    <p class="text-xs text-slate-400 font-medium italic">Our Specialty</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Postcode Locator Section -->
+    <section class="max-w-4xl mx-auto px-6 mb-32">
+        <div class="bg-indigo-50 p-4 rounded-[40px] flex flex-col md:flex-row gap-4">
+            <div class="flex-1 flex items-center px-6">
+                <i class="fa fa-map-pin text-indigo-400 mr-4"></i>
+                <input type="text" placeholder="Where do you live? (e.g. CR0)" class="bg-transparent w-full outline-none font-medium text-indigo-900 placeholder:text-indigo-300">
+            </div>
+            <button class="bg-white text-indigo-600 px-10 py-4 rounded-[30px] font-bold hover:bg-indigo-600 hover:text-white transition-all shadow-sm">
+                Check Availability
+            </button>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="lessons" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-20 tracking-tighter">Choose Your Speed</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-10 rounded-[40px] card-shadow border border-slate-100 group">
+                    <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fa fa-bolt"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Intensive</h3>
+                    <p class="text-slate-500 mb-8 font-light">Zero to license in 14 days. Intense but highly effective.</p>
+                    <a href="#" class="font-bold text-indigo-600 group-hover:underline">Learn more &rarr;</a>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-10 rounded-[40px] card-shadow border border-slate-100 group">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fa fa-coffee"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Chilled</h3>
+                    <p class="text-slate-500 mb-8 font-light">Weekly lessons at your own pace. No pressure, just vibes.</p>
+                    <a href="#" class="font-bold text-indigo-600 group-hover:underline">Learn more &rarr;</a>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-10 rounded-[40px] card-shadow border border-slate-100 group">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Mastery</h3>
+                    <p class="text-slate-500 mb-8 font-light">Pass Plus and advanced motorway techniques for the pros.</p>
+                    <a href="#" class="font-bold text-indigo-600 group-hover:underline">Learn more &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors -->
+    <section id="instructors" class="py-32 container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <h2 class="text-6xl font-bold tracking-tighter">Meet the <br>Glow-Getters.</h2>
+            <p class="text-slate-400 max-w-xs italic">Grade-A certified, but actually fun to talk to.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <template x-for="i in 10">
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-slate-100 rounded-[40px] overflow-hidden mb-4 grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img :src="`https://i.pravatar.cc/400?u=glow${i}`" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-xl">Instructor Name</h4>
+                    <p class="text-indigo-600 font-medium text-sm">DVSA Approved</p>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white rounded-t-[60px] pt-24 pb-12">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-20 border-b border-slate-800 pb-20 mb-10">
+            <div>
+                <h3 class="text-4xl font-bold mb-6 italic uppercase tracking-tighter">GlowDrive</h3>
+                <p class="text-slate-400 font-light leading-relaxed">Making the roads of London a better place, one driver at a time. Since 2001.</p>
+            </div>
+            <div class="space-y-4">
+                <h5 class="text-indigo-400 font-bold uppercase text-xs tracking-widest">Connect</h5>
+                <div class="flex space-x-6 text-2xl">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <h5 class="text-indigo-400 font-bold uppercase text-xs tracking-widest">Legal</h5>
+                <ul class="text-slate-400 space-y-2 text-sm">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Vibes</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-center text-xs text-slate-500 uppercase tracking-widest font-bold">© 2026 GlowDrive Academy. Stay Safe.</p>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div x-show="openBooking" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-indigo-900/40 backdrop-blur-xl" x-transition>
+        <div @click.away="openBooking = false" class="bg-white w-full max-w-4xl h-[80vh] rounded-[50px] shadow-2xl relative overflow-hidden flex flex-col">
+            <button @click="openBooking = false" class="absolute top-8 right-8 text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+            <div class="p-12 text-center">
+                <h2 class="text-4xl font-bold mb-2">Snag Your Slot</h2>
+                <p class="text-slate-400 italic">Select a time that suits your lifestyle.</p>
+            </div>
+            <div class="flex-1 bg-slate-50 flex items-center justify-center border-t border-slate-100">
+                <p class="text-slate-300 font-bold uppercase tracking-widest">[Calendly Widget Space]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="#" class="fixed bottom-10 right-10 w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center text-3xl shadow-2xl z-[60] hover:scale-110 transition-transform">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
