@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Leaflet.js for REAL interactive map (ADD-ON: replaces placeholder with real map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,11 +20,11 @@
         }
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
         
-        /* Replicated Logo SVG Logic */
+        /* Replicated Logo SVG Logic - ADD-ON: Logo slightly larger (width increased from 120px to 150px) */
         .logo-container { display: flex; align-items: center; gap: 10px; }
-        .wythall-logo { width: 120px; height: auto; }
+        .wythall-logo { width: 150px; height: auto; } /* MODIFIED: Logo larger */
 
-        /* Continuous Smooth Driving Animation */
+        /* Continuous Smooth Driving Animation - FIX: Car touches tracks (bottom: 0px) */
         .car-hero-container {
             position: relative;
             z-index: 10;
@@ -37,7 +40,7 @@
             height: 380px; /* Scaled height */
             object-fit: contain; 
             position: absolute;
-            bottom: 15px; /* Adjusted to sit precisely on the tracks */
+            bottom: 0px; /* MODIFIED: Changed from 15px to 0px so car touches tracks exactly */
             z-index: 20; 
             animation: driveForward 12s linear infinite;
             will-change: transform;
@@ -63,7 +66,7 @@
             background: #e5e7eb;
             width: 100%;
             position: absolute;
-            bottom: 35px; 
+            bottom: 0px; /* MODIFIED: Changed from 35px to 0px to align track with car bottom */
             z-index: 5; 
         }
         .road-indicator::after {
@@ -98,8 +101,10 @@
         .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
         .faq-item.active i { transform: rotate(180deg); }
         
+        /* ADD-ON: Enhanced CTA Dock with additional "callback" button - now has 4 items including CALLBACK */
         .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-dark); display: flex; z-index: 100; border-top: 3px solid var(--brand-red); }
         .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        .cta-dock a:last-child { border-right: none; }
         
         /* New Add-on Styles */
         .sticky-callback { position: fixed; right: 0; top: 40%; transform: rotate(-90deg) translateX(50%); transform-origin: right bottom; z-index: 90; }
@@ -107,6 +112,14 @@
         .quiz-option { border: 2px solid #e2e8f0; cursor: pointer; transition: 0.3s; }
         .quiz-option:hover { border-color: var(--brand-red); }
         .avail-dot { width: 12px; height: 12px; border-radius: 50%; }
+        
+        /* ADD-ON: Real map container styling */
+        #realMap { height: 400px; width: 100%; border-radius: 1rem; z-index: 1; }
+        .real-map-container { background: transparent; }
+        
+        /* ADD-ON: Footer social icons hover enhancement */
+        .footer-social-icon { transition: transform 0.2s, color 0.2s; cursor: pointer; }
+        .footer-social-icon:hover { transform: translateY(-3px); color: var(--brand-red); }
     </style>
 </head>
 <body class="text-slate-900"> 
@@ -117,6 +130,7 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
                 <a href="#" class="logo-container">
+                    <!-- Logo SVG - now visually larger due to .wythall-logo width change -->
                     <svg class="wythall-logo" viewBox="0 0 250 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="5" y="10" width="40" height="40" rx="4" fill="white" stroke="#d31018" stroke-width="3"/>
                         <text x="15" y="42" font-family="Archivo Black" font-size="32" fill="#d31018">L</text>
@@ -173,7 +187,7 @@
         <div class="w-full mb-16">
             <div class="car-hero-container">
                 <div class="road-indicator"></div>
-     <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3853.png" alt="Wythall Driving School Car">
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3853.png" alt="Wythall Driving School Car">
             </div>
         </div>
 
@@ -433,12 +447,14 @@
         </div>
     </section>
 
-    <!-- ➕ INTERACTIVE LOCATION MAP & COVERAGE -->
+    <!-- ➕ INTERACTIVE LOCATION MAP & COVERAGE - ADD-ON: REPLACED PLACEHOLDER WITH REAL LEAFLET MAP -->
     <section class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-black uppercase text-center mb-12">Where We <span class="text-red-700">Teach</span></h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="md:col-span-2 bg-slate-200 rounded-xl min-h-[400px] flex items-center justify-center text-slate-400 uppercase font-black">Interactive Map Widget Placeholder</div>
+                <div class="md:col-span-2 rounded-xl overflow-hidden shadow-lg bg-white">
+                    <div id="realMap" style="height: 400px; width: 100%;"></div>
+                </div>
                 <div class="space-y-4">
                     <div class="p-6 bg-white shadow-sm border-l-4 border-red-700">
                         <h4 class="font-black uppercase text-xs mb-2">Coverage Areas</h4>
@@ -532,28 +548,44 @@
                     <p class="text-xl font-black tracking-tight">07818 542962</p>
                     <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-2">Wythall Driving School © 2026</p>
                 </div>
+                <!-- ADD-ON: Footer social icons (already present but enhanced with better class for styling) -->
                 <div class="flex space-x-6">
-                    <i data-lucide="facebook" class="hover:text-red-700 cursor-pointer"></i>
-                    <i data-lucide="instagram" class="hover:text-red-700 cursor-pointer"></i>
-                    <i data-lucide="twitter" class="hover:text-red-700 cursor-pointer"></i>
+                    <i data-lucide="facebook" class="footer-social-icon hover:text-red-700 cursor-pointer w-5 h-5"></i>
+                    <i data-lucide="instagram" class="footer-social-icon hover:text-red-700 cursor-pointer w-5 h-5"></i>
+                    <i data-lucide="twitter" class="footer-social-icon hover:text-red-700 cursor-pointer w-5 h-5"></i>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- ADD-ON: Bottom CTA dock with additional "callback" button (now includes CALLBACK as 4th item) -->
     <div class="cta-dock md:hidden">
         <a href="tel:+447818542962"><i data-lucide="phone" class="w-5 h-5 mb-1"></i>CALL</a>
         <a href="https://wa.me/447818542962"><i data-lucide="message-square" class="w-5 h-5 mb-1"></i>WHATSAPP</a>
-        <a href="sms:+447818542962" class="bg-red-700 !border-none"><i data-lucide="smartphone" class="w-5 h-5 mb-1"></i>TEXT</a>
+        <a href="sms:+447818542962"><i data-lucide="smartphone" class="w-5 h-5 mb-1"></i>TEXT</a>
+        <a href="tel:+447818542962" class="bg-red-700 !border-none"><i data-lucide="phone-call" class="w-5 h-5 mb-1"></i>CALLBACK</a>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
-            setTimeout(() => {
-                document.getElementById('offerPopup').classList.add('active');
-            }, 3000);
-
+            
+            // ADD-ON: Real Leaflet Map Initialization (replaces placeholder with interactive map)
+            if (document.getElementById('realMap')) {
+                const map = L.map('realMap').setView([52.3792, -1.8819], 13); // Wythall, UK coordinates
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB',
+                    subdomains: 'abcd',
+                    maxZoom: 18
+                }).addTo(map);
+                // Marker for driving school location
+                L.marker([52.3792, -1.8819]).addTo(map)
+                    .bindPopup('<b>Wythall Driving School</b><br/>Covering Birmingham South & Solihull')
+                    .openPopup();
+                // Coverage radius circle
+                L.circle([52.3792, -1.8819], { radius: 8000, color: '#d31018', weight: 2, fillOpacity: 0.1, fillColor: '#d31018' }).addTo(map);
+            }
+            
             // FAQ Logic
             document.querySelectorAll('.faq-item button').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -564,12 +596,14 @@
 
             // Testimonial Auto-Scroll
             const track = document.querySelector('.testimonial-track');
-            let scrollAmount = 0;
-            setInterval(() => {
-                scrollAmount -= 350;
-                if(Math.abs(scrollAmount) >= track.scrollWidth - window.innerWidth) scrollAmount = 0;
-                track.style.transform = `translateX(${scrollAmount}px)`;
-            }, 5000);
+            if(track) {
+                let scrollAmount = 0;
+                setInterval(() => {
+                    scrollAmount -= 350;
+                    if(Math.abs(scrollAmount) >= track.scrollWidth - window.innerWidth) scrollAmount = 0;
+                    track.style.transform = `translateX(${scrollAmount}px)`;
+                }, 5000);
+            }
         });
 
         const menuBtn = document.getElementById('menu-btn');
@@ -577,8 +611,8 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        if(menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        if(closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
         mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
         const observer = new IntersectionObserver((entries) => {
