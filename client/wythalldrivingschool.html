@@ -13,234 +13,249 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* =========================
+   BASE RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        :root {
-            --brand-silver: #e2e8f0; 
-            --brand-red: #d31018;
-            --brand-dark: #1a1a1a;
-            --brand-gray: #4a4a4a;
-        }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            scroll-behavior: smooth; 
-            background-color: #ffffff; 
-            overflow-x: hidden; 
-            margin: 0; 
-            padding: 0; 
-            font-size: 1.1rem; 
-        }
-        
-        /* Logo styling */
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .wythall-logo { width: 210px; height: auto; } 
+:root {
+    --brand-silver: #e2e8f0;
+    --brand-red: #d31018;
+    --brand-dark: #1a1a1a;
+    --brand-gray: #4a4a4a;
+}
 
-        /* ===== HERO CAR SECTION ===== */
-        .car-hero-container {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            min-height: 520px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            overflow: visible;
-            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
-            margin-top: -40px;
-            margin-bottom: -10px;
-        }
+body {
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+    background: #ffffff;
+    overflow-x: hidden;
+    font-size: 1.1rem;
+}
 
-        /* MASSIVE CAR IMAGE - using transform to position wheels correctly */
-        #panningCar {
-            width: 100%;
-            max-width: 1400px;
-            height: auto;
-            object-fit: contain;
-            position: relative;
-            z-index: 25;
-            animation: driveForward 22s linear infinite;
-            will-change: transform;
-            display: block;
-            margin: 0 auto;
-            filter: drop-shadow(0 25px 20px rgba(0,0,0,0.15));
-            transform: scale(1.08) translateY(12px);
-        }
+/* =========================
+   LOGO
+========================= */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        @keyframes driveForward {
-            0% { transform: translateX(-130%) scale(1.08) translateY(12px); }
-            100% { transform: translateX(100vw) scale(1.08) translateY(12px); }
-        }
+.wythall-logo {
+    width: 210px;
+    height: auto;
+}
 
-        /* === ROAD TRACK - VISIBLE LINE === */
-        .road-indicator {
-            height: 5px;
-            background: transparent;
-            width: 100%;
-            position: absolute;
-            bottom: 0px;
-            left: 0;
-            z-index: 15;
-            pointer-events: none;
-            overflow: visible;
-        }
+/* =========================
+   HERO CAR SECTION (FIXED ALIGNMENT)
+========================= */
+.car-hero-container {
+    position: relative;
+    width: 100%;
+    min-height: 540px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: visible;
+    background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+    margin-top: -40px;
+}
 
-        .road-indicator::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #1e293b;
-            opacity: 0.7;
-            border-radius: 2px;
-        }
+/* ROAD (NOW PROPER GROUND LEVEL) */
+.road-indicator {
+    position: absolute;
+    bottom: 85px; /* 🔥 KEY FIX: aligns with tyre base */
+    left: 0;
+    width: 100%;
+    height: 8px;
+    z-index: 10;
+    pointer-events: none;
+}
 
-        .road-indicator::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 300%;
-            height: 5px;
-            background: repeating-linear-gradient(
-                to right,
-                #334155 0px,
-                #334155 32px,
-                transparent 32px,
-                transparent 80px
-            );
-            animation: roadMoveSmooth 2.8s linear infinite;
-            will-change: transform;
-        }
+.road-indicator::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #1e293b;
+    opacity: 0.8;
+    border-radius: 2px;
+    top: 2px;
+}
 
-        @keyframes roadMoveSmooth {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-33.33%); }
-        }
+.road-indicator::after {
+    content: '';
+    position: absolute;
+    width: 300%;
+    height: 8px;
+    top: 0;
+    left: 0;
+    background: repeating-linear-gradient(
+        to right,
+        #334155 0px,
+        #334155 40px,
+        transparent 40px,
+        transparent 90px
+    );
+    animation: roadMove 2.6s linear infinite;
+}
 
-        /* Shadow under car */
-        .road-shadow {
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: rgba(0,0,0,0.12);
-            z-index: 12;
-            border-radius: 3px;
-        }
+@keyframes roadMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
+}
 
-        /* HAMBURGER MENU */
-        #mobile-menu {
-            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            transform: translateX(100%);
-            background-color: var(--brand-dark);
-        }
-        #mobile-menu.open {
-            transform: translateX(0);
-        }
+/* SHADOW (GROUND CONTACT REALISM) */
+.road-shadow {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 14px;
+    background: rgba(0,0,0,0.18);
+    filter: blur(10px);
+    border-radius: 50%;
+    z-index: 8;
+}
 
-        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); }
-        .premium-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-top: 4px solid transparent; }
-        .premium-card:hover { transform: translateY(-12px); border-color: var(--brand-red); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
-        .ticker-wrap { overflow: hidden; background: var(--brand-dark); color: white; padding: 18px 0; border-bottom: 4px solid var(--brand-red); }
-        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; font-size: 1.2rem; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .btn-brand { background-color: var(--brand-red); color: white; transition: 0.3s; }
-        .btn-brand:hover { background-color: #b00e14; transform: scale(1.05); }
-        .btn-dark { background-color: var(--brand-dark); color: white; transition: 0.3s; }
+/* =========================
+   CAR (FIXED: NO TRANSFORM CONFLICTS)
+========================= */
+#panningCar {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
 
-        .faq-item { border-bottom: 1px solid #e2e8f0; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
-        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
-        .faq-item.active i { transform: rotate(180deg); }
-        
-        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-dark); display: flex; z-index: 100; border-top: 3px solid var(--brand-red); }
-        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px 0; color: white; font-size: 12px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
-        .cta-dock a:last-child { border-right: none; }
-        
-        .testimonial-track { display: flex; transition: transform 0.5s ease-in-out; }
-        .quiz-option { border: 2px solid #e2e8f0; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
-        .quiz-option:hover { border-color: var(--brand-red); }
-        .avail-dot { width: 16px; height: 16px; border-radius: 50%; }
-        
-        #realMap { height: 450px; width: 100%; border-radius: 1rem; z-index: 1; }
-        
-        .footer-social-icon { transition: transform 0.2s, color 0.2s; cursor: pointer; }
-        .footer-social-icon:hover { transform: translateY(-3px); color: var(--brand-red); }
+    position: relative;
+    z-index: 20;
 
-        /* ===== LANDSCAPE ORIENTATION ===== */
-        @media (orientation: landscape) {
-            .car-hero-container {
-                min-height: 400px;
-                margin-top: -30px;
-            }
-            #panningCar {
-                transform: scale(0.92) translateY(10px);
-                max-width: 1300px;
-            }
-            @keyframes driveForward {
-                0% { transform: translateX(-130%) scale(0.92) translateY(10px); }
-                100% { transform: translateX(100vw) scale(0.92) translateY(10px); }
-            }
-        }
+    /* ONLY ONE TRANSFORM SYSTEM (FIXED ISSUE) */
+    animation: driveForward 20s linear infinite;
+    will-change: transform;
 
-        /* ===== PORTRAIT MOBILE ===== */
-        @media (orientation: portrait) and (max-width: 768px) {
-            .car-hero-container {
-                min-height: 420px;
-                margin-top: -60px;
-            }
-            #panningCar {
-                transform: scale(1.12) translateY(14px);
-            }
-            @keyframes driveForward {
-                0% { transform: translateX(-140%) scale(1.12) translateY(14px); }
-                100% { transform: translateX(100vw) scale(1.12) translateY(14px); }
-            }
-            .road-indicator {
-                height: 4px;
-            }
-            .road-indicator::after {
-                height: 4px;
-            }
-            .hero-main {
-                font-size: 3rem !important;
-            }
-        }
+    filter: drop-shadow(0 25px 20px rgba(0,0,0,0.15));
 
-        /* ===== SMALL PHONES ===== */
-        @media (max-width: 480px) {
-            .car-hero-container {
-                min-height: 360px;
-                margin-top: -70px;
-            }
-            #panningCar {
-                transform: scale(1.16) translateY(16px);
-            }
-            @keyframes driveForward {
-                0% { transform: translateX(-140%) scale(1.16) translateY(16px); }
-                100% { transform: translateX(100vw) scale(1.16) translateY(16px); }
-            }
+    /* 🔥 PERFECT GROUND ALIGNMENT */
+    transform: translateY(38px) scale(1.08);
+}
+
+/* DRIVE ANIMATION */
+@keyframes driveForward {
+    0% {
+        transform: translateX(-140%) translateY(38px) scale(1.08);
+    }
+    100% {
+        transform: translateX(110vw) translateY(38px) scale(1.08);
+    }
+}
+
+/* =========================
+   HAMBURGER MENU
+========================= */
+#mobile-menu {
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    transform: translateX(100%);
+    background: var(--brand-dark);
+}
+
+#mobile-menu.open {
+    transform: translateX(0);
+}
+
+/* =========================
+   UI UTILITIES
+========================= */
+.glass {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+}
+
+.btn-brand {
+    background: var(--brand-red);
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn-brand:hover {
+    background: #b00e14;
+    transform: scale(1.05);
+}
+
+/* =========================
+   REVEAL ANIMATIONS
+========================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE FIXES
+========================= */
+
+/* TABLET */
+@media (max-width: 768px) {
+    .car-hero-container {
+        min-height: 450px;
+    }
+
+    #panningCar {
+        transform: translateY(42px) scale(1.12);
+    }
+
+    @keyframes driveForward {
+        0% {
+            transform: translateX(-140%) translateY(42px) scale(1.12);
         }
-        
-        .hero-content-space {
-            margin-top: 20px;
-            position: relative;
-            z-index: 20;
+        100% {
+            transform: translateX(110vw) translateY(42px) scale(1.12);
         }
-        
-        .car-outer {
-            overflow: visible;
+    }
+
+    .road-indicator {
+        bottom: 78px;
+    }
+}
+
+/* SMALL PHONES */
+@media (max-width: 480px) {
+    .car-hero-container {
+        min-height: 380px;
+    }
+
+    #panningCar {
+        transform: translateY(45px) scale(1.16);
+    }
+
+    @keyframes driveForward {
+        0% {
+            transform: translateX(-140%) translateY(45px) scale(1.16);
         }
-    </style>
+        100% {
+            transform: translateX(110vw) translateY(45px) scale(1.16);
+        }
+    }
+
+    .road-indicator {
+        bottom: 72px;
+    }
+}
+</style>
     
 </head>
 <body class="text-slate-900"> 
