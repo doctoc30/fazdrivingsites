@@ -43,26 +43,26 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            min-height: 560px;
+            min-height: 580px;
             display: flex;
             align-items: flex-end; 
             justify-content: center;
             overflow: visible;
             background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
-            margin-top: -50px;
-            margin-bottom: -10px;
+            margin-top: -60px;
+            margin-bottom: -20px;
         }
         
-        /* MASSIVE CAR IMAGE - wheels aligned with track */
+        /* MASSIVE CAR IMAGE - wheels now correctly positioned over track */
         #panningCar {
             width: 100%;
             max-width: 1500px;
             height: auto;
             object-fit: contain; 
             position: relative;
-            bottom: -8px; /* FINE-TUNED: wheels now rest exactly on track */
+            bottom: -35px; /* KEY: pushes car DOWN so wheels meet the track */
             z-index: 25; 
-            animation: driveForward 20s linear infinite; /* slower, smoother drive */
+            animation: driveForward 22s linear infinite;
             will-change: transform;
             display: block;
             margin: 0 auto;
@@ -85,32 +85,33 @@
             transform: translateX(0);
         }
 
-        /* === ROAD TRACK - SLOW, SMOOTH, WHEELS TOUCHING === */
+        /* === ROAD TRACK - NOW RAISED TO ACTUALLY TOUCH WHEELS === */
         .road-indicator {
             height: 5px;
             background: transparent; 
             width: 100%;
             position: absolute;
-            bottom: 12px; /* CRITICAL: raised track to meet wheels (car bottom is at -8px relative, so track sits higher) */
+            bottom: 48px; /* RAISED SIGNIFICANTLY - track now sits where wheels contact */
             left: 0;
             z-index: 15; 
             pointer-events: none;
             overflow: visible;
         }
         
-        /* Stable base line under the car */
+        /* Stable base line - visible track */
         .road-indicator::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background: #1e293b;
-            opacity: 0.4;
+            opacity: 0.6;
+            border-radius: 2px;
         }
         
-        /* Slower animated dashed line - no flicker, smooth scroll */
+        /* Smooth animated dashed line */
         .road-indicator::after {
             content: '';
             position: absolute;
@@ -121,11 +122,11 @@
             background: repeating-linear-gradient(
                 to right,
                 #334155 0px,
-                #334155 30px,
-                transparent 30px,
-                transparent 75px
+                #334155 32px,
+                transparent 32px,
+                transparent 80px
             );
-            animation: roadMoveSmooth 2.5s linear infinite; /* MUCH SLOWER */
+            animation: roadMoveSmooth 2.8s linear infinite;
             will-change: transform;
         }
         
@@ -134,16 +135,16 @@
             100% { transform: translateX(-33.33%); }
         }
 
-        /* Subtle shadow beneath the car for realism */
+        /* Shadow under car for depth */
         .road-shadow {
             position: absolute;
-            bottom: 6px;
+            bottom: 42px;
             left: 0;
             width: 100%;
-            height: 6px;
-            background: rgba(0,0,0,0.08);
+            height: 8px;
+            background: rgba(0,0,0,0.1);
             z-index: 12;
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); }
@@ -177,62 +178,62 @@
         .footer-social-icon { transition: transform 0.2s, color 0.2s; cursor: pointer; }
         .footer-social-icon:hover { transform: translateY(-3px); color: var(--brand-red); }
 
-        /* ===== MOBILE: wheels touching track perfectly ===== */
+        /* ===== MOBILE: WHEELS TOUCHING TRACK PERFECTLY ===== */
         @media (max-width: 768px) {
             .car-hero-container {
-                min-height: 440px;
-                margin-top: -70px;
-                margin-bottom: -20px;
+                min-height: 450px;
+                margin-top: -75px;
+                margin-bottom: -30px;
             }
             #panningCar {
                 max-width: 1200px;
                 transform: scale(1.1);
-                bottom: -6px;
+                bottom: -30px;
             }
             @keyframes driveForward {
                 0% { transform: translateX(-140%) scale(1.1); }
                 100% { transform: translateX(100vw) scale(1.1); }
             }
             .road-indicator {
-                bottom: 8px;
+                bottom: 42px;
                 height: 4px;
             }
             .road-indicator::after {
                 height: 4px;
-                animation: roadMoveSmooth 2.5s linear infinite;
+                animation: roadMoveSmooth 2.8s linear infinite;
             }
             .road-shadow {
-                bottom: 2px;
+                bottom: 36px;
             }
             .hero-main {
-                font-size: 3.2rem !important;
+                font-size: 3rem !important;
             }
         }
 
         @media (max-width: 480px) {
             .car-hero-container {
-                min-height: 380px;
-                margin-top: -80px;
+                min-height: 390px;
+                margin-top: -85px;
             }
             #panningCar {
                 max-width: 1000px;
                 transform: scale(1.15);
-                bottom: -4px;
+                bottom: -28px;
             }
             .road-indicator {
-                bottom: 6px;
+                bottom: 38px;
                 height: 4px;
             }
             .road-indicator::after {
-                animation: roadMoveSmooth 2.5s linear infinite;
+                animation: roadMoveSmooth 2.8s linear infinite;
             }
             .road-shadow {
-                bottom: 0px;
+                bottom: 32px;
             }
         }
         
         .hero-content-space {
-            margin-top: 15px;
+            margin-top: 20px;
             position: relative;
             z-index: 20;
         }
@@ -299,15 +300,15 @@
         </div>
     </div>
 
-    <!-- HERO SECTION: MASSIVE CAR + SLOW SMOOTH TRACK, WHEELS TOUCHING -->
+    <!-- HERO SECTION: MASSIVE CAR + TRACK NOW TOUCHING WHEELS -->
     <section class="relative min-h-[78vh] flex flex-col items-center justify-start bg-slate-50 pt-0 pb-12 overflow-visible">
         <div class="w-full relative car-outer">
             <div class="car-hero-container">
                 <!-- Road shadow beneath -->
                 <div class="road-shadow"></div>
-                <!-- Road track - adjusted to touch wheels perfectly -->
+                <!-- Road track - NOW POSITIONED TO TOUCH WHEELS (bottom: 48px) -->
                 <div class="road-indicator"></div>
-                <!-- MASSIVE CAR IMAGE -->
+                <!-- MASSIVE CAR IMAGE - pushed down with bottom:-35px so wheels meet track -->
                 <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3853.png" alt="Wythall Driving School Car">
             </div>
         </div>
