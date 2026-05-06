@@ -62,15 +62,15 @@
             transform: translateX(0);
         }
 
-        /* REDESIGNED ROAD: Dashed/Cuts appearance */
+        /* REDESIGNED ROAD: UPDATED TO REMOVE SOLID LINE */
         .road-indicator {
             height: 12px;
-            background: transparent;
+            background: transparent; /* Removed solid background */
             width: 100%;
             position: absolute;
             bottom: 25px; 
             z-index: 5; 
-            border-bottom: 4px solid #334155;
+            border-bottom: 0px solid transparent; /* Removed solid border line */
         }
         .road-indicator::after {
             content: '';
