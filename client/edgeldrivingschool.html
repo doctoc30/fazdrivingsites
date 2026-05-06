@@ -10,15 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Exact Branding Colors from Image */
+            /* Brand Colors */
             --brand-navy: #1d3557; 
             --brand-red: #d31018;
+            --brand-green: #2d6a4f; /* Added branding green */
             --brand-silver: #f1f5f9;
-            --brand-green: #2d6a4f;
         }
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
         
-        /* Logo Logic: Replicating EdgeL Branding */
         .logo-wrap {
             display: flex;
             align-items: center;
@@ -30,6 +29,7 @@
         }
         .logo-edge { color: var(--brand-navy); }
         .logo-l { color: var(--brand-red); }
+        .logo-school { color: var(--brand-green); margin-left: 8px; font-size: 0.9rem; }
         
         .l-plate-icon {
             display: inline-flex;
@@ -51,7 +51,6 @@
             margin-top: -2px;
         }
 
-        /* Continuous Smooth Driving Animation */
         .car-hero-container {
             position: relative;
             z-index: 10;
@@ -79,7 +78,6 @@
             100% { transform: translateX(100vw); }
         }
 
-        /* Hamburger Menu Styles */
         #mobile-menu {
             transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
             transform: translateX(100%);
@@ -89,7 +87,7 @@
         }
 
         .road-indicator {
-            height: 4px;
+            height: 6px;
             background: var(--brand-silver);
             width: 100%;
             position: absolute;
@@ -102,62 +100,65 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(to right, var(--brand-red) 50%, transparent 50%);
-            background-size: 40px 100%;
-            animation: roadMove 0.5s linear infinite;
+            background-image: linear-gradient(to right, var(--brand-green) 50%, transparent 50%);
+            background-size: 60px 100%;
+            animation: roadMove 0.6s linear infinite;
         }
         @keyframes roadMove {
             0% { background-position: 0 0; }
-            100% { background-position: -40px 0; }
+            100% { background-position: -60px 0; }
         }
 
         .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); }
-        .premium-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-top: 4px solid transparent; }
-        .premium-card:hover { transform: translateY(-12px); border-color: var(--brand-red); box-shadow: 0 25px 50px -12px rgba(26, 54, 93, 0.2); }
-        .ticker-wrap { overflow: hidden; background: var(--brand-navy); color: white; padding: 12px 0; border-bottom: 3px solid var(--brand-red); }
+        .ticker-wrap { overflow: hidden; background: var(--brand-navy); color: white; padding: 12px 0; border-bottom: 3px solid var(--brand-green); }
         .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .btn-red { background-color: var(--brand-red); color: white; transition: 0.3s; }
-        .btn-red:hover { background-color: #b00d14; transform: scale(1.05); }
+        
+        .btn-red { background-color: var(--brand-red); color: white; transition: 0.3s; border-radius: 4px; }
+        .btn-red:hover { background-color: #b00d14; transform: translateY(-2px); }
+
+        .btn-green { background-color: var(--brand-green); color: white; transition: 0.3s; border-radius: 4px; }
+        .btn-green:hover { background-color: #1b4332; transform: translateY(-2px); }
 
         .faq-item { border-bottom: 1px solid #edf2f7; }
         .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
         .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
-        .faq-item.active i { transform: rotate(180deg); }
         
-        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-navy); display: flex; z-index: 100; border-top: 3px solid var(--brand-red); }
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-navy); display: flex; z-index: 100; border-top: 3px solid var(--brand-green); }
         .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
         
         .gallery-scroll { display: flex; overflow-x: auto; gap: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
-        .gallery-item { min-width: 280px; height: 350px; scroll-snap-align: start; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+        .gallery-item { min-width: 280px; height: 350px; scroll-snap-align: start; background: #f1f5f9; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
         
-        .service-grid-item { border: 1px solid #e2e8f0; transition: all 0.3s ease; cursor: pointer; }
-        .service-grid-item:hover { border-color: var(--brand-red); background: #fff; transform: translateY(-5px); }
+        .service-grid-item { border: 1px solid #e2e8f0; transition: all 0.3s ease; border-radius: 8px; }
+        .service-grid-item:hover { border-color: var(--brand-green); background: #fff; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(45, 106, 79, 0.1); }
 
-        .slider-wrap { position: relative; overflow: hidden; }
         .slide { display: none; }
-        .slide.active { display: block; animation: fadeIn 0.5s; }
+        .slide.active { display: block; animation: fadeIn 0.8s; }
 
-        /* ADDON: Referral Modal Styles */
         #referModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         #referModal.active { display: flex; }
     </style>
 </head>
-<body class="text-slate-900"> <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+<body class="text-slate-900"> 
+
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
                 <div class="logo-wrap">
-                    <span class="logo-edge">EDGE</span><span class="logo-l">L</span> <div class="l-plate-icon"><span>L</span></div>
+                    <span class="logo-edge">EDGE</span><span class="logo-l">L</span>
+                    <div class="l-plate-icon"><span>L</span></div>
                 </div>
             </div>
             
-            <div class="hidden md:flex items-center space-x-10 font-bold text-xs uppercase tracking-widest">
-                <a href="#services" class="hover:text-[var(--brand-red)] transition">Tuition</a>
-                <a href="#pricing" class="hover:text-[var(--brand-red)] transition">Pricing</a>
-                <a href="tel:07795473108" class="hover:text-[var(--brand-red)] transition">07795 473108</a>
-                <a href="https://wa.me/447795473108" class="btn-red px-6 py-3 rounded-sm shadow-lg">WhatsApp Us</a>
+            <div class="hidden md:flex items-center space-x-8 font-bold text-xs uppercase tracking-widest">
+                <a href="#services" class="hover:text-[var(--brand-green)] transition">Instruction</a>
+                <a href="#pricing" class="hover:text-[var(--brand-green)] transition">Pricing</a>
+                <a href="tel:07795473108" class="text-[var(--brand-navy)] hover:text-[var(--brand-red)] transition">07795 473108</a>
+                <a href="https://wa.me/447795473108" class="btn-green px-6 py-3 shadow-md">WhatsApp Us</a>
             </div>
 
             <button id="menu-btn" class="md:hidden text-[var(--brand-navy)]">
@@ -166,28 +167,19 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-[var(--brand-navy)] z-[100] p-10 flex flex-col shadow-2xl">
-        <button id="close-btn" class="self-end text-white mb-12">
-            <i data-lucide="x" class="w-10 h-10"></i>
-        </button>
-        <div class="flex flex-col space-y-8 text-white font-black text-2xl uppercase tracking-tighter">
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-[var(--brand-navy)] z-[100] p-10 flex flex-col shadow-2xl text-white">
+        <button id="close-btn" class="self-end mb-12"><i data-lucide="x" class="w-10 h-10"></i></button>
+        <div class="flex flex-col space-y-8 font-black text-2xl uppercase tracking-tighter">
             <a href="#services" class="mobile-link">Tuition</a>
             <a href="#pricing" class="mobile-link">Pricing</a>
-            <a href="tel:07795473108" class="mobile-link">Call EdgeL</a>
-            <a href="https://wa.me/447795473108" class="text-red-500 mobile-link">WhatsApp Chat</a>
-        </div>
-        <div class="mt-auto border-t border-white/10 pt-8">
-            <div class="flex space-x-6 text-white/50">
-                <i data-lucide="facebook"></i>
-                <i data-lucide="instagram"></i>
-                <i data-lucide="message-circle"></i>
-            </div>
+            <a href="tel:07795473108" class="mobile-link">Call Now</a>
+            <a href="https://wa.me/447795473108" class="text-[var(--brand-green)] mobile-link">WhatsApp</a>
         </div>
     </div>
 
     <div class="ticker-wrap font-bold uppercase text-[10px] tracking-[0.2em]">
         <div class="ticker space-x-16">
-            <span>★ DVSA Approved Instructor</span>
+            <span>★ <span class="text-green-400">DVSA Approved</span> Instructor</span>
             <span>★ 96% Recommendation Rate</span>
             <span>★ Serving Ewell & Surroundings</span>
             <span>★ Expert Patient Tuition</span>
@@ -205,13 +197,13 @@
         <div class="max-w-4xl mx-auto px-6 text-center z-20">
             <div class="animate__animated animate__fadeInUp">
                 <h1 class="text-5xl md:text-7xl font-black text-[var(--brand-navy)] leading-tight mb-4 uppercase tracking-tighter">
-                    The <span class="text-red-600">Edge</span> You Need To Pass.
+                    Drive To <span class="text-[var(--brand-green)]">Success</span> With Edge<span class="text-red-600">L</span>.
                 </h1>
-                <p class="text-slate-500 font-bold uppercase tracking-[0.2em] mb-10">Professional Driving Tuition in Ewell</p>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.2em] mb-10">Premier Driving Tuition in Ewell</p>
                 
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="tel:07795473108" class="px-12 py-5 btn-red font-black uppercase tracking-widest text-xs">Book 07795 473108</a>
-                    <a href="https://wa.me/447795473108" class="px-12 py-5 border-2 border-[var(--brand-navy)] text-[var(--brand-navy)] font-black uppercase tracking-widest text-xs hover:bg-[var(--brand-navy)] hover:text-white transition">Message WhatsApp</a>
+                    <a href="tel:07795473108" class="px-12 py-5 btn-red font-black uppercase tracking-widest text-xs shadow-lg">Call 07795 473108</a>
+                    <a href="https://wa.me/447795473108" class="px-12 py-5 border-2 border-[var(--brand-green)] text-[var(--brand-green)] font-black uppercase tracking-widest text-xs hover:bg-[var(--brand-green)] hover:text-white transition">Message WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -220,278 +212,131 @@
     <section class="py-24 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div class="reveal">
-                <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Gain Confidence with <span class="text-red-600">EdgeL Driving School</span></h2>
-                <p class="text-slate-600 font-medium mb-6 leading-relaxed">Located in Ewell, EdgeL Driving School is dedicated to providing high-quality, patient, and professional driving tuition. With a 96% recommendation rate from over 400 followers, our focus is on creating safe, competent drivers who feel prepared for the road and the test center alike.</p>
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Learn With A <span class="text-[var(--brand-green)]">Local Expert</span></h2>
+                <p class="text-slate-600 font-medium mb-6 leading-relaxed">EdgeL Driving School is Ewell's choice for high-quality instruction. We focus on building confidence, safety, and technical skill, ensuring you don't just pass your test, but become a driver for life. Our 96% recommendation rate is a testament to our patient approach.</p>
                 <div class="grid grid-cols-2 gap-6">
-                    <div class="border-l-4 border-red-600 pl-4">
-                        <p class="text-2xl font-black text-[var(--brand-navy)]">Ewell</p>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-wrap">Local Expertise & Routes</p>
+                    <div class="border-l-4 border-[var(--brand-green)] pl-4">
+                        <p class="text-2xl font-black text-[var(--brand-navy)]">96%</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Student Approval</p>
                     </div>
                     <div class="border-l-4 border-red-600 pl-4">
-                        <p class="text-2xl font-black text-[var(--brand-navy)]">Top Rated</p>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">96% Student Approval</p>
+                        <p class="text-2xl font-black text-[var(--brand-navy)]">Ewell</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-wrap">Local Area Specialist</p>
                     </div>
                 </div>
             </div>
-            <div class="reveal bg-gradient-to-tr from-slate-100 to-white rounded-2xl h-80 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 relative overflow-hidden">
-                <div class="absolute inset-0 opacity-5 pointer-events-none">
-                    <svg width="100%" height="100%"><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#grid)" /></svg>
+            <div class="reveal bg-slate-50 rounded-2xl p-12 flex flex-col items-center justify-center border border-slate-200 relative overflow-hidden">
+                <div class="w-32 h-32 bg-white rounded-full shadow-xl flex items-center justify-center border-4 border-[var(--brand-green)] mb-6 z-10">
+                    <i data-lucide="shield-check" class="w-16 h-16 text-[var(--brand-green)]"></i>
                 </div>
-                <div class="w-32 h-32 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-red-600 mb-6 z-10">
-                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-[var(--brand-navy)]" fill="currentColor">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
-                </div>
-                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 z-10">DVSA Approved Instruction</p>
-                <div class="absolute bottom-4 right-4 bg-red-600 text-white p-2 rounded-full"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 z-10">DVSA Registered Professional</p>
             </div>
         </div>
     </section>
 
     <section id="services" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Tuition <span class="text-red-600">Services</span></h2>
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Tuition <span class="text-[var(--brand-green)]">Services</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="service-grid-item p-8 bg-white">
-                    <i data-lucide="zap" class="text-red-600 mb-4"></i>
-                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Beginner Courses</h3>
-                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Foundational training designed to build your confidence from day one.</p>
+                    <i data-lucide="star" class="text-[var(--brand-green)] mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2">Beginners</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Step-by-step guidance for absolute beginners.</p>
                 </div>
                 <div class="service-grid-item p-8 bg-white">
-                    <i data-lucide="timer" class="text-red-600 mb-4"></i>
-                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Refresher Lessons</h3>
-                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Perfect for those who haven't driven in a while and need a confidence boost.</p>
+                    <i data-lucide="navigation" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2">Refreshers</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Update your skills and regain confidence.</p>
                 </div>
                 <div class="service-grid-item p-8 bg-white">
-                    <i data-lucide="help-circle" class="text-red-600 mb-4"></i>
-                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Test Preparation</h3>
-                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Mastering local Ewell test routes and the "Show Me Tell Me" section.</p>
+                    <i data-lucide="check-circle-2" class="text-[var(--brand-green)] mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2">Mock Tests</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Full simulation on local Ewell routes.</p>
                 </div>
                 <div class="service-grid-item p-8 bg-white">
-                    <i data-lucide="file-check" class="text-red-600 mb-4"></i>
-                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Mock Exams</h3>
-                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Full simulation of the driving test to ensure you are 100% ready.</p>
+                    <i data-lucide="fast-forward" class="text-[var(--brand-navy)] mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2">Intensive</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Focused training to pass in less time.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 bg-[var(--brand-silver)]">
+    <section class="py-16 bg-[var(--brand-navy)] text-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
                 <div class="reveal">
-                    <div class="text-5xl font-black text-[var(--brand-navy)] mb-2" id="stat1">400+</div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Social Followers</div>
+                    <div class="text-5xl font-black text-[var(--brand-green)] mb-2" id="stat1">400+</div>
+                    <div class="text-[10px] font-black opacity-40 uppercase tracking-[0.3em]">Followers</div>
                 </div>
                 <div class="reveal">
                     <div class="text-5xl font-black text-red-600 mb-2" id="stat2">96%</div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Recommendation</div>
+                    <div class="text-[10px] font-black opacity-40 uppercase tracking-[0.3em]">Referral Rate</div>
                 </div>
                 <div class="reveal">
-                    <div class="text-5xl font-black text-[var(--brand-navy)] mb-2" id="stat3">16</div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Verified Reviews</div>
+                    <div class="text-5xl font-black text-[var(--brand-green)] mb-2" id="stat3">16</div>
+                    <div class="text-[10px] font-black opacity-40 uppercase tracking-[0.3em]">Reviews</div>
                 </div>
                 <div class="reveal">
-                    <div class="text-5xl font-black text-red-600 mb-2" id="stat4">100%</div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">DVSA Registered</div>
+                    <div class="text-5xl font-black text-white mb-2" id="stat4">100%</div>
+                    <div class="text-[10px] font-black opacity-40 uppercase tracking-[0.3em]">DVSA Certified</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12">New <span class="text-red-600">Passes</span></h2>
-            <div class="gallery-scroll">
-                <div class="gallery-item flex flex-col items-center justify-center p-4">
-                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="camera" class="text-white w-12 h-12"></i></div>
-                    <p class="font-black uppercase text-xs tracking-tighter">Pass in Ewell!</p>
-                </div>
-                <div class="gallery-item flex flex-col items-center justify-center p-4">
-                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="camera" class="text-white w-12 h-12"></i></div>
-                    <p class="font-black uppercase text-xs tracking-tighter">First Time Success</p>
-                </div>
-                <div class="gallery-item flex flex-col items-center justify-center p-4">
-                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="camera" class="text-white w-12 h-12"></i></div>
-                    <p class="font-black uppercase text-xs tracking-tighter">EdgeL Achievement</p>
-                </div>
-                <div class="gallery-item flex flex-col items-center justify-center p-4">
-                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="camera" class="text-white w-12 h-12"></i></div>
-                    <p class="font-black uppercase text-xs tracking-tighter">Local Test Pass</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 bg-[var(--brand-navy)] text-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div id="story-slider" class="slider-wrap">
-                <div class="slide active">
-                    <p class="text-2xl font-bold italic mb-4">"Absolutely brilliant instructor. Very patient and helped me pass with confidence."</p>
-                    <p class="text-red-500 font-black uppercase tracking-widest text-xs">Verified Student Review</p>
-                </div>
-                <div class="slide">
-                    <p class="text-2xl font-bold italic mb-4">"96% recommend is no joke. The best driving school in the Ewell area by far."</p>
-                    <p class="text-red-500 font-black uppercase tracking-widest text-xs">Verified Student</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="py-32 bg-slate-50 border-y border-slate-200">
+    <section id="pricing" class="py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 text-center mb-20">
-            <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--brand-navy)]">Tuition <span class="text-red-600">Options</span></h2>
+            <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--brand-navy)]">Lesson <span class="text-[var(--brand-green)]">Pricing</span></h2>
         </div>
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
-            <div class="reveal bg-white p-10 shadow-xl border-t-8 border-slate-200">
-                <h4 class="text-xl font-bold mb-10 uppercase tracking-tighter">Pay As You Go</h4>
-                <div class="text-5xl font-black text-[var(--brand-navy)] mb-10">£—</div>
-                <ul class="space-y-4 mb-10 text-xs font-bold text-slate-400 uppercase tracking-widest text-left">
-                    <li>★ Single Hourly Lessons</li>
-                    <li>★ Flexible Scheduling</li>
-                </ul>
-                <a href="tel:07795473108" class="block text-center py-5 bg-[var(--brand-navy)] text-white font-black uppercase tracking-widest text-[10px]">Call 07795 473108</a>
+            <div class="reveal bg-slate-50 p-10 rounded-xl border-t-8 border-slate-200">
+                <h4 class="text-xl font-bold mb-6 uppercase tracking-tighter">Pay As You Go</h4>
+                <div class="text-4xl font-black text-[var(--brand-navy)] mb-10">Standard Rate</div>
+                <a href="tel:07795473108" class="block text-center py-4 bg-[var(--brand-navy)] text-white font-black uppercase text-[10px]">Call For Info</a>
             </div>
-            <div class="reveal bg-white p-10 shadow-2xl border-t-8 border-red-600 relative scale-105 z-10">
-                <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-1 text-[10px] font-black uppercase tracking-widest">Popular Choice</div>
-                <h4 class="text-xl font-bold mb-10 uppercase tracking-tighter">Block Booking</h4>
-                <div class="text-5xl font-black text-[var(--brand-navy)] mb-10">SAVE</div>
-                <ul class="space-y-4 mb-10 text-xs font-bold text-slate-400 uppercase tracking-widest text-left">
-                    <li>★ Discounted Hourly Rates</li>
-                    <li>★ Guaranteed Weekly Slots</li>
-                </ul>
-                <a href="tel:07795473108" class="block text-center py-5 btn-red font-black uppercase tracking-widest text-[10px]">Inquire Today</a>
+            <div class="reveal bg-white p-10 rounded-xl border-t-8 border-[var(--brand-green)] shadow-2xl scale-105">
+                <h4 class="text-xl font-bold mb-6 uppercase tracking-tighter">Block Booking</h4>
+                <div class="text-4xl font-black text-[var(--brand-green)] mb-10">Best Value</div>
+                <a href="tel:07795473108" class="block text-center py-4 btn-green font-black uppercase text-[10px]">Save On Lessons</a>
             </div>
-            <div class="reveal bg-white p-10 shadow-xl border-t-8 border-slate-200">
-                <h4 class="text-xl font-bold mb-10 uppercase tracking-tighter">Intensive</h4>
-                <div class="text-5xl font-black text-[var(--brand-navy)] mb-10">Fast</div>
-                <ul class="space-y-4 mb-10 text-xs font-bold text-slate-400 uppercase tracking-widest text-left">
-                    <li>★ Short-Term Target Pass</li>
-                    <li>★ High Frequency Training</li>
-                </ul>
-                <a href="tel:07795473108" class="block text-center py-5 bg-[var(--brand-navy)] text-white font-black uppercase tracking-widest text-[10px]">Call 07795 473108</a>
+            <div class="reveal bg-slate-50 p-10 rounded-xl border-t-8 border-red-600">
+                <h4 class="text-xl font-bold mb-6 uppercase tracking-tighter">Refresher</h4>
+                <div class="text-4xl font-black text-[var(--brand-navy)] mb-10">Customized</div>
+                <a href="tel:07795473108" class="block text-center py-4 bg-[var(--brand-navy)] text-white font-black uppercase text-[10px]">Book Today</a>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
-            <div>
-                <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Facebook <span class="text-red-600">Activity</span></h2>
-                <div class="bg-slate-50 p-8 rounded border border-slate-100 mb-4">
-                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-                    <p class="font-bold text-slate-700 italic">"EdgeL Driving School has a community of over 400 followers and 405 posts. Stay updated with our latest news and passes!"</p>
-                </div>
-            </div>
-            <div>
-                <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Our <span class="text-red-600">Location</span></h2>
-                <div class="bg-slate-100 p-8 rounded border border-slate-200 flex flex-col justify-center items-center text-center">
-                    <i data-lucide="map-pin" class="text-red-600 w-10 h-10 mb-4"></i>
-                    <p class="font-black uppercase tracking-widest text-sm mb-2 text-[var(--brand-navy)]">Ewell, United Kingdom</p>
-                    <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">Expert instruction across Ewell and neighboring areas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-red-600 text-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black uppercase tracking-tight mb-4 text-white">Start Your Journey Today</h2>
-            <p class="font-bold opacity-90 uppercase text-xs tracking-widest mb-8">Contact EdgeL Driving School for availability and pricing.</p>
-            <button onclick="toggleReferModal()" class="px-8 py-4 bg-white text-red-600 font-black uppercase text-[10px] tracking-widest">View Social Proof</button>
-        </div>
-    </section>
-
-    <section id="callback" class="py-24 bg-[var(--brand-navy)] text-white">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4">Message <span class="text-red-600">Us Directly</span></h2>
-                <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Get a response regarding lessons in Ewell</p>
-            </div>
-            <form class="space-y-4">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 p-5 font-bold text-xs uppercase focus:outline-none focus:border-red-600 transition">
-                    <input type="tel" placeholder="Phone Number" class="w-full bg-white/5 border border-white/10 p-5 font-bold text-xs uppercase focus:outline-none focus:border-red-600 transition">
-                </div>
-                <button type="submit" class="w-full btn-red py-6 font-black uppercase tracking-widest text-xs">Request Callback</button>
-            </form>
-        </div>
-    </section>
-
-    <section class="py-24 bg-slate-50">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12 text-center">EdgeL <span class="text-red-600">FAQ</span></h2>
-            <div id="faq-container">
-                <div class="faq-item active">
-                    <button class="w-full py-6 flex justify-between items-center text-left font-black uppercase text-sm tracking-widest">
-                        Do you cover Ewell and surroundings?
-                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="text-slate-500 font-medium">Yes, we are based in Ewell and provide tuition to all surrounding local areas and test centers.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="w-full py-6 flex justify-between items-center text-left font-black uppercase text-sm tracking-widest">
-                        What is the best way to contact?
-                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="text-slate-500 font-medium">You can call or text us at 07795 473108, or send a message via our Facebook page "EdgeL Driving School".</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-[var(--brand-navy)] text-white pt-20 pb-32 border-t border-white/5"> <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+    <footer class="bg-[var(--brand-navy)] text-white pt-20 pb-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12">
                 <div class="logo-wrap !text-white mb-8 md:mb-0">
-                    EDGE<span class="text-red-600">L</span> DRIVING SCHOO<div class="l-plate-icon"><span>L</span></div>
+                    EDGE<span class="text-red-600">L</span> <span class="logo-school">DRIVING SCHOOL</span>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition duration-500 text-white">
-                        <i data-lucide="facebook" class="w-6 h-6"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition duration-500 text-white">
-                        <i data-lucide="instagram" class="w-6 h-6"></i>
-                    </a>
-                    <a href="https://wa.me/447795473108" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition duration-500 text-white">
-                        <i data-lucide="message-square" class="w-6 h-6"></i>
-                    </a>
+                    <a href="https://wa.me/447795473108" class="hover:text-[var(--brand-green)] transition"><i data-lucide="message-square"></i></a>
+                    <a href="#" class="hover:text-[var(--brand-green)] transition"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="hover:text-[var(--brand-green)] transition"><i data-lucide="instagram"></i></a>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-8">
-                <div class="text-center md:text-left">
-                    <p class="text-xl font-black tracking-tight">07795 473108</p>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-2">Professional, Patient Driving Instruction</p>
+            <div class="border-t border-white/10 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <p class="text-xl font-black">07795 473108</p>
+                    <p class="text-[10px] uppercase font-bold opacity-50 tracking-widest">Ewell, United Kingdom</p>
                 </div>
-                <p class="text-[9px] text-slate-500 font-black uppercase tracking-[0.4em]">&copy; 2026 EDGEL DRIVING SCHOOL | EWELL</p>
+                <p class="text-[9px] font-black uppercase tracking-[0.4em] opacity-40">&copy; 2026 EDGEL DRIVING SCHOOL</p>
             </div>
         </div>
     </footer>
 
-    <div id="referModal">
-        <div class="bg-white p-12 max-w-md w-full rounded-2xl relative animate__animated animate__zoomIn">
-            <button onclick="toggleReferModal()" class="absolute top-6 right-6 text-slate-400 hover:text-red-600 transition"><i data-lucide="x"></i></button>
-            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-8">
-                <i data-lucide="thumbs-up" class="w-10 h-10"></i>
-            </div>
-            <h3 class="text-2xl font-black uppercase tracking-tighter text-center mb-4">EdgeL <span class="text-red-600">Social Proof</span></h3>
-            <p class="text-slate-500 text-center font-medium mb-8 leading-relaxed">Join over 400 students who trust EdgeL Driving School for their journey to freedom. 96% of our 16 reviewers recommend our training!</p>
-            <a href="tel:07795473108" class="block w-full text-center btn-red py-5 font-black uppercase tracking-widest text-[10px]">Call for Availability</a>
-        </div>
-    </div>
-
     <div class="cta-dock md:hidden">
         <a href="tel:07795473108"><i data-lucide="phone" class="w-5 h-5 mb-1"></i>CALL</a>
-        <a href="https://wa.me/447795473108"><i data-lucide="message-square" class="w-5 h-5 mb-1"></i>WHATSAPP</a>
+        <a href="https://wa.me/447795473108" class="bg-[var(--brand-green)] !border-none"><i data-lucide="message-square" class="w-5 h-5 mb-1"></i>WHATSAPP</a>
         <a href="sms:07795473108"><i data-lucide="smartphone" class="w-5 h-5 mb-1"></i>TEXT</a>
-        <a href="#callback" class="bg-red-600 !border-none"><i data-lucide="clock" class="w-5 h-5 mb-1"></i>RECALL</a>
     </div>
 
     <script>
-        // CRITICAL: Ensure icons are created after DOM is fully ready
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
         });
@@ -499,21 +344,18 @@
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('open');
-            lucide.createIcons(); 
         });
-        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
         });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp');
+                    entry.target.classList.add('active');
                 }
             });
         }, { threshold: 0.1 });
@@ -543,27 +385,6 @@
         });
         const statEl = document.getElementById('stat1');
         if(statEl) statsObserver.observe(statEl);
-
-        document.querySelectorAll('.faq-item button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.parentElement.classList.toggle('active');
-            });
-        });
-
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            if(slides.length > 0) {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }
-        }, 5000);
-
-        function toggleReferModal() {
-            document.getElementById('referModal').classList.toggle('active');
-            lucide.createIcons();
-        }
     </script>
 </body>
 </html>
