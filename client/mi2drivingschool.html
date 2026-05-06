@@ -1,1 +1,517 @@
-hh
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi2 Driving School | Excellence in Driving</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-navy: #0a1d37; 
+            --brand-red: #b91c1c;
+            --brand-silver: #f8fafc;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        
+        /* Replicated Mi2 Logo Logic */
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--brand-navy);
+            font-size: 1.8rem;
+        }
+        .mi2-logo-svg {
+            height: 40px;
+            margin-right: 8px;
+        }
+
+        /* Continuous Smooth Driving Animation */
+        .car-hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 320px; 
+            display: flex;
+            align-items: flex-end; 
+            overflow: hidden; 
+        }
+        
+        #panningCar {
+            width: 450px;
+            height: 260px; 
+            object-fit: contain; 
+            position: absolute;
+            bottom: 30px; 
+            z-index: 20; 
+            animation: driveForward 12s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes driveForward {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* Hamburger Menu Styles */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .road-indicator {
+            height: 4px;
+            background: var(--brand-silver);
+            width: 100%;
+            position: absolute;
+            bottom: 35px; 
+            z-index: 5; 
+        }
+        .road-indicator::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, var(--brand-red) 50%, transparent 50%);
+            background-size: 40px 100%;
+            animation: roadMove 0.5s linear infinite;
+        }
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -40px 0; }
+        }
+
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); }
+        .premium-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-top: 4px solid transparent; }
+        .premium-card:hover { transform: translateY(-12px); border-color: var(--brand-red); box-shadow: 0 25px 50px -12px rgba(10, 29, 55, 0.2); }
+        .ticker-wrap { overflow: hidden; background: var(--brand-navy); color: white; padding: 12px 0; border-bottom: 3px solid var(--brand-red); }
+        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .btn-red { background-color: var(--brand-red); color: white; transition: 0.3s; }
+        .btn-red:hover { background-color: #991b1b; transform: scale(1.05); }
+
+        .faq-item { border-bottom: 1px solid #edf2f7; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
+        .faq-item.active i { transform: rotate(180deg); }
+        
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-navy); display: flex; z-index: 100; border-top: 3px solid var(--brand-red); }
+        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        
+        .gallery-scroll { display: flex; overflow-x: auto; gap: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .gallery-item { min-width: 280px; height: 350px; scroll-snap-align: start; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+        
+        .service-grid-item { border: 1px solid #e2e8f0; transition: all 0.3s ease; cursor: pointer; }
+        .service-grid-item:hover { border-color: var(--brand-red); background: #fff; transform: translateY(-5px); }
+
+        .slider-wrap { position: relative; overflow: hidden; }
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+
+        #referModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        #referModal.active { display: flex; }
+    </style>
+</head>
+<body class="text-slate-900"> 
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="logo-wrap">
+                    <svg class="mi2-logo-svg" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="38" font-family="Archivo Black, sans-serif" font-size="42" fill="#0a1d37">M</text>
+                        <circle cx="58" cy="28" r="14" fill="none" stroke="#b91c1c" stroke-width="3"/>
+                        <path d="M50 28 h16 M58 20 v16" stroke="#b91c1c" stroke-width="2"/>
+                        <text x="80" y="38" font-family="Archivo Black, sans-serif" font-size="42" fill="#0a1d37">2</text>
+                    </svg>
+                    <span class="hidden sm:inline text-sm font-black tracking-widest ml-2 border-l-2 border-red-600 pl-3">DRIVING SCHOOL</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-10 font-bold text-xs uppercase tracking-widest">
+                <a href="#services" class="hover:text-[var(--brand-red)] transition">Coverage</a>
+                <a href="#pricing" class="hover:text-[var(--brand-red)] transition">Pricing</a>
+                <a href="tel:07709041355" class="hover:text-[var(--brand-red)] transition">07709 041 355</a>
+                <a href="tel:07709041355" class="btn-red px-6 py-3 rounded-sm shadow-lg">Call To Book</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-[var(--brand-navy)]">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-[var(--brand-navy)] z-[100] p-10 flex flex-col shadow-2xl">
+        <button id="close-btn" class="self-end text-white mb-12">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <div class="flex flex-col space-y-8 text-white font-black text-2xl uppercase tracking-tighter">
+            <a href="#services" class="mobile-link">Areas Covered</a>
+            <a href="#pricing" class="mobile-link">Pricing</a>
+            <a href="tel:07709041355" class="mobile-link">Call Mi2</a>
+            <a href="https://wa.me/447709041355" class="text-red-500 mobile-link">WhatsApp Us</a>
+        </div>
+        <div class="mt-auto border-t border-white/10 pt-8">
+            <div class="flex space-x-6 text-white/50">
+                <i data-lucide="facebook"></i>
+                <i data-lucide="instagram"></i>
+                <i data-lucide="message-circle"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="ticker-wrap font-bold uppercase text-[10px] tracking-[0.2em]">
+        <div class="ticker space-x-16">
+            <span>★ DVSA Grade A Instructor</span>
+            <span>★ Specialist in Barking & Goodmayes</span>
+            <span>★ English • Punjabi • Hindi</span>
+            <span>★ Excellence in Driving Tuition</span>
+        </div>
+    </div>
+
+    <section class="relative min-h-[70vh] flex flex-col items-center justify-center bg-white py-20 overflow-hidden">
+        <div class="w-full mb-16">
+            <div class="car-hero-container">
+                <div class="road-indicator"></div>
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/tony.jpg" alt="Mi2 Driving School Car">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center z-20">
+            <div class="animate__animated animate__fadeInUp">
+                <h1 class="text-5xl md:text-7xl font-black text-[var(--brand-navy)] leading-tight mb-4 uppercase tracking-tighter">
+                    Skill for <span class="text-red-600">Life.</span>
+                </h1>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.2em] mb-10">Excellence in Driving Tuition</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="tel:07709041355" class="px-12 py-5 btn-red font-black uppercase tracking-widest text-xs">Call 07709 041 355</a>
+                    <a href="https://wa.me/447709041355" class="px-12 py-5 border-2 border-[var(--brand-navy)] text-[var(--brand-navy)] font-black uppercase tracking-widest text-xs hover:bg-[var(--brand-navy)] hover:text-white transition">WhatsApp Instructor</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Master the Road with <span class="text-red-600">Mi2 Driving School</span></h2>
+                <p class="text-slate-600 font-medium mb-6 leading-relaxed">Based on the doorstep of the Goodmayes Test Centre road (Kildowan Road), I provide professional, patient coaching tailored to your needs. As a Grade A instructor, I don't just teach you to pass a test—I teach you to be a safe, confident driver for life.</p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="border-l-4 border-red-600 pl-4">
+                        <p class="text-2xl font-black text-[var(--brand-navy)]">Expert</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-wrap">DVSA Grade A Instructor</p>
+                    </div>
+                    <div class="border-l-4 border-red-600 pl-4">
+                        <p class="text-2xl font-black text-[var(--brand-navy)]">Multilingual</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">English • Punjabi • Hindi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal bg-gradient-to-tr from-slate-100 to-white rounded-2xl h-80 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-5 pointer-events-none">
+                    <svg width="100%" height="100%"><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#grid)" /></svg>
+                </div>
+                <div class="w-32 h-32 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-red-600 mb-6 z-10">
+                    <i data-lucide="award" class="w-16 h-16 text-[var(--brand-navy)]"></i>
+                </div>
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 z-10">Excellence in Driving</p>
+                <div class="absolute bottom-4 right-4 bg-red-600 text-white p-2 rounded-full"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Test Centre <span class="text-red-600">Coverage</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="service-grid-item p-8 bg-white">
+                    <i data-lucide="map-pin" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Goodmayes & Barking</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Specialist local expertise on the primary test routes.</p>
+                </div>
+                <div class="service-grid-item p-8 bg-white">
+                    <i data-lucide="navigation" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Wanstead & Chingford</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Comprehensive training for North and East London centers.</p>
+                </div>
+                <div class="service-grid-item p-8 bg-white">
+                    <i data-lucide="milestone" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Tilbury & Loughton</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Extended coverage for Essex-based testing locations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-[var(--brand-silver)]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div class="reveal">
+                    <div class="text-5xl font-black text-[var(--brand-navy)] mb-2" id="stat1">1000+</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Passes</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-red-600 mb-2" id="stat2">5.0</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Star Rating</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-[var(--brand-navy)] mb-2" id="stat3">3</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Languages</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-red-600 mb-2" id="stat4">A</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">DVSA Grade</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12">Successful <span class="text-red-600">Students</span></h2>
+            <div class="gallery-scroll">
+                <div class="gallery-item flex flex-col items-center justify-center p-4">
+                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="check-circle" class="text-green-600 w-12 h-12"></i></div>
+                    <p class="font-black uppercase text-xs tracking-tighter">Goodmayes Pass</p>
+                </div>
+                <div class="gallery-item flex flex-col items-center justify-center p-4">
+                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="check-circle" class="text-green-600 w-12 h-12"></i></div>
+                    <p class="font-black uppercase text-xs tracking-tighter">Barking Success</p>
+                </div>
+                <div class="gallery-item flex flex-col items-center justify-center p-4">
+                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="check-circle" class="text-green-600 w-12 h-12"></i></div>
+                    <p class="font-black uppercase text-xs tracking-tighter">Wanstead First-Time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[var(--brand-navy)] text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div id="story-slider" class="slider-wrap">
+                <div class="slide active">
+                    <p class="text-2xl font-bold italic mb-4">"Learn a skill for life and not just passing a test."</p>
+                    <p class="text-red-500 font-black uppercase tracking-widest text-xs">Mi2 Driving School Philosophy</p>
+                </div>
+                <div class="slide">
+                    <p class="text-2xl font-bold italic mb-4">"Excellent coach. Passed first time at Goodmayes TC thanks to Mi2!"</p>
+                    <p class="text-red-500 font-black uppercase tracking-widest text-xs">Verified Student</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-32 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-20">
+            <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--brand-navy)]">Tuition <span class="text-red-600">Investment</span></h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+            <div class="reveal bg-white p-10 shadow-xl border-t-8 border-slate-200">
+                <h4 class="text-xl font-bold mb-10 uppercase tracking-tighter">Pay As You Go</h4>
+                <div class="text-3xl font-black text-[var(--brand-navy)] mb-10">Competitive Rates</div>
+                <ul class="space-y-4 mb-10 text-xs font-bold text-slate-400 uppercase tracking-widest text-left">
+                    <li>★ Single Hour Lessons</li>
+                    <li>★ Flexible Scheduling</li>
+                </ul>
+                <a href="tel:07709041355" class="block text-center py-5 bg-[var(--brand-navy)] text-white font-black uppercase tracking-widest text-[10px]">Call 07709 041 355</a>
+            </div>
+            <div class="reveal bg-white p-10 shadow-2xl border-t-8 border-red-600 relative scale-105 z-10">
+                <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-1 text-[10px] font-black uppercase tracking-widest">Most Popular</div>
+                <h4 class="text-xl font-bold mb-10 uppercase tracking-tighter">10 Hour Block</h4>
+                <div class="text-3xl font-black text-[var(--brand-navy)] mb-10">Discounted Rate</div>
+                <ul class="space-y-4 mb-10 text-xs font-bold text-slate-400 uppercase tracking-widest text-left">
+                    <li>★ Accelerated Learning</li>
+                    <li>★ Full Course Syllabus</li>
+                </ul>
+                <a href="tel:07709041355" class="block text-center py-5 btn-red font-black uppercase tracking-widest text-[10px]">Call 07709 041 355</a>
+            </div>
+            <div class="reveal bg-white p-10 shadow-xl border-t-8 border-slate-200">
+                <h4 class="text-xl font-bold mb-10 uppercase tracking-tighter">Test Day Pack</h4>
+                <div class="text-3xl font-black text-[var(--brand-navy)] mb-10">Complete Support</div>
+                <ul class="space-y-4 mb-10 text-xs font-bold text-slate-400 uppercase tracking-widest text-left">
+                    <li>★ Pre-Test Warmup</li>
+                    <li>★ Car Hire for Test</li>
+                </ul>
+                <a href="tel:07709041355" class="block text-center py-5 bg-[var(--brand-navy)] text-white font-black uppercase tracking-widest text-[10px]">Call 07709 041 355</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Google <span class="text-red-600">Reviews</span></h2>
+                <div class="bg-slate-50 p-8 rounded border border-slate-100 mb-4">
+                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    <p class="font-bold text-slate-700 italic">"Highly recommended. Excellent instructor who makes you feel at ease immediately. Passed my test at Goodmayes first time!"</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Location <span class="text-red-600">Insight</span></h2>
+                <div class="bg-slate-100 p-8 rounded border border-slate-200 flex flex-col justify-center items-center text-center">
+                    <i data-lucide="map-pin" class="text-red-600 w-10 h-10 mb-4"></i>
+                    <p class="font-black uppercase tracking-widest text-sm mb-2 text-[var(--brand-navy)]">Goodmayes Test Centre Road</p>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">Kildowan Road, Goodmayes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-red-600 text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-black uppercase tracking-tight mb-4 text-white">Ready to Start?</h2>
+            <p class="font-bold opacity-90 uppercase text-xs tracking-widest mb-8">Speak directly with a Grade A instructor today.</p>
+            <a href="tel:07709041355" class="px-12 py-5 bg-white text-red-600 font-black uppercase tracking-widest text-xs inline-block">Call 07709 041 355</a>
+        </div>
+    </section>
+
+    <section id="callback" class="py-24 bg-[var(--brand-navy)] text-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4">Book via <span class="text-red-600">WhatsApp</span></h2>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Instant response during business hours</p>
+            </div>
+            <div class="flex justify-center">
+                <a href="https://wa.me/447709041355" class="w-full btn-red py-6 font-black uppercase tracking-widest text-xs text-center">Message 07709 041 355</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12 text-center">Tuition <span class="text-red-600">FAQ</span></h2>
+            <div id="faq-container">
+                <div class="faq-item active">
+                    <button class="w-full py-6 flex justify-between items-center text-left font-black uppercase text-sm tracking-widest">
+                        Do you cover Goodmayes Test Routes?
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-slate-500 font-medium">Yes, we are based directly on the Goodmayes Test Centre road and have unparalleled knowledge of the local routes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="w-full py-6 flex justify-between items-center text-left font-black uppercase text-sm tracking-widest">
+                        What languages do you teach in?
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-slate-500 font-medium">Instruction is available in English, Punjabi, and Hindi to ensure you are comfortable throughout your training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[var(--brand-navy)] text-white pt-20 pb-32 border-t border-white/5"> 
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="logo-wrap !text-white mb-8 md:mb-0">
+                    Mi2 DRIVING SCHOOL
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://wa.me/447709041355" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition duration-500 text-white">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </a>
+                    <a href="tel:07709041355" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition duration-500 text-white">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-xl font-black tracking-tight">07709 041 355</p>
+                    <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-2">DVSA Grade A Certified • Fully Insured</p>
+                </div>
+                <p class="text-[9px] text-slate-500 font-black uppercase tracking-[0.4em]">&copy; 2026 Mi2 DRIVING SCHOOL</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cta-dock md:hidden">
+        <a href="tel:07709041355"><i data-lucide="phone" class="w-5 h-5 mb-1"></i>CALL</a>
+        <a href="https://wa.me/447709041355"><i data-lucide="message-square" class="w-5 h-5 mb-1"></i>WHATSAPP</a>
+        <a href="sms:07709041355"><i data-lucide="smartphone" class="w-5 h-5 mb-1"></i>TEXT</a>
+        <a href="tel:07709041355" class="bg-red-600 !border-none"><i data-lucide="calendar" class="w-5 h-5 mb-1"></i>BOOK</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+            lucide.createIcons(); 
+        });
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if(!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + (id === 'stat1' ? '+' : '');
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                animateValue('stat1', 0, 1000, 2000);
+                animateValue('stat2', 0, 5, 2000);
+                animateValue('stat3', 0, 3, 2000);
+                statsObserver.unobserve(entries[0].target);
+            }
+        });
+        const statEl = document.getElementById('stat1');
+        if(statEl) statsObserver.observe(statEl);
+
+        document.querySelectorAll('.faq-item button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.classList.toggle('active');
+            });
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
