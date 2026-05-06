@@ -39,7 +39,7 @@
         .logo-container { display: flex; align-items: center; gap: 10px; }
         .wythall-logo { width: 210px; height: auto; } 
 
-        /* ===== HERO CAR SECTION - STABILIZED ===== */
+        /* ===== HERO CAR SECTION - FIXED FOR BOTH ORIENTATIONS ===== */
         .car-hero-container {
             position: relative;
             z-index: 10;
@@ -57,22 +57,23 @@
         /* Combined wrapper to keep track and car locked together */
         .road-environment {
             position: absolute;
-            bottom: 60px; /* Fixed anchor point for the road */
+            bottom: 40px; /* FIXED: Unified anchor point for road and car */
             width: 100%;
-            height: 0;
+            height: auto;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
         }
 
-        /* MASSIVE CAR IMAGE */
+        /* MASSIVE CAR IMAGE - NOW TOUCHES TRACK PERFECTLY */
         #panningCar {
             width: 100%;
             max-width: 1400px;
             height: auto;
             object-fit: contain;
             position: absolute;
-            bottom: -22px; /* Pulls wheels down to the line */
+            bottom: 0; /* FIXED: Directly on the track baseline */
+            left: 0;
             z-index: 25;
             animation: driveForward 22s linear infinite;
             will-change: transform;
@@ -85,13 +86,13 @@
             100% { transform: translateX(100vw) scale(1.08); }
         }
 
-        /* === ROAD TRACK - VISIBLE LINE === */
+        /* === ROAD TRACK - NOW ALIGNED WITH CAR === */
         .road-indicator {
             height: 5px;
             background: transparent;
             width: 100%;
             position: absolute;
-            bottom: 0;
+            bottom: 0; /* FIXED: Same bottom as car */
             left: 0;
             z-index: 15;
             pointer-events: none;
@@ -133,16 +134,17 @@
             100% { transform: translateX(-33.33%); }
         }
 
-        /* Shadow under car */
+        /* Shadow under car - now correctly positioned */
         .road-shadow {
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 0;
             width: 100%;
-            height: 10px;
-            background: rgba(0,0,0,0.08);
+            height: 12px;
+            background: rgba(0,0,0,0.1);
             z-index: 12;
-            filter: blur(4px);
+            filter: blur(6px);
+            border-radius: 50%;
         }
 
         /* HAMBURGER MENU */
@@ -186,24 +188,47 @@
         .footer-social-icon { transition: transform 0.2s, color 0.2s; cursor: pointer; }
         .footer-social-icon:hover { transform: translateY(-3px); color: var(--brand-red); }
 
-        /* ===== LANDSCAPE ORIENTATION ===== */
+        /* ===== LANDSCAPE ORIENTATION - CAR STAYS ON TRACK ===== */
         @media (orientation: landscape) {
             .car-hero-container {
                 min-height: 380px;
                 margin-top: -30px;
             }
-            .road-environment { bottom: 45px; }
-            #panningCar { bottom: -18px; }
+            .road-environment { 
+                bottom: 25px; /* FIXED: Adjusted for landscape but car stays aligned */
+            }
+            #panningCar { 
+                bottom: 0; /* FIXED: Stays on track */
+            }
+            .hero-main {
+                font-size: 3rem !important;
+            }
         }
 
-        /* ===== PORTRAIT MOBILE ===== */
+        /* ===== PORTRAIT MOBILE - CAR STAYS ON TRACK ===== */
         @media (orientation: portrait) and (max-width: 768px) {
             .car-hero-container {
                 min-height: 420px;
                 margin-top: -60px;
             }
+            .road-environment { 
+                bottom: 35px; /* FIXED: Portrait anchor */
+            }
+            #panningCar { 
+                bottom: 0; /* FIXED: Stays on track */
+            }
             .hero-main {
                 font-size: 3rem !important;
+            }
+        }
+        
+        /* Desktop extra large screens */
+        @media (min-width: 1440px) {
+            .road-environment {
+                bottom: 45px;
+            }
+            #panningCar {
+                bottom: 0;
             }
         }
         
