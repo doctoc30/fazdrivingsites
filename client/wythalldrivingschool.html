@@ -38,8 +38,7 @@
         .logo-container { display: flex; align-items: center; gap: 10px; }
         .wythall-logo { width: 210px; height: auto; } 
 
-
-        /* ===== HERO CAR SECTION - MASSIVE CAR, RESPONSIVE TOUCH ===== */
+/* ===== HERO CAR SECTION - MASSIVE CAR ===== */
 .car-hero-container {
     position: relative;
     z-index: 10;
@@ -54,15 +53,15 @@
     margin-bottom: -20px;
 }
 
-/* MASSIVE CAR IMAGE - wheels touch track using vw/vh responsive units */
+/* MASSIVE CAR IMAGE - wheels positioned relative to container */
 #panningCar {
     width: 100%;
     max-width: 1500px;
     height: auto;
     object-fit: contain; 
     position: relative;
-    /* Use vw for bottom offset so it scales with screen width */
-    bottom: max(25px, 3.5vw);
+    /* Use the same bottom value as the track's bottom so they align */
+    bottom: calc(3.2vw + 8px);
     z-index: 25; 
     animation: driveForward 22s linear infinite;
     will-change: transform;
@@ -77,14 +76,14 @@
     100% { transform: translateX(100vw) scale(1.08); }
 }
 
-/* === ROAD TRACK - RESPONSIVE POSITIONING === */
+/* === ROAD TRACK - MATCHES CAR'S BOTTOM POSITION === */
 .road-indicator {
     height: 5px;
     background: transparent; 
     width: 100%;
     position: absolute;
-    /* Use vw for bottom - scales with viewport to keep wheels touching */
-    bottom: max(38px, 4.8vw);
+    /* CRITICAL: Use EXACT SAME calculation as car's bottom */
+    bottom: calc(3.2vw + 8px);
     left: 0;
     z-index: 15; 
     pointer-events: none;
@@ -100,7 +99,7 @@
     width: 100%;
     height: 3px;
     background: #1e293b;
-    opacity: 0.6;
+    opacity: 0.65;
     border-radius: 2px;
 }
 
@@ -108,7 +107,7 @@
 .road-indicator::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: -1px;
     left: 0;
     width: 300%;
     height: 5px;
@@ -128,74 +127,88 @@
     100% { transform: translateX(-33.33%); }
 }
 
-/* Shadow under car for depth - responsive */
+/* Shadow under car */
 .road-shadow {
     position: absolute;
-    bottom: max(32px, 4.2vw);
+    /* Shadow sits slightly BELOW the track for realism */
+    bottom: calc(3.2vw + 2px);
     left: 0;
     width: 100%;
-    height: 8px;
+    height: 6px;
     background: rgba(0,0,0,0.1);
     z-index: 12;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
-/* ===== LANDSCAPE ORIENTATION SPECIFIC FIXES ===== */
-@media (orientation: landscape) and (max-height: 600px) {
+/* ===== LANDSCAPE ORIENTATION - KEEP WHEELS TOUCHING ===== */
+@media (orientation: landscape) {
     .car-hero-container {
-        min-height: 450px;
-        margin-top: -40px;
+        min-height: 460px;
+        margin-top: -45px;
     }
     #panningCar {
-        bottom: max(15px, 2.5vw);
-        max-width: 1200px;
-        transform: scale(0.95);
+        /* SAME calculation but scaled for landscape */
+        bottom: calc(2.5vw + 5px);
+        max-width: 1300px;
+        transform: scale(0.98);
     }
     @keyframes driveForward {
-        0% { transform: translateX(-130%) scale(0.95); }
-        100% { transform: translateX(100vw) scale(0.95); }
+        0% { transform: translateX(-130%) scale(0.98); }
+        100% { transform: translateX(100vw) scale(0.98); }
     }
     .road-indicator {
-        bottom: max(22px, 3.2vw);
+        bottom: calc(2.5vw + 5px);
     }
     .road-shadow {
-        bottom: max(18px, 2.8vw);
+        bottom: calc(2.5vw + 0px);
     }
 }
 
-/* Portrait mode fine-tuning */
+/* ===== PORTRAIT MOBILE ===== */
 @media (orientation: portrait) and (max-width: 768px) {
     .car-hero-container {
-        min-height: 450px;
+        min-height: 440px;
         margin-top: -75px;
     }
     #panningCar {
-        bottom: max(28px, 4vw);
-        transform: scale(1.1);
+        bottom: calc(4vw + 15px);
+        transform: scale(1.12);
+    }
+    @keyframes driveForward {
+        0% { transform: translateX(-140%) scale(1.12); }
+        100% { transform: translateX(100vw) scale(1.12); }
     }
     .road-indicator {
-        bottom: max(32px, 5vw);
+        bottom: calc(4vw + 15px);
+        height: 4px;
+    }
+    .road-indicator::after {
+        height: 4px;
     }
     .road-shadow {
-        bottom: max(26px, 4.2vw);
+        bottom: calc(4vw + 10px);
     }
 }
 
-/* Small mobile devices */
+/* ===== SMALL PHONES ===== */
 @media (max-width: 480px) {
     .car-hero-container {
-        min-height: 390px;
+        min-height: 380px;
         margin-top: -85px;
     }
     #panningCar {
-        bottom: max(22px, 3.8vw);
-        transform: scale(1.15);
+        bottom: calc(3.8vw + 12px);
+        transform: scale(1.16);
+    }
+    @keyframes driveForward {
+        0% { transform: translateX(-140%) scale(1.16); }
+        100% { transform: translateX(100vw) scale(1.16); }
     }
     .road-indicator {
-        bottom: max(28px, 4.5vw);
+        bottom: calc(3.8vw + 12px);
     }
     .road-shadow {
-        bottom: max(22px, 3.8vw);
+        bottom: calc(3.8vw + 7px);
     }
 }
      
