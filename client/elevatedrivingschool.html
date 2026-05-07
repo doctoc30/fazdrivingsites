@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevate Driving School | Nottingham's #1 Driving School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-black: #000000; 
+            --brand-gold: #FFC107; /* Replicating the gold/yellow from the flyer */
+            --brand-white: #ffffff;
+            --brand-gray: #1a1a1a;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        
+        /* Logo Logic - Replicating Elevate Logo */
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--brand-black);
+            text-transform: uppercase;
+            font-size: 1.8rem;
+            font-family: 'Archivo Black', sans-serif;
+        }
+        .l-plate-box {
+            background: white;
+            border: 3px solid #ff0000;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 2px;
+            border-radius: 4px;
+        }
+        .l-plate-box span {
+            color: #ff0000;
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        /* Continuous Smooth Driving Animation */
+        .car-hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 350px; 
+            display: flex;
+            align-items: flex-end; 
+            overflow: hidden; 
+            background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+        }
+        
+        #panningCar {
+            width: 450px;
+            height: auto; 
+            position: absolute;
+            bottom: 40px; 
+            z-index: 20; 
+            animation: driveForward 12s linear infinite;
+            will-change: transform;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+        }
+
+        @keyframes driveForward {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        .road-indicator {
+            height: 10px;
+            background: #222;
+            width: 100%;
+            position: absolute;
+            bottom: 40px; 
+            z-index: 5; 
+        }
+        .road-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-image: linear-gradient(to right, white 50%, transparent 50%);
+            background-size: 80px 100%;
+            animation: roadMove 0.3s linear infinite;
+        }
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -80px 0; }
+        }
+
+        /* Hamburger Menu */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+            background: var(--brand-black);
+        }
+        #mobile-menu.open { transform: translateX(0); }
+
+        .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        .premium-card { transition: all 0.4s ease; border-top: 6px solid var(--brand-gold); }
+        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(255, 193, 7, 0.3); }
+        
+        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: var(--brand-gold); padding: 15px 0; border-bottom: 4px solid var(--brand-gold); }
+        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        
+        .btn-gold { background-color: var(--brand-gold); color: black; transition: 0.3s; font-weight: 900; }
+        .btn-gold:hover { background-color: #e5ac00; transform: scale(1.05); }
+
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-black); display: flex; z-index: 100; border-top: 4px solid var(--brand-gold); }
+        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        
+        .gallery-scroll { display: flex; overflow-x: auto; gap: 1.5rem; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 20px 0; }
+        .gallery-item { min-width: 320px; height: 450px; scroll-snap-align: start; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .faq-btn { width: 100%; text-align: left; padding: 1.5rem 0; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .faq-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; }
+        .faq-item.active .faq-content { max-height: 200px; padding: 1rem 0; }
+        
+        .gold-tag { background: var(--brand-gold); color: black; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
+    </style>
+</head>
+<body class="text-slate-900"> 
+
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="logo-wrap">
+                E<div class="l-plate-box"><span>L</span></div>EVATE
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-10 font-black text-xs uppercase tracking-widest">
+                <a href="#services" class="hover:text-amber-500 transition">Lessons</a>
+                <a href="#pricing" class="hover:text-amber-500 transition">Intensive Courses</a>
+                <a href="tel:01158717475" class="hover:text-amber-500 transition">01158 717475</a>
+                <a href="https://wa.me/447811788760" class="btn-gold px-6 py-3 rounded-sm shadow-lg">WhatsApp Us</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full z-[100] p-10 flex flex-col shadow-2xl">
+        <button id="close-btn" class="self-end text-white mb-12">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <div class="flex flex-col space-y-8 text-white font-black text-3xl uppercase tracking-tighter">
+            <a href="#services">Driving Lessons</a>
+            <a href="#pricing">Intensive Courses</a>
+            <a href="tel:01158717475">Call Office</a>
+            <a href="https://wa.me/447811788760" class="text-amber-400">WhatsApp Now</a>
+        </div>
+    </div>
+
+    <div class="ticker-wrap font-bold uppercase text-xs tracking-widest">
+        <div class="ticker space-x-16">
+            <span>★ 1st Time Pass Specialists</span>
+            <span>★ Fully Qualified DVSA Instructors</span>
+            <span>★ Nottingham • Colwick • Chilwell • Ashfield</span>
+            <span>★ Intensive & Crash Courses Available</span>
+            <span>★ Manual & Automatic Tuition</span>
+            <span>★ 1st Time Pass Specialists</span>
+        </div>
+    </div>
+
+   <section class="relative min-h-[80vh] flex flex-col items-center justify-center bg-white py-12 overflow-hidden">
+        <div class="w-full mb-10">
+            <div class="car-hero-container">
+                <div class="road-indicator"></div>
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3957.png" alt="Elevate Driving School Car" style="filter: brightness(0.2) contrast(1.2);">
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center z-20">
+            <div class="animate__animated animate__fadeInUp">
+                <span class="gold-tag mb-4 inline-block">Driving Success</span>
+                <h1 class="text-6xl md:text-9xl font-black text-black leading-none mb-6 uppercase tracking-tighter">
+                    PASS <span class="text-amber-500">1ST TIME.</span>
+                </h1>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.3em] mb-12 text-sm md:text-lg">Premier Driving Lessons in Nottingham</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="tel:01158717475" class="px-10 py-5 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-amber-500 hover:text-black transition duration-300">Call 01158 717475</a>
+                    <a href="https://wa.me/447811788760" class="px-10 py-5 border-4 border-black text-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition duration-300">WhatsApp 07811 788760</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black uppercase tracking-tighter">Why Choose <span class="text-amber-500">Elevate?</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="reveal premium-card bg-white p-10 rounded-xl">
+                    <i data-lucide="award" class="w-12 h-12 text-amber-500 mb-6"></i>
+                    <h3 class="text-xl font-black uppercase mb-4">Fully Qualified</h3>
+                    <p class="text-slate-500 text-sm font-bold uppercase leading-relaxed">No trainee instructors. All our staff are highly experienced and DVSA approved for decades.</p>
+                </div>
+                <div class="reveal premium-card bg-white p-10 rounded-xl">
+                    <i data-lucide="map-pin" class="w-12 h-12 text-amber-500 mb-6"></i>
+                    <h3 class="text-xl font-black uppercase mb-4">Multi Test Centre</h3>
+                    <p class="text-slate-500 text-sm font-bold uppercase leading-relaxed">We cover Colwick, Ashfield, and Chilwell. We don't restrict you to just one centre.</p>
+                </div>
+                <div class="reveal premium-card bg-white p-10 rounded-xl">
+                    <i data-lucide="zap" class="w-12 h-12 text-amber-500 mb-6"></i>
+                    <h3 class="text-xl font-black uppercase mb-4">Earlier Tests</h3>
+                    <p class="text-slate-500 text-sm font-bold uppercase leading-relaxed">Struggling to find a slot? We help our students secure earlier driving test dates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="text-5xl font-black uppercase tracking-tighter mb-8">Higher Level <span class="text-amber-500">Tuition</span></h2>
+                <p class="text-slate-700 font-bold uppercase text-sm mb-8 leading-loose">
+                    At Elevate, your journey is our priority. We provide specialist training for nervous drivers, neurodiverse students, and those looking for an intensive route to their license.
+                </p>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="flex items-center space-x-4 bg-slate-50 p-4 border-l-4 border-amber-500">
+                        <i data-lucide="check-circle" class="text-amber-500"></i>
+                        <span class="font-black uppercase text-xs tracking-widest">Manual & Automatic Cars</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-slate-50 p-4 border-l-4 border-amber-500">
+                        <i data-lucide="check-circle" class="text-amber-500"></i>
+                        <span class="font-black uppercase text-xs tracking-widest">Male & Female Instructors</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-slate-50 p-4 border-l-4 border-amber-500">
+                        <i data-lucide="check-circle" class="text-amber-500"></i>
+                        <span class="font-black uppercase text-xs tracking-widest">Extra Car Backup on Test Day</span>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal relative">
+                <div class="bg-black rounded-3xl p-12 text-white shadow-2xl">
+                    <h3 class="text-3xl font-black uppercase tracking-tighter mb-6 text-amber-500">Intensive Courses</h3>
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] mb-8">Available for May, June & July</p>
+                    <ul class="space-y-6 mb-10">
+                        <li class="flex justify-between border-b border-white/10 pb-2">
+                            <span class="text-xs font-black uppercase">Tailored Programs</span>
+                            <span class="text-amber-500 font-black">FAST TRACK</span>
+                        </li>
+                        <li class="flex justify-between border-b border-white/10 pb-2">
+                            <span class="text-xs font-black uppercase">Test Readiness</span>
+                            <span class="text-amber-500 font-black">1-4 WEEKS</span>
+                        </li>
+                    </ul>
+                    <a href="tel:01158717475" class="btn-gold w-full block text-center py-5 uppercase text-xs tracking-widest">Check Availability</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12 text-center">Recent <span class="text-amber-500">Success Stories</span></h2>
+            <div class="gallery-scroll">
+                <div class="gallery-item flex flex-col items-center justify-center p-8 text-black">
+                    <div class="w-full h-64 bg-slate-100 mb-6 rounded-lg flex items-center justify-center relative overflow-hidden">
+                        <i data-lucide="user" class="text-slate-300 w-24 h-24"></i>
+                        <div class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 font-black text-[10px]">PASSED</div>
+                    </div>
+                    <h4 class="font-black uppercase text-xl mb-1">Colwick Test Centre</h4>
+                    <p class="font-bold uppercase text-[10px] text-amber-600 tracking-widest">Passed 1st Time - Manual</p>
+                </div>
+                <div class="gallery-item flex flex-col items-center justify-center p-8 text-black">
+                    <div class="w-full h-64 bg-slate-100 mb-6 rounded-lg flex items-center justify-center relative overflow-hidden">
+                        <i data-lucide="user" class="text-slate-300 w-24 h-24"></i>
+                        <div class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 font-black text-[10px]">PASSED</div>
+                    </div>
+                    <h4 class="font-black uppercase text-xl mb-1">Ashfield Test Centre</h4>
+                    <p class="font-bold uppercase text-[10px] text-amber-600 tracking-widest">Intensive Course Success</p>
+                </div>
+                <div class="gallery-item flex flex-col items-center justify-center p-8 text-black">
+                    <div class="w-full h-64 bg-slate-100 mb-6 rounded-lg flex items-center justify-center relative overflow-hidden">
+                        <i data-lucide="user" class="text-slate-300 w-24 h-24"></i>
+                        <div class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 font-black text-[10px]">PASSED</div>
+                    </div>
+                    <h4 class="font-black uppercase text-xl mb-1">Chilwell Test Centre</h4>
+                    <p class="font-bold uppercase text-[10px] text-amber-600 tracking-widest">Automatic Specialist Pass</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-20 pb-32"> 
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-16 border-b border-white/10 pb-16">
+                <div class="logo-wrap !text-white mb-10 md:mb-0">
+                    E<div class="l-plate-box"><span>L</span></div>EVATE
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                    <div>
+                        <h5 class="font-black uppercase text-amber-500 text-xs mb-6">Contact</h5>
+                        <p class="text-sm font-bold uppercase tracking-widest mb-2">01158 717475</p>
+                        <p class="text-sm font-bold uppercase tracking-widest">07811 788760</p>
+                    </div>
+                    <div>
+                        <h5 class="font-black uppercase text-amber-500 text-xs mb-6">Locations</h5>
+                        <ul class="text-[10px] font-bold uppercase space-y-2 text-slate-400">
+                            <li>Nottingham</li>
+                            <li>Colwick</li>
+                            <li>Chilwell</li>
+                            <li>Ashfield</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-black uppercase text-amber-500 text-xs mb-6">Follow Us</h5>
+                        <div class="flex space-x-4">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">© 2026 ELEVATE DRIVING SCHOOL NOTTINGHAM</p>
+                <div class="flex items-center space-x-2 bg-amber-500 text-black px-4 py-2 font-black text-[9px] uppercase">
+                    <i data-lucide="shield-check" class="w-3 h-3"></i>
+                    <span>DVSA Approved Tuition</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cta-dock md:hidden">
+        <a href="tel:01158717475"><i data-lucide="phone" class="w-5 h-5 mb-1 text-amber-500"></i>CALL</a>
+        <a href="https://wa.me/447811788760"><i data-lucide="message-circle" class="w-5 h-5 mb-1 text-amber-500"></i>WHATSAPP</a>
+        <a href="tel:07811788760"><i data-lucide="smartphone" class="w-5 h-5 mb-1 text-amber-500"></i>TEXT</a>
+        <a href="tel:01158717475" class="bg-amber-500 !text-black !border-none"><i data-lucide="calendar" class="w-5 h-5 mb-1"></i>BOOK</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            icon.style.transform = item.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+    </script>
+</body>
+</html>
