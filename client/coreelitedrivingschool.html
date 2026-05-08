@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE Elite Driving School | Warwick & Leamington</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-black: #000000; 
+            --brand-orange: #F97316; 
+            --brand-yellow: #FACC15;
+            --brand-white: #ffffff;
+            --brand-gray: #111111;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        
+        /* CORE Logo Styling */
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, var(--brand-orange), var(--brand-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animated Car Hero Section */
+        .car-hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 300px; 
+            display: flex;
+            align-items: flex-end; 
+            overflow: hidden; 
+            background: linear-gradient(to bottom, #ffffff, #fafafa);
+        }
+        
+        .animated-logo-car {
+            width: 300px;
+            height: auto; 
+            position: absolute;
+            bottom: 20px; 
+            z-index: 20; 
+            animation: driveForward 12s linear infinite; 
+            will-change: transform;
+        }
+
+        @keyframes driveForward {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        .road-indicator {
+            height: 4px; 
+            background: #222;
+            width: 100%;
+            position: absolute;
+            bottom: 25px; 
+            z-index: 5; 
+        }
+        .road-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: 100%;
+            height: 1px; 
+            background-image: linear-gradient(to right, white 50%, transparent 50%);
+            background-size: 40px 100%;
+            animation: roadMove 0.5s linear infinite; 
+        }
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -40px 0; }
+        }
+
+        /* Feature Styles */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+            background: var(--brand-black);
+        }
+        #mobile-menu.open { transform: translateX(0); }
+        .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        .premium-card { transition: all 0.4s ease; border-top: 6px solid var(--brand-orange); }
+        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(249, 115, 22, 0.3); }
+        
+        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: var(--brand-white); padding: 15px 0; border-bottom: 4px solid var(--brand-orange); }
+        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        
+        .btn-brand { background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow)); color: black; transition: 0.3s; font-weight: 900; }
+        .btn-brand:hover { transform: scale(1.05); filter: brightness(1.1); }
+        
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-black); display: flex; z-index: 100; border-top: 4px solid var(--brand-orange); }
+        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .faq-btn { width: 100%; text-align: left; padding: 1.5rem 0; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .faq-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; }
+        .faq-item.active .faq-content { max-height: 300px; padding: 1rem 0; }
+        
+        .orange-tag { background: var(--brand-orange); color: white; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
+        
+        #promoPopup { display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; width: 280px; background: white; border-top: 5px solid var(--brand-orange); box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; }
+    </style>
+</head>
+<body class="text-slate-900"> 
+
+    <div id="promoPopup" class="animate__animated animate__fadeInUp">
+        <button onclick="this.parentElement.style.display='none'" class="absolute top-2 right-2"><i data-lucide="x" class="w-4 h-4"></i></button>
+        <span class="orange-tag mb-2 inline-block">100% Recommended</span>
+        <h4 class="font-black text-xl leading-tight mb-2">Book with Colin Today</h4>
+        <p class="text-xs font-bold text-slate-500 uppercase mb-4">Elite tuition in Warwick & Leamington.</p>
+        <a href="tel:07948044504" class="btn-brand px-4 py-2 text-[10px] uppercase inline-block text-center rounded-sm">Call Now</a>
+    </div>
+
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="logo-wrap">
+                <svg width="80" height="40" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#F97316;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#FACC15;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M20 55 Q 30 55 40 55 M10 58 L50 58" stroke="url(#logoGrad)" stroke-width="2" />
+                    <path d="M40 55 C 50 20, 150 20, 180 50 C 185 55, 170 65, 160 65 L 40 65" fill="none" stroke="url(#logoGrad)" stroke-width="4" />
+                    <circle cx="65" cy="65" r="12" fill="none" stroke="url(#logoGrad)" stroke-width="4" />
+                    <circle cx="145" cy="65" r="12" fill="none" stroke="url(#logoGrad)" stroke-width="4" />
+                    <path d="M35 40 L 50 35 Q 100 25 140 35 L 160 50" fill="none" stroke="url(#logoGrad)" stroke-width="3" />
+                </svg>
+                <div class="logo-text">
+                    <span class="text-2xl font-black italic block leading-none">CORE</span>
+                    <span class="text-[7px] font-bold tracking-[0.2em] uppercase block">Elite Driving School</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-10 font-black text-xs uppercase tracking-widest">
+                <a href="#services" class="hover:text-orange-500 transition">Lessons</a>
+                <a href="#areas" class="hover:text-orange-500 transition">Areas</a>
+                <a href="tel:07948044504" class="hover:text-orange-500 transition">07948 044504</a>
+                <a href="tel:07948044504" class="btn-brand px-6 py-3 rounded-sm shadow-lg">Call Colin</a>
+            </div>
+            <button id="menu-btn" class="md:hidden"><i data-lucide="menu" class="w-8 h-8"></i></button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full z-[100] p-10 flex flex-col shadow-2xl">
+        <button id="close-btn" class="self-end text-white mb-12"><i data-lucide="x" class="w-10 h-10"></i></button>
+        <div class="flex flex-col space-y-8 text-white font-black text-3xl uppercase tracking-tighter">
+            <a href="#services" onclick="toggleMenu()">Lessons</a>
+            <a href="#areas" onclick="toggleMenu()">Locations</a>
+            <a href="tel:07948044504">Call Colin</a>
+            <a href="fb://page/COREEliteDrivingSchool" class="text-orange-400">Facebook</a>
+        </div>
+    </div>
+
+    <div class="ticker-wrap font-bold uppercase text-xs tracking-widest">
+        <div class="ticker space-x-16">
+            <span>🏁 100% Recommended</span>
+            <span>📍 Warwick • Leamington • Warwickshire</span>
+            <span>⭐ Fully Qualified Approved Instructor</span>
+            <span>🚗 Manual & Automatic Tuition</span>
+            <span>📱 Contact Colin: 07948 044504</span>
+        </div>
+    </div>
+
+    <section class="relative min-h-[70vh] flex flex-col items-center justify-center bg-white py-12 overflow-hidden">
+        <div class="w-full mb-10">
+            <div class="car-hero-container">
+                <div class="road-indicator"></div>
+                <svg class="animated-logo-car" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40 55 C 50 20, 150 20, 180 50 C 185 55, 170 65, 160 65 L 40 65" fill="none" stroke="#F97316" stroke-width="4" />
+                    <circle cx="65" cy="65" r="12" fill="none" stroke="#F97316" stroke-width="4" />
+                    <circle cx="145" cy="65" r="12" fill="none" stroke="#F97316" stroke-width="4" />
+                    <path d="M35 40 L 50 35 Q 100 25 140 35 L 160 50" fill="none" stroke="#F97316" stroke-width="3" />
+                    <path d="M10 50 L 30 50 M 5 55 L 25 55" stroke="#F97316" stroke-width="2" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center z-20">
+            <div class="animate__animated animate__fadeInUp">
+                <span class="orange-tag mb-4 inline-block">Professional Instructor: Colin Batchelder</span>
+                <h1 class="text-6xl md:text-9xl font-black text-black leading-none mb-6 uppercase tracking-tighter">
+                    CORE <span class="gradient-text">ELITE.</span>
+                </h1>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.3em] mb-12 text-sm md:text-lg">Premium Driving Tuition in Warwick & Leamington</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="tel:07948044504" class="px-10 py-5 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-orange-600 transition duration-300">Call 07948 044504</a>
+                    <a href="tel:07948044504" class="px-10 py-5 border-4 border-black text-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition duration-300">Book Your First Lesson</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="reveal">
+                <p class="text-5xl font-black text-black mb-2 counter" data-target="100">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">% Recommended</p>
+            </div>
+            <div class="reveal">
+                <p class="text-5xl font-black text-black mb-2 counter" data-target="48">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">5-Star Reviews</p>
+            </div>
+            <div class="reveal">
+                <p class="text-5xl font-black text-orange-500 mb-2 counter" data-target="100">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">% Pass Focus</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto text-center mb-16 px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter">Elite <span class="text-orange-500">Tuition</span></h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-black">
+                <i data-lucide="shield-check" class="w-12 h-12 mb-6 text-black"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Qualified Instructor</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Learn with Colin Batchelder, a fully qualified approved driving instructor. We focus on building "CORE" skills that ensure you aren't just passing a test, but becoming a safe driver for life.</p>
+                <a href="tel:07948044504" class="orange-tag inline-block">Call to Inquire</a>
+            </div>
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-orange-500">
+                <i data-lucide="map" class="w-12 h-12 mb-6 text-orange-500"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Local Expertise</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Navigating Warwick and Leamington Spa can be tricky. We specialize in local test routes, roundabouts, and rural roads to give you the home-field advantage on test day.</p>
+                <a href="tel:07948044504" class="orange-tag inline-block">Book Local Lessons</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="areas" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Covering <span class="text-orange-500">Warwickshire</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-orange-500"></i>
+                        <p class="font-black text-xs uppercase">Warwick</p>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-orange-500"></i>
+                        <p class="font-black text-xs uppercase">Leamington Spa</p>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-orange-500"></i>
+                        <p class="font-black text-xs uppercase">Whitnash</p>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-orange-500"></i>
+                        <p class="font-black text-xs uppercase">Surrounding Areas</p>
+                    </div>
+                </div>
+                <div class="h-[300px] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl relative">
+                   <div class="absolute inset-0 flex items-center justify-center bg-slate-800 text-white font-black uppercase text-center p-10">
+                       Local Warwick & Leamington Specialist
+                   </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Why Choose <span class="text-orange-500">CORE?</span></h2>
+                <div class="space-y-4">
+                    <div class="bg-black text-white p-6 rounded-xl">
+                        <p class="text-xl font-black mb-2">100% RECOMMENDATION RATE</p>
+                        <p class="text-xs font-bold text-slate-400 uppercase">Based on 48+ organic student reviews on Facebook and local directories.</p>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-xl">
+                        <p class="text-xl font-black mb-2">CALM & PATIENT</p>
+                        <p class="text-xs font-bold text-slate-500 uppercase">Expertise in helping nervous beginners build confidence quickly and safely.</p>
+                    </div>
+                    <a href="tel:07948044504" class="btn-brand w-full block py-4 text-center uppercase tracking-widest text-xs rounded-sm">Call Colin: 07948 044504</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-20 pb-32"> 
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-16 border-b border-white/10 pb-16">
+                <div class="logo-wrap mb-10 md:mb-0">
+                    <div class="logo-text !text-white">
+                        <span class="text-2xl font-black italic block leading-none">CORE</span>
+                        <span class="text-[7px] font-bold tracking-[0.2em] uppercase block">Elite Driving School</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                    <div>
+                        <h5 class="font-black uppercase text-orange-500 text-xs mb-6">Contact Info</h5>
+                        <p class="text-sm font-bold uppercase tracking-widest mb-2">07948 044504</p>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase">Colin Batchelder</p>
+                    </div>
+                    <div>
+                        <h5 class="font-black uppercase text-orange-500 text-xs mb-6">Main Areas</h5>
+                        <ul class="text-[10px] font-bold uppercase space-y-2 text-slate-400">
+                            <li>Warwick</li>
+                            <li>Leamington</li>
+                            <li>Warwickshire</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-black uppercase text-orange-500 text-xs mb-6">Follow Us</h5>
+                        <div class="flex space-x-4">
+                            <a href="#"><i data-lucide="facebook" class="w-5 h-5 hover:text-orange-500 transition"></i></a>
+                            <a href="tel:07948044504"><i data-lucide="phone" class="w-5 h-5 hover:text-orange-500 transition"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">© 2026 CORE ELITE DRIVING SCHOOL | COLIN BATCHELDER</p>
+        </div>
+    </footer>
+
+    <div class="cta-dock md:hidden">
+        <a href="tel:07948044504"><i data-lucide="phone" class="w-5 h-5 mb-1 text-orange-500"></i>CALL</a>
+        <a href="sms:+447948044504"><i data-lucide="message-square" class="w-5 h-5 mb-1 text-orange-500"></i>TEXT</a>
+        <a href="https://facebook.com/COREEliteDrivingSchool"><i data-lucide="facebook" class="w-5 h-5 mb-1 text-orange-500"></i>FACEBOOK</a>
+        <a href="tel:07948044504" class="bg-orange-500 !text-black !border-none"><i data-lucide="calendar" class="w-5 h-5 mb-1"></i>BOOK NOW</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            // Show promo after 3 seconds
+            setTimeout(() => { document.getElementById('promoPopup').style.display = 'block'; }, 3000);
+            
+            // Counter Logic
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            const startCounters = (entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const target = +entry.target.getAttribute('data-target');
+                        const count = +entry.target.innerText;
+                        const inc = target / speed;
+                        if(count < target) {
+                            entry.target.innerText = Math.ceil(count + inc);
+                            setTimeout(() => startCounters([entry]), 1);
+                        } else { entry.target.innerText = target; }
+                    }
+                });
+            };
+            const counterObserver = new IntersectionObserver(startCounters, {threshold: 0.5});
+            counters.forEach(c => counterObserver.observe(c));
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        function toggleMenu() { mobileMenu.classList.toggle('open'); }
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp'); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
