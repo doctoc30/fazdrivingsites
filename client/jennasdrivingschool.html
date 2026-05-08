@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenna's Driving School | Manual Lessons in Crawley</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Branding colors extracted from JDS Logo */
+            --brand-red: #E30613;    /* Red from 'J' */
+            --brand-pink: #D82281;   /* Pink from 'D' */
+            --brand-blue: #5897D1;   /* Blue from 'S' */
+            --brand-white: #ffffff;
+            --brand-black: #1a1a1a;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        
+        /* Custom SVG Logo Logic - Replicated for JDS */
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* Speed line effect for the SVG text */
+        .gradient-text {
+            background: linear-gradient(to right, var(--brand-red), var(--brand-pink), var(--brand-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .car-hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 350px; 
+            display: flex;
+            align-items: flex-end; 
+            overflow: hidden; 
+            background: linear-gradient(to bottom, #ffffff, #fdf2f8);
+        }
+        
+        #panningCar {
+            width: 320px;
+            height: auto; 
+            position: absolute;
+            bottom: 25px; 
+            z-index: 20; 
+            animation: driveForward 12s linear infinite; 
+            will-change: transform;
+            filter: drop-shadow(0 10px 15px rgba(216, 34, 129, 0.2)); 
+        }
+
+        @keyframes driveForward {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        .road-indicator {
+            height: 4px; 
+            background: #333;
+            width: 100%;
+            position: absolute;
+            bottom: 30px; 
+            z-index: 5; 
+        }
+        .road-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: 100%;
+            height: 1px; 
+            background-image: linear-gradient(to right, var(--brand-pink) 50%, transparent 50%);
+            background-size: 60px 100%;
+            animation: roadMove 0.8s linear infinite; 
+        }
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -60px 0; }
+        }
+
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+            background: var(--brand-black);
+        }
+        #mobile-menu.open { transform: translateX(0); }
+        .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        
+        .premium-card { transition: all 0.4s ease; border-top: 6px solid var(--brand-pink); }
+        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(216, 34, 129, 0.15); }
+        
+        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: var(--brand-white); padding: 15px 0; border-bottom: 4px solid var(--brand-blue); }
+        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        
+        .btn-brand { background: linear-gradient(135deg, var(--brand-red), var(--brand-pink)); color: white; transition: 0.3s; font-weight: 900; border: none; }
+        .btn-brand:hover { transform: scale(1.05); filter: brightness(1.1); box-shadow: 0 10px 20px rgba(216, 34, 129, 0.3); }
+        
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-black); display: flex; z-index: 100; border-top: 4px solid var(--brand-blue); }
+        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .faq-btn { width: 100%; text-align: left; padding: 1.5rem 0; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .faq-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; }
+        .faq-item.active .faq-content { max-height: 300px; padding: 1rem 0; }
+        
+        .red-tag { background: linear-gradient(to right, var(--brand-red), var(--brand-pink)); color: white; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
+        
+        #promoPopup { display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; width: 280px; background: white; border-top: 5px solid var(--brand-pink); box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; }
+    </style>
+</head>
+<body class="text-slate-900"> 
+
+    <div id="promoPopup" class="animate__animated animate__fadeInUp">
+        <button onclick="this.parentElement.style.display='none'" class="absolute top-2 right-2"><i data-lucide="x" class="w-4 h-4"></i></button>
+        <span class="red-tag mb-2 inline-block">Anxiety Specialist</span>
+        <h4 class="font-black text-xl leading-tight mb-2">Jenna Patmore</h4>
+        <p class="text-xs font-bold text-slate-500 uppercase mb-4">Manual Lessons in Crawley & Surrounds.</p>
+        <a href="tel:07436401467" class="btn-brand px-4 py-2 text-[10px] uppercase inline-block text-center w-full">Call 07436 401467</a>
+    </div>
+
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="logo-wrap">
+                <svg width="100" height="40" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="jdsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:var(--brand-red)" />
+                            <stop offset="50%" style="stop-color:var(--brand-pink)" />
+                            <stop offset="100%" style="stop-color:var(--brand-blue)" />
+                        </linearGradient>
+                    </defs>
+                    <text x="0" y="80" font-family="Arial Black" font-size="90" font-weight="900">
+                        <tspan fill="var(--brand-red)">J</tspan>
+                        <tspan fill="var(--brand-pink)">D</tspan>
+                        <tspan fill="var(--brand-blue)">S</tspan>
+                    </text>
+                    <path d="M40 15 L 65 15 L 52 0 Z" fill="var(--brand-red)" />
+                </svg>
+                <div class="logo-text hidden sm:block">
+                    <span class="text-lg font-black block leading-none">JENNA'S</span>
+                    <span class="text-[8px] font-bold tracking-[0.2em] uppercase block">Driving School</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-10 font-black text-xs uppercase tracking-widest">
+                <a href="#about" class="hover:text-pink-600 transition">About</a>
+                <a href="#services" class="hover:text-pink-600 transition">Lessons</a>
+                <a href="tel:07436401467" class="hover:text-pink-600 transition">07436 401467</a>
+                <a href="mailto:jennapatmoredriving@gmail.com" class="btn-brand px-6 py-3 rounded-sm shadow-lg">Email Jenna</a>
+            </div>
+            <button id="menu-btn" class="md:hidden"><i data-lucide="menu" class="w-8 h-8"></i></button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full z-[100] p-10 flex flex-col shadow-2xl">
+        <button id="close-btn" class="self-end text-white mb-12"><i data-lucide="x" class="w-10 h-10"></i></button>
+        <div class="flex flex-col space-y-8 text-white font-black text-3xl uppercase tracking-tighter">
+            <a href="#about">About Jenna</a>
+            <a href="#services">Manual Lessons</a>
+            <a href="tel:07436401467">Call Now</a>
+            <a href="sms:+447436401467" class="gradient-text">Text Jenna</a>
+        </div>
+    </div>
+
+    <div class="ticker-wrap font-bold uppercase text-xs tracking-widest">
+        <div class="ticker space-x-16">
+            <span>🚗 Manual Driving Lessons</span>
+            <span>📍 Crawley & Surrounding Areas</span>
+            <span>🧠 Driving Test Nerves Specialist</span>
+            <span>✨ Calm & Patient Environment</span>
+            <span>📱 Message for Info: 07436 401467</span>
+        </div>
+    </div>
+
+    <section class="relative min-h-[80vh] flex flex-col items-center justify-center bg-white py-12 overflow-hidden">
+        <div class="w-full mb-10">
+            <div class="car-hero-container">
+                <div class="road-indicator"></div>
+                <img id="panningCar" src="https://www.pngall.com/wp-content/uploads/2/Fiat-500-PNG-Free-Download.png" alt="Jenna's Fiat 500">
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center z-20">
+            <div class="animate__animated animate__fadeInUp">
+                <span class="red-tag mb-4 inline-block">Crawley's Specialist Instructor</span>
+                <h1 class="text-6xl md:text-9xl font-black text-black leading-none mb-6 uppercase tracking-tighter">
+                    JENNA'S <span class="gradient-text">DRIVING.</span>
+                </h1>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.3em] mb-12 text-sm md:text-lg">Combat Anxiety & Master the Manual Fiat 500</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="tel:07436401467" class="px-10 py-5 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-pink-600 transition duration-300">Call 07436 401467</a>
+                    <a href="mailto:jennapatmoredriving@gmail.com" class="px-10 py-5 border-4 border-black text-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition duration-300">Email for Availability</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-8 border-l-8 border-pink-500"></div>
+                    <img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?auto=format&fit=crop&w=800&q=80" alt="Driving Lesson" class="rounded-2xl shadow-2xl">
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-8 border-r-8 border-blue-500"></div>
+                </div>
+            </div>
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Hi, I'm <span class="gradient-text">Jenna</span></h2>
+                <p class="text-lg font-bold text-slate-700 mb-6 leading-relaxed">
+                    I teach manual driving lessons in my stylish white Fiat 500 car. Based in Crawley, my mission is to turn nervous learners into confident drivers.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-pink-100 p-2 rounded-lg text-pink-600"><i data-lucide="heart" class="w-6 h-6"></i></div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Anxiety Specialist</h4>
+                            <p class="text-xs font-bold text-slate-500 uppercase">I use specific techniques to help combat fear and driving test nerves.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-100 p-2 rounded-lg text-blue-600"><i data-lucide="map" class="w-6 h-6"></i></div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Local Expertise</h4>
+                            <p class="text-xs font-bold text-slate-500 uppercase">Expert knowledge of Crawley and surrounding West Sussex test routes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto text-center mb-16 px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter">Your <span class="gradient-text">Lessons</span></h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-pink-500 premium-card">
+                <i data-lucide="settings" class="w-12 h-12 mb-6 text-pink-500"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Manual Tuition</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Learn to drive in a car you'll love. The Fiat 500 is compact, easy to handle, and perfect for mastering clutch control and Crawley's roundabouts.</p>
+                <a href="tel:07436401467" class="red-tag inline-block">Message 07436 401467</a>
+            </div>
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-blue-500 premium-card">
+                <i data-lucide="smile" class="w-12 h-12 mb-6 text-blue-500"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Nervous Learners</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Specialised techniques to help you manage anxiety. I provide a judgment-free, patient atmosphere where you can learn at your own pace.</p>
+                <a href="tel:07436401467" class="red-tag inline-block">Book a Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Common <span class="gradient-text">Questions</span></h2>
+            <div class="space-y-4">
+                <div class="faq-item reveal">
+                    <button class="faq-btn" onclick="toggleFaq(this)">Where are you based? <i data-lucide="chevron-down" class="w-5 h-5 text-pink-500"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">I am based in Crawley and cover the local area for home/college/work pickups.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-btn" onclick="toggleFaq(this)">What car do I learn in? <i data-lucide="chevron-down" class="w-5 h-5 text-pink-500"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">You will be learning in a modern manual Fiat 500, which is fantastic for beginner confidence.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-btn" onclick="toggleFaq(this)">How do I get in touch? <i data-lucide="chevron-down" class="w-5 h-5 text-pink-500"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">The best way is via Facebook Message or by texting/calling me on 07436 401467.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-20 pb-32"> 
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-16 border-b border-white/10 pb-16">
+                <div class="logo-wrap mb-10 md:mb-0">
+                    <div class="logo-text !text-white">
+                        <span class="text-2xl font-black italic block">JDS <span class="gradient-text">DRIVING</span></span>
+                        <span class="text-[8px] font-bold tracking-[0.3em] uppercase block">Jenna's Driving School</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h5 class="font-black uppercase text-pink-500 text-xs mb-6">Contact Details</h5>
+                        <p class="text-sm font-bold uppercase tracking-widest mb-2">07436 401467</p>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-4">jennapatmoredriving@gmail.com</p>
+                        <div class="flex space-x-4">
+                            <a href="https://facebook.com/Jenna's Driving School"><i data-lucide="facebook" class="w-5 h-5 hover:text-pink-500 transition"></i></a>
+                            <i data-lucide="instagram" class="w-5 h-5 hover:text-pink-500 cursor-pointer transition"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="font-black uppercase text-blue-500 text-xs mb-6">Location</h5>
+                        <p class="text-[10px] font-bold uppercase space-y-2 text-slate-400">Crawley, United Kingdom<br>Surrounding West Sussex Areas</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">© 2026 JENNA'S DRIVING SCHOOL | JDS</p>
+        </div>
+    </footer>
+
+    <div class="cta-dock md:hidden">
+        <a href="tel:07436401467"><i data-lucide="phone" class="w-5 h-5 mb-1 text-pink-500"></i>CALL</a>
+        <a href="mailto:jennapatmoredriving@gmail.com"><i data-lucide="mail" class="w-5 h-5 mb-1 text-blue-500"></i>EMAIL</a>
+        <a href="sms:+447436401467"><i data-lucide="smartphone" class="w-5 h-5 mb-1 text-pink-500"></i>TEXT</a>
+        <a href="https://messenger.com" class="bg-gradient-to-r from-pink-500 to-blue-500 !text-white !border-none"><i data-lucide="message-square" class="w-5 h-5 mb-1"></i>MSG</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            setTimeout(() => { document.getElementById('promoPopup').style.display = 'block'; }, 3000);
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp'); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            icon.style.transform = item.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+    </script>
+</body>
+</html>
