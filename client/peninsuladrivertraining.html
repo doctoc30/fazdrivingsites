@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peninsula Driver Training | Pass with Peninsula Wirral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Exact Dark Green Branding from Peninsula Images */
+            --brand-green: #004225; 
+            --brand-accent: #006837; 
+            --brand-white: #ffffff;
+            --brand-gray: #f8fafc;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-text {
+            font-family: 'Archivo Black', sans-serif;
+            line-height: 1.1;
+        }
+
+        /* Hero Animation for the Peninsula Car */
+        .car-hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 350px; 
+            display: flex;
+            align-items: flex-end; 
+            overflow: hidden; 
+            background: linear-gradient(to bottom, #ffffff, #f0fdf4);
+        }
+        
+        #panningCar {
+            width: 450px;
+            height: auto; 
+            position: absolute;
+            bottom: 25px; 
+            z-index: 20; 
+            animation: driveForward 18s linear infinite; 
+            will-change: transform;
+            filter: drop-shadow(0 10px 15px rgba(0, 66, 37, 0.2)); 
+        }
+
+        @keyframes driveForward {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        .road-indicator {
+            height: 4px; 
+            background: #222;
+            width: 100%;
+            position: absolute;
+            bottom: 30px; 
+            z-index: 5; 
+        }
+        .road-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: 100%;
+            height: 2px; 
+            background-image: linear-gradient(to right, #fff 50%, transparent 50%);
+            background-size: 60px 100%;
+            animation: roadMove 0.8s linear infinite; 
+        }
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -60px 0; }
+        }
+
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+            background: var(--brand-green);
+        }
+        #mobile-menu.open { transform: translateX(0); }
+        .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        
+        .premium-card { transition: all 0.4s ease; border-top: 6px solid var(--brand-green); }
+        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 66, 37, 0.2); }
+        
+        .ticker-wrap { overflow: hidden; background: var(--brand-green); color: var(--brand-white); padding: 15px 0; border-bottom: 4px solid var(--brand-accent); }
+        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        
+        .btn-brand { background: var(--brand-green); color: white; transition: 0.3s; font-weight: 900; border: none; }
+        .btn-brand:hover { transform: scale(1.05); filter: brightness(1.2); box-shadow: 0 10px 20px rgba(0, 66, 37, 0.3); }
+        
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-green); display: flex; z-index: 100; border-top: 4px solid var(--brand-accent); }
+        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .faq-btn { width: 100%; text-align: left; padding: 1.5rem 0; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .faq-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; }
+        .faq-item.active .faq-content { max-height: 300px; padding: 1rem 0; }
+        
+        .green-tag { background: var(--brand-green); color: white; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
+        
+        #promoPopup { display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; width: 280px; background: white; border-top: 5px solid var(--brand-green); box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; }
+        
+        .gradient-text {
+            color: var(--brand-green);
+        }
+    </style>
+</head>
+<body class="text-slate-900"> 
+
+    <div id="promoPopup" class="animate__animated animate__fadeInUp">
+        <button onclick="this.parentElement.style.display='none'" class="absolute top-2 right-2"><i data-lucide="x" class="w-4 h-4"></i></button>
+        <span class="green-tag mb-2 inline-block">Multi-Car Driving School</span>
+        <h4 class="font-black text-xl leading-tight mb-2">Peninsula Driver Training</h4>
+        <p class="text-xs font-bold text-slate-500 uppercase mb-4">Friendly, Professional & Experienced.</p>
+        <a href="tel:07377086779" class="btn-brand px-4 py-2 text-[10px] uppercase inline-block text-center w-full">Call 07377 086 779</a>
+    </div>
+
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="logo-wrap">
+                <svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 30 L40 10 L80 15 L90 40 L70 90 L30 85 L20 60 Z" fill="var(--brand-green)" />
+                    <text x="50" y="65" font-family="Arial" font-size="35" fill="white" font-weight="bold" text-anchor="middle">L</text>
+                </svg>
+                <div class="logo-text">
+                    <span class="text-xl font-black block text-[var(--brand-green)]">PENINSULA</span>
+                    <span class="text-[8px] font-bold tracking-[0.2em] uppercase block">Driver Training</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-10 font-black text-xs uppercase tracking-widest">
+                <a href="#services" class="hover:text-green-800 transition">Lessons</a>
+                <a href="#areas" class="hover:text-green-800 transition">Wirral Areas</a>
+                <a href="tel:07377086779" class="hover:text-green-800 transition">07377 086 779</a>
+                <a href="tel:07377086779" class="btn-brand px-6 py-3 rounded-sm shadow-lg">Call Now</a>
+            </div>
+            <button id="menu-btn" class="md:hidden"><i data-lucide="menu" class="w-8 h-8"></i></button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full z-[100] p-10 flex flex-col shadow-2xl">
+        <button id="close-btn" class="self-end text-white mb-12"><i data-lucide="x" class="w-10 h-10"></i></button>
+        <div class="flex flex-col space-y-8 text-white font-black text-3xl uppercase tracking-tighter">
+            <a href="#services">Our Lessons</a>
+            <a href="#areas">Wirral & Merseyside</a>
+            <a href="tel:07377086779">07377 086 779</a>
+            <a href="tel:07377086779" class="text-green-200">Book Lesson</a>
+        </div>
+    </div>
+
+    <div class="ticker-wrap font-bold uppercase text-xs tracking-widest">
+        <div class="ticker space-x-16">
+            <span>🏁 Wirral Based Multi-Car Driving School</span>
+            <span>📍 Upton • Birkenhead • Wallasey • Merseyside</span>
+            <span>🚗 Manual & Automatic Lessons Available</span>
+            <span>⭐ LGV Instruction Also Available</span>
+            <span>📱 Contact: 07377 086 779</span>
+        </div>
+    </div>
+
+    <section class="relative min-h-[80vh] flex flex-col items-center justify-center bg-white py-12 overflow-hidden">
+        <div class="w-full mb-10">
+            <div class="car-hero-container">
+                <div class="road-indicator"></div>
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_4002.png" alt="Peninsula Driver Training Car" style="filter: hue-rotate(100deg) brightness(0.8);">
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center z-20">
+            <div class="animate__animated animate__fadeInUp">
+                <span class="green-tag mb-4 inline-block">Pass with Peninsula</span>
+                <h1 class="text-6xl md:text-9xl font-black text-[var(--brand-green)] leading-none mb-6 uppercase tracking-tighter">
+                    PENINSULA.
+                </h1>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.3em] mb-12 text-sm md:text-lg">Manual & Automatic Tuition Across the Wirral</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="tel:07377086779" class="px-10 py-5 bg-[var(--brand-green)] text-white font-black uppercase tracking-widest text-xs hover:bg-green-900 transition duration-300">Call 07377 086 779</a>
+                    <a href="https://wa.me/447377086779" class="px-10 py-5 border-4 border-[var(--brand-green)] text-[var(--brand-green)] font-black uppercase tracking-widest text-xs hover:bg-[var(--brand-green)] hover:text-white transition duration-300">WhatsApp Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="reveal">
+                <p class="text-5xl font-black text-black mb-2 counter" data-target="311">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Posts of Success</p>
+            </div>
+            <div class="reveal">
+                <p class="text-5xl font-black text-black mb-2 counter" data-target="394">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Happy Followers</p>
+            </div>
+            <div class="reveal">
+                <p class="text-5xl font-black text-[var(--brand-green)] mb-2 counter" data-target="100">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">% Professional Service</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto text-center mb-16 px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter">Tuition <span class="gradient-text">Options</span></h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-[var(--brand-green)]">
+                <i data-lucide="settings" class="w-12 h-12 mb-6 text-[var(--brand-green)]"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Manual</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Master the gears with our friendly and patient instructors. Ideal for those wanting the full driving qualification.</p>
+                <a href="tel:07377086779" class="green-tag inline-block">Book Manual</a>
+            </div>
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-green-600">
+                <i data-lucide="zap" class="w-12 h-12 mb-6 text-green-600"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Automatic</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Enjoy a simpler way to drive. Perfect for the busy roads of Birkenhead and Wallasey without the stress of a clutch.</p>
+                <a href="tel:07377086779" class="green-tag inline-block">Book Automatic</a>
+            </div>
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-slate-800">
+                <i data-lucide="truck" class="w-12 h-12 mb-6 text-slate-800"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">LGV Training</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">We don't just teach cars. Contact us for professional Large Goods Vehicle (LGV) training options.</p>
+                <a href="tel:07377086779" class="green-tag inline-block">LGV Info</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-16">Start Your <span class="gradient-text">Journey</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal p-8 border-2 border-slate-100 rounded-xl hover:border-[var(--brand-green)] transition">
+                    <p class="text-xs font-black uppercase mb-2">Single Lesson</p>
+                    <p class="text-3xl font-black mb-4">Standard Rate</p>
+                    <a href="tel:07377086779" class="btn-brand w-full block py-3 text-[10px] uppercase">Call 07377 086 779</a>
+                </div>
+                <div class="reveal p-8 bg-[var(--brand-green)] text-white rounded-xl transform scale-105 shadow-2xl">
+                    <p class="text-xs font-black uppercase mb-2 text-green-200">Recommended</p>
+                    <p class="text-3xl font-black mb-4">10 Hour Block</p>
+                    <a href="tel:07377086779" class="bg-white text-[var(--brand-green)] w-full block py-3 text-[10px] font-black uppercase">Call 07377 086 779</a>
+                </div>
+                <div class="reveal p-8 border-2 border-slate-100 rounded-xl hover:border-[var(--brand-green)] transition">
+                    <p class="text-xs font-black uppercase mb-2">Extended</p>
+                    <p class="text-3xl font-black mb-4">20 Hour Block</p>
+                    <a href="tel:07377086779" class="btn-brand w-full block py-3 text-[10px] uppercase">Call 07377 086 779</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="areas" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Wirral <span class="gradient-text">Coverage</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center space-x-3 bg-white p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-[var(--brand-green)]"></i>
+                        <p class="font-black text-xs uppercase">Upton & Wirral</p>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-white p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-[var(--brand-green)]"></i>
+                        <p class="font-black text-xs uppercase">Birkenhead</p>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-white p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-[var(--brand-green)]"></i>
+                        <p class="font-black text-xs uppercase">Wallasey</p>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-white p-4 rounded-xl border border-slate-200">
+                        <i data-lucide="map-pin" class="text-[var(--brand-green)]"></i>
+                        <p class="font-black text-xs uppercase">Merseyside</p>
+                    </div>
+                </div>
+                <div class="h-[300px] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d152501.9566995079!2d-3.048385!3d53.3855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487ad8c65f97b105%3A0xc0959c9966d58c8e!2sBirkenhead!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; filter: grayscale(1) contrast(1.2);" allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Why <span class="gradient-text">Choose Us?</span></h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="bg-[var(--brand-green)] p-3 rounded-lg h-fit"><i data-lucide="check" class="text-white w-5 h-5"></i></div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Multi-Car School</h4>
+                            <p class="text-xs font-bold text-slate-500 uppercase">Better availability and choice of vehicles.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="bg-[var(--brand-green)] p-3 rounded-lg h-fit"><i data-lucide="check" class="text-white w-5 h-5"></i></div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Friendly & Professional</h4>
+                            <p class="text-xs font-bold text-slate-500 uppercase">Expert instructors who make learning stress-free.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="bg-[var(--brand-green)] p-3 rounded-lg h-fit"><i data-lucide="check" class="text-white w-5 h-5"></i></div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">LGV Experienced</h4>
+                            <p class="text-xs font-bold text-slate-500 uppercase">High-level driving expertise you can trust.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-20 pb-32"> 
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-16 border-b border-white/10 pb-16">
+                <div class="logo-wrap mb-10 md:mb-0">
+                    <div class="logo-text !text-white">
+                        <span class="text-2xl font-black block">PENINSULA</span>
+                        <span class="text-[8px] font-bold tracking-[0.3em] uppercase block">Driver Training</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                    <div>
+                        <h5 class="font-black uppercase text-green-500 text-xs mb-6">Contact</h5>
+                        <p class="text-sm font-bold uppercase tracking-widest mb-2">07377 086 779</p>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase">Upton, Wirral</p>
+                    </div>
+                    <div>
+                        <h5 class="font-black uppercase text-green-500 text-xs mb-6">Locations</h5>
+                        <ul class="text-[10px] font-bold uppercase space-y-2 text-slate-400">
+                            <li>Birkenhead</li>
+                            <li>Wallasey</li>
+                            <li>Merseyside</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-black uppercase text-green-500 text-xs mb-6">Connect</h5>
+                        <div class="flex space-x-4">
+                            <a href="https://facebook.com" target="_blank"><i data-lucide="facebook" class="w-5 h-5 hover:text-green-500 cursor-pointer transition"></i></a>
+                            <i data-lucide="instagram" class="w-5 h-5 hover:text-green-500 cursor-pointer transition"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">© 2026 PENINSULA DRIVER TRAINING | PASS WITH PENINSULA</p>
+        </div>
+    </footer>
+
+    <div class="cta-dock md:hidden">
+        <a href="tel:07377086779"><i data-lucide="phone" class="w-5 h-5 mb-1 text-green-400"></i>CALL</a>
+        <a href="https://wa.me/447377086779"><i data-lucide="message-circle" class="w-5 h-5 mb-1 text-green-400"></i>WHATSAPP</a>
+        <a href="sms:+447377086779"><i data-lucide="smartphone" class="w-5 h-5 mb-1 text-green-400"></i>TEXT</a>
+        <a href="tel:07377086779" class="bg-green-700 !text-white !border-none"><i data-lucide="calendar" class="w-5 h-5 mb-1"></i>BOOK</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            setTimeout(() => { document.getElementById('promoPopup').style.display = 'block'; }, 3000);
+            
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            const startCounters = (entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const target = +entry.target.getAttribute('data-target');
+                        const count = +entry.target.innerText;
+                        const inc = target / speed;
+                        if(count < target) {
+                            entry.target.innerText = Math.ceil(count + inc);
+                            setTimeout(() => startCounters([entry]), 1);
+                        } else { entry.target.innerText = target; }
+                    }
+                });
+            };
+            const counterObserver = new IntersectionObserver(startCounters, {threshold: 0.5});
+            counters.forEach(c => counterObserver.observe(c));
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp'); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
