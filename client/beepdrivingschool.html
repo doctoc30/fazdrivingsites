@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beep Driving School | Professional Tuition in Croydon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Exact Color Branding from Images: image.png and image_4.png */
+            --brand-yellow: #f6e05e; 
+            --brand-black: #111111;
+            --brand-gray: #f4f4f4;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        
+        /* Logo Logic Replicating Beep Image from image_2.png */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+        }
+        .beep-svg {
+            width: 120px;
+            height: auto;
+        }
+
+        /* Driving Animation - Updated with car from image_2.png */
+        .car-hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 320px; 
+            display: flex;
+            align-items: flex-end; 
+            overflow: hidden; 
+        }
+        
+        #panningCar {
+            width: 400px;
+            height: auto; 
+            position: absolute;
+            bottom: 30px; 
+            z-index: 20; 
+            animation: driveForward 10s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes driveForward {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .road-indicator {
+            height: 12px;
+            background: #333;
+            width: 100%;
+            position: absolute;
+            bottom: 35px; 
+            z-index: 5; 
+            border-top: 2px solid white;
+            border-bottom: 2px solid white;
+        }
+        .road-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-image: linear-gradient(to right, white 50%, transparent 50%);
+            background-size: 40px 100%;
+            animation: roadMove 0.4s linear infinite;
+        }
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -40px 0; }
+        }
+
+        .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(8px); }
+        .premium-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-top: 4px solid var(--brand-yellow); }
+        .premium-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
+        
+        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: white; padding: 12px 0; border-bottom: 4px solid var(--brand-yellow); }
+        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .btn-brand { background-color: var(--brand-yellow); color: var(--brand-black); transition: 0.3s; border: 2px solid var(--brand-black); }
+        .btn-brand:hover { background-color: #000; color: #fff; transform: scale(1.02); }
+
+        .faq-item { border-bottom: 1px solid #edf2f7; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
+        .faq-item.active i { transform: rotate(180deg); }
+        
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-black); display: flex; z-index: 100; border-top: 4px solid var(--brand-yellow); }
+        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        
+        .gallery-item { min-width: 280px; height: 350px; scroll-snap-align: start; background: #fff; border: 4px solid var(--brand-black); border-style: dashed; }
+        
+        .service-grid-item { border: 2px solid #eee; transition: all 0.3s ease; }
+        .service-grid-item:hover { border-color: var(--brand-yellow); background: #fff; }
+
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+
+        #referModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        #referModal.active { display: flex; }
+    </style>
+</head>
+<body class="text-slate-900">
+    <nav class="sticky top-0 z-50 glass border-b-4 border-black">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="logo-container">
+                <!-- Replicated Beep Logo SVG from image_2.png -->
+                <svg class="beep-svg" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="5" width="190" height="50" fill="none" stroke="black" stroke-width="3" stroke-dasharray="10,5"/>
+                    <text x="100" y="45" font-family="Archivo Black, sans-serif" font-size="42" text-anchor="middle" fill="black">beep</text>
+                    <rect x="5" y="55" width="190" height="15" fill="black"/>
+                    <text x="100" y="67" font-family="Arial" font-size="12" text-anchor="middle" fill="white" font-weight="bold">07703 412563</text>
+                </svg>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 font-black text-xs uppercase tracking-widest">
+                <a href="#services" class="hover:text-yellow-600 transition">Our Services</a>
+                <a href="#about" class="hover:text-yellow-600 transition">About Beep</a>
+                <a href="tel:07703412563" class="flex items-center gap-2 bg-black text-white px-4 py-2">
+                    <i data-lucide="phone" class="w-4 h-4"></i> 07703 412563
+                </a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-black">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-black z-[100] p-10 flex flex-col shadow-2xl">
+        <button id="close-btn" class="self-end text-white mb-12">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <div class="flex flex-col space-y-8 text-white font-black text-2xl uppercase tracking-tighter">
+            <a href="#services" class="mobile-link">Services</a>
+            <a href="tel:07703412563" class="mobile-link text-yellow-400">Call: 07703 412563</a>
+            <a href="https://wa.me/447703412563" class="text-green-400 mobile-link">WhatsApp</a>
+            <a href="mailto:beepdrivingschool@gmail.com" class="text-sm lowercase font-normal opacity-70">beepdrivingschool@gmail.com</a>
+        </div>
+    </div>
+
+    <div class="ticker-wrap font-bold uppercase text-[10px] tracking-[0.2em]">
+        <div class="ticker space-x-16">
+            <span>★ Professional & Reliable Instructors</span>
+            <span>★ Based in Croydon & Surrounds</span>
+            <span>★ Fully Qualified - 10+ Years Experience</span>
+            <span>★ Modern Dual-Controlled Vehicles</span>
+        </div>
+    </div>
+
+    <section class="relative min-h-[75vh] flex flex-col items-center justify-center bg-white py-20 overflow-hidden">
+        <div class="w-full mb-8">
+            <div class="car-hero-container">
+                <div class="road-indicator"></div>
+                <!-- Simulating car from image_2.png -->
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3950.png" alt="Beep Driving School Car">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center z-20">
+            <div class="animate__animated animate__fadeInUp">
+                <h1 class="text-5xl md:text-8xl font-black text-black leading-tight mb-4 uppercase tracking-tighter">
+                    BE <span class="bg-yellow-400 px-4">CONFIDENT</span> FOR LIFE.
+                </h1>
+                <p class="text-slate-600 font-bold uppercase tracking-[0.2em] mb-10">Welcome to Beep Driving School — Croydon</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="tel:07703412563" class="px-10 py-5 btn-brand font-black uppercase tracking-widest text-xs shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">Call 07703 412563</a>
+                    <a href="https://wa.me/447703412563" class="px-10 py-5 border-2 border-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition">WhatsApp Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white border-t-8 border-black">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8 border-l-8 border-yellow-400 pl-6">The Journey to <span class="text-yellow-600">Freedom</span></h2>
+                <p class="text-slate-700 font-medium mb-6 text-lg leading-relaxed">Beep strives to deliver the highest possible standard. We work closely with our learners throughout their journey to driving freedom. Unlike other large schools, we get to know each learner on a personal level.</p>
+                <p class="text-slate-600 mb-8 italic">"We don’t just equip you with the right skills to pass your driving test, but to be a confident driver for life."</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-100 p-6 border-b-4 border-yellow-400">
+                        <p class="text-3xl font-black">10+</p>
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Years Experience</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 border-b-4 border-black">
+                        <p class="text-3xl font-black">100%</p>
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Recommendation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal relative p-2 bg-black">
+                <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800" class="w-full h-96 object-cover grayscale hover:grayscale-0 transition duration-700" alt="Driving Lesson">
+                <div class="absolute -bottom-6 -right-6 bg-yellow-400 p-8 border-4 border-black hidden lg:block">
+                    <p class="font-black uppercase text-xs">Based in Croydon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Why Choose <span class="bg-yellow-400 px-2">Beep?</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-grid-item p-10 bg-white">
+                    <div class="w-12 h-12 bg-yellow-400 flex items-center justify-center mb-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <i data-lucide="gauge" class="text-black"></i>
+                    </div>
+                    <h3 class="font-black uppercase text-xl mb-4">BeepAuto</h3>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Specialist automatic driving lessons in modern, easy-to-drive vehicles.</p>
+                </div>
+                <div class="service-grid-item p-10 bg-white">
+                    <div class="w-12 h-12 bg-black flex items-center justify-center mb-6 border-2 border-yellow-400 shadow-[4px_4px_0px_0px_rgba(246,224,94,1)]">
+                        <i data-lucide="clipboard-check" class="text-white"></i>
+                    </div>
+                    <h3 class="font-black uppercase text-xl mb-4">Progress Logs</h3>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Each learner receives a progress log to ensure training is monitored and efficient.</p>
+                </div>
+                <div class="service-grid-item p-10 bg-white">
+                    <div class="w-12 h-12 bg-yellow-400 flex items-center justify-center mb-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <i data-lucide="clock" class="text-black"></i>
+                    </div>
+                    <h3 class="font-black uppercase text-xl mb-4">Flexible Timing</h3>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">We plan lesson times around your busy schedule for total convenience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-y-2 border-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div class="reveal">
+                    <div class="text-5xl font-black text-black mb-2" id="stat1">485</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">FB Followers</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-yellow-500 mb-2" id="stat2">223</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Happy Reviews</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-black mb-2" id="stat3">10</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Years Exp</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-yellow-500 mb-2" id="stat4">100%</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Recommend</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-black text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12">Recent <span class="text-yellow-400">Success</span></h2>
+            <div class="flex overflow-x-auto gap-8 pb-8">
+                <div class="gallery-item flex-shrink-0 p-8 flex flex-col justify-center items-center text-black">
+                     <i data-lucide="award" class="w-16 h-16 mb-4 text-yellow-500"></i>
+                     <p class="font-black uppercase text-center">Croydon Test Pass</p>
+                </div>
+                <div class="gallery-item flex-shrink-0 p-8 flex flex-col justify-center items-center text-black">
+                     <i data-lucide="star" class="w-16 h-16 mb-4 text-yellow-500"></i>
+                     <p class="font-black uppercase text-center">First Time Success</p>
+                </div>
+                <div class="gallery-item flex-shrink-0 p-8 flex flex-col justify-center items-center text-black">
+                     <i data-lucide="smile" class="w-16 h-16 mb-4 text-yellow-500"></i>
+                     <p class="font-black uppercase text-center">New Driver Alert</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 bg-yellow-400 border-y-8 border-black">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-6xl font-black uppercase tracking-tighter text-black mb-6">READY TO <span class="bg-black text-white px-3">START?</span></h2>
+            <p class="text-black font-bold uppercase tracking-widest mb-12">Contact Beep Driving School Directly</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="tel:07703412563" class="bg-black text-white py-8 px-6 font-black uppercase text-xl flex items-center justify-center gap-4 hover:scale-105 transition">
+                    <i data-lucide="phone"></i> 07703 412563
+                </a>
+                <a href="https://wa.me/447703412563" class="bg-white text-black py-8 px-6 font-black uppercase text-xl flex items-center justify-center gap-4 border-4 border-black hover:scale-105 transition">
+                    <i data-lucide="message-circle"></i> WHATSAPP
+                </a>
+            </div>
+            <p class="mt-12 font-black uppercase text-sm">26 Ludford Close, Croydon, CR0 4BY</p>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-20 pb-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-16">
+                <div class="logo-container">
+                    <svg class="beep-svg" viewBox="0 0 200 80">
+                        <rect x="5" y="5" width="190" height="50" fill="none" stroke="white" stroke-width="3" stroke-dasharray="10,5"/>
+                        <text x="100" y="45" font-family="Archivo Black" font-size="42" text-anchor="middle" fill="white">beep</text>
+                    </svg>
+                </div>
+                <div class="flex space-x-6 mt-8 md:mt-0">
+                    <a href="#" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition">
+                        <i data-lucide="facebook"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition">
+                        <i data-lucide="instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/10 text-center md:text-left flex flex-col md:flex-row justify-between gap-8">
+                <div>
+                    <p class="text-2xl font-black text-yellow-400">07703 412563</p>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-2">beepdrivingschool@gmail.com</p>
+                </div>
+                <p class="text-[9px] text-slate-500 font-black uppercase tracking-[0.4em] self-center">&copy; 2026 BEEP DRIVING SCHOOL CROYDON</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cta-dock md:hidden">
+        <a href="tel:07703412563"><i data-lucide="phone" class="w-5 h-5 mb-1"></i>CALL</a>
+        <a href="https://wa.me/447703412563"><i data-lucide="message-square" class="w-5 h-5 mb-1"></i>WHATSAPP</a>
+        <a href="mailto:beepdrivingschool@gmail.com"><i data-lucide="mail" class="w-5 h-5 mb-1"></i>EMAIL</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if(!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + (end > 90 ? '%' : '');
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                animateValue('stat1', 0, 485, 2000);
+                animateValue('stat2', 0, 223, 2000);
+                animateValue('stat3', 0, 10, 2000);
+                animateValue('stat4', 0, 100, 2000);
+                statsObserver.unobserve(entries[0].target);
+            }
+        });
+        const statEl = document.getElementById('stat1');
+        if(statEl) statsObserver.observe(statEl);
+    </script>
+</body>
+</html>
