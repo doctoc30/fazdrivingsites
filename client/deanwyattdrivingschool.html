@@ -3,29 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dean Wyatt Driving School | Kent's Premier Driving Tuition</title>
+    <title>Dean Wyatt Driving School | Bromley & Orpington's Premier Choice</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-black: #1a1a1a; 
-            --brand-red: #e11d48; /* Red from the DWDS logo */
+            /* Exact color branding from image.png and image_6.png */
+            --brand-black: #1a1a1b; 
+            --brand-red: #e31e24; 
             --brand-white: #ffffff;
-            --brand-gray: #f8fafc;
+            --brand-gray: #f4f4f4;
         }
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: var(--brand-white); overflow-x: hidden; margin: 0; padding: 0; }
         
-        /* Replicated Logo SVG Logic */
+        /* Replicated Logo SVG Logic from image.png */
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             line-height: 1;
         }
-        
-        /* FIXED: Brighter Car and Thinner Track */
+        .logo-top {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 42px;
+            color: var(--brand-black);
+            letter-spacing: -2px;
+        }
+        .logo-bottom-box {
+            background-color: var(--brand-red);
+            display: flex;
+            align-items: center;
+            padding: 2px 8px;
+            margin-top: -4px;
+        }
+        .logo-bottom-text {
+            color: white;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+        .steering-wheel-svg {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+            fill: white;
+        }
+
+        /* Hero Animation */
         .car-hero-container {
             position: relative;
             z-index: 10;
@@ -34,18 +60,18 @@
             display: flex;
             align-items: flex-end; 
             overflow: hidden; 
-            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            background: linear-gradient(to bottom, #ffffff, #f9fafb);
         }
         
         #panningCar {
             width: 450px;
             height: auto; 
             position: absolute;
-            bottom: 25px; 
+            bottom: 25px;
             z-index: 20; 
-            animation: driveForward 18s linear infinite; 
+            animation: driveForward 18s linear infinite;
             will-change: transform;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15)); 
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
         }
 
         @keyframes driveForward {
@@ -54,8 +80,8 @@
         }
 
         .road-indicator {
-            height: 4px; 
-            background: #333;
+            height: 6px;
+            background: #222;
             width: 100%;
             position: absolute;
             bottom: 30px; 
@@ -68,43 +94,45 @@
             transform: translateY(-50%);
             left: 0;
             width: 100%;
-            height: 1px; 
+            height: 2px;
             background-image: linear-gradient(to right, white 50%, transparent 50%);
             background-size: 60px 100%;
-            animation: roadMove 0.8s linear infinite; 
+            animation: roadMove 0.8s linear infinite;
         }
         @keyframes roadMove {
             0% { background-position: 0 0; }
             100% { background-position: -60px 0; }
         }
 
-        /* Feature Styles */
+        /* App-Like UI Elements */
         #mobile-menu {
             transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
             transform: translateX(100%);
             background: var(--brand-black);
         }
         #mobile-menu.open { transform: translateX(0); }
-        .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
         .premium-card { transition: all 0.4s ease; border-top: 6px solid var(--brand-red); }
-        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(225, 29, 72, 0.2); }
-        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: white; padding: 15px 0; border-bottom: 4px solid var(--brand-red); }
-        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-        .btn-brand { background-color: var(--brand-red); color: white; transition: 0.3s; font-weight: 900; }
-        .btn-brand:hover { background-color: #be123c; transform: scale(1.05); }
+        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(227, 30, 36, 0.2); }
         
-        /* Custom Descending Dock */
+        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: white; padding: 12px 0; border-bottom: 4px solid var(--brand-red); }
+        .ticker { display: flex; animation: ticker 30s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        
+        .btn-red { background-color: var(--brand-red); color: white; transition: 0.3s; font-weight: 900; }
+        .btn-red:hover { background-color: #bd1419; transform: scale(1.02); }
+        
+        /* Updated Dock - Matching theme but descending style as requested */
         .cta-dock { 
             position: fixed; 
             bottom: 0; 
             left: 0; 
             right: 0; 
-            background: white; 
+            background: var(--brand-black); 
             display: flex; 
             z-index: 100; 
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            border-top: 1px solid #eee;
+            border-top: 4px solid var(--brand-red);
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.3);
         }
         .cta-dock a { 
             flex: 1; 
@@ -113,54 +141,57 @@
             align-items: center; 
             justify-content: center; 
             padding: 12px 0; 
-            color: #666; 
-            font-size: 9px; 
+            color: white; 
+            font-size: 10px; 
             font-weight: 800; 
-            transition: 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1); 
+            text-transform: uppercase;
         }
-        .cta-dock a:hover { color: var(--brand-red); }
-        
-        .gallery-scroll { display: flex; overflow-x: auto; gap: 1.5rem; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 20px 0; }
-        .gallery-item { min-width: 320px; height: 450px; scroll-snap-align: start; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .cta-dock a:last-child { border-right: none; }
+        .cta-dock i { transition: transform 0.2s; }
+        .cta-dock a:active i { transform: scale(1.2); }
+
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .faq-btn { width: 100%; text-align: left; padding: 1.5rem 0; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        
+        .faq-btn { width: 100%; text-align: left; padding: 1.5rem 0; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; text-transform: uppercase; font-size: 0.85rem; }
         .faq-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; }
         .faq-item.active .faq-content { max-height: 300px; padding: 1rem 0; }
-        .red-tag { background: var(--brand-red); color: white; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
         
-        #promoPopup { display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; width: 280px; background: white; border-top: 5px solid var(--brand-red); box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; }
+        .red-tag { background: var(--brand-red); color: white; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
     </style>
 </head>
 <body class="text-slate-900"> 
 
-    <div id="promoPopup" class="animate__animated animate__fadeInUp">
+    <!-- Pop-up based on business details -->
+    <div id="promoPopup" class="animate__animated animate__fadeInUp" style="display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; width: 280px; background: white; border-top: 5px solid var(--brand-red); box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px;">
         <button onclick="this.parentElement.style.display='none'" class="absolute top-2 right-2"><i data-lucide="x" class="w-4 h-4"></i></button>
-        <span class="red-tag mb-2 inline-block">Safe Driving For Life</span>
-        <h4 class="font-black text-xl leading-tight mb-2">Book Your Assessment!</h4>
-        <p class="text-xs font-bold text-slate-500 uppercase mb-4">Start your journey with DWDS in Kent.</p>
-        <a href="tel:07958646379" class="btn-brand px-4 py-2 text-[10px] uppercase inline-block">Call Instructor</a>
+        <span class="red-tag mb-2 inline-block">Anxious Learner Specialist</span>
+        <h4 class="font-black text-xl leading-tight mb-2">Drive Well, Drive Safe</h4>
+        <p class="text-xs font-bold text-slate-500 uppercase mb-4">Based in Farnborough Village, Orpington.</p>
+        <a href="tel:07958646379" class="btn-red px-4 py-2 text-[10px] uppercase inline-block">Contact Dean Today</a>
     </div>
 
     <nav class="sticky top-0 z-50 glass border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Replicated Logo SVG from image_6.png -->
-            <div class="logo-container">
-                <svg width="120" height="50" viewBox="0 0 200 80">
-                    <text x="0" y="40" font-family="Arial, sans-serif" font-weight="900" font-size="55" fill="black">DW</text>
-                    <rect x="0" y="45" width="140" height="35" fill="#e11d48" />
-                    <text x="15" y="73" font-family="Arial, sans-serif" font-weight="900" font-size="30" fill="white">DS</text>
-                    <circle cx="105" cy="62.5" r="15" stroke="white" stroke-width="3" fill="none" />
-                    <circle cx="105" cy="62.5" r="3" fill="white" />
-                    <line x1="105" y1="47.5" x2="105" y2="77.5" stroke="white" stroke-width="2" />
-                    <line x1="90" y1="62.5" x2="120" y2="62.5" stroke="white" stroke-width="2" />
-                </svg>
+            <!-- Custom Replicated SVG Logo -->
+            <div class="logo-container scale-75 md:scale-100 origin-left">
+                <div class="logo-top">DW</div>
+                <div class="logo-bottom-box">
+                    <span class="logo-bottom-text">DS</span>
+                    <svg class="steering-wheel-svg" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="8"/>
+                        <circle cx="50" cy="50" r="10" fill="white"/>
+                        <path d="M50 50 L10 50 M50 50 L90 50 M50 50 L50 90" stroke="white" stroke-width="8"/>
+                    </svg>
+                </div>
             </div>
+            
             <div class="hidden md:flex items-center space-x-10 font-black text-xs uppercase tracking-widest">
-                <a href="#services" class="hover:text-rose-600 transition">Our Services</a>
-                <a href="#areas" class="hover:text-rose-600 transition">Areas Covered</a>
-                <a href="tel:07958646379" class="hover:text-rose-600 transition">07958 646379</a>
-                <a href="mailto:info@deanwyattdrivingschool.com" class="btn-brand px-6 py-3 rounded-sm shadow-lg">Email Us</a>
+                <a href="#services" class="hover:text-red-600 transition">Services</a>
+                <a href="#areas" class="hover:text-red-600 transition">Areas Covered</a>
+                <a href="tel:07958646379" class="hover:text-red-600 transition">07958 646379</a>
+                <a href="mailto:info@deanwyattdrivingschool.com" class="btn-red px-6 py-3 rounded-sm shadow-lg">Email Us</a>
             </div>
             <button id="menu-btn" class="md:hidden"><i data-lucide="menu" class="w-8 h-8"></i></button>
         </div>
@@ -169,208 +200,205 @@
     <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full z-[100] p-10 flex flex-col shadow-2xl">
         <button id="close-btn" class="self-end text-white mb-12"><i data-lucide="x" class="w-10 h-10"></i></button>
         <div class="flex flex-col space-y-8 text-white font-black text-3xl uppercase tracking-tighter">
-            <a href="#services">Our Services</a>
+            <a href="#services">Our Lessons</a>
             <a href="#areas">Areas Covered</a>
             <a href="tel:07958646379">Call Dean</a>
-            <a href="mailto:info@deanwyattdrivingschool.com" class="text-rose-500">Email Today</a>
+            <a href="mailto:info@deanwyattdrivingschool.com" class="text-red-500">Email Today</a>
         </div>
     </div>
 
+    <!-- Ticker with business details from image_4.png and image_5.png -->
     <div class="ticker-wrap font-bold uppercase text-xs tracking-widest">
         <div class="ticker space-x-16">
-            <span>★ Drive Well, Drive Safe with DWDS</span>
-            <span>★ Specialising in Anxious and Nervous Students</span>
-            <span>★ Orpington • Bromley • Kent • SE London</span>
+            <span>★ Specialists in Anxious and Nervous Students</span>
             <span>★ Manual & Automatic Tuition Available</span>
-            <span>★ Theory Test Study Help & Mock Tests</span>
+            <span>★ Dual Controlled Modern Vehicles</span>
+            <span>★ PDI Instructor Training (Parts 1, 2 & 3)</span>
+            <span>★ Theory Test Study Help</span>
+            <span>★ Motorway & Refresher Courses</span>
         </div>
     </div>
 
-    <section class="relative min-h-[80vh] flex flex-col items-center justify-center bg-white py-12 overflow-hidden">
+    <section class="relative min-h-[85vh] flex flex-col items-center justify-center bg-white py-12 overflow-hidden">
         <div class="w-full mb-10">
             <div class="car-hero-container">
                 <div class="road-indicator"></div>
-                <!-- Replicating the Red Car from Image 5 -->
-                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3977.png" style="filter: hue-rotate(340deg) brightness(0.9);" alt="DWDS Driving School Car">
+                <!-- Using placeholder for red car to match brand, user can swap source -->
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3977.png" style="filter: hue-rotate(320deg) saturate(2);" alt="DWDS Driving Car">
             </div>
         </div>
 
         <div class="max-w-5xl mx-auto px-6 text-center z-20">
             <div class="animate__animated animate__fadeInUp">
-                <span class="red-tag mb-4 inline-block">Farnborough Village & Orpington</span>
-                <h1 class="text-6xl md:text-9xl font-black text-black leading-none mb-6 uppercase tracking-tighter">
-                    DRIVE <span class="text-rose-600">WELL.</span>
+                <span class="red-tag mb-4 inline-block">Safe Driving For Life</span>
+                <h1 class="text-5xl md:text-8xl font-black text-black leading-none mb-6 uppercase tracking-tighter">
+                    DRIVE WELL. <br><span class="text-red-600">DRIVE SAFE.</span>
                 </h1>
-                <p class="text-slate-500 font-bold uppercase tracking-[0.3em] mb-12 text-sm md:text-lg">Safe Driving For Life with Dean Wyatt</p>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.2em] mb-12 text-sm md:text-lg px-4">
+                    Expert Instruction based in Farnborough Village, Orpington & Kent
+                </p>
                 
                 <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <a href="tel:07958646379" class="px-10 py-5 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-rose-600 transition duration-300">Call 07958 646379</a>
-                    <a href="mailto:info@deanwyattdrivingschool.com" class="px-10 py-5 border-4 border-black text-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition duration-300">Email Dean Wyatt</a>
+                    <a href="tel:07958646379" class="px-10 py-5 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-red-600 transition duration-300">Call 07958 646379</a>
+                    <a href="mailto:info@deanwyattdrivingschool.com" class="px-10 py-5 border-4 border-black text-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition duration-300">Email Enquiries</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stat Section based on Image 7 data -->
+    <!-- Business Stats from image_2.png -->
     <section class="py-12 bg-white border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div class="reveal">
                 <p class="text-5xl font-black text-black mb-2 counter" data-target="745">0</p>
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Social Followers</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Facebook Followers</p>
             </div>
             <div class="reveal">
                 <p class="text-5xl font-black text-black mb-2 counter" data-target="100">0</p>
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">% Recommend Rate</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">% Recommended (49 Reviews)</p>
             </div>
             <div class="reveal">
-                <p class="text-5xl font-black text-black mb-2 counter" data-target="49">0</p>
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Positive Reviews</p>
+                <p class="text-5xl font-black text-black mb-2 counter" data-target="100">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Dual Controlled Safety</p>
             </div>
         </div>
     </section>
 
-    <!-- Services Section based on Image 1 -->
+    <!-- Custom Services Section from image_4.png -->
     <section id="services" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Comprehensive <span class="text-rose-600">Tuition</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="reveal bg-white p-8 rounded-2xl border-b-4 border-rose-600 shadow-sm">
-                    <i data-lucide="users" class="w-10 h-10 mb-6 text-rose-600"></i>
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Expert <span class="text-red-600">Training</span></h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="reveal bg-white p-8 rounded-2xl border-b-4 border-black shadow-sm">
+                    <i data-lucide="users" class="w-10 h-10 mb-6 text-red-600"></i>
                     <h3 class="text-xl font-black uppercase mb-4">Learner Lessons</h3>
-                    <ul class="text-[11px] font-bold text-slate-500 uppercase space-y-2">
-                        <li>• Teenage Learner Lessons</li>
-                        <li>• Adult Learner Lessons</li>
-                        <li>• Intensive Courses</li>
-                    </ul>
+                    <p class="text-xs font-bold text-slate-500 uppercase leading-relaxed">Tailored sessions for both teenage and adult learners to build confidence from day one.</p>
+                </div>
+                <div class="reveal bg-white p-8 rounded-2xl border-b-4 border-red-600 shadow-sm">
+                    <i data-lucide="zap" class="w-10 h-10 mb-6 text-red-600"></i>
+                    <h3 class="text-xl font-black uppercase mb-4">Intensive Courses</h3>
+                    <p class="text-xs font-bold text-slate-500 uppercase leading-relaxed">Fast-track your learning with our focused intensive schedules and mock test practices.</p>
                 </div>
                 <div class="reveal bg-white p-8 rounded-2xl border-b-4 border-black shadow-sm">
-                    <i data-lucide="graduation-cap" class="w-10 h-10 mb-6"></i>
-                    <h3 class="text-xl font-black uppercase mb-4">Test Preparation</h3>
-                    <ul class="text-[11px] font-bold text-slate-500 uppercase space-y-2">
-                        <li>• Theory Test Study Help</li>
-                        <li>• Mock Test Practice</li>
-                        <li>• Car Hire for Driving Test</li>
-                    </ul>
+                    <i data-lucide="graduation-cap" class="w-10 h-10 mb-6 text-red-600"></i>
+                    <h3 class="text-xl font-black uppercase mb-4">PDI Training</h3>
+                    <p class="text-xs font-bold text-slate-500 uppercase leading-relaxed">Professional instructor training covering Parts 1, 2, and 3 for aspiring teachers.</p>
                 </div>
-                <div class="reveal bg-white p-8 rounded-2xl border-b-4 border-rose-600 shadow-sm">
-                    <i data-lucide="shield-check" class="w-10 h-10 mb-6 text-rose-600"></i>
-                    <h3 class="text-xl font-black uppercase mb-4">Advanced & PDI</h3>
-                    <ul class="text-[11px] font-bold text-slate-500 uppercase space-y-2">
-                        <li>• Motorway Sessions</li>
-                        <li>• PDI Training (Parts 1, 2 & 3)</li>
-                        <li>• Refresher Courses</li>
-                    </ul>
-                </div>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-4 bg-white rounded-lg text-center font-black uppercase text-[10px] tracking-widest border border-slate-200">Motorway Sessions</div>
+                <div class="p-4 bg-white rounded-lg text-center font-black uppercase text-[10px] tracking-widest border border-slate-200">Refresher Courses</div>
+                <div class="p-4 bg-white rounded-lg text-center font-black uppercase text-[10px] tracking-widest border border-slate-200">Theory Study Help</div>
+                <div class="p-4 bg-white rounded-lg text-center font-black uppercase text-[10px] tracking-widest border border-slate-200">Mock Test Practice</div>
             </div>
         </div>
     </section>
 
-    <!-- Informative Description from Image 4 -->
-    <section class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8">Welcome to <span class="text-rose-600">DWDS</span></h2>
-            <p class="text-lg font-bold text-slate-700 leading-relaxed mb-6">Based in Farnborough Village, Orpington, Kent, we provide expert coaching to the industry standard of 'Safe Driving For Life'.</p>
-            <p class="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-12">You'll learn in a dual-controlled car with instructors offering both manual and automatic lessons tailored to nervous or anxious students.</p>
-            <a href="tel:07958646379" class="btn-brand px-12 py-5 uppercase text-xs tracking-widest">Get in Touch to Find Out More</a>
-        </div>
-    </section>
-
-    <!-- Area Coverage from Image 2 -->
-    <section id="areas" class="py-24 bg-slate-900 text-white">
+    <!-- Area Coverage from image_5.png -->
+    <section id="areas" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Areas <span class="text-rose-600">Covered</span></h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">BR1 Bromley/Bickley</span></div>
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">BR2 Hayes/Keston</span></div>
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">BR3 Beckenham</span></div>
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">BR4 West Wickham</span></div>
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">BR5 Petts Wood</span></div>
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">BR6 Orpington</span></div>
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">DA14 Sidcup</span></div>
-                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="text-rose-500 w-4 h-4"></i><span class="font-bold uppercase text-[10px]">SE6 Catford</span></div>
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Service <span class="text-red-600">Areas</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">BR1 Bromley / Bickley</span></div>
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">BR2 Hayes / Keston</span></div>
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">BR3 Beckenham / Park Langley</span></div>
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">BR5 Petts Wood / Orpington</span></div>
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">BR7 Chislehurst</span></div>
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">DA14 Sidcup</span></div>
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">SE6 Catford</span></div>
+                    <div class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i><span class="font-bold uppercase text-[11px]">SE9 Eltham / Mottingham</span></div>
                 </div>
+                <a href="tel:07958646379" class="btn-red px-8 py-4 uppercase text-xs inline-block">Check Your Postcode</a>
             </div>
-            <div class="h-[400px] bg-slate-800 rounded-3xl overflow-hidden shadow-2xl reveal border-4 border-rose-600/20">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40000!2d0.0898!3d51.3735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8ab03932789f5%3A0x6b779a1c1d9b3b0!2sOrpington!5e0!3m2!1sen!2suk!4v1714571234567" width="100%" height="100%" style="border:0; filter: grayscale(1) invert(0.9);" allowfullscreen=""></iframe>
+            <div class="h-[450px] bg-slate-100 rounded-3xl overflow-hidden shadow-xl reveal relative">
+                <!-- Map focused on Orpington/Bromley area -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39795.53324089012!2d0.0526749866896245!3d51.38314152775618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8abb72f7596a1%3A0x7d391f185c8b746!2sOrpington!5e0!3m2!1sen!2suk!4v1714571234567" width="100%" height="100%" style="border:0; filter: grayscale(1) contrast(1.2);" allowfullscreen=""></iframe>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-24 bg-white">
+    <section class="py-24 bg-slate-50">
         <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Common <span class="text-rose-600">Questions</span></h2>
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Quick <span class="text-red-600">Info</span></h2>
             <div class="space-y-4">
                 <div class="faq-item reveal">
-                    <button class="faq-btn" onclick="toggleFaq(this)">Do you specialize in nervous students? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Yes, we specialize in anxious and nervous students, providing a calm and patient environment to build your confidence behind the wheel.</div>
+                    <button class="faq-btn" onclick="toggleFaq(this)">Do you offer Automatic lessons? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Yes, we provide both Manual and Automatic tuition in modern, dual-controlled cars.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <button class="faq-btn" onclick="toggleFaq(this)">What cars do you use? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">We use modern, dual-controlled Ford Fiestas (as seen in our fleet) to ensure maximum safety and comfort during your lessons.</div>
+                    <button class="faq-btn" onclick="toggleFaq(this)">I am very nervous about driving? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">We specialize in nervous and anxious students. Our coaching style is patient, encouraging, and designed to put you at ease.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-btn" onclick="toggleFaq(this)">Can I hire the car for my test? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Yes, car hire for driving tests is available for our regular students who have reached the required safety standard.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-black text-white pt-20 pb-40"> 
+    <!-- Contact CTA Section -->
+    <section class="py-24 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-black uppercase mb-8">Ready to Start?</h2>
+            <p class="text-slate-400 font-bold uppercase text-xs tracking-widest mb-12">Join Dean Wyatt Driving School and learn 'Safe Driving For Life'.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:07958646379" class="btn-red px-12 py-6 text-sm uppercase">Call Dean: 07958 646379</a>
+                <a href="mailto:info@deanwyattdrivingschool.com" class="border-2 border-white px-12 py-6 text-sm uppercase hover:bg-white hover:text-black transition">Send an Email</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-20 pb-32 border-t border-white/5"> 
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start mb-16 border-b border-white/10 pb-16">
-                <div class="mb-10 md:mb-0">
-                    <div class="bg-white p-4 inline-block mb-4">
-                        <svg width="100" height="40" viewBox="0 0 200 80">
-                            <text x="0" y="40" font-family="Arial, sans-serif" font-weight="900" font-size="55" fill="black">DW</text>
-                            <rect x="0" y="45" width="140" height="35" fill="#e11d48" />
-                            <text x="15" y="73" font-family="Arial, sans-serif" font-weight="900" font-size="30" fill="white">DS</text>
-                        </svg>
+            <div class="flex flex-col md:flex-row justify-between items-start mb-16">
+                <div class="logo-container scale-100 mb-10 md:mb-0">
+                    <div class="logo-top !text-white">DW</div>
+                    <div class="logo-bottom-box">
+                        <span class="logo-bottom-text">DS</span>
+                        <svg class="steering-wheel-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="8"/><path d="M50 50 L10 50 M50 50 L90 50 M50 50 L50 90" stroke="white" stroke-width="8"/></svg>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
                     <div>
-                        <h5 class="font-black uppercase text-rose-500 text-xs mb-6">Direct Contact</h5>
+                        <h5 class="font-black uppercase text-red-600 text-xs mb-6">Contact</h5>
                         <p class="text-sm font-bold uppercase tracking-widest mb-2">07958 646379</p>
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500">info@deanwyattdrivingschool.com</p>
+                        <p class="text-[10px] text-slate-500 uppercase">info@deanwyattdrivingschool.com</p>
                     </div>
                     <div>
-                        <h5 class="font-black uppercase text-rose-500 text-xs mb-6">Main Hubs</h5>
-                        <ul class="text-[10px] font-bold uppercase space-y-2 text-slate-400">
-                            <li>Orpington</li>
-                            <li>Bromley</li>
-                            <li>Farnborough Village</li>
-                        </ul>
+                        <h5 class="font-black uppercase text-red-600 text-xs mb-6">HQ</h5>
+                        <p class="text-[10px] font-bold uppercase text-slate-400">Farnborough Village<br>Orpington, Kent</p>
                     </div>
                     <div>
-                        <h5 class="font-black uppercase text-rose-500 text-xs mb-6">Socials</h5>
-                        <div class="flex space-x-4"><i data-lucide="instagram" class="w-5 h-5"></i><i data-lucide="facebook" class="w-5 h-5"></i><i data-lucide="twitter" class="w-5 h-5"></i></div>
+                        <h5 class="font-black uppercase text-red-600 text-xs mb-6">Social</h5>
+                        <div class="flex space-x-4"><i data-lucide="facebook" class="w-5 h-5 hover:text-red-600 cursor-pointer"></i><i data-lucide="instagram" class="w-5 h-5 hover:text-red-600 cursor-pointer"></i></div>
                     </div>
                 </div>
             </div>
-            <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">© 2026 DEAN WYATT DRIVING SCHOOL (DWDS)</p>
+            <p class="text-[9px] text-slate-600 font-black uppercase tracking-[0.4em]">© 2026 DEAN WYATT DRIVING SCHOOL. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 
-    <!-- Custom Descending Dock based on image_3.png icons -->
-    <div class="cta-dock md:hidden">
+    <!-- App-style CTA Dock - Icons matched from image_4.png reference footer -->
+    <div class="cta-dock">
         <a href="tel:07958646379">
-            <svg class="w-5 h-5 mb-1" viewBox="0 0 24 24" fill="#4ade80"><path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27 11.72 11.72 0 003.7.59 1 1 0 011 1V20a1 1 0 01-1 1A15 15 0 014 6a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.7 1 1 0 01-.27 1.11z"/></svg>
-            CALL
+            <i data-lucide="phone" class="w-5 h-5 mb-1 text-red-500"></i>
+            Call
         </a>
         <a href="mailto:info@deanwyattdrivingschool.com">
-            <svg class="w-5 h-5 mb-1" viewBox="0 0 24 24" fill="#db2777"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 4l8 5 8-5V6l-8 5-8-5v2z"/></svg>
-            EMAIL
+            <i data-lucide="mail" class="w-5 h-5 mb-1 text-red-500"></i>
+            Email
         </a>
         <a href="https://facebook.com">
-            <svg class="w-5 h-5 mb-1" viewBox="0 0 24 24" fill="#3b82f6"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-            FACEBOOK
+            <i data-lucide="facebook" class="w-5 h-5 mb-1 text-red-500"></i>
+            Social
         </a>
-        <a href="https://instagram.com">
-            <svg class="w-5 h-5 mb-1" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            INSTAGRAM
-        </a>
-        <a href="https://twitter.com">
-            <svg class="w-5 h-5 mb-1" viewBox="0 0 24 24" fill="#60a5fa"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
-            TWITTER
+        <a href="tel:07958646379" class="bg-red-600 !text-white !border-none">
+            <i data-lucide="calendar-check" class="w-5 h-5 mb-1"></i>
+            Enquire
         </a>
     </div>
 
@@ -378,8 +406,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
             
-            setTimeout(() => { document.getElementById('promoPopup').style.display = 'block'; }, 3000);
+            // Popup delay
+            setTimeout(() => { document.getElementById('promoPopup').style.display = 'block'; }, 4000);
             
+            // Counter Logic
             const counters = document.querySelectorAll('.counter');
             const speed = 200;
             const startCounters = (entries) => {
@@ -390,28 +420,31 @@
                         const inc = target / speed;
                         if(count < target) {
                             entry.target.innerText = Math.ceil(count + inc);
-                            setTimeout(() => startCounters([entry]), 1);
+                            setTimeout(() => startCounters([entry]), 15);
                         } else { entry.target.innerText = target; }
                     }
                 });
             };
             const counterObserver = new IntersectionObserver(startCounters, {threshold: 0.5});
             counters.forEach(c => counterObserver.observe(c));
+
+            // Scroll Reveals
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp'); }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
 
+        // Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
         closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp'); }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
+        // FAQ Toggle
         function toggleFaq(btn) {
             const item = btn.parentElement;
             item.classList.toggle('active');
