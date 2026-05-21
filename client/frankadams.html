@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +60,7 @@
             width: 450px;
             height: 260px; 
             object-fit: cover; 
-            object-position: top; 
+            object-position: center; 
             position: absolute;
             bottom: 30px; 
             z-index: 20; 
@@ -193,9 +192,9 @@
         <div class="w-full mb-16">
             <div class="car-hero-container">
                 <div class="road-indicator"></div>
-                <svg id="panningCar" viewBox="0 0 512 512" class="text-[var(--brand-navy)]" fill="currentColor">
-                    <path d="M495.9 366.1C491.3 351.7 478.1 342 463 342H448V264c0-22.1-17.9-40-40-40H304V152c0-8.8-7.2-16-16-16H144c-8.8 0-16 7.2-16 16v72H48c-22.1 0-40 17.9-40 40v78H3c-1.7 0-3 1.3-3 3v24c0 1.7 1.3 3 3 3h5c0 30.9 25.1 56 56 56s56-25.1 56-56h272c0 30.9 25.1 56 56 56s56-25.1 56-56h5c1.7 0 3-1.3 3-3v-24c0-1.7-1.3-3-3-3zM128 184h128v40H128v-40zM64 432c-17.6 0-32-14.4-32-32s14.4-32 32-32 32 14.4 32 32-14.4 32-32 32zm384 0c-17.6 0-32-14.4-32-32s14.4-32 32-32 32 14.4 32 32-14.4 32-32 32z"/>
-                </svg>
+                <!-- REPLACED HERO IMAGE: New panning car image for Frank Adams Driving ADI -->
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_4325.png" alt="Frank Adams Driving School Car" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display: none; align-items: center; justify-content: center; width: 450px; height: 260px; position: absolute; bottom: 30px; z-index: 20; background: #1e293b; border-radius: 12px; color: white; font-size: 12px;">Vehicle Image</div>
             </div>
         </div>
 
@@ -537,5 +536,3 @@
     </script>
 </body>
 </html>
-
-```
