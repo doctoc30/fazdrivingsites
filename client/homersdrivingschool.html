@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homer's Driving School | Kidderminster Professional Driving Lessons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Updated to match Homer's brand styling (Solid Black & Vibrant Red) */
+            --brand-navy: #000000; 
+            --brand-red: #dc2626;
+            --brand-silver: #f8fafc;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
+        
+        /* Logo Logic */
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            color: var(--brand-navy);
+            text-transform: uppercase;
+            font-size: 1.25rem;
+        }
+        .l-plate-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 2px solid var(--brand-red);
+            width: 32px;
+            height: 32px;
+            margin-left: 8px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+        .l-plate-icon span {
+            color: var(--brand-red);
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        /* Continuous Smooth Driving Animation */
+        .car-hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 320px; 
+            display: flex;
+            align-items: flex-end; 
+            overflow: hidden; 
+        }
+        
+        #panningCar {
+            width: 450px;
+            height: 260px; 
+            object-fit: cover; 
+            object-position: center; 
+            position: absolute;
+            bottom: 30px; 
+            z-index: 20; 
+            animation: driveForward 12s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes driveForward {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* Hamburger Menu Styles */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .road-indicator {
+            height: 4px;
+            background: #cbd5e1;
+            width: 100%;
+            position: absolute;
+            bottom: 35px; 
+            z-index: 5; 
+        }
+        .road-indicator::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, var(--brand-navy) 50%, transparent 50%);
+            background-size: 40px 100%;
+            animation: roadMove 0.5s linear infinite;
+        }
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -40px 0; }
+        }
+
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); }
+        .premium-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-top: 4px solid transparent; }
+        .premium-card:hover { transform: translateY(-12px); border-color: var(--brand-red); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.2); }
+        .ticker-wrap { overflow: hidden; background: var(--brand-navy); color: white; padding: 12px 0; border-bottom: 3px solid var(--brand-red); }
+        .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .btn-red { background-color: var(--brand-red); color: white; transition: 0.3s; }
+        .btn-red:hover { background-color: #b91c1c; transform: scale(1.05); }
+
+        .faq-item { border-bottom: 1px solid #edf2f7; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
+        .faq-item.active i { transform: rotate(180deg); }
+        
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-navy); display: flex; z-index: 100; border-top: 3px solid var(--brand-red); }
+        .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
+        
+        .gallery-scroll { display: flex; overflow-x: auto; gap: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .gallery-item { min-width: 280px; height: 350px; scroll-snap-align: start; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+        
+        .service-grid-item { border: 1px solid #e2e8f0; transition: all 0.3s ease; cursor: pointer; }
+        .service-grid-item:hover { border-color: var(--brand-red); background: #fff; transform: translateY(-5px); }
+
+        .slider-wrap { position: relative; overflow: hidden; }
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+
+        /* ADDON: Referral Modal Styles */
+        #referModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        #referModal.active { display: flex; }
+    </style>
+</head>
+<body class="text-slate-900"> 
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="logo-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 50" class="h-10 w-auto">
+                        <path d="M 20 35 A 15 15 0 1 1 35 35" fill="none" style="stroke: var(--brand-red);" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="20" y1="20" x2="27" y2="27" style="stroke: var(--brand-navy);" stroke-width="3" stroke-linecap="round"/>
+                        <text x="50" y="28" font-family="'Archivo Black', sans-serif" font-size="24" font-weight="900" fill="currentColor">HOMER'S</text>
+                        <text x="52" y="42" font-family="'Inter', sans-serif" font-size="10" font-weight="700" letter-spacing="0.1em" fill="currentColor">DRIVING SCHOOL</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-10 font-bold text-xs uppercase tracking-widest">
+                <a href="#services" class="hover:text-[var(--brand-red)] transition">Tuition</a>
+                <a href="#pricing" class="hover:text-[var(--brand-red)] transition">Pricing</a>
+                <a href="tel:07724221881" class="hover:text-[var(--brand-red)] transition">07724 221881</a>
+                <a href="https://wa.me/447724221881" target="_blank" class="btn-red px-6 py-3 rounded-sm shadow-lg flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4"></i> WA: 07724 221881</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-[var(--brand-navy)]">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full sm:w-80 bg-[var(--brand-navy)] z-[100] p-10 flex flex-col shadow-2xl">
+        <button id="close-btn" class="self-end text-white mb-12">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <div class="flex flex-col space-y-8 text-white font-black text-2xl uppercase tracking-tighter">
+            <a href="#services" class="mobile-link">Tuition</a>
+            <a href="#pricing" class="mobile-link">Pricing</a>
+            <a href="tel:07724221881" class="mobile-link">Call: 07724 221881</a>
+            <a href="https://wa.me/447724221881" target="_blank" class="text-red-500 mobile-link">WA: 07724 221881</a>
+        </div>
+        <div class="mt-auto border-t border-white/10 pt-8">
+            <div class="flex space-x-6 text-white/50">
+                <a href="#" target="_blank" class="hover:text-white"><i data-lucide="instagram"></i></a>
+                <a href="mailto:mumshad@hotmail.co.uk" class="hover:text-white"><i data-lucide="mail"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ticker-wrap font-bold uppercase text-[10px] tracking-[0.2em]">
+        <div class="ticker space-x-16">
+            <span>★ Professional, Patient Driving Lessons</span>
+            <span>★ Based in Kidderminster, United Kingdom</span>
+            <span>★ Learn With Confidence</span>
+            <span>★ Helping You Pass And Drive For Life</span>
+        </div>
+    </div>
+
+    <section class="relative min-h-[70vh] flex flex-col items-center justify-center bg-white py-20 overflow-hidden">
+        <div class="w-full mb-16">
+            <div class="car-hero-container">
+                <div class="road-indicator"></div>
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_4325.png" alt="Homer's Driving School Car" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display: none; align-items: center; justify-content: center; width: 450px; height: 260px; position: absolute; bottom: 30px; z-index: 20; background: #1e293b; border-radius: 12px; color: white; font-size: 12px;">Vehicle Image</div>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center z-20">
+            <div class="animate__animated animate__fadeInUp">
+                <h1 class="text-5xl md:text-7xl font-black text-[var(--brand-navy)] leading-tight mb-4 uppercase tracking-tighter">
+                    Homer's <span class="text-red-600">Driving School</span>
+                </h1>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.2em] mb-10">Learn with confidence. Professional, patient driving lessons that help you pass — and drive for life.</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="tel:07724221881" class="px-12 py-5 btn-red font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> Call: 07724 221881</a>
+                    <a href="https://wa.me/447724221881" target="_blank" class="px-12 py-5 border-2 border-[var(--brand-navy)] text-[var(--brand-navy)] font-black uppercase tracking-widest text-xs hover:bg-[var(--brand-navy)] hover:text-white transition flex items-center justify-center gap-2"><i data-lucide="message-square" class="w-4 h-4"></i> WA: 07724 221881</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Expert Driving Lessons in <span class="text-red-600">Kidderminster</span></h2>
+                <p class="text-slate-600 font-medium mb-6 leading-relaxed">At Homer's Driving School, I focus on delivering structured, patient, and highly dependable automotive training designed around your unique learning speed. From building foundational confidence to navigating test day prep, we ensure you develop secure driving skills for life.</p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="border-l-4 border-red-600 pl-4">
+                        <p class="text-2xl font-black text-[var(--brand-navy)]">Kidderminster</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-wrap">Primary Operating Territory</p>
+                    </div>
+                    <div class="border-l-4 border-red-600 pl-4">
+                        <p class="text-2xl font-black text-[var(--brand-navy)]">DY10 2TY</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Bruce Road HQ Hub</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal bg-gradient-to-tr from-slate-100 to-white rounded-2xl h-80 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-5 pointer-events-none">
+                    <svg width="100%" height="100%"><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#grid)" /></svg>
+                </div>
+                <div class="w-32 h-32 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-red-600 mb-6 z-10">
+                    <svg viewBox="0 0 24 24" class="w-16 h-16 text-[var(--brand-navy)]" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <line x1="12" y1="2" x2="12" y2="9"/>
+                        <line x1="12" y1="15" x2="12" y2="22"/>
+                        <line x1="2" y1="12" x2="9" y2="12"/>
+                        <line x1="15" y1="12" x2="22" y2="12"/>
+                    </svg>
+                </div>
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 z-10">Professional Instruction</p>
+                <div class="absolute bottom-4 right-4 bg-red-600 text-white p-2 rounded-full"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Comprehensive <span class="text-red-600">Tuition Options</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="service-grid-item p-8 bg-white">
+                    <i data-lucide="zap" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Beginner Confidence</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Patient step-by-step navigation basics, steering control, and fundamental confidence training.</p>
+                </div>
+                <div class="service-grid-item p-8 bg-white">
+                    <i data-lucide="timer" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Refresher Courses</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Rebuild comfort behind the wheel or master challenging highway rules after gaps in driving.</p>
+                </div>
+                <div class="service-grid-item p-8 bg-white">
+                    <i data-lucide="help-circle" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Manoeuvre Training</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Deep focus on parallel parking, bay parking, reverse control, and emergency technical stops.</p>
+                </div>
+                <div class="service-grid-item p-8 bg-white">
+                    <i data-lucide="file-check" class="text-red-600 mb-4"></i>
+                    <h3 class="font-black uppercase tracking-tight text-xl mb-2 text-wrap">Test Preparation</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase leading-relaxed">Full breakdown of localized Kidderminster test routes and criteria to ensure you are 100% prepared.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-[var(--brand-silver)]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div class="reveal">
+                    <div class="text-5xl font-black text-[var(--brand-navy)] mb-2" id="stat1">45+</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Social Followers</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-red-600 mb-2" id="stat2">100%</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Patient Approach</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-[var(--brand-navy)] mb-2" id="stat3">32+</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Instagram Posts</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-5xl font-black text-red-600 mb-2" id="stat4">1</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">On-One Focus</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12">Student Journey <span class="text-red-600">Highlights</span></h2>
+            <div class="gallery-scroll">
+                <div class="gallery-item flex flex-col items-center justify-center p-4">
+                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="car" class="text-slate-400 w-12 h-12"></i></div>
+                    <p class="font-black uppercase text-xs tracking-tighter">Kidderminster Route Success</p>
+                </div>
+                <div class="gallery-item flex flex-col items-center justify-center p-4">
+                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="shield" class="text-slate-400 w-12 h-12"></i></div>
+                    <p class="font-black uppercase text-xs tracking-tighter">Confidence Behind the Wheel</p>
+                </div>
+                <div class="gallery-item flex flex-col items-center justify-center p-4">
+                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="award" class="text-slate-400 w-12 h-12"></i></div>
+                    <p class="font-black uppercase text-xs tracking-tighter">Ready to Drive For Life</p>
+                </div>
+                <div class="gallery-item flex flex-col items-center justify-center p-4">
+                    <div class="w-full h-64 bg-slate-200 mb-4 rounded flex items-center justify-center"><i data-lucide="map" class="text-slate-400 w-12 h-12"></i></div>
+                    <p class="font-black uppercase text-xs tracking-tighter">Local Area Practical Mastery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[var(--brand-navy)] text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div id="story-slider" class="slider-wrap">
+                <div class="slide active">
+                    <p class="text-2xl font-bold italic mb-4">"Homer's provides incredibly patient guidance, helping me clear up any confusion and boosting my confidence on the road."</p>
+                    <p class="text-red-500 font-black uppercase tracking-widest text-xs">Student Feedback</p>
+                </div>
+                <div class="slide">
+                    <p class="text-2xl font-bold italic mb-4">"Highly recommended for anyone looking for reliable driving courses in the Kidderminster area."</p>
+                    <p class="text-red-500 font-black uppercase tracking-widest text-xs">Verified Local Review</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-32 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-20">
+            <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--brand-navy)]">Lesson <span class="text-red-600">Inquiries</span></h2>
+            <p class="text-slate-500 font-bold uppercase tracking-widest text-xs mt-4">Get in touch directly via Phone or WhatsApp for pricing details and available scheduling blocks</p>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+            <div class="reveal bg-white p-10 shadow-xl border-t-8 border-slate-900 text-center">
+                <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="phone" class="text-[var(--brand-navy)] w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4 uppercase tracking-tighter">Direct Phone Line</h4>
+                <p class="text-slate-500 text-xs font-bold uppercase tracking-wide mb-8">Speak to me directly to discuss availability across Kidderminster.</p>
+                <a href="tel:07724221881" class="block text-center py-5 bg-[var(--brand-navy)] text-white font-black uppercase tracking-widest text-xs rounded shadow-md hover:bg-slate-800 transition">Call: 07724 221881</a>
+            </div>
+            <div class="reveal bg-white p-10 shadow-xl border-t-8 border-red-600 text-center">
+                <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="message-square" class="text-red-600 w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4 uppercase tracking-tighter">WhatsApp Chat</h4>
+                <p class="text-slate-500 text-xs font-bold uppercase tracking-wide mb-8">Instant text consultation for slot matching and pricing.</p>
+                <a href="https://wa.me/447724221881" target="_blank" class="block text-center py-5 btn-red font-black uppercase tracking-widest text-xs rounded shadow-md">WA: 07724 221881</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Local <span class="text-red-600">Community Feedback</span></h2>
+                <div class="bg-slate-50 p-8 rounded border border-slate-100 mb-4">
+                    <div class="flex text-yellow-500 mb-4"><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i></div>
+                    <p class="font-bold text-slate-700 italic">"Patient instruction tailored perfectly to building independent confidence. Fantastic local driving school."</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Service <span class="text-red-600">Territory</span></h2>
+                <div class="bg-slate-100 p-8 rounded border border-slate-200 flex flex-col justify-center items-center text-center">
+                    <i data-lucide="map-pin" class="text-red-600 w-10 h-10 mb-4"></i>
+                    <p class="font-black uppercase tracking-widest text-sm mb-2 text-[var(--brand-navy)]">Kidderminster, United Kingdom</p>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-tighter">Operating out of Bruce Road, DY10 2TY, providing professional lessons across the surrounding region.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-red-600 text-white text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-black uppercase tracking-tight mb-4 text-white">Ready to Start Learning?</h2>
+            <p class="font-bold opacity-90 uppercase text-xs tracking-widest mb-8">Get in touch directly via your preferred method below to lock in your next lessons.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:07724221881" class="px-8 py-4 bg-white text-slate-900 font-black uppercase text-[10px] tracking-widest rounded shadow-lg flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> Call: 07724 221881</a>
+                <a href="https://wa.me/447724221881" target="_blank" class="px-8 py-4 bg-[var(--brand-navy)] text-white font-black uppercase text-[10px] tracking-widest rounded shadow-lg flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4"></i> WA: 07724 221881</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="callback" class="py-24 bg-[var(--brand-navy)] text-white">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4">Connect with <span class="text-red-600">Homer's</span></h2>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Reach out via direct email for lesson scheduling, blocks and general questions</p>
+            </div>
+            <a href="mailto:mumshad@hotmail.co.uk" class="inline-flex items-center gap-4 px-12 py-6 btn-red font-black uppercase tracking-widest text-sm rounded shadow-xl">
+                <i data-lucide="mail" class="w-5 h-5"></i> mumshad@hotmail.co.uk
+            </a>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-12 text-center">Driver <span class="text-red-600">Knowledge Base</span></h2>
+            <div id="faq-container">
+                <div class="faq-item active">
+                    <button class="w-full py-6 flex justify-between items-center text-left font-black uppercase text-sm tracking-widest">
+                        What areas do you primarily cover?
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-slate-500 font-medium">I provide professional tuition across Kidderminster, United Kingdom (DY10 2TY) and surrounding local regional training hubs.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="w-full py-6 flex justify-between items-center text-left font-black uppercase text-sm tracking-widest">
+                        How can I book or check current pricing?
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-slate-500 font-medium">You can call directly or message via WhatsApp at 07724 221881, or send your requirements over to mumshad@hotmail.co.uk.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[var(--brand-navy)] text-white pt-20 pb-32 border-t border-white/5"> 
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="logo-wrap !text-white mb-8 md:mb-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 50" class="h-10 w-auto">
+                        <path d="M 20 35 A 15 15 0 1 1 35 35" fill="none" style="stroke: var(--brand-red);" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="20" y1="20" x2="27" y2="27" style="stroke: white;" stroke-width="3" stroke-linecap="round"/>
+                        <text x="50" y="28" font-family="'Archivo Black', sans-serif" font-size="24" font-weight="900" fill="white">HOMER'S</text>
+                        <text x="52" y="42" font-family="'Inter', sans-serif" font-size="10" font-weight="700" letter-spacing="0.1em" fill="white">DRIVING SCHOOL</text>
+                    </svg>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition duration-500 text-white">
+                        <i data-lucide="instagram" class="w-6 h-6"></i>
+                    </a>
+                    <a href="mailto:mumshad@hotmail.co.uk" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition duration-500 text-white">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-xl font-black tracking-tight">07724 221881</p>
+                    <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-2">Professional, Patient Driving Lessons</p>
+                </div>
+                <p class="text-[9px] text-slate-500 font-black uppercase tracking-[0.4em]">&copy; 2026 HOMER'S DRIVING SCHOOL</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cta-dock md:hidden">
+        <a href="tel:07724221881"><i data-lucide="phone" class="w-5 h-5 mb-1"></i>CALL</a>
+        <a href="https://wa.me/447724221881" target="_blank"><i data-lucide="message-square" class="w-5 h-5 mb-1"></i>WHATSAPP</a>
+        <a href="mailto:mumshad@hotmail.co.uk"><i data-lucide="mail" class="w-5 h-5 mb-1"></i>EMAIL</a>
+        <a href="sms:07724221881" class="bg-red-600 !border-none"><i data-lucide="smartphone" class="w-5 h-5 mb-1"></i>TEXT</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+            lucide.createIcons(); 
+        });
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if(!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + (end > 90 ? '%' : '+');
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                animateValue('stat1', 0, 45, 2000); /* Updated to 45 to match profile followers */
+                animateValue('stat2', 0, 100, 2000);
+                animateValue('stat3', 0, 32, 2000); /* Updated to 32 to match profile posts */
+                animateValue('stat4', 0, 1, 2000);
+                statsObserver.unobserve(entries[0].target);
+            }
+        });
+        const statEl = document.getElementById('stat1');
+        if(statEl) statsObserver.observe(statEl);
+
+        document.querySelectorAll('.faq-item button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.classList.toggle('active');
+            });
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
