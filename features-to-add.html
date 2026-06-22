@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>DriveSync Pro – Driving School Feature Builder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      min-height: 100vh;
+      padding: 24px 20px;
+    }
+
+    /* main container same as barber reference */
+    .sop-container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* TWO COLUMN LAYOUT */
+    .two-columns {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .checklist-area {
+      flex: 2;
+      min-width: 280px;
+    }
+
+    .output-area {
+      flex: 1.2;
+      min-width: 320px;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      padding: 24px;
+      height: fit-content;
+      position: sticky;
+      top: 24px;
+      border: 1px solid #fff0e6;
+    }
+
+    /* brand header (driving school) but keeping energy of original */
+    .brand-header {
+      margin-bottom: 28px;
+    }
+
+    .brand-header h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #FF6B00;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand-header h1 i {
+      background: #FFF0E6;
+      padding: 10px;
+      border-radius: 60px;
+      color: #FF6B00;
+    }
+
+    .brand-header p {
+      color: #4a4a4a;
+      margin-top: 8px;
+      font-weight: 500;
+      border-left: 3px solid #FF6B00;
+      padding-left: 16px;
+    }
+
+    /* re-use original checklist styling */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #FF6B00;
+      margin: 20px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #FFE0C2;
+      padding-bottom: 6px;
+    }
+
+    .progress-area {
+      margin-bottom: 18px;
+    }
+
+    .progress-text {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #FF6B00;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #FF6B00;
+      border-radius: 10px;
+      transition: width 0.25s ease;
+    }
+
+    .step-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1.2px solid #f5f0ec;
+    }
+
+    .checkbox {
+      width: 38px;
+      height: 38px;
+      border: 2.5px solid #FF6B00;
+      border-radius: 14px;
+      background: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: 0.1s;
+    }
+
+    .checkbox.checked {
+      background: #FF6B00;
+    }
+
+    .checkbox.checked i {
+      color: white;
+      font-size: 1.2rem;
+      display: block;
+    }
+
+    .checkbox i {
+      display: none;
+    }
+
+    .step-num {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #FF6B00;
+      min-width: 34px;
+    }
+
+    .step-title {
+      flex: 1;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #1f1f1f;
+      cursor: pointer;
+      line-height: 1.35;
+    }
+
+    .info-icon {
+      color: #FF6B00;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #FFF0E6;
+      flex-shrink: 0;
+    }
+
+    /* note badge */
+    .note-badge-sm {
+      background: #FFF0E6;
+      border-radius: 40px;
+      padding: 4px 10px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #FF6B00;
+      max-width: 130px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      margin-left: 6px;
+    }
+
+    .feature-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* output panel style */
+    .warning-message {
+      background: #FFF0E6;
+      border-left: 5px solid #FF6B00;
+      padding: 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #aa4f00;
+      margin-bottom: 18px;
+    }
+
+    .missing-title {
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      color: #1e1e2a;
+    }
+
+    .prompt-textarea {
+      width: 100%;
+      min-height: 280px;
+      background: #fefaf7;
+      border: 1.5px solid #ffe0cc;
+      border-radius: 24px;
+      padding: 16px;
+      font-size: 0.8rem;
+      font-family: monospace;
+      resize: vertical;
+      margin: 12px 0;
+      color: #2d2d2d;
+    }
+
+    .copy-btn {
+      background: #FF6B00;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      margin-bottom: 10px;
+    }
+
+    .copy-btn:hover {
+      background: #e05e00;
+      transform: scale(0.98);
+    }
+
+    .refresh-btn {
+      background: #f4f4f4;
+      border: none;
+      padding: 10px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* popup modal for notes */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.2s;
+    }
+
+    .popup.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup-card {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      max-height: 85vh;
+      border-radius: 40px;
+      padding: 28px 28px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-header {
+      margin-bottom: 20px;
+      border-bottom: 3px solid #FF6B00;
+      display: inline-block;
+    }
+
+    .popup-header h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #FF6B00;
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      background: transparent;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    .popup-content p {
+      margin: 8px 0 12px;
+      font-size: 0.9rem;
+    }
+
+    .popup-content input, .popup-content textarea {
+      width: 100%;
+      border-radius: 24px;
+      border: 1.5px solid #ffe0cc;
+      padding: 12px;
+      font-size: 0.85rem;
+      margin: 8px 0;
+    }
+
+    .popup-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .popup-actions button {
+      padding: 8px 24px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .save-note-btn {
+      background: #FF6B00;
+      color: white;
+    }
+
+    @media (max-width: 880px) {
+      .two-columns {
+        flex-direction: column;
+      }
+      .output-area {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sop-container">
+  <!-- Brand header (Driving school) but using #FF6B00 style from barber reference -->
+  <div class="brand-header">
+    <h1><i class="fas fa-car-side"></i> DRIVE SYNC PRO</h1>
+    <p>✅ CHECK = feature to ADD (missing) | UNCHECK = already present — only checked items appear in final prompt.<br>
+    ✏️ Click note icon ➕ add placement instruction (e.g. "place inside hero", "above footer").</p>
+  </div>
+
+  <div class="two-columns">
+    <!-- LEFT: Checklist Area 60 DRIVING SCHOOL FEATURES -->
+    <div class="checklist-area">
+      <div class="section-title"><i class="fa-regular fa-rectangle-list"></i> Features to request (check if missing)</div>
+      <div id="dynamicFeaturesContainer"></div>
+    </div>
+
+    <!-- RIGHT: OUTPUT PANEL (ONLY checked features) -->
+    <div class="output-area">
+      <div class="warning-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> <strong>⚠️ CRITICAL – PURE ADD-ONS</strong><br>
+        “DO NOT remove, rewrite or delete ANY existing code. Preserve all current functionality, styles & structure. <strong>ONLY ADD</strong> the features listed below. No cutting — pure additions.”
+      </div>
+      <div class="missing-title"><i class="fa-regular fa-square-check"></i> 🚦 FINAL PROMPT (only checked items)</div>
+      <textarea id="finalPromptArea" class="prompt-textarea" readonly placeholder="Select features (check boxes) → they appear here + placement notes. Copy & send to AI."></textarea>
+      <button id="copyFinalBtn" class="copy-btn"><i class="fa-regular fa-clipboard"></i> 📋 Copy entire prompt</button>
+      <button id="refreshOutputBtn" class="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i> Refresh missing list</button>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP for note per feature -->
+<div id="noteModal" class="popup" onclick="closeModalOnBg(event)">
+  <div class="popup-card">
+    <button class="close-popup" onclick="closeNoteModal()">✕</button>
+    <div class="popup-header"><h3><i class="fa-regular fa-pen-to-square"></i> Placement note</h3></div>
+    <div class="popup-content">
+      <p>Add optional instruction: where should AI put this feature? (section, position, etc.)</p>
+      <input type="text" id="noteInputField" placeholder="e.g. 'Below hero slider', 'Inside footer', 'Above pricing table'">
+    </div>
+    <div class="popup-actions">
+      <button onclick="closeNoteModal()" style="background:#f0f0f0;">Cancel</button>
+      <button id="saveNoteBtn" class="save-note-btn">Save note</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------- 60 DRIVING SCHOOL FEATURES (pure frontend, real value) ----------
+  const allDrivingFeatures = [
+    "Top Section Hero Slider – Animated image slider of instructor car + contact offers (15y exp, established 2005, free therapy test training).",
+    "Top Section Large Booking with Calendar Integration – Calendly style booking, 'Book First Lesson', postcode search visual.",
+    "Buy Now Lesson Packages – Starter (1), Beginner (5), Intensive (10), Fast Pass (20), Test Prep Package – purchase UI.",
+    "Automatic vs Manual Lessons Section – Clear display: both options with icons & explanatory text.",
+    "Areas Covered Section – Croydon, Bromley, Lewisham, Greenwich, South London visual area list.",
+    "Instructor Trust Section – DVSA approved, insurance, nervous driver specialist, high pass rates.",
+    "FAQ Toggle / Accordion – Interactive FAQ: pricing, duration, test prep, weekend lessons, payment methods.",
+    "Scroll Animations – Smooth on-scroll animations for pricing, testimonials, pass gallery.",
+    "Popup Limited-Time Offer – Editable popup: 'First Lesson £25' or seasonal discount.",
+    "Subscribe / Newsletter Form – Email signup for driving tips & theory support.",
+    "Animated Stats Counter – 500+ Students Passed, 10+ Years, 95% Pass Rate (counter animation on view).",
+    "VIP / Lesson Packages Section – Intensive crash courses / fast pass & premium bundles.",
+    "Pass Gallery Showcase – Visual gallery – pass certificates, happy students.",
+    "Video Section – Embedded 1 video with thumbnail & player icon.",
+    "Advanced Testimonials Slider – Animated carousel of student reviews & pass stories.",
+    "Interactive Location Map – Clickable map showing coverage areas & test centres.",
+    "Instructor Availability Display – Weekly static schedule: evening/weekend slots.",
+    "Call-to-Action Sections – Strategic banners pushing to booking or packages.",
+    "Lesson Packages Link to Payment – Pay online for lessons, mock tests & refreshers.",
+    "Highlighted Promotions / Limited Offers Section – Summer discounts, beginner deals banners.",
+    "Gallery Lightbox – Click pass photos → fullscreen lightbox view.",
+    "Sticky Navigation / Smooth Scroll Menu – Persistent nav with anchor smooth scroll.",
+    "Branded Footer with Quick Links & Contact – Phone, WhatsApp, email, social icons, service areas.",
+    "Bottom CTA Dock (Floating Action Bar) – Call, WhatsApp, Text, Book Now (sticky mobile/desktop).",
+    "Multiple Coverage Areas – Display lesson zones + local driving test centres.",
+    "Exit-Intent Offer for Desktop – Popup on exit: discount / free consultation.",
+    "Referral Program Promotion – Informational section: refer a friend → rewards (static).",
+    "Instructor Profile Section – Photo, DVSA credentials, teaching style, experience.",
+    "Mock Driving Test Service – Dedicated upsell card for mock tests.",
+    "Refresher Lessons Section – Nervous / returning driver lessons.",
+    "Intensive Crash Courses Section – 1-week / 2-week fast-track courses.",
+    "Female Instructor Option (if applicable) – Clear badge/info section.",
+    "Nervous Driver Specialist Section – Calm, confidence-building lesson messaging.",
+    "Gift Voucher Section – Buy lesson vouchers online (static form + email enquiry).",
+    "Lesson Prices Page – Transparent pricing table without hidden costs.",
+    "Theory Test Help Section – Resources for beginners & theory support.",
+    "Highlighted Hero Call-to-Action Banner – Top page banner pushing first lesson.",
+    "Social Media Showcase Section – Instagram/Facebook feed preview placeholder.",
+    "Interactive Service Filters – Filter lessons by Auto/Manual, Beginner/Intensive.",
+    "Google Reviews Display – Static widget showing Google reviews & star rating.",
+    "Strong Final CTA Section – 'Ready to start driving? Book today' conversion block.",
+    "Bonus Add-On Services – Motorway lessons, Pass Plus, bay parking, test day car hire.",
+    "Vertical 'Request a Callback' Floating Button – Side sticky callback button.",
+    "Our Fleet Section – Display training cars with images + dual controls info.",
+    "Theory Test Quiz Module – 10–20 static multiple-choice quiz with instant feedback.",
+    "Hazard Perception Video Placeholder – Embedded YouTube hazard clip + written tips.",
+    "Road Signs Flip Cards – 12 essential UK road signs (interactive flashcard style).",
+    "Downloadable PDF Cheat Sheet Button – Stopping distances / road signs PDF download.",
+    "Referral Code Display Box – 'Share code: LEARN25' static (no backend).",
+    "Lesson Reminder Checkbox UI – Visible checkbox + 'we'll text you reminder' (manual process).",
+    "Parent/Guardian Email Field – Extra input on booking form for co-registration (static).",
+    "Skill Progress Checklist (Static) – Printable driving skills checklist (junctions, parallel etc).",
+    "Cancellation Policy Modal – Popup showing clear cancellation terms and policy.",
+    "Block Booking Savings Display – Table/visual: 'Book 5 save £25 / 10 save £60'.",
+    "Test Day Car Hire Info Card – Enquiry button (WhatsApp/email prefill).",
+    "Add-On Service Toggles (UI only) – Motorway / extra hour checkboxes (sends via enquiry).",
+    "Pass Plus Info Section – Dedicated Pass Plus upsell + register interest button.",
+    "Nervous Driver Quiz (Static) – 5-question quiz recommending calm starter package.",
+    "Gift Voucher Digital Download – Printable HTML voucher template (no payment integration).",
+    "WhatsApp Pre-filled Message Button – Clickable link: 'Hi, I'd like to book a driving lesson in [Area]'."
+  ];
+
+  // State: checked = feature should be ADDED (missing) -> so it goes to output
+  let checkedState = new Array(allDrivingFeatures.length).fill(false);
+  let featureNotes = new Array(allDrivingFeatures.length).fill("");
+
+  let currentEditIndex = null;
+
+  // DOM refs
+  const container = document.getElementById("dynamicFeaturesContainer");
+  const finalPromptArea = document.getElementById("finalPromptArea");
+  const copyFinalBtn = document.getElementById("copyFinalBtn");
+  const refreshOutputBtn = document.getElementById("refreshOutputBtn");
+  const noteModal = document.getElementById("noteModal");
+  const noteInputField = document.getElementById("noteInputField");
+  const saveNoteBtn = document.getElementById("saveNoteBtn");
+
+  // Helper: update UI for checkboxes and progress
+  function renderChecklist() {
+    container.innerHTML = "";
+    // group in 3 sections for readability
+    const sections = [
+      { title: "🏁 Essential Booking & Hero", start: 0, end: 19 },
+      { title: "📸 Trust, Gallery & Testimonials", start: 20, end: 39 },
+      { title: "🎯 Advanced Add-ons, Theory & Extras", start: 40, end: 59 }
+    ];
+
+    sections.forEach(sec => {
+      const groupDiv = document.createElement("div");
+      groupDiv.classList.add("progress-area");
+      const groupTitle = document.createElement("div");
+      groupTitle.style.display = "flex";
+      groupTitle.style.justifyContent = "space-between";
+      groupTitle.style.marginBottom = "6px";
+      groupTitle.style.marginTop = "12px";
+      groupTitle.innerHTML = `<span style="font-weight:800; color:#FF6B00;">${sec.title}</span><span class="progress-text" id="groupCounter-${sec.start}-${sec.end}">0/${sec.end-sec.start+1}</span>`;
+      groupDiv.appendChild(groupTitle);
+      
+      const barDiv = document.createElement("div");
+      barDiv.className = "progress-bar";
+      const fillSpan = document.createElement("div");
+      fillSpan.className = "progress-fill";
+      fillSpan.id = `groupFill-${sec.start}-${sec.end}`;
+      barDiv.appendChild(fillSpan);
+      groupDiv.appendChild(barDiv);
+      
+      for (let i = sec.start; i <= sec.end && i < allDrivingFeatures.length; i++) {
+        const feat = allDrivingFeatures[i];
+        const isChecked = checkedState[i];
+        const note = featureNotes[i];
+        const row = document.createElement("div");
+        row.className = "step-row";
+        
+        const checkDiv = document.createElement("div");
+        checkDiv.className = `checkbox ${isChecked ? "checked" : ""}`;
+        checkDiv.innerHTML = isChecked ? '<i class="fa-solid fa-check"></i>' : '';
+        checkDiv.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toggleFeature(i);
+        });
+        
+        const numSpan = document.createElement("div");
+        numSpan.className = "step-num";
+        numSpan.innerText = i+1;
+        
+        const titleSpan = document.createElement("div");
+        titleSpan.className = "step-title";
+        titleSpan.innerText = feat;
+        titleSpan.addEventListener("click", () => toggleFeature(i));
+        
+        const actionDiv = document.createElement("div");
+        actionDiv.className = "feature-actions";
+        
+        const noteIcon = document.createElement("div");
+        noteIcon.className = "info-icon";
+        noteIcon.innerHTML = '<i class="fa-regular fa-note-sticky"></i>';
+        noteIcon.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openNoteModal(i);
+        });
+        actionDiv.appendChild(noteIcon);
+        
+        if (note && note.trim() !== "") {
+          const noteBadge = document.createElement("div");
+          noteBadge.className = "note-badge-sm";
+          noteBadge.innerText = note.length > 18 ? note.slice(0,16)+".." : note;
+          noteBadge.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openNoteModal(i);
+          });
+          actionDiv.appendChild(noteBadge);
+        }
+        
+        row.appendChild(checkDiv);
+        row.appendChild(numSpan);
+        row.appendChild(titleSpan);
+        row.appendChild(actionDiv);
+        groupDiv.appendChild(row);
+      }
+      container.appendChild(groupDiv);
+      updateGroupProgress(sec.start, sec.end);
+    });
+    generateFinalPrompt();
+  }
+
+  function toggleFeature(index) {
+    checkedState[index] = !checkedState[index];
+    renderChecklist();  // re-render fresh to keep UI updated
+  }
+
+  function updateGroupProgress(start, end) {
+    let total = 0, completed = 0;
+    for (let i = start; i <= end && i < allDrivingFeatures.length; i++) {
+      total++;
+      if (checkedState[i]) completed++;
+    }
+    const percent = total === 0 ? 0 : (completed / total) * 100;
+    const fillElem = document.getElementById(`groupFill-${start}-${end}`);
+    if (fillElem) fillElem.style.width = `${percent}%`;
+    const counterElem = document.getElementById(`groupCounter-${start}-${end}`);
+    if (counterElem) counterElem.innerText = `${completed}/${total}`;
+  }
+
+  // Generate final prompt: ONLY CHECKED features (checked = missing -> must be added)
+  function generateFinalPrompt() {
+    const itemsToAdd = [];
+    for (let i = 0; i < allDrivingFeatures.length; i++) {
+      if (checkedState[i] === true) {   // only if checked (missing)
+        let featureText = allDrivingFeatures[i];
+        const note = featureNotes[i];
+        if (note && note.trim() !== "") {
+          featureText = `${featureText} → 📍 PLACEMENT: ${note.trim()}`;
+        }
+        itemsToAdd.push(`➕ ${featureText}`);
+      }
+    }
+    
+    const instructionHeader = `🔹🔹 INSTRUCTION FOR AI (STRICT ADD-ON MODE) 🔹🔹\n\n⚠️ DO NOT remove, rewrite or delete ANY existing code. Preserve current functionality, styles, structure. ONLY ADD the missing features listed below. Do NOT cut any line from original website — pure additions only.\n\n🚗 DRIVING SCHOOL — FEATURES TO ADD (${itemsToAdd.length} item(s)):\n\n`;
+    const missingBody = itemsToAdd.join("\n");
+    const footerNote = `\n\n🔸 IMPORTANT: For features with [PLACEMENT] notes, insert them exactly where described. Keep all existing elements intact. No deletions.`;
+    
+    let finalText = instructionHeader;
+    if (itemsToAdd.length === 0) {
+      finalText = instructionHeader + "(No features selected — check some boxes to generate a list of features to add.)\n";
+    } else {
+      finalText = instructionHeader + missingBody + footerNote;
+    }
+    finalPromptArea.value = finalText;
+  }
+
+  // note modal logic
+  function openNoteModal(index) {
+    currentEditIndex = index;
+    noteInputField.value = featureNotes[index] || "";
+    noteModal.classList.add("show");
+  }
+  function closeNoteModal() {
+    noteModal.classList.remove("show");
+    currentEditIndex = null;
+  }
+  function closeModalOnBg(e) {
+    if (e.target === noteModal) closeNoteModal();
+  }
+  function saveCurrentNote() {
+    if (currentEditIndex !== null) {
+      const newNote = noteInputField.value.trim();
+      featureNotes[currentEditIndex] = newNote;
+      renderChecklist(); // re-render to show badge
+    }
+    closeNoteModal();
+  }
+
+  // copy prompt to clipboard
+  async function copyPrompt() {
+    const textToCopy = finalPromptArea.value;
+    if (!textToCopy) return;
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      const original = copyFinalBtn.innerText;
+      copyFinalBtn.innerText = "✅ Copied!";
+      setTimeout(() => { copyFinalBtn.innerText = original; }, 1500);
+    } catch (err) {
+      alert("Manual copy: select text and copy");
+    }
+  }
+
+  refreshOutputBtn.addEventListener("click", () => {
+    generateFinalPrompt();
+  });
+  copyFinalBtn.addEventListener("click", copyPrompt);
+  saveNoteBtn.addEventListener("click", saveCurrentNote);
+  
+  // initial load
+  renderChecklist();
+</script>
+</body>
+</html>
