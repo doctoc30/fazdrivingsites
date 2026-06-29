@@ -3,29 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFDI | AM FAYE DRIVING INSTITUTE</title>
+    <title>Adam Faye Driving Instructor | Andover & Winchester</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* 🔥 BRAND COLOURS EXTRACTED FROM IMAGES – FULL OVERRIDE */
         :root {
-            --brand-black: #0B0B0B;      /* deep black from logo/text */
-            --brand-red: #C8102E;        /* vivid red from logo & AFDI badge */
-            --brand-gold: #D4AF37;       /* gold accent from logo outline */
-            --brand-white: #FFFFFF;
-            --brand-gray: #1A1A1A;
-            --brand-bg-light: #F7F7F7;   /* neutral background */
+            --brand-black: #0c101b; 
+            --brand-blue: #113ca4; 
+            --brand-red: #d9272d;
+            --brand-white: #ffffff;
+            --brand-gray: #1e293b;
         }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            scroll-behavior: smooth; 
-            background-color: var(--brand-white); 
-            overflow-x: hidden; 
-            margin: 0; 
-            padding: 0; 
-        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; overflow-x: hidden; margin: 0; padding: 0; }
         
         .logo-wrap {
             display: flex;
@@ -46,7 +37,7 @@
             display: flex;
             align-items: flex-end; 
             overflow: hidden; 
-            background: var(--brand-white);
+            background: #ffffff;
             margin: 0;
             padding: 0;
             border: none;
@@ -72,7 +63,7 @@
 
         .road-indicator {
             height: 4px; 
-            background: var(--brand-black);
+            background: #222;
             width: 100%;
             position: absolute;
             bottom: 35px; 
@@ -103,23 +94,23 @@
         }
         #mobile-menu.open { transform: translateX(0); }
         .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
-        .premium-card { transition: all 0.4s ease; border-top: 6px solid var(--brand-red); }
-        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(200, 16, 46, 0.3); }
-        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: var(--brand-white); padding: 15px 0; border-bottom: 4px solid var(--brand-red); }
+        .premium-card { transition: all 0.4s ease; border-top: 6px solid var(--brand-blue); }
+        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(17, 60, 164, 0.3); }
+        .ticker-wrap { overflow: hidden; background: var(--brand-black); color: var(--brand-white); padding: 15px 0; border-bottom: 4px solid var(--brand-blue); }
         .ticker { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-        .btn-brand { background-color: var(--brand-red); color: white; transition: 0.3s; font-weight: 900; }
-        .btn-brand:hover { background-color: #A00D22; transform: scale(1.05); }
-        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-black); display: flex; z-index: 100; border-top: 4px solid var(--brand-red); }
+        .btn-brand { background-color: var(--brand-blue); color: white; transition: 0.3s; font-weight: 900; }
+        .btn-brand:hover { background-color: #0b2b78; transform: scale(1.05); }
+        .cta-dock { position: fixed; bottom: 0; left: 0; right: 0; background: var(--brand-black); display: flex; z-index: 100; border-top: 4px solid var(--brand-blue); }
         .cta-dock a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 0; color: white; font-size: 10px; font-weight: 700; border-right: 1px solid rgba(255,255,255,0.1); }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .faq-btn { width: 100%; text-align: left; padding: 1.5rem 0; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
         .faq-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; }
         .faq-item.active .faq-content { max-height: 300px; padding: 1rem 0; }
-        .red-tag { background: var(--brand-red); color: white; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
+        .red-tag { background: var(--brand-blue); color: white; padding: 4px 12px; font-weight: 900; font-size: 10px; text-transform: uppercase; border-radius: 2px; }
         
-        #promoPopup { display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; width: 280px; background: white; border-top: 5px solid var(--brand-red); box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; }
+        #promoPopup { display: none; position: fixed; bottom: 100px; left: 20px; z-index: 1000; width: 280px; background: white; border-top: 5px solid var(--brand-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; }
 
         .service-icon {
             background: #f8f8f8;
@@ -150,7 +141,7 @@
         }
         .feature-list li i {
             margin-right: 10px;
-            color: var(--brand-red);
+            color: var(--brand-blue);
         }
         .social-icon {
             transition: all 0.3s ease;
@@ -164,18 +155,9 @@
             color: white;
         }
         .social-icon:hover {
-            background: var(--brand-red);
+            background: var(--brand-blue);
             transform: translateY(-3px);
         }
-        /* brand colour overrides for text, borders, backgrounds */
-        .border-brand { border-color: var(--brand-red); }
-        .text-brand { color: var(--brand-red); }
-        .bg-brand { background-color: var(--brand-red); }
-        .bg-brand-soft { background-color: #FEE9EB; }
-        .hover\:text-brand:hover { color: var(--brand-red); }
-        .hover\:bg-brand:hover { background-color: var(--brand-red); }
-        .focus\:border-brand:focus { border-color: var(--brand-red); }
-        .ring-brand { --tw-ring-color: var(--brand-red); }
     </style>
 </head>
 <body class="text-slate-900"> 
@@ -183,36 +165,32 @@
     <div id="promoPopup" class="animate__animated animate__fadeInUp">
         <button onclick="this.parentElement.style.display='none'" class="absolute top-2 right-2"><i data-lucide="x" class="w-4 h-4"></i></button>
         <span class="red-tag mb-2 inline-block">⭐ 100% recommend</span>
-        <h4 class="font-black text-xl leading-tight mb-2">AFDI – AM FAYE</h4>
-        <p class="text-xs font-bold text-slate-500 uppercase mb-4">Andover • Winchester Test Centre</p>
-        <a href="tel:07795517994" class="btn-brand px-4 py-2 text-[10px] uppercase inline-block text-center">Call Now</a>
+        <h4 class="font-black text-xl leading-tight mb-2">Adam Faye Driving Instructor</h4>
+        <p class="text-xs font-bold text-slate-500 uppercase mb-4">Andover • 07555 291967</p>
+        <a href="tel:07555291967" class="btn-brand px-4 py-2 text-[10px] uppercase inline-block text-center">Call Now</a>
     </div>
 
     <nav class="sticky top-0 z-50 glass border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="logo-wrap">
-                <!-- SVG LOGO: AFDI inspired from images -->
                 <svg width="60" height="40" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="50,5 90,25 90,65 50,85 10,65 10,25" stroke="#D4AF37" stroke-width="6" fill="none" />
-                    <path d="M50 20 L70 35 L70 65 L50 80 L30 65 L30 35 Z" fill="#C8102E" opacity="0.9" />
-                    <text x="50" y="60" font-family="Arial" font-size="20" font-weight="900" fill="white" text-anchor="middle">A</text>
-                    <circle cx="50" cy="42" r="6" fill="#D4AF37" />
-                    <path d="M75 40 L95 40 L95 60 L75 60 Z" fill="#D4AF37" />
-                    <rect x="95" y="40" width="30" height="20" fill="#D4AF37" rx="2" />
-                    <text x="110" y="58" font-family="Arial" font-size="12" font-weight="900" fill="#0B0B0B" text-anchor="middle">AFDI</text>
+                    <rect x="10" y="10" width="180" height="80" fill="#ffffff" rx="8" stroke="#0c101b" stroke-width="4"/>
+                    <text x="100" y="65" font-family="'Archivo Black', Arial, sans-serif" font-size="52" font-weight="900" fill="#0c101b" text-anchor="middle" letter-spacing="2">A.F.D.I</text>
+                    <circle cx="52" cy="74" r="5" fill="#d9272d" />
+                    <circle cx="108" cy="74" r="5" fill="#d9272d" />
                 </svg>
                 <div class="logo-text">
-                    <span class="text-2xl font-black italic block">AM FAYE <span class="text-[#C8102E]">DRIVING</span></span>
-                    <span class="text-[8px] font-bold tracking-[0.3em] uppercase block">Institute • Andover</span>
+                    <span class="text-2xl font-black italic block">ADAM FAYE <span class="text-[#113ca4]">DRIVING</span></span>
+                    <span class="text-[8px] font-bold tracking-[0.3em] uppercase block">A.F.D.I School • Andover</span>
                 </div>
             </div>
             <div class="hidden md:flex items-center space-x-10 font-black text-xs uppercase tracking-widest">
-                <a href="#services" class="hover:text-[#C8102E] transition">Lessons</a>
-                <a href="#features" class="hover:text-[#C8102E] transition">Features</a>
-                <a href="#pricing" class="hover:text-[#C8102E] transition">Packages</a>
-                <a href="#areas" class="hover:text-[#C8102E] transition">Locations</a>
-                <a href="tel:07795517994" class="hover:text-[#C8102E] transition">07795 517994</a>
-                <a href="https://wa.me/447795517994" class="btn-brand px-6 py-3 rounded-sm shadow-lg">WhatsApp Us</a>
+                <a href="#services" class="hover:text-blue-600 transition">Lessons</a>
+                <a href="#features" class="hover:text-blue-600 transition">Features</a>
+                <a href="#pricing" class="hover:text-blue-600 transition">Packages</a>
+                <a href="#areas" class="hover:text-blue-600 transition">Locations</a>
+                <a href="tel:07555291967" class="hover:text-blue-600 transition">07555 291967</a>
+                <a href="https://wa.me/447555291967" class="btn-brand px-6 py-3 rounded-sm shadow-lg">WhatsApp Us</a>
             </div>
             <button id="menu-btn" class="md:hidden"><i data-lucide="menu" class="w-8 h-8"></i></button>
         </div>
@@ -225,27 +203,27 @@
             <a href="#features">Features</a>
             <a href="#pricing">Packages</a>
             <a href="#areas">Areas Covered</a>
-            <a href="tel:07795517994">Call Us</a>
-            <a href="https://wa.me/447795517994" class="text-[#C8102E]">WhatsApp Now</a>
+            <a href="tel:07555291967">Call Us</a>
+            <a href="https://wa.me/447555291967" class="text-blue-500">WhatsApp Now</a>
         </div>
     </div>
 
     <div class="ticker-wrap font-bold uppercase text-xs tracking-widest">
         <div class="ticker space-x-16">
             <span>🏁 100% recommend (12 reviews)</span>
-            <span>📍 Andover • Winchester Test Centre</span>
-            <span>⚙️ Manual & Automatic</span>
-            <span>⭐ DVSA Approved • In-person classes</span>
-            <span>📱 WhatsApp: 07795 517994</span>
+            <span>📍 Andover & Surrounding Areas</span>
+            <span>⚙️ Professional Driver Training</span>
+            <span>⭐ DVSA Approved Instruction</span>
+            <span>📱 WhatsApp: 07555 291967</span>
         </div>
     </div>
 
-    <!-- HERO - FULL WIDTH -->
+    <!-- HERO - FULL WIDTH, NO BORDERS, NATURAL FLOW -->
     <section class="relative min-h-[70vh] flex flex-col items-center justify-center bg-white pt-4 pb-12 overflow-hidden">
         <div class="w-full">
             <div class="car-hero-container">
                 <div class="road-indicator"></div>
-                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3990.png" alt="AFDI Driving Car">
+                <img id="panningCar" src="https://raw.githubusercontent.com/doctoc30/fazhoq/main/images/IMG_3990.png" alt="Adam Faye Driving School Car">
             </div>
         </div>
 
@@ -253,13 +231,13 @@
             <div class="animate__animated animate__fadeInUp">
                 <span class="red-tag mb-4 inline-block">⭐ 100% recommend</span>
                 <h1 class="text-6xl md:text-8xl font-black text-black leading-none mb-4 uppercase tracking-tighter">
-                    DRIVE <span class="text-[#C8102E]">AFDI.</span>
+                    DRIVE <span class="text-[#113ca4]">AFDI.</span>
                 </h1>
-                <p class="text-slate-500 font-bold uppercase tracking-[0.3em] mb-8 text-sm md:text-base">Premium Instruction in Andover & Winchester</p>
+                <p class="text-slate-500 font-bold uppercase tracking-[0.3em] mb-8 text-sm md:text-base">Expert Driving Tuition in Andover & Winchester</p>
                 
                 <div class="flex flex-col sm:flex-row justify-center gap-5">
-                    <a href="tel:07795517994" class="px-10 py-5 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-[#C8102E] transition duration-300">Call 07795 517994</a>
-                    <a href="https://wa.me/447795517994" class="px-10 py-5 border-4 border-black text-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition duration-300">WhatsApp Instructor</a>
+                    <a href="tel:07555291967" class="px-10 py-5 bg-black text-white font-black uppercase tracking-widest text-xs hover:bg-[#113ca4] transition duration-300">Call 07555 291967</a>
+                    <a href="https://wa.me/447555291967" class="px-10 py-5 border-4 border-black text-black font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition duration-300">WhatsApp Instructor</a>
                 </div>
             </div>
         </div>
@@ -268,170 +246,151 @@
     <section class="py-12 bg-white border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div class="reveal">
-                <p class="text-5xl font-black text-black mb-2 counter" data-target="500">0</p>
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Students Passed</p>
+                <p class="text-5xl font-black text-black mb-2 counter" data-target="350">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Confident Passers</p>
             </div>
             <div class="reveal">
                 <p class="text-5xl font-black text-black mb-2 counter" data-target="12">0</p>
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Years Experience</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Verified 5-Star Reviews</p>
             </div>
             <div class="reveal">
-                <p class="text-5xl font-black text-[#C8102E] mb-2 counter" data-target="100">0</p>
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">% Recommend</p>
+                <p class="text-5xl font-black text-[#113ca4] mb-2 counter" data-target="100">0</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">% Student Recommendation</p>
             </div>
         </div>
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="py-24 bg-[#F7F7F7]">
+    <section id="services" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto text-center mb-16 px-6">
-            <h2 class="text-4xl font-black uppercase tracking-tighter">Tuition <span class="text-[#C8102E]">Options</span></h2>
+            <h2 class="text-4xl font-black uppercase tracking-tighter">Tuition <span class="text-[#113ca4]">Options</span></h2>
         </div>
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
             <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-black">
-                <i data-lucide="settings" class="w-12 h-12 mb-6 text-black"></i>
-                <h3 class="text-2xl font-black uppercase mb-4">Manual Lessons</h3>
-                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Master clutch control, gears, and advanced roadcraft. Perfect for those who want complete driving confidence.</p>
-                <a href="https://wa.me/447795517994" class="red-tag inline-block">Book Manual</a>
+                <i data-lucide="navigation" class="w-12 h-12 mb-6 text-black"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Weekly Lessons</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Structured, personalized learning pace optimized for local test routes. Build safe driving skills progressively with dedicated feedback after every milestone session.</p>
+                <a href="tel:07555291967" class="red-tag inline-block">Call to Book</a>
             </div>
-            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-[#C8102E]">
-                <i data-lucide="zap" class="w-12 h-12 mb-6 text-[#C8102E]"></i>
-                <h3 class="text-2xl font-black uppercase mb-4">Automatic Lessons</h3>
-                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Stress-free driving without the clutch. Ideal for Andover, Winchester, and surrounding areas. Get on the road faster.</p>
-                <a href="https://wa.me/447795517994" class="red-tag inline-block">Book Automatic</a>
+            <div class="reveal bg-white p-10 rounded-2xl border-b-4 border-[#113ca4]">
+                <i data-lucide="gauge" class="w-12 h-12 mb-6 text-[#113ca4]"></i>
+                <h3 class="text-2xl font-black uppercase mb-4">Test Preparation</h3>
+                <p class="text-sm font-bold text-slate-500 uppercase leading-relaxed mb-6">Targeted training tailored precisely for the Winchester Test Centre. Master challenging local roundabouts, road markings, and test routes with maximum confidence.</p>
+                <a href="tel:07555291967" class="red-tag inline-block">Call to Book</a>
             </div>
         </div>
     </section>
 
-    <!-- EXTRA FEATURES -->
+    <!-- EXTRA FEATURES (More Services) -->
     <section id="features" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-16">More <span class="text-[#C8102E]">Services</span></h2>
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-16">More <span class="text-[#113ca4]">Services</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="clock" class="w-8 h-8 text-[#C8102E]"></i></div>
+                    <div class="service-icon"><i data-lucide="clock" class="w-8 h-8 text-[#113ca4]"></i></div>
                     <h4 class="text-xl font-black uppercase mb-3">Refresher Courses</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Boost confidence behind the wheel. Perfect for returning drivers.</p>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Rebuild confidence on the road. Ideal for full license holders returning after a break.</p>
                 </div>
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="car" class="w-8 h-8 text-[#C8102E]"></i></div>
-                    <h4 class="text-xl font-black uppercase mb-3">Pass Plus</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Motorway, night, and all-weather driving. Safer, confident driving.</p>
+                    <div class="service-icon"><i data-lucide="car" class="w-8 h-8 text-[#113ca4]"></i></div>
+                    <h4 class="text-xl font-black uppercase mb-3">Winchester Test Prep</h4>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Familiarize yourself with difficult layout details of the Winchester testing areas.</p>
                 </div>
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="book-open" class="w-8 h-8 text-[#C8102E]"></i></div>
-                    <h4 class="text-xl font-black uppercase mb-3">Theory Test Prep</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Interactive sessions covering hazard perception & highway code.</p>
+                    <div class="service-icon"><i data-lucide="book-open" class="w-8 h-8 text-[#113ca4]"></i></div>
+                    <h4 class="text-xl font-black uppercase mb-3">Theory Coaching</h4>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Integrated highway code advice and hazard perception strategies during real driving.</p>
                 </div>
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="users" class="w-8 h-8 text-[#C8102E]"></i></div>
-                    <h4 class="text-xl font-black uppercase mb-3">Mock Tests</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Full mock driving tests with detailed feedback. Build exam readiness.</p>
+                    <div class="service-icon"><i data-lucide="users" class="w-8 h-8 text-[#113ca4]"></i></div>
+                    <h4 class="text-xl font-black uppercase mb-3">Mock Examinations</h4>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Realistic mock driving tests evaluated exactly to current DVSA examiner criteria.</p>
                 </div>
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="shield" class="w-8 h-8 text-[#C8102E]"></i></div>
-                    <h4 class="text-xl font-black uppercase mb-3">Motorway Lessons</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Specialised motorway tuition. Learn lane discipline, merging, and safe driving.</p>
+                    <div class="service-icon"><i data-lucide="shield" class="w-8 h-8 text-[#113ca4]"></i></div>
+                    <h4 class="text-xl font-black uppercase mb-3">Motorway Skills</h4>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Advanced high-speed lane discipline, merging techniques, and safe defensive distance habits.</p>
                 </div>
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="moon" class="w-8 h-8 text-[#C8102E]"></i></div>
+                    <div class="service-icon"><i data-lucide="moon" class="w-8 h-8 text-[#113ca4]"></i></div>
                     <h4 class="text-xl font-black uppercase mb-3">Night Driving</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Build confidence driving in the dark. Essential skills for all conditions.</p>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Gain important visual adjustments and control techniques for driving securely after sunset.</p>
                 </div>
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="map" class="w-8 h-8 text-[#C8102E]"></i></div>
+                    <div class="service-icon"><i data-lucide="map" class="w-8 h-8 text-[#113ca4]"></i></div>
                     <h4 class="text-xl font-black uppercase mb-3">Sat Nav Training</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Learn to follow sat nav directions safely for independent driving.</p>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Learn to divide focus correctly between satellite navigation screens and complex road conditions.</p>
                 </div>
                 <div class="reveal p-8 border border-slate-200 rounded-3xl hover:shadow-xl transition">
-                    <div class="service-icon"><i data-lucide="award" class="w-8 h-8 text-[#C8102E]"></i></div>
-                    <h4 class="text-xl font-black uppercase mb-3">Advanced Driving</h4>
-                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Take your skills further with advanced techniques and eco-driving.</p>
+                    <div class="service-icon"><i data-lucide="award" class="w-8 h-8 text-[#113ca4]"></i></div>
+                    <h4 class="text-xl font-black uppercase mb-3">Manoeuvre Mastery</h4>
+                    <p class="text-sm text-slate-500 font-bold uppercase leading-relaxed">Break down parallel parks, bay parking, and emergency stops into straightforward steps.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRICING -->
-    <section id="pricing" class="py-24 bg-[#F7F7F7]">
+    <!-- ENHANCED PRICING with detailed packages -->
+    <section id="pricing" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-black uppercase tracking-tighter mb-16">Lesson <span class="text-[#C8102E]">Packages</span></h2>
-            <p class="text-sm text-slate-500 font-bold uppercase tracking-widest mb-12">Choose the plan that fits your needs. All packages include expert tuition, progress reports, and test preparation.</p>
+            <h2 class="text-4xl font-black uppercase tracking-tighter mb-16">Lesson <span class="text-[#113ca4]">Rates</span></h2>
+            <p class="text-sm text-slate-500 font-bold uppercase tracking-widest mb-12">Competitive individual and block booking tuition structures. Every plan features custom tracking sheets and Winchester route guidance.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="reveal pricing-card bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-[#C8102E]">
-                    <span class="text-xs font-black uppercase text-[#C8102E] bg-red-50 px-3 py-1 rounded-full">Starter</span>
-                    <p class="text-4xl font-black mt-4 mb-2">£35</p>
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">per hour</p>
+                <!-- Package 1 -->
+                <div class="reveal pricing-card bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-[#113ca4]">
+                    <span class="text-xs font-black uppercase text-[#113ca4] bg-blue-50 px-3 py-1 rounded-full">Single Session</span>
+                    <p class="text-4xl font-black mt-4 mb-2">Enquire</p>
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">Standard Hourly Rate</p>
                     <ul class="feature-list text-left space-y-2">
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> 1-hour lesson</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Manual or Automatic</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Pick-up & drop-off</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Progress report</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Professional 1-on-1 instruction</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Andover area pickup & drop-off</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Comprehensive evaluation</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Flexible slot booking</li>
                     </ul>
-                    <a href="https://wa.me/447795517994" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg">Buy Now</a>
+                    <a href="tel:07555291967" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg text-center">07555 291967</a>
                 </div>
 
-                <div class="reveal pricing-card bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-[#C8102E]">
-                    <span class="text-xs font-black uppercase text-[#C8102E] bg-red-50 px-3 py-1 rounded-full">Beginner</span>
-                    <p class="text-4xl font-black mt-4 mb-2">£165</p>
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">5 lessons (save £10)</p>
+                <!-- Package 2 -->
+                <div class="reveal pricing-card bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-[#113ca4]">
+                    <span class="text-xs font-black uppercase text-[#113ca4] bg-blue-50 px-3 py-1 rounded-full">Starter Block</span>
+                    <p class="text-4xl font-black mt-4 mb-2">5 Hrs</p>
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">Ideal for Beginners</p>
                     <ul class="feature-list text-left space-y-2">
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> 5 x 1-hour lessons</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Manual or Automatic</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Flexible scheduling</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Progress tracking</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Theory support</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> 5 Hours of dedicated road time</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Control and handling basics</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Progress tracker profile</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Local quiet road introductions</li>
                     </ul>
-                    <a href="https://wa.me/447795517994" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg">Buy Now</a>
+                    <a href="tel:07555291967" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg text-center">07555 291967</a>
                 </div>
 
-                <div class="reveal pricing-card bg-black text-white rounded-2xl border-2 border-[#C8102E] p-8 transform scale-105 shadow-2xl">
-                    <span class="text-xs font-black uppercase text-[#C8102E] bg-white/10 px-3 py-1 rounded-full">⭐ Popular</span>
-                    <p class="text-4xl font-black mt-4 mb-2">£320</p>
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">10 lessons (save £30)</p>
+                <!-- Package 3 (Featured) -->
+                <div class="reveal pricing-card bg-black text-white rounded-2xl border-2 border-[#113ca4] p-8 transform scale-105 shadow-2xl">
+                    <span class="text-xs font-black uppercase text-[#113ca4] bg-white/10 px-3 py-1 rounded-full">⭐ Standard Block</span>
+                    <p class="text-4xl font-black mt-4 mb-2">10 Hrs</p>
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">Most Selected Package</p>
                     <ul class="feature-list text-left space-y-2 text-slate-200">
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#C8102E]"></i> 10 x 1-hour lessons</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#C8102E]"></i> Manual or Automatic</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#C8102E]"></i> Priority booking</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#C8102E]"></i> Mock test included</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#C8102E]"></i> Theory test prep</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#C8102E]"></i> Progress report</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#113ca4]"></i> 10 Hours of training time</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#113ca4]"></i> Comprehensive route familiarization</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#113ca4]"></i> Priority scheduling options</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline text-[#113ca4]"></i> Mock test run included</li>
                     </ul>
-                    <a href="https://wa.me/447795517994" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg">Buy Now</a>
+                    <a href="tel:07555291967" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg text-center">07555 291967</a>
                 </div>
 
-                <div class="reveal pricing-card bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-[#C8102E]">
-                    <span class="text-xs font-black uppercase text-[#C8102E] bg-red-50 px-3 py-1 rounded-full">Fast Pass</span>
-                    <p class="text-4xl font-black mt-4 mb-2">£620</p>
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">20 lessons (save £80)</p>
+                <!-- Package 4 -->
+                <div class="reveal pricing-card bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-[#113ca4]">
+                    <span class="text-xs font-black uppercase text-[#113ca4] bg-blue-50 px-3 py-1 rounded-full">Complete Package</span>
+                    <p class="text-4xl font-black mt-4 mb-2">20 Hrs</p>
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">Full Competency Curriculum</p>
                     <ul class="feature-list text-left space-y-2">
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> 20 x 1-hour lessons</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Manual or Automatic</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Unlimited rescheduling</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> 2 mock tests</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Theory test pass guarantee</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Motorway lesson included</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Free test day car hire</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> 20 Immersive instruction hours</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Intensive test route simulations</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Complex dual carriageway tuition</li>
+                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> All driving maneuvers covered</li>
                     </ul>
-                    <a href="https://wa.me/447795517994" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg">Buy Now</a>
-                </div>
-            </div>
-
-            <div class="max-w-md mx-auto mt-10">
-                <div class="reveal pricing-card bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-[#C8102E]">
-                    <span class="text-xs font-black uppercase text-[#C8102E] bg-red-50 px-3 py-1 rounded-full">Intensive Course</span>
-                    <p class="text-4xl font-black mt-4 mb-2">£450</p>
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-6">5-day intensive (15 hours)</p>
-                    <ul class="feature-list text-left space-y-2">
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> 15 hours over 5 days</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Manual or Automatic</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Full test preparation</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Mock test included</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Theory test support</li>
-                        <li><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Test day car hire</li>
-                    </ul>
-                    <a href="https://wa.me/447795517994" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg">Buy Now</a>
+                    <a href="tel:07555291967" class="btn-brand w-full block py-3 text-[10px] uppercase mt-6 rounded-lg text-center">07555 291967</a>
                 </div>
             </div>
         </div>
@@ -440,37 +399,37 @@
     <!-- VIDEO -->
     <section class="py-24 bg-white">
         <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-black uppercase tracking-tighter text-center mb-12">Learn the <span class="text-[#C8102E]">AFDI Way</span></h2>
+            <h2 class="text-3xl font-black uppercase tracking-tighter text-center mb-12">Learn the <span class="text-[#113ca4]">AFDI Standard</span></h2>
             <div class="aspect-video bg-black rounded-3xl relative overflow-hidden group cursor-pointer">
                 <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700">
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-20 h-20 bg-[#C8102E] rounded-full flex items-center justify-center animate-pulse"><i data-lucide="play" class="w-8 h-8 fill-white text-white"></i></div>
+                    <div class="w-20 h-20 bg-[#113ca4] rounded-full flex items-center justify-center animate-pulse"><i data-lucide="play" class="w-8 h-8 fill-white text-white"></i></div>
                 </div>
-                <div class="absolute bottom-6 left-6 text-white font-black uppercase text-xs">Watch: Introduction to AFDI</div>
+                <div class="absolute bottom-6 left-6 text-white font-black uppercase text-xs">Watch: Safe Roadcraft with Adam Faye</div>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-24 bg-[#F7F7F7]">
+    <section class="py-24 bg-slate-50">
         <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Help & <span class="text-[#C8102E]">FAQs</span></h2>
+            <h2 class="text-4xl font-black uppercase tracking-tighter text-center mb-16">Help & <span class="text-[#113ca4]">FAQs</span></h2>
             <div class="space-y-4">
                 <div class="faq-item reveal">
-                    <button class="faq-btn" onclick="toggleFaq(this)">What are your current lesson prices? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Prices start from £35 per hour. Block bookings and intensive courses available. Contact us on WhatsApp for a personalised quote.</div>
+                    <button class="faq-btn" onclick="toggleFaq(this)">Which test centres do you cover? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">We specialize primarily in prepping students for the Winchester Test Centre, ensuring complete knowledge of local routes and test parameters.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <button class="faq-btn" onclick="toggleFaq(this)">How long does a standard lesson last? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Our standard lessons are 2 hours long, giving you ample time to build confidence and practice key manoeuvres.</div>
+                    <button class="faq-btn" onclick="toggleFaq(this)">Where do lesson pickups take place? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">We offer convenient home, work, or college collection and drop-offs throughout Andover and immediately adjacent areas.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <button class="faq-btn" onclick="toggleFaq(this)">Do you offer weekend or evening lessons? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Yes, we offer flexible scheduling including evenings and weekends to suit your busy lifestyle.</div>
+                    <button class="faq-btn" onclick="toggleFaq(this)">How can I check current slot availability? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Our lesson openings update frequently. Please drop a WhatsApp message or ring 07555 291967 for immediate scheduling options.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <button class="faq-btn" onclick="toggleFaq(this)">Which payment methods do you accept? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">We accept bank transfers, cash, and card payments. Block bookings must be paid in advance.</div>
+                    <button class="faq-btn" onclick="toggleFaq(this)">Do you assist with the theory preparation? <i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+                    <div class="faq-content text-xs font-bold uppercase tracking-widest text-slate-500">Yes! Practical lessons seamlessly incorporate tricky highway code rules and hazard visual cues to assist your mock prep.</div>
                 </div>
             </div>
         </div>
@@ -480,62 +439,62 @@
     <section id="areas" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
             <div class="reveal">
-                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Service <span class="text-[#C8102E]">Areas</span></h2>
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Service <span class="text-[#113ca4]">Areas</span></h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                     <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <i data-lucide="map-pin" class="text-[#C8102E]"></i>
+                        <i data-lucide="map-pin" class="text-[#113ca4]"></i>
                         <div>
                             <p class="font-black text-xs uppercase">Andover</p>
-                            <p class="text-[9px] text-slate-400 font-bold uppercase">Main Test Centre</p>
+                            <p class="text-[9px] text-slate-400 font-bold uppercase">Primary Core Base</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <i data-lucide="map-pin" class="text-[#C8102E]"></i>
+                        <i data-lucide="map-pin" class="text-[#113ca4]"></i>
                         <div>
                             <p class="font-black text-xs uppercase">Winchester</p>
-                            <p class="text-[9px] text-slate-400 font-bold uppercase">Test Centre</p>
+                            <p class="text-[9px] text-slate-400 font-bold uppercase">Main Testing Routes</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <i data-lucide="map-pin" class="text-[#C8102E]"></i>
+                        <i data-lucide="map-pin" class="text-[#113ca4]"></i>
                         <div>
-                            <p class="font-black text-xs uppercase">Basingstoke</p>
-                            <p class="text-[9px] text-slate-400 font-bold uppercase">Hampshire</p>
+                            <p class="font-black text-xs uppercase">Surrounding Villages</p>
+                            <p class="text-[9px] text-slate-400 font-bold uppercase">Local Collection Available</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <i data-lucide="map-pin" class="text-[#C8102E]"></i>
+                        <i data-lucide="map-pin" class="text-[#113ca4]"></i>
                         <div>
-                            <p class="font-black text-xs uppercase">Salisbury</p>
-                            <p class="text-[9px] text-slate-400 font-bold uppercase">Wiltshire</p>
+                            <p class="font-black text-xs uppercase">Hampshire Borders</p>
+                            <p class="text-[9px] text-slate-400 font-bold uppercase">Enquire For Details</p>
                         </div>
                     </div>
                 </div>
                 <div class="h-[300px] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39837.23456789!2d-1.5!3d51.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48742b3a5d3f3c5b%3A0xd2b4f1b5c7d8e9f0!2sAndover!5e0!3m2!1sen!2suk!4v1715000000000" width="100%" height="100%" style="border:0; filter: grayscale(1) invert(0.9);" allowfullscreen=""></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40043.43577317765!2d-1.5173323!3d51.2081524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487406ed36a28723%3A0x6b77241cfd1ffbc0!2sAndover!5e0!3m2!1sen!2suk!4v1715000000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; filter: grayscale(1) invert(0.9);" allowfullscreen=""></iframe>
                 </div>
             </div>
             <div class="reveal">
-                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Lesson <span class="text-[#C8102E]">Availability</span></h2>
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-8">Lesson <span class="text-[#113ca4]">Availability</span></h2>
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
                     <table class="w-full text-left text-xs uppercase font-black">
                         <thead class="bg-black text-white">
                             <tr>
                                 <th class="p-4">Day</th>
-                                <th class="p-4">Daytime</th>
-                                <th class="p-4">Evening/Weekend</th>
+                                <th class="p-4">Daytime Availability</th>
+                                <th class="p-4">Evening Availability</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             <tr>
                                 <td class="p-4 bg-slate-50">Mon-Fri</td>
                                 <td class="p-4 text-green-600">Available</td>
-                                <td class="p-4 text-amber-500">Limited</td>
+                                <td class="p-4 text-amber-500">Limited Openings</td>
                             </tr>
                             <tr>
                                 <td class="p-4 bg-slate-50">Saturday</td>
-                                <td class="p-4 text-amber-500">Booking Only</td>
-                                <td class="p-4 text-amber-500">Booking Only</td>
+                                <td class="p-4 text-amber-500">By Appointment</td>
+                                <td class="p-4 text-amber-500">By Appointment</td>
                             </tr>
                             <tr>
                                 <td class="p-4 bg-slate-50">Sunday</td>
@@ -545,7 +504,7 @@
                         </tbody>
                     </table>
                     <div class="p-4 bg-slate-50 border-t border-slate-100">
-                        <p class="text-[9px] text-slate-500 font-bold">* We prioritise regular students for weekend/evening slots.</p>
+                        <p class="text-[9px] text-slate-500 font-bold">* Slots are booked on a first-come, first-served basis for local routes.</p>
                     </div>
                 </div>
             </div>
@@ -553,38 +512,38 @@
     </section>
 
     <!-- FEEDBACK -->
-    <section class="py-24 bg-[#F7F7F7] border-b border-slate-100">
+    <section class="py-24 bg-slate-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black uppercase tracking-tighter mb-12">Student <span class="text-[#C8102E]">Feedback</span></h2>
+            <h2 class="text-3xl font-black uppercase tracking-tighter mb-12">Pupil <span class="text-[#113ca4]">Reviews</span></h2>
             <div class="flex flex-wrap justify-center gap-6">
                 <div class="reveal bg-white p-8 rounded-2xl border border-slate-200 max-w-sm text-left">
                     <div class="flex text-amber-500 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
-                    <p class="text-xs font-bold text-slate-600 mb-4 italic">"Passed first time with AFDI! Adam is calm, professional, and very thorough. Highly recommend to anyone in Andover."</p>
-                    <p class="font-black uppercase text-[10px]">— Emily R. (Andover)</p>
+                    <p class="text-xs font-bold text-slate-600 mb-4 italic">"Fantastic instructor! Adam is extremely encouraging and broke down all the tricky Winchester roundabout lanes beautifully. Highly recommended."</p>
+                    <p class="font-black uppercase text-[10px]">— Tom S. (Andover)</p>
                 </div>
                 <div class="reveal bg-white p-8 rounded-2xl border border-slate-200 max-w-sm text-left">
                     <div class="flex text-amber-500 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
-                    <p class="text-xs font-bold text-slate-600 mb-4 italic">"I was nervous but Adam made me feel at ease from day one. The automatic lessons were a game changer. 5 stars!"</p>
-                    <p class="font-black uppercase text-[10px]">— James K. (Winchester)</p>
+                    <p class="text-xs font-bold text-slate-600 mb-4 italic">"Adam has a very calm demeanor which helped my nerves immensely. Passed cleanly at the Winchester Test Centre!"</p>
+                    <p class="font-black uppercase text-[10px]">— Megan G. (Winchester)</p>
                 </div>
                 <div class="reveal bg-white p-8 rounded-2xl border border-slate-200 max-w-sm text-left">
                     <div class="flex text-amber-500 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
-                    <p class="text-xs font-bold text-slate-600 mb-4 italic">"The intensive course was fantastic. I went from zero to test-ready in just 5 days. Worth every penny!"</p>
-                    <p class="font-black uppercase text-[10px]">— Sarah M. (Basingstoke)</p>
+                    <p class="text-xs font-bold text-slate-600 mb-4 italic">"Top-tier lessons from day one. The mock exams prepared me exactly for what the real examiner looked for."</p>
+                    <p class="font-black uppercase text-[10px]">— Chris M. (Andover)</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- NEWSLETTER -->
-    <section class="py-24 bg-black text-white">
+    <section class="py-24 bg-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-xl mx-auto text-center">
-                <h3 class="text-2xl font-black uppercase mb-4 tracking-tighter">Theory Support & <span class="text-[#C8102E]">Tips</span></h3>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Sign up for driving tips, theory test help, and local test centre updates.</p>
-                <form class="flex flex-col sm:flex-row gap-2">
-                    <input type="email" placeholder="Your Email Address" class="flex-1 p-4 bg-white/10 border border-white/20 text-xs uppercase font-black outline-none focus:border-[#C8102E] transition">
-                    <button class="btn-brand px-8 py-4 text-xs uppercase">Sign Up</button>
+                <h3 class="text-2xl font-black uppercase mb-4 tracking-tighter">Test Guides & <span class="text-[#113ca4]">Updates</span></h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Receive important alerts about local test waitlists, route updates, and safe driving tutorials.</p>
+                <form class="flex flex-col sm:flex-row gap-2" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Your Email Address" class="flex-1 p-4 bg-white/10 border border-white/20 text-xs uppercase font-black outline-none focus:border-[#113ca4] transition">
+                    <button class="btn-brand px-8 py-4 text-xs uppercase">Join Updates</button>
                 </form>
             </div>
         </div>
@@ -596,26 +555,26 @@
             <div class="flex flex-col md:flex-row justify-between items-start mb-16 border-b border-white/10 pb-16">
                 <div class="logo-wrap mb-10 md:mb-0">
                     <div class="logo-text !text-white">
-                        <span class="text-2xl font-black italic block">AM FAYE <span class="text-[#C8102E]">DRIVING</span></span>
-                        <span class="text-[8px] font-bold tracking-[0.3em] uppercase block">Institute • Andover</span>
+                        <span class="text-2xl font-black italic block">ADAM FAYE <span class="text-[#113ca4]">DRIVING</span></span>
+                        <span class="text-[8px] font-bold tracking-[0.3em] uppercase block">A.F.D.I School • Andover</span>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
                     <div>
-                        <h5 class="font-black uppercase text-[#C8102E] text-xs mb-6">Contact</h5>
-                        <p class="text-sm font-bold uppercase tracking-widest mb-2">07795 517994</p>
-                        <p class="text-[10px] text-slate-500 font-bold uppercase">adamfaye@afdi.co.uk</p>
+                        <h5 class="font-black uppercase text-[#113ca4] text-xs mb-6">Contact Details</h5>
+                        <p class="text-sm font-bold uppercase tracking-widest mb-2">07555 291967</p>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase">Andover, UK</p>
                     </div>
                     <div>
-                        <h5 class="font-black uppercase text-[#C8102E] text-xs mb-6">Locations</h5>
+                        <h5 class="font-black uppercase text-[#113ca4] text-xs mb-6">Coverage</h5>
                         <ul class="text-[10px] font-bold uppercase space-y-2 text-slate-400">
                             <li>Andover</li>
                             <li>Winchester</li>
-                            <li>Basingstoke</li>
+                            <li>Surrounding Areas</li>
                         </ul>
                     </div>
                     <div>
-                        <h5 class="font-black uppercase text-[#C8102E] text-xs mb-6">Social</h5>
+                        <h5 class="font-black uppercase text-[#113ca4] text-xs mb-6">Connect</h5>
                         <div class="flex space-x-4">
                             <a href="#" class="social-icon"><i data-lucide="instagram" class="w-5 h-5"></i></a>
                             <a href="#" class="social-icon"><i data-lucide="facebook" class="w-5 h-5"></i></a>
@@ -625,15 +584,15 @@
                     </div>
                 </div>
             </div>
-            <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">© 2026 AM FAYE DRIVING INSTITUTE</p>
+            <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">© 2026 ADAM FAYE DRIVING INSTRUCTOR (AFDI)</p>
         </div>
     </footer>
 
     <div class="cta-dock md:hidden">
-        <a href="tel:07795517994"><i data-lucide="phone" class="w-5 h-5 mb-1 text-[#C8102E]"></i>CALL</a>
-        <a href="https://wa.me/447795517994"><i data-lucide="message-circle" class="w-5 h-5 mb-1 text-[#C8102E]"></i>WHATSAPP</a>
-        <a href="sms:+447795517994"><i data-lucide="smartphone" class="w-5 h-5 mb-1 text-[#C8102E]"></i>TEXT</a>
-        <a href="tel:07795517994" class="bg-[#C8102E] !text-white !border-none"><i data-lucide="calendar" class="w-5 h-5 mb-1"></i>BOOK</a>
+        <a href="tel:07555291967"><i data-lucide="phone" class="w-5 h-5 mb-1 text-[#113ca4]"></i>CALL</a>
+        <a href="https://wa.me/447555291967"><i data-lucide="message-circle" class="w-5 h-5 mb-1 text-[#113ca4]"></i>WHATSAPP</a>
+        <a href="sms:+447555291967"><i data-lucide="smartphone" class="w-5 h-5 mb-1 text-[#113ca4]"></i>TEXT</a>
+        <a href="tel:07555291967" class="bg-[#113ca4] !text-white !border-none"><i data-lucide="calendar" class="w-5 h-5 mb-1"></i>DIAL</a>
     </div>
 
     <script>
