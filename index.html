@@ -35,7 +35,7 @@
         }
 
         /* Scroll Snap for smooth scrolling */
-       .slide-container {
+      .slide-container {
             height: 100dvh;
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
@@ -59,7 +59,7 @@
         }
 
         /* TRUE CENTERING - ACCOUNTS FOR NAV + DOCK */
-       .text-wrap {
+      .text-wrap {
             width: 100%;
             max-width: 1200px;
             display: flex;
@@ -85,7 +85,7 @@
         }
 
         /* Floating animation for elements */
-       .float {
+      .float {
             animation: float 3s ease-in-out infinite;
         }
 
@@ -95,7 +95,7 @@
         }
 
         /* Pulse animation */
-       .pulse {
+      .pulse {
             animation: pulse 2s ease-in-out infinite;
         }
 
@@ -105,7 +105,7 @@
         }
 
         /* Glow animation */
-       .glow {
+      .glow {
             animation: glow 2s ease-in-out infinite alternate;
         }
 
@@ -115,7 +115,7 @@
         }
 
         /* HEADER - Transparent with no border */
-       .faz-nav {
+      .faz-nav {
             position: fixed;
             top: 0;
             width: 100%;
@@ -129,7 +129,7 @@
             border-bottom: none;
         }
 
-       .faz-logo {
+      .faz-logo {
             font-size: 2.2rem;
             font-weight: 900;
             letter-spacing: -1px;
@@ -138,18 +138,18 @@
             transition: transform 0.3s ease;
         }
 
-       .faz-logo:hover {
+      .faz-logo:hover {
             transform: scale(1.05);
         }
 
-       .faz-logo.brand {
+      .faz-logo.brand {
             color: #000;
         }
-       .faz-logo.sites {
+      .faz-logo.sites {
             color: var(--primary);
         }
-       .faz-logo.dot {
-            color: #000;
+      .faz-logo span {
+            color: #000!important; /* BLACK DOT FIX */
         }
 
         #menu-btn {
@@ -166,7 +166,7 @@
         }
 
         /* TEXT STYLES - BIGGER */
-       .huge-text {
+      .huge-text {
             font-size: clamp(3.5rem, 12vmin, 5rem);
             font-weight: 900;
             line-height: 0.9;
@@ -175,12 +175,12 @@
             animation: glow 2s ease-in-out infinite alternate;
         }
 
-       .huge-text.black {
+      .huge-text.black {
             color: #000;
             animation: none;
         }
 
-       .waving-hand {
+      .waving-hand {
             width: clamp(280px, 50vw, 400px);
             height: auto;
             margin-bottom: 10px;
@@ -188,7 +188,7 @@
             animation: float 3s ease-in-out infinite;
         }
 
-       .category-header {
+      .category-header {
             font-size: 1rem;
             font-weight: 900;
             text-transform: uppercase;
@@ -199,7 +199,7 @@
         }
 
         /* DOCK */
-       .app-dock {
+      .app-dock {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -214,7 +214,7 @@
             box-shadow: 0 -10px 30px rgba(255,107,0,0.3);
         }
 
-       .dock-btn {
+      .dock-btn {
             font-size: 1.6rem;
             color: #FFFFFF;
             transition: all 0.3s ease;
@@ -225,12 +225,12 @@
             position: relative;
         }
 
-       .dock-btn:hover {
+      .dock-btn:hover {
             transform: scale(1.1) translateY(-5px);
             color: #fff;
         }
 
-       .dock-btn::after {
+      .dock-btn::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -240,11 +240,11 @@
             transition: width 0.3s ease;
         }
 
-       .dock-btn:hover::after {
+      .dock-btn:hover::after {
             width: 100%;
         }
 
-       .dock-btn span {
+      .dock-btn span {
             font-size: 0.55rem;
             font-weight: 800;
             margin-top: 2px;
@@ -253,7 +253,7 @@
         }
 
         /* GLOBAL LEGAL FOOTER */
-       .global-legal-links {
+      .global-legal-links {
             position: fixed;
             bottom: 70px;
             width: 100%;
@@ -264,7 +264,7 @@
             pointer-events: none;
         }
 
-       .legal-link {
+      .legal-link {
             font-size: 0.6rem;
             font-weight: 900;
             color: #000;
@@ -276,12 +276,12 @@
             transition: opacity 0.3s ease;
         }
 
-       .legal-link:hover {
+      .legal-link:hover {
             opacity: 0.8;
         }
 
         /* PROCESS LIST */
-       .process-item {
+      .process-item {
             display: flex;
             gap: 18px;
             margin-bottom: 20px;
@@ -294,9 +294,9 @@
             animation: slideInLeft 0.6s ease forwards;
         }
 
-       .process-item:nth-child(1) { animation-delay: 0.3s; }
-       .process-item:nth-child(2) { animation-delay: 0.5s; }
-       .process-item:nth-child(3) { animation-delay: 0.7s; }
+      .process-item:nth-child(1) { animation-delay: 0.3s; }
+      .process-item:nth-child(2) { animation-delay: 0.5s; }
+      .process-item:nth-child(3) { animation-delay: 0.7s; }
 
         @keyframes slideInLeft {
             to {
@@ -305,7 +305,7 @@
             }
         }
 
-       .process-num {
+      .process-num {
             background: var(--primary);
             width: 38px;
             height: 38px;
@@ -320,7 +320,7 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
-       .process-text {
+      .process-text {
             font-weight: 700;
             font-size: 1.1rem;
             line-height: 1.3;
@@ -328,7 +328,7 @@
         }
 
         /* FINGER POINTER */
-       .finger-pointer {
+      .finger-pointer {
             font-size: 3.5rem;
             color: var(--primary);
             margin-top: 10px;
@@ -342,7 +342,7 @@
         }
 
         /* Paragraph text */
-       .description-text {
+      .description-text {
             font-size: 1.2rem;
             font-weight: 600;
             margin-top: 16px;
@@ -365,7 +365,7 @@
 
         #app-menu-layer.active { transform: translateY(0); }
 
-       .menu-item {
+      .menu-item {
             font-size: 3.5rem;
             font-weight: 900;
             color: var(--text);
@@ -376,12 +376,12 @@
             position: relative;
         }
 
-       .menu-item:hover {
+      .menu-item:hover {
             color: var(--primary);
             transform: scale(1.05);
         }
 
-       .menu-item::after {
+      .menu-item::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -393,28 +393,28 @@
             transform: translateX(-50%);
         }
 
-       .menu-item:hover::after {
+      .menu-item:hover::after {
             width: 50%;
         }
 
-       .menu-logo {
+      .menu-logo {
             font-size: 2.2rem;
             font-weight: 900;
             letter-spacing: -1px;
             color: var(--primary);
         }
 
-       .menu-logo.brand {
+      .menu-logo.brand {
             color: #000;
         }
-       .menu-logo.sites {
+      .menu-logo.sites {
             color: var(--primary);
         }
-       .menu-logo.dot {
-            color: #000;
+      .menu-logo span {
+            color: #000!important; /* BLACK DOT IN MENU TOO */
         }
 
-       .close-menu-btn {
+      .close-menu-btn {
             width: 48px;
             height: 48px;
             background: var(--primary);
@@ -428,13 +428,13 @@
             transition: transform 0.3s ease;
         }
 
-       .close-menu-btn:hover {
+      .close-menu-btn:hover {
             transform: rotate(90deg) scale(1.1);
         }
 
         /* Responsive adjustments */
         @media (max-width: 640px) {
-           .faz-logo {
+          .faz-logo {
                 font-size: 1.6rem;
             }
 
@@ -442,7 +442,7 @@
                 font-size: 1.6rem;
             }
 
-           .menu-item {
+          .menu-item {
                 font-size: 2.5rem;
             }
 
@@ -450,34 +450,38 @@
                 padding: calc(var(--safe-top) + 60px) 1.5rem calc(65px + var(--safe-bottom) + 20px);
             }
 
-           .huge-text {
+          .huge-text {
                 font-size: clamp(2.6rem, 9vmin, 3.2rem);
             }
 
-           .process-text {
+          .process-text {
                 font-size: 0.95rem;
             }
 
-           .waving-hand {
+          .waving-hand {
                 width: clamp(200px, 42vw, 280px);
             }
 
-           .dock-btn {
+          .dock-btn {
                 font-size: 1.4rem;
             }
 
-           .description-text {
+          .description-text {
                 font-size: 1rem;
             }
 
-           .process-num {
+          .process-num {
                 width: 32px;
                 height: 32px;
                 font-size: 0.85rem;
             }
 
-           .text-wrap {
+          .text-wrap {
                 transform: translateY(-25px); /* Slightly more nudge on mobile */
+            }
+
+          .menu-logo {
+                font-size: 1.6rem;
             }
         }
 
@@ -500,7 +504,7 @@
 
     <div id="app-menu-layer">
         <div class="flex justify-between items-center mb-8">
-            <div class="menu-logo">FAZ ADI <span class="sites">SITES</span><span class="dot">.</span></div>
+            <div class="menu-logo">FAZ ADI <span class="sites">SITES</span><span>.</span></div>
             <div onclick="toggleMenu()" class="close-menu-btn">
                 <i class="fa-solid fa-xmark"></i>
             </div>
@@ -515,7 +519,7 @@
     </div>
 
     <nav class="faz-nav">
-        <div class="faz-logo" onclick="scrollToTop()">FAZ ADI <span class="sites">SITES</span><span class="dot">.</span></div>
+        <div class="faz-logo" onclick="scrollToTop()">FAZ ADI <span class="sites">SITES</span><span>.</span></div>
         <button id="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
     </nav>
 
